@@ -1,17 +1,17 @@
-#ifdef __WORLD__HEADER__GUARD__
+#ifndef __WORLD__HEADER__GUARD__
 #define __WORLD__HEADER__GUARD__
 
 /*
  * world X is across, world Y is downwards
  */ 
-Class World
+class World
 {
-Private:
+private:
         // constructor
         World();
         // member variables
-        float world[][];
-Public:
+//        float world[][];
+public:
         World *getWorld();
 };
 

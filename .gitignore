@@ -52,3 +52,9 @@ Thumbs.db
 *.pyg
 *.toc
 *.run.xml
+
+# emacs generated backup files #
+################################
+*~
+.#*
+\#*\#
