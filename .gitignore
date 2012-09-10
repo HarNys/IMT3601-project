@@ -52,3 +52,9 @@ Thumbs.db
 *.pyg
 *.toc
 *.run.xml
+
+# VC10 binary files #
+#####################
+
+*.suo
+*.sdf
