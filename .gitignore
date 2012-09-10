@@ -64,3 +64,8 @@ Thumbs.db
 *~
 .#*
 \#*\#
+
+#  VC10 Debug folder #
+######################
+./Debug/
+./ipch/
