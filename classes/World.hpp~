@@ -1,0 +1,4 @@
+#ifdef __WORLD__HEADER__GUARD__
+#define __WORLD__HEADER__GUARD__
+
+#endif // __WORLD__HEADER__GUARD__
