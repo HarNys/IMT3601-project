@@ -53,6 +53,12 @@ Thumbs.db
 *.toc
 *.run.xml
 
+# VC10 binary files #
+#####################
+
+*.suo
+*.sdf
+
 # emacs generated backup files #
 ################################
 *~
