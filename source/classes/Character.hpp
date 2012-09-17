@@ -3,10 +3,12 @@ class Character
 private:
 	int posX;
 	int posY;
-protected:
+	sf::Texture texture;
+	sf::Sprite sprite;
+//protected:
 
 public:
 
 	Character();
 	void draw();
-}
+};

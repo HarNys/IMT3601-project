@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 	bool running = true;
 	while (running)
 	{
-		app.Display();
+		app.display();
 		
 	}
 	return EXIT_SUCCESS;

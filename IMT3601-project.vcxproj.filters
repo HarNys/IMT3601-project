@@ -18,13 +18,13 @@
     <ClInclude Include="source\classes\Character.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Mine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\classes\World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Includes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Mine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -33,9 +33,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Mine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
