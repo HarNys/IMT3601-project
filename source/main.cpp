@@ -5,8 +5,11 @@
 
 int main(int argc, char **argv)
 {
-	sf::Window app(sf::VideoMode(800,600,32),"testWindow");
+	sf::RenderWindow app(sf::VideoMode(800,600,32),"testWindow");
 	bool running = true;
+	//Character player1; //error when loading image
+	//player1.draw(&app);
+
 	while (running)
 	{
 		app.display();

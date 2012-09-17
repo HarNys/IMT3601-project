@@ -1,27 +1,26 @@
 
 #include "../Includes.hpp"
 
-
 Character::Character()
 {
 	
-	// Declare and load a texture
 	
-	texture.loadFromFile("img/player");
+	sf::Image image;
+	image.loadFromFile("img\player.gif");
+	texture.loadFromImage(image);
 
 	// Create a sprite
-	
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(10, 10, 50, 30));
 	sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(100, 25);
-	//*/
-	posX = 0;
-	posY = 0;
+	
+	characterPosX = 0;
+	characterPosY = 0;
 };
 
-void Character::draw()
+void Character::draw(sf::RenderWindow *window)
 {
-	// Draw it
-	//window.draw(sprite);
+	 //Draw
+	//window->draw(sprite);
 };

@@ -1,8 +1,8 @@
 class Character
 {
 private:
-	int posX;
-	int posY;
+	int characterPosX;
+	int characterPosY;
 	sf::Texture texture;
 	sf::Sprite sprite;
 //protected:
@@ -10,5 +10,5 @@ private:
 public:
 
 	Character();
-	void draw();
+	void draw(sf::RenderWindow* window);
 };
