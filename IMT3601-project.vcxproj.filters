@@ -15,36 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="classes\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="classes\Mine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="classes\World.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="classes\World.hpp">
+    <ClInclude Include="source\classes\Character.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="classes\Mine.hpp">
+    <ClInclude Include="source\classes\Mine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="classes\Character.hpp">
+    <ClInclude Include="source\classes\World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes.hpp">
+    <ClInclude Include="source\Includes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="classes\World.hpp~">
-      <Filter>Header Files</Filter>
-    </None>
+    <ClCompile Include="source\classes\World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Mine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
