@@ -11,6 +11,7 @@
 #elif defined __linux__
 //we are on linux
 #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 #elif defined __APPLE__&__MACH__
 // we are on mac
@@ -26,5 +27,7 @@
 #include "classes/World.hpp"
 #include "classes/Character.hpp"
 #include "classes/Mine.hpp"
+#include "classes/MineFactory.hpp"
+
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

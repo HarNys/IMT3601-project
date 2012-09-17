@@ -30,10 +30,14 @@ git commit [-a] [-m 'commit message']
 
 git pull
 # pulls changes from 'origin' (here github)
+# this should ALLWAYS be done BEFORE 'git push'
 
 git push
 # pushes changes to 'origin' (here github)
+# this should NEVER be done BEFORE 'git pull'
 
 git merge [branch]
 # this borders to more advanced topics (requiring more reading)
 # merge the branch you are currently on with [branch]
+
+# more info at: http://schacon.github.com/git/git

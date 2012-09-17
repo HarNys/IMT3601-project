@@ -6,7 +6,8 @@
 int main(int argc, char **argv)
 {
 	/**
-	 * TODO: make mapsizes parsed from arguments.
+	 * @todo make mapsizes parsed from arguments.
+	 * @todo make System.{c,h}pp (maybe call it init?)
 	 */
 	const int MAPSIZEX = 15;
 	const int MAPSIZEY = 15;

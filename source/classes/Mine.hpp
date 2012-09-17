@@ -7,12 +7,10 @@
 class Mine
 {
 private:
+        // member variables
+public:
         // constructor
         Mine();
-        // member variables
-//        float world[][];
-public:
-        Mine *getWorld();
 };
 
 #endif // __MINE__HEADER__GUARD__
