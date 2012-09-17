@@ -4,6 +4,7 @@
 ///////////// OS SPECIFIC //////////////
 #ifdef _WIN32
 // we are on windows
+#include <SFML/Window.hpp>
 
 #elif defined __linux__
 //we are on linux

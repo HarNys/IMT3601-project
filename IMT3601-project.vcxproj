@@ -10,6 +10,18 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\classes\Character.hpp" />
+    <ClInclude Include="source\classes\Mine.hpp" />
+    <ClInclude Include="source\classes\World.hpp" />
+    <ClInclude Include="source\Includes.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\classes\Character.cpp" />
+    <ClCompile Include="source\classes\Mine.cpp" />
+    <ClCompile Include="source\classes\World.cpp" />
+    <ClCompile Include="source\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65763C3B-BEE6-4750-8E59-A6C0D03B3B2E}</ProjectGuid>
     <RootNamespace>IMT3601project</RootNamespace>
@@ -62,21 +74,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="classes\Character.cpp" />
-    <ClCompile Include="classes\Mine.cpp" />
-    <ClCompile Include="classes\World.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="classes\Character.hpp" />
-    <ClInclude Include="classes\Mine.hpp" />
-    <ClInclude Include="classes\World.hpp" />
-    <ClInclude Include="Includes.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="classes\World.hpp~" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Game_Programming_Assignment" company="Unknown" webLink="http://" view-date="2012-10-09" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?><project name="Game_Programming_Assignment" company="Unknown" webLink="http://" view-date="2012-10-07" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.0">
     <description><![CDATA[The Gantt chart for our Game Programming Assignment. Members: Harry Nystad, Peer Andreas Stange, Ørjan Røkkum, Thomas Sigurdsen]]></description>
-    <view zooming-state="default:2" id="gantt-chart"/>
+    <view zooming-state="default:4" id="gantt-chart"/>
     <view id="resource-table">
-        <field id="0" name="Name" width="52" order="0"/>
-        <field id="1" name="Default role" width="47" order="1"/>
+        <field id="0" name="Name" width="50" order="0"/>
+        <field id="1" name="Default role" width="49" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -63,9 +63,7 @@
         <resource id="3" name="Ørjan Røkkum Brandtzæg" function="SoftwareDevelopment:2" contacts="orod_sul@hotmail.com" phone="41351170"/>
     </resources>
     <allocations>
-        <allocation task-id="6" resource-id="0" function="SoftwareDevelopment:5" responsible="true" load="100.0"/>
         <allocation task-id="9" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="12" resource-id="0" function="SoftwareDevelopment:5" responsible="true" load="100.0"/>
         <allocation task-id="3" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="5" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="9" resource-id="1" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
@@ -76,10 +74,14 @@
         <allocation task-id="3" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
         <allocation task-id="5" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
         <allocation task-id="16" resource-id="2" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="6" resource-id="2" function="SoftwareDevelopment:5" responsible="true" load="100.0"/>
+        <allocation task-id="12" resource-id="2" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
         <allocation task-id="9" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
         <allocation task-id="3" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
         <allocation task-id="5" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
         <allocation task-id="16" resource-id="3" function="SoftwareDevelopment:2" responsible="false" load="100.0"/>
+        <allocation task-id="6" resource-id="3" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
+        <allocation task-id="12" resource-id="3" function="SoftwareDevelopment:5" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <taskdisplaycolumns>
