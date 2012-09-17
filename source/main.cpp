@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	while (running)
 	{
 		app.display();
-
 	}
 	return EXIT_SUCCESS;
 }

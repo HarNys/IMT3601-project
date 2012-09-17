@@ -18,7 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\classes\Character.cpp" />
-    <ClCompile Include="source\classes\Mine.cpp" />
     <ClCompile Include="source\classes\World.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
@@ -58,7 +57,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-window.lib;sfml-graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

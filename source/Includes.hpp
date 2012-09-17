@@ -5,6 +5,8 @@
 #ifdef _WIN32
 // we are on windows
 #include <SFML/Window.hpp>
+#include<SFML\Graphics.hpp>
+
 
 #elif defined __linux__
 //we are on linux
@@ -18,6 +20,7 @@
 //////////// ISO LIBRARIES /////////////
 #include <stdio.h>
 #include <typeinfo>
+#include <string.h>
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/World.hpp"
