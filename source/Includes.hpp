@@ -19,6 +19,7 @@
 
 //////////// ISO LIBRARIES /////////////
 #include <stdio.h>
+#include <typeinfo>
 #include <string.h>
 
 ///////// LOCAL PROJECT FILES //////////

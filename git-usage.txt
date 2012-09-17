@@ -1,0 +1,39 @@
+# These are the git commands needed for a basic minimum usage of git.
+# This covers only the few features necessary to use git more or less as
+# a svn repo.
+# IN CASE OF MERGE CONFLICTS:
+#	go into file and fix the conflict, then add and commit the
+#	conflicted files (committing them tells git that conflicts
+#	have been solved). you can commit nonconflicted files at the
+#	same time.
+
+git status
+# gives you information on among other things:
+# 1.	branch
+# 2.	files staged for commit (this means they(files) are what will
+#				currently be committed)
+# 3.	files to be added
+# 4.	untracked files
+
+git add [files]
+# stages file[s] for commit
+
+git commit [-a] [-m 'commit message']
+# commit staged changes (to local repo). committing a file tells git
+# that merge conflicts in this file have been cleared.
+#
+# without -m an editor will be launched to enter commit message into.
+# -m 'message' write commit message straight in the CLI, without
+# 	starting an editor
+# -a stages all followed files before committing
+# -am 'message' do both at once!
+
+git pull
+# pulls changes from 'origin' (here github)
+
+git push
+# pushes changes to 'origin' (here github)
+
+git merge [branch]
+# this borders to more advanced topics (requiring more reading)
+# merge the branch you are currently on with [branch]
