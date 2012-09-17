@@ -16,6 +16,7 @@
 
 //////////// ISO LIBRARIES /////////////
 #include <stdio.h>
+#include <typeinfo>
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/World.hpp"
