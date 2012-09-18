@@ -1,5 +1,5 @@
 # template makefile
-BINARY = ../mainbin
+BINARY = ../Debug/mainbin
 OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^

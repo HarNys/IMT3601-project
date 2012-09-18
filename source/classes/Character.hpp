@@ -10,6 +10,6 @@ private:
 public:
 
 	Character();
-	void draw(sf::Window* window);
+	void draw(sf::RenderWindow* window);
 	void draw();
 };

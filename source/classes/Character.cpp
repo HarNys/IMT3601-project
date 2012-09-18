@@ -4,7 +4,7 @@
 Character::Character()
 {
 	sf::Image image;
-	image.loadFromFile("img/player.gif");
+	image.loadFromFile("../img/player.gif");
 	texture.loadFromImage(image);
 
 	// Create a sprite
@@ -18,8 +18,8 @@ Character::Character()
 	characterPosX = 0;
 };
 
-void Character::draw(sf::Window *window)
+void Character::draw(sf::RenderWindow *window)
 {
-	 //Draw
-	//window->draw(sprite);
+	//Draw
+	window->draw(sprite);
 };
