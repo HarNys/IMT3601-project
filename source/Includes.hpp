@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <typeinfo>
 #include <string.h>
+#include <vector>
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/World.hpp"

@@ -3,14 +3,13 @@
 
 /*
  * world X is across, world Y is downwards
- */ 
+ */
 class World
 {
 private:
         // constructor
         World();
         // member variables
-//        float world[][];
 public:
         World *getWorld();
 };

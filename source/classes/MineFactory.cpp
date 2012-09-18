@@ -1,31 +1,52 @@
 /**
- * Implementation of MineFactory.hpp's code
+ * @brief Implementation of MineFactory.hpp's code
  */
 #include "../Includes.hpp"
 
-MineFactory *MineFactory::minefactory = NULL;
+MineFactory *MineFactory::mineFactory = NULL;
 
 MineFactory::MineFactory()
 {
-	/// @todo add in whatever should be here, ie.: Vector *readyMines[] and so on
+	/// @todo not sure if resize(30) is correct, check.
+	/// @note 30 is chosen because 15x15 is the default map size
+	readyMines->resize(30)
+	int rmSize = readyMines->size();
+	for (int rmCount = 0; rmCount > rmSize; rmCount++)
+	{
+		readyMines[rmCount] = new Mine;
+	}
 };
 
 MineFactory *MineFactory::getMineFactory()
 {
-	if (minefactory == NULL)
+	if (mineFactory == NULL)
 	{
-		minefactory = new MineFactory();
-		return minefactory;
+		mineFactory = new MineFactory();
+		return mineFactory;
 	}
 	else
 	{
-		return minefactory;
+		return mineFactory;
 	}
 };
 
-void MineFactory::initMineFactory(int possibletotal)
+/**
+ * resizes the minefactory to a given size
+ * @todo this may be a retarded way of using this function, change it?
+ *
+ * @param[in] new size total of "readymines + usedmines"
+ * @return returns true on success, false on failure.
+ */
+bool MineFactory::initMineFactory(int possibleTotal)
 {
-	/// @todo initialize minefactory, ie.: construct vector *readymines[]
+	int rmMSize = readyMines.maxsize();
+	if (possibleTotal == rmSize)
+	{
+		return true;
+	}
+	else if (possibleTotal < rmSize)
+	{
+	}
 };
 
 MineFactory::~MineFactory()
