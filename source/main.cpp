@@ -16,9 +16,22 @@ int main(int argc, char **argv)
 	Character *player1 = new Character; //error when loading image
 	player1->draw(&app);
 
-	while (running)
+	while (app.isOpen())
 	{
 		app.display();
+
+
+		// Process events
+        sf::Event event;
+
+		while (app.pollEvent(event))
+        {
+            // Close window : exit
+            if (event.type == sf::Event::Closed)
+			{
+				app.close();
+			}
+         }
 	}
 	return EXIT_SUCCESS;
 }

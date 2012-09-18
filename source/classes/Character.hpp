@@ -11,4 +11,5 @@ public:
 
 	Character();
 	void draw(sf::Window* window);
+	void draw();
 };
