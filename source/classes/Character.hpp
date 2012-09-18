@@ -10,7 +10,5 @@ private:
 public:
 
 	Character();
-	void draw(sf::RenderWindow* window);
-};
-	void draw();
+	void draw(sf::Window* window);
 };

@@ -3,11 +3,8 @@
 
 Character::Character()
 {
-<<<<<<< HEAD
-
-
 	sf::Image image;
-	image.loadFromFile("img\player.gif");
+	image.loadFromFile("../img/player.gif");
 	texture.loadFromImage(image);
 
 	// Create a sprite
@@ -20,7 +17,7 @@ Character::Character()
 	characterPosY = 0;
 };
 
-void Character::draw(sf::RenderWindow *window)
+void Character::draw(sf::Window *window)
 {
 	 //Draw
 	//window->draw(sprite);

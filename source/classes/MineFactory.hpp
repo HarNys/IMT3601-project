@@ -1,6 +1,7 @@
 #ifndef __MINE__FACTORY__HEADER__GUARD__
 #define __MINE__FACTORY__HEADER__GUARD__
 
+#include "../Includes.hpp"
 /**
  * @brief The MineFactory, creates the grand total of mines for this map setup.
  *
@@ -14,10 +15,10 @@ private:
         MineFactory();
         // member variables
         static MineFactory *mineFactory;
-	Vector<Mine*> readyMines;
+	std::vector<Mine*> readyMines;
 public:
 	static MineFactory *getMineFactory();
-	void initMineFactory(int possibleTotal);
+	bool initMineFactory(int possibleTotal);
 	~MineFactory();
 };
 
