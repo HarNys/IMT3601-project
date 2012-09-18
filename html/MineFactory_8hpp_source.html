@@ -105,36 +105,33 @@ $(document).ready(function(){initNavTree('MineFactory_8hpp_source.html','');});
 <div class="title">MineFactory.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="MineFactory_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;../Includes.hpp&quot;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef __MINE__FACTORY__HEADER__GUARD__</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __MINE__FACTORY__HEADER__GUARD__</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../Includes.hpp&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="classMineFactory.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="comment">// constructor</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">static</span> <a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a> *mineFactory;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        std::vector&lt;Mine*&gt; readyMines;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">static</span> <a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a> *<a class="code" href="classMineFactory.html#a322fe3d91188934e537a1c5f1e1e66d1">getMineFactory</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classMineFactory.html#a65a5a3b28ac40a1240a4cc7d7237f42b">initMineFactory</a>(<span class="keywordtype">int</span> possibleTotal);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">~MineFactory</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif // __MINE__FACTORY__HEADER__GUARD__</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span></div>
+<a href="MineFactory_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __MINE__FACTORY__HEADER__GUARD__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __MINE__FACTORY__HEADER__GUARD__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../Includes.hpp&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="classMineFactory.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="comment">// constructor</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">static</span> <a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a> *mineFactory;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        std::vector&lt;Mine*&gt; readyMines;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">static</span> <a class="code" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a> *<a class="code" href="classMineFactory.html#a322fe3d91188934e537a1c5f1e1e66d1">getMineFactory</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classMineFactory.html#ae0c0840fc09354f3011d8233789c090f" title="Resizes the minefactory to a given size. It returns false if &#39;possibletotal&#39; is less than it was init...">resizeMineFactory</a>(<span class="keywordtype">int</span> possibleTotal);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">~MineFactory</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif // __MINE__FACTORY__HEADER__GUARD__</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_93fd307e3a82e4579b26f0adf3f1a22d.html">classes</a></li><li class="navelem"><a class="el" href="MineFactory_8hpp.html">MineFactory.hpp</a></li>
-    <li class="footer">Generated on Tue Sep 18 2012 14:59:42 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Tue Sep 18 2012 19:10:40 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

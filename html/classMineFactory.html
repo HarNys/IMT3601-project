@@ -118,8 +118,9 @@ $(document).ready(function(){initNavTree('classMineFactory.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a65a5a3b28ac40a1240a4cc7d7237f42b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#a65a5a3b28ac40a1240a4cc7d7237f42b">initMineFactory</a> (int possibleTotal)</td></tr>
-<tr class="separator:a65a5a3b28ac40a1240a4cc7d7237f42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c0840fc09354f3011d8233789c090f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#ae0c0840fc09354f3011d8233789c090f">resizeMineFactory</a> (int possibleTotal)</td></tr>
+<tr class="memdesc:ae0c0840fc09354f3011d8233789c090f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the minefactory to a given size. It returns false if 'possibletotal' is less than it was initialized to, this is by design.  <a href="#ae0c0840fc09354f3011d8233789c090f"></a><br/></td></tr>
+<tr class="separator:ae0c0840fc09354f3011d8233789c090f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ba02e4dcfac842be62be16e6117208c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">~MineFactory</a> ()</td></tr>
 <tr class="separator:a5ba02e4dcfac842be62be16e6117208c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -130,10 +131,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a>, creates the grand total of mines for this map setup. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>should get instance and init in System. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>should get instance and init in System. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>later we may want to have a constructor with a size parameter. </dd></dl>
 
-<p>Definition at line <a class="el" href="MineFactory_8hpp_source.html#l00014">14</a> of file <a class="el" href="MineFactory_8hpp_source.html">MineFactory.hpp</a>.</p>
+<p>Definition at line <a class="el" href="MineFactory_8hpp_source.html#l00011">11</a> of file <a class="el" href="MineFactory_8hpp_source.html">MineFactory.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5ba02e4dcfac842be62be16e6117208c"></a>
 <div class="memitem">
@@ -147,9 +148,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>delete all members of the factory, ie.: vector *readymines[] </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>delete all members of the factory, ie.: vector *readymines[] </dd></dl>
 
-<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00053">53</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00071">71</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,12 +180,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a65a5a3b28ac40a1240a4cc7d7237f42b"></a>
+<a class="anchor" id="ae0c0840fc09354f3011d8233789c090f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool MineFactory::initMineFactory </td>
+          <td class="memname">bool MineFactory::resizeMineFactory </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>possibleTotal</em></td><td>)</td>
@@ -192,8 +193,8 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>resizes the minefactory to a given size </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>this may be a retarded way of using this function, change it?</dd></dl>
+
+<p>Resizes the minefactory to a given size. It returns false if 'possibletotal' is less than it was initialized to, this is by design. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">new</td><td>size total of "readymines + usedmines" </td></tr>
@@ -202,7 +203,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns true on success, false on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00040">40</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00041">41</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
 
 </div>
 </div>
@@ -216,7 +217,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMineFactory.html">MineFactory</a></li>
-    <li class="footer">Generated on Tue Sep 18 2012 14:59:42 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Tue Sep 18 2012 19:10:40 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

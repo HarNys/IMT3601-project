@@ -15,10 +15,13 @@ private:
         MineFactory();
         // member variables
         static MineFactory *mineFactory;
-	std::vector<Mine*> readyMines;
+	std::vector<Mine *> readyMines;
+	std::vector<Mine *> usedMines;
 public:
 	static MineFactory *getMineFactory();
-	bool initMineFactory(int possibleTotal);
+	Mine *getMine();
+	void releaseMine(Mine *releasedMine);
+	bool resizeMineFactory(int possibleTotal);
 	~MineFactory();
 };
 

@@ -112,8 +112,8 @@ $(document).ready(function(){initNavTree('MineFactory_8cpp_source.html','');});
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;MineFactory::MineFactory()</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        readyMines.resize(30);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordtype">int</span> rmSize = readyMines.size();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        readyMines.resize(32);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordtype">int</span> rmSize = readyMines.size() - 2;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> rmCount = 0; rmCount &gt; rmSize; rmCount++)</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                readyMines[rmCount] = <span class="keyword">new</span> <a class="code" href="classMine.html">Mine</a>;</div>
@@ -133,29 +133,51 @@ $(document).ready(function(){initNavTree('MineFactory_8cpp_source.html','');});
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classMineFactory.html#a65a5a3b28ac40a1240a4cc7d7237f42b">   40</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classMineFactory.html#a65a5a3b28ac40a1240a4cc7d7237f42b">MineFactory::initMineFactory</a>(<span class="keywordtype">int</span> possibleTotal)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">int</span> rmMSize = readyMines.max_size();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (possibleTotal == rmMSize)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (possibleTotal &lt; rmMSize)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">   53</a></span>&#160;<a class="code" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">MineFactory::~MineFactory</a>()</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classMineFactory.html#ae0c0840fc09354f3011d8233789c090f">   41</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classMineFactory.html#ae0c0840fc09354f3011d8233789c090f" title="Resizes the minefactory to a given size. It returns false if &#39;possibletotal&#39; is less than it was init...">MineFactory::resizeMineFactory</a>(<span class="keywordtype">int</span> possibleTotal)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span> tmpPossibleTotal = possibleTotal + 2;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> rmMSize = readyMines.max_size();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span> (tmpPossibleTotal == rmMSize)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                printf(<span class="stringliteral">&quot;MineFactory::resizeMineFactory(int): Did&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        <span class="stringliteral">&quot;nothing, was already at requested value&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tmpPossibleTotal &lt; rmMSize)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                printf(<span class="stringliteral">&quot;MineFactory::resizeMineFactory(int): Cannot &quot;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        <span class="stringliteral">&quot;shrink factory&quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tmpPossibleTotal &gt; rmMSize)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                readyMines.resize(tmpPossibleTotal);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                printf(<span class="stringliteral">&quot;MineFactory::resizeMineFactory(int): Resized &quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        <span class="stringliteral">&quot;factory to: %d&quot;</span>, tmpPossibleTotal);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        printf(<span class="stringliteral">&quot;MineFactory::resizeMineFactory(int): Function should &quot;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <span class="stringliteral">&quot;NEVER reach this point.\n\tpossibletotal: %d &quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        <span class="stringliteral">&quot;\n\ttmpPossibleTotal: %d&quot;</span>, possibleTotal,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        tmpPossibleTotal);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">   71</a></span>&#160;<a class="code" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">MineFactory::~MineFactory</a>()</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> rmCount = readyMines.size(); rmCount &gt;= 0; rmCount--)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keyword">delete</span> readyMines[rmCount];</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">delete</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_93fd307e3a82e4579b26f0adf3f1a22d.html">classes</a></li><li class="navelem"><a class="el" href="MineFactory_8cpp.html">MineFactory.cpp</a></li>
-    <li class="footer">Generated on Tue Sep 18 2012 14:59:42 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Tue Sep 18 2012 19:10:40 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

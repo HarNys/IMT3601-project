@@ -2,6 +2,7 @@ var NAVTREE =
 [
   [ "Frank Darkhawk's maze RPG", "index.html", [
     [ "Todo List", "todo.html", null ],
+    [ "Bug List", "bug.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
