@@ -36,6 +36,7 @@ MineFactory *MineFactory::getMineFactory()
  *
  * @param[in] new size total of "readymines + usedmines"
  * @return returns true on success, false on failure.
+ * @todo rename for resize
  */
 bool MineFactory::initMineFactory(int possibleTotal)
 {

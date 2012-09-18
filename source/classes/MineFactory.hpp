@@ -1,6 +1,3 @@
-#include "../Includes.hpp"
-#include <vector>
-
 #ifndef __MINE__FACTORY__HEADER__GUARD__
 #define __MINE__FACTORY__HEADER__GUARD__
 
