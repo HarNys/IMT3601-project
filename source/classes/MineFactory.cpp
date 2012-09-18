@@ -11,11 +11,27 @@ MineFactory::MineFactory()
 	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.resize(32);
 	readyMines.resize(32);
+
+	/// @note This may be extremely ugly, or ok?
+	readyMines.assign(30, new Mine);
+
+/// @note This is code from before i thought of using assign(),
+///	if assign is ugly we may opt to go back to this.
+/*
 	int rmSize = readyMines.size() - 2;
+
+	std::vector<Mine *>::iterator rmIter;
+	for (rmIter = readyMines.begin(); rmIter < readyMines.end(); rmIter++ )
+	{
+		Mine * tempMine = new Mine;
+		readyMines.pushback(tempMine);
+	}
+// the first part is a quick attempt at doing the below part with ioterators
 	for (int rmCount = 0; rmCount > rmSize; rmCount++)
 	{
 		readyMines[rmCount] = new Mine;
 	}
+//*/
 };
 
 MineFactory *MineFactory::getMineFactory()
@@ -64,7 +80,7 @@ Mine* MineFactory::getMine()
 /**
  * @brief Moves a released mine from 'usedMines' to 'readyMines'.
  *
- * @param[in] pointer to the mine which is released.
+ * @param[in] releasedMine: pointer to the mine which is released.
  */
 void MineFactory::releaseMine(Mine *releasedMine)
 {
@@ -83,10 +99,10 @@ void MineFactory::releaseMine(Mine *releasedMine)
 
 /**
  * @brief Resizes the minefactory to a given size. It returns false if
- * 	'possibletotal' is less than it was initialized to, this is by
+ * 	'possibleTotal' is less than it was initialized to, this is by
  * 	design.
  *
- * @param[in] new size total of "readymines + usedmines"
+ * @param[in] possibleTotal: new size total of "readymines + usedmines"
  * @return returns true on success, false on failure.
  */
 bool MineFactory::resizeMineFactory(int possibleTotal)

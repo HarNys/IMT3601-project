@@ -118,10 +118,17 @@ $(document).ready(function(){initNavTree('classMineFactory.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a15f8468b59c897b1782d0b28128124b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMine.html">Mine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#a15f8468b59c897b1782d0b28128124b8">getMine</a> ()</td></tr>
+<tr class="memdesc:a15f8468b59c897b1782d0b28128124b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the last mine from 'readyMines' to 'usedMines' before it returns a pointer to it.  <a href="#a15f8468b59c897b1782d0b28128124b8"></a><br/></td></tr>
+<tr class="separator:a15f8468b59c897b1782d0b28128124b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea5231caffbf00cbc5ea0f5dcddb78a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#a0ea5231caffbf00cbc5ea0f5dcddb78a">releaseMine</a> (<a class="el" href="classMine.html">Mine</a> *releasedMine)</td></tr>
+<tr class="memdesc:a0ea5231caffbf00cbc5ea0f5dcddb78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves a released mine from 'usedMines' to 'readyMines'.  <a href="#a0ea5231caffbf00cbc5ea0f5dcddb78a"></a><br/></td></tr>
+<tr class="separator:a0ea5231caffbf00cbc5ea0f5dcddb78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0c0840fc09354f3011d8233789c090f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#ae0c0840fc09354f3011d8233789c090f">resizeMineFactory</a> (int possibleTotal)</td></tr>
-<tr class="memdesc:ae0c0840fc09354f3011d8233789c090f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the minefactory to a given size. It returns false if 'possibletotal' is less than it was initialized to, this is by design.  <a href="#ae0c0840fc09354f3011d8233789c090f"></a><br/></td></tr>
+<tr class="memdesc:ae0c0840fc09354f3011d8233789c090f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the minefactory to a given size. It returns false if 'possibleTotal' is less than it was initialized to, this is by design.  <a href="#ae0c0840fc09354f3011d8233789c090f"></a><br/></td></tr>
 <tr class="separator:ae0c0840fc09354f3011d8233789c090f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ba02e4dcfac842be62be16e6117208c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">~MineFactory</a> ()</td></tr>
+<tr class="memdesc:a5ba02e4dcfac842be62be16e6117208c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes mines in both 'readyMines' and 'usedMines' before deleting itself.  <a href="#a5ba02e4dcfac842be62be16e6117208c"></a><br/></td></tr>
 <tr class="separator:a5ba02e4dcfac842be62be16e6117208c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -131,7 +138,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a>, creates the grand total of mines for this map setup. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>should get instance and init in System. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>should get instance and init in System. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>later we may want to have a constructor with a size parameter. </dd></dl>
 
 <p>Definition at line <a class="el" href="MineFactory_8hpp_source.html#l00011">11</a> of file <a class="el" href="MineFactory_8hpp_source.html">MineFactory.hpp</a>.</p>
@@ -148,13 +155,38 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>delete all members of the factory, ie.: vector *readymines[] </dd></dl>
 
-<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00071">71</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+<p>Deletes mines in both 'readyMines' and 'usedMines' before deleting itself. </p>
+
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00145">145</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a15f8468b59c897b1782d0b28128124b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMine.html">Mine</a> * MineFactory::getMine </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves the last mine from 'readyMines' to 'usedMines' before it returns a pointer to it. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer to a ready mine</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><p class="startdd">if (readyMine.reInit()) { return pointer } else { wtf error } </p>
+<p class="enddd">add mine-type as parameter here and to reInit() </p>
+</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>tempMine.reInit(); </dd></dl>
+
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00059">59</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a322fe3d91188934e537a1c5f1e1e66d1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -176,7 +208,33 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00020">20</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00037">37</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0ea5231caffbf00cbc5ea0f5dcddb78a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MineFactory::releaseMine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMine.html">Mine</a> *&#160;</td>
+          <td class="paramname"><em>releasedMine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves a released mine from 'usedMines' to 'readyMines'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">releasedMine,:</td><td>pointer to the mine which is released. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00085">85</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,16 +252,17 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Resizes the minefactory to a given size. It returns false if 'possibletotal' is less than it was initialized to, this is by design. </p>
+<p>Resizes the minefactory to a given size. It returns false if 'possibleTotal' is less than it was initialized to, this is by design. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">new</td><td>size total of "readymines + usedmines" </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">possibleTotal,:</td><td>new size total of "readymines + usedmines" </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns true on success, false on failure. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>We may want to do proper testing on 'usedMines' also </dd></dl>
 
-<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00041">41</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00108">108</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
 
 </div>
 </div>
@@ -217,7 +276,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMineFactory.html">MineFactory</a></li>
-    <li class="footer">Generated on Tue Sep 18 2012 19:10:40 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Tue Sep 18 2012 23:29:58 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
