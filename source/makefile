@@ -1,9 +1,9 @@
 # template makefile
-BINARY = ../mainbin
+BINARY = ../main.bin
 OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
-GCC = g++ -Wall -fopenmp
+GCC = g++ -Wall #-fopenmp
 LIBRARIES = -lsfml-window -lsfml-graphics
 
 # syntax for entries:
@@ -27,7 +27,7 @@ $(BINARY) : $(OBJECTS)
 	$(GCC) $(COMPILEFLAGS) main.cpp -o ../Debug/main.o
 
 # compile all 'OBJECTS'
-../Debug/World.o : classes/World.hpp classes/World.cpp
+../Debug/World.o : classes/World.cpp classes/World.hpp Includes.hpp
 	$(GCC) $(COMPILEFLAGS) classes/World.cpp -o ../Debug/World.o
 
 ../Debug/Character.o : classes/Character.cpp classes/Character.hpp Includes.hpp

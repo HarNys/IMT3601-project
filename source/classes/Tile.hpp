@@ -1,5 +1,6 @@
 #ifndef __TILE__HEADER__GUARD__
 #define __TILE__HEADER__GUARD__
+#include "../Includes.hpp"
 
 /**
  * \par

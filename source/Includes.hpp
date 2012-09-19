@@ -25,12 +25,13 @@
 #include <vector>
 
 //// OpenMP ////
-#pragma omp
+//#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
-#include "classes/World.hpp"
 #include "classes/Character.hpp"
 #include "classes/Mine.hpp"
+#include "classes/Tile.hpp"
+#include "classes/World.hpp"
 #include "classes/MineFactory.hpp"
 
 

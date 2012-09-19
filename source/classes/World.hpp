@@ -1,5 +1,6 @@
 #ifndef __WORLD__HEADER__GUARD__
 #define __WORLD__HEADER__GUARD__
+#include "../Includes.hpp"
 
 /**
  * @brief world X is across, world Y is downwards
@@ -10,9 +11,10 @@ private:
         // constructor
         World();
         // member variables
-
+        static World *world;
+        Tile **map;
 public:
-        World *getWorld();
+        static World *getWorld();
 };
 
 #endif // __WORLD__HEADER__GUARD__
