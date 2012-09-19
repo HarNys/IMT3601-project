@@ -5,7 +5,7 @@ Character::Character()
 {
 	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
-	image.loadFromFile("img/player.gif");
+	//image.loadFromFile("img/player.gif");
 	texture.loadFromImage(image);
 
 	// Create a sprite
@@ -15,8 +15,8 @@ Character::Character()
 	sprite.setPosition(10, 10);
 
 
-	characterPosX = 0;
-	characterPosX = 0;
+	characterPosX = 10;
+	characterPosY = 10;
 };
 
 void Character::draw(sf::RenderWindow *window)
@@ -24,3 +24,40 @@ void Character::draw(sf::RenderWindow *window)
 	//Draw
 	window->draw(sprite);
 };
+
+
+void Character::characterMovementLeft()
+{
+		
+	sprite.move(-1.0, 0.0);
+	characterPosX--;
+	updatePosition();
+};
+
+void Character::characterMovementRight()
+{
+	sprite.move(1.0, 0.0);
+	characterPosX++;
+	updatePosition();
+};
+
+void Character::characterMovementUp()
+{
+	sprite.move(0.0, -1.0);
+	characterPosY--;
+	updatePosition();
+};
+
+void Character::characterMovementDown()
+{
+	sprite.move(0.0, 1.0);
+	characterPosY++;
+	updatePosition();
+};
+
+void Character::updatePosition()
+{
+	std::cout<< "X-position: " << characterPosX << "\n";
+	std::cout<< "Y-position: " << characterPosY << "\n";
+};
+
