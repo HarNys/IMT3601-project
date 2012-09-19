@@ -24,6 +24,8 @@
 #include <string.h>
 #include <vector>
 
+//// OpenMP ////
+#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/World.hpp"

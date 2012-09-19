@@ -2,11 +2,12 @@
 #define __TILE__HEADER__GUARD__
 
 /**
- * \brief The 'World's map arrays contains a set of 'Tile' objects(or
+ * \par
+ * 	The 'World's map arrays contains a set of 'Tile' objects(or
  * 	pointers rather). Each tile currently has a bool for whether or
  * 	not it is a floor or wall tile, a pointer to a 'Mine' object,
  * 	and a pointer to a 'Character' object.
- *
+ * \par
  * 	The pointers to 'Mine' and 'Character' will point to either an
  * 	empty object, or be a NULL pointer.
  *
@@ -21,9 +22,8 @@ private:
 	Character *hasCharacter;
 public:
 	Tile();
-	Tile(bool wall);
-	bool updateMine(Mine *mine);
-	bool updateCharacter(Character *character);
+	bool setMine(Mine *mine);
+	bool setCharacter(Character *character);
 	~Tile();
 };
 

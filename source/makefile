@@ -3,7 +3,7 @@ BINARY = ../mainbin
 OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
-GCC = g++ -Wall
+GCC = g++ -Wall -fopenmp
 LIBRARIES = -lsfml-window -lsfml-graphics
 
 # syntax for entries:
