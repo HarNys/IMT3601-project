@@ -116,21 +116,21 @@ $(document).ready(function(){initNavTree('classTile.html','');});
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeeb5593bb6b75aae2edfcccbc84ab378"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#aeeb5593bb6b75aae2edfcccbc84ab378">Tile</a> ()</td></tr>
 <tr class="separator:aeeb5593bb6b75aae2edfcccbc84ab378"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fee34b0be1a9077bded7489c04bf9a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a7fee34b0be1a9077bded7489c04bf9a2">Tile</a> (bool wall)</td></tr>
-<tr class="separator:a7fee34b0be1a9077bded7489c04bf9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47b9057515d3271de640525e5906701e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a47b9057515d3271de640525e5906701e">updateMine</a> (<a class="el" href="classMine.html">Mine</a> *mine)</td></tr>
-<tr class="separator:a47b9057515d3271de640525e5906701e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a224a7963c50edd19339146eb2ac793a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a224a7963c50edd19339146eb2ac793a5">updateCharacter</a> (<a class="el" href="classCharacter.html">Character</a> *character)</td></tr>
-<tr class="separator:a224a7963c50edd19339146eb2ac793a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5f974d5aa937968bf898bdc8c96ad4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4">setWall</a> (bool wall)</td></tr>
+<tr class="separator:a6d5f974d5aa937968bf898bdc8c96ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c0dc9f24c50b9cdddb23e412f138cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf">setMine</a> (<a class="el" href="classMine.html">Mine</a> *mine)</td></tr>
+<tr class="separator:af3c0dc9f24c50b9cdddb23e412f138cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a464d5ff612b6b7e336da480c1b6832f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">setCharacter</a> (<a class="el" href="classCharacter.html">Character</a> *character)</td></tr>
+<tr class="separator:a464d5ff612b6b7e336da480c1b6832f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98634abbd93fa13d0578d7103202d03d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">~Tile</a> ()</td></tr>
 <tr class="separator:a98634abbd93fa13d0578d7103202d03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section user"><dt></dt><dd>The '<a class="el" href="classWorld.html" title="world X is across, world Y is downwards">World</a>'s map arrays contains a set of '<a class="el" href="classTile.html">Tile</a>' objects(or pointers rather). Each tile currently has a bool for whether or not it is a floor or wall tile, a pointer to a '<a class="el" href="classMine.html">Mine</a>' object, and a pointer to a '<a class="el" href="classCharacter.html">Character</a>' object. </dd></dl>
 <dl class="section user"><dt></dt><dd>The pointers to '<a class="el" href="classMine.html">Mine</a>' and '<a class="el" href="classCharacter.html">Character</a>' will point to either an empty object, or be a NULL pointer.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>update documentation for wether(spelling?) pointers point to empty object or NULL </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>update documentation for wether(spelling?) pointers point to empty object or NULL </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8hpp_source.html#l00017">17</a> of file <a class="el" href="Tile_8hpp_source.html">Tile.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8hpp_source.html#l00018">18</a> of file <a class="el" href="Tile_8hpp_source.html">Tile.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeeb5593bb6b75aae2edfcccbc84ab378"></a>
 <div class="memitem">
@@ -144,26 +144,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Default constructor for '<a class="el" href="classTile.html">Tile</a>'. Should not be called explicitly. </p>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00004">4</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7fee34b0be1a9077bded7489c04bf9a2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Tile::Tile </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>wall</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00011">11</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00006">6</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,19 +162,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>"getMineFactory.releaseMine(hasMine);" should do this in a way that works </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>cannot "delete hasCharacter;" here? character factory? </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00025">25</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00053">53</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a224a7963c50edd19339146eb2ac793a5"></a>
+<a class="anchor" id="a464d5ff612b6b7e336da480c1b6832f3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Tile::updateCharacter </td>
+          <td class="memname">bool Tile::setCharacter </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCharacter.html">Character</a> *&#160;</td>
           <td class="paramname"><em>character</em></td><td>)</td>
@@ -199,18 +183,25 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">character,:</td><td>the new character, either a NULL pointer or a 'character'</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>animation and drawing? think this properly through. don't just wave around grand ideas. </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00019">19</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00042">42</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a47b9057515d3271de640525e5906701e"></a>
+<a class="anchor" id="af3c0dc9f24c50b9cdddb23e412f138cf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Tile::updateMine </td>
+          <td class="memname">bool Tile::setMine </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMine.html">Mine</a> *&#160;</td>
           <td class="paramname"><em>mine</em></td><td>)</td>
@@ -218,8 +209,40 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mine,:</td><td>the new mine, either a NULL pointer or a '<a class="el" href="classMine.html">Mine</a>'</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00015">15</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00030">30</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6d5f974d5aa937968bf898bdc8c96ad4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tile::setWall </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>wall</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">wall,:</td><td>the new state of this tile, whether it is a wall or floor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
+
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00019">19</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
@@ -233,7 +256,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTile.html">Tile</a></li>
-    <li class="footer">Generated on Wed Sep 19 2012 15:01:33 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

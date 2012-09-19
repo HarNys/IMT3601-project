@@ -5,7 +5,7 @@
 #ifdef _WIN32
 // we are on windows
 #include <SFML/Window.hpp>
-#include<SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 
 #elif defined __linux__

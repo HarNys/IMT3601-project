@@ -107,29 +107,30 @@ $(document).ready(function(){initNavTree('Tile_8hpp_source.html','');});
 <div class="contents">
 <a href="Tile_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __TILE__HEADER__GUARD__</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __TILE__HEADER__GUARD__</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="classTile.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTile.html">Tile</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">bool</span> isWall; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="classMine.html">Mine</a> *hasMine;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="classCharacter.html">Character</a> *hasCharacter;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="classTile.html#aeeb5593bb6b75aae2edfcccbc84ab378">Tile</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classTile.html#aeeb5593bb6b75aae2edfcccbc84ab378">Tile</a>(<span class="keywordtype">bool</span> wall);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTile.html#a47b9057515d3271de640525e5906701e">updateMine</a>(<a class="code" href="classMine.html">Mine</a> *mine);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTile.html#a224a7963c50edd19339146eb2ac793a5">updateCharacter</a>(<a class="code" href="classCharacter.html">Character</a> *character);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">~Tile</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // __TILE__HEADER__GUARD__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &quot;../Includes.hpp&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="classTile.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTile.html">Tile</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">bool</span> isWall; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="classMine.html">Mine</a> *hasMine;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="classCharacter.html">Character</a> *hasCharacter;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classTile.html#aeeb5593bb6b75aae2edfcccbc84ab378">Tile</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4">setWall</a>(<span class="keywordtype">bool</span> wall);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf">setMine</a>(<a class="code" href="classMine.html">Mine</a> *mine);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">setCharacter</a>(<a class="code" href="classCharacter.html">Character</a> *character);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">~Tile</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // __TILE__HEADER__GUARD__</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_93fd307e3a82e4579b26f0adf3f1a22d.html">classes</a></li><li class="navelem"><a class="el" href="Tile_8hpp.html">Tile.hpp</a></li>
-    <li class="footer">Generated on Wed Sep 19 2012 15:01:33 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

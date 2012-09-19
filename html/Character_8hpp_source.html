@@ -108,8 +108,8 @@ $(document).ready(function(){initNavTree('Character_8hpp_source.html','');});
 <a href="Character_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="code" href="classCharacter.html">    1</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCharacter.html">Character</a></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;{</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="keywordtype">int</span> characterPosX;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="keywordtype">int</span> characterPosY;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        <span class="keywordtype">float</span> characterPosX;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        <span class="keywordtype">float</span> characterPosY;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sf::Texture texture;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        sf::Sprite sprite;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">//protected:</span></div>
@@ -119,14 +119,19 @@ $(document).ready(function(){initNavTree('Character_8hpp_source.html','');});
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="classCharacter.html#adc27bdd255876169bad2ed0bae0cffb5">Character</a>();</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#a45a63f9c964bc8286f691fa3eec7ad77">draw</a>(sf::RenderWindow* window);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#a45a63f9c964bc8286f691fa3eec7ad77">draw</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#a8ced6ea22cd31b916b5d93519e16d96b">characterMovementLeft</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#aa3d311da439b60642b6ada277e217dc9">characterMovementRight</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#abdfcf4810b53b632e83b9643f4b3f763">characterMovementUp</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#abdbc133e2f04e8e905d16627f06b0199">characterMovementDown</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">updatePosition</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_93fd307e3a82e4579b26f0adf3f1a22d.html">classes</a></li><li class="navelem"><a class="el" href="Character_8hpp.html">Character.hpp</a></li>
-    <li class="footer">Generated on Wed Sep 19 2012 15:01:33 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

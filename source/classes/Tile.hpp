@@ -23,6 +23,7 @@ private:
 	Character *hasCharacter;
 public:
 	Tile();
+	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
 	~Tile();

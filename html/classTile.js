@@ -1,8 +1,8 @@
 var classTile =
 [
     [ "Tile", "classTile.html#aeeb5593bb6b75aae2edfcccbc84ab378", null ],
-    [ "Tile", "classTile.html#a7fee34b0be1a9077bded7489c04bf9a2", null ],
     [ "~Tile", "classTile.html#a98634abbd93fa13d0578d7103202d03d", null ],
-    [ "updateCharacter", "classTile.html#a224a7963c50edd19339146eb2ac793a5", null ],
-    [ "updateMine", "classTile.html#a47b9057515d3271de640525e5906701e", null ]
+    [ "setCharacter", "classTile.html#a464d5ff612b6b7e336da480c1b6832f3", null ],
+    [ "setMine", "classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf", null ],
+    [ "setWall", "classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4", null ]
 ];

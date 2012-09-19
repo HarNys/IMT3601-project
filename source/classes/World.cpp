@@ -7,7 +7,7 @@ World *World::world = NULL;
  */
 World::World()
 {
-	int mapSize = 100;
+/*	int mapSize = 100;
 	map[mapSize][mapSize];
 	for (int xCount = 0; xCount > mapSize; xCount++)
 	{
@@ -16,6 +16,7 @@ World::World()
 			map[xCount][yCount] = new Tile();
 		}
 	}
+	//*/
 };
 
 /**

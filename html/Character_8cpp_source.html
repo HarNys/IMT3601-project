@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('Character_8cpp_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno"><a class="code" href="classCharacter.html#adc27bdd255876169bad2ed0bae0cffb5">    4</a></span>&#160;<a class="code" href="classCharacter.html#adc27bdd255876169bad2ed0bae0cffb5">Character::Character</a>()</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        sf::Image image;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        image.loadFromFile(<span class="stringliteral">&quot;img/player.gif&quot;</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="comment">//image.loadFromFile(&quot;img/player.gif&quot;);</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        texture.loadFromImage(image);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="comment">// Create a sprite</span></div>
@@ -121,8 +121,8 @@ $(document).ready(function(){initNavTree('Character_8cpp_source.html','');});
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        sprite.setPosition(10, 10);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        characterPosX = 0;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        characterPosX = 0;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        characterPosX = 10;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        characterPosY = 10;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="classCharacter.html#af69b0dbd3e55f7fa4a0776063cee0aa0">   22</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCharacter.html#a45a63f9c964bc8286f691fa3eec7ad77">Character::draw</a>(sf::RenderWindow *window)</div>
@@ -130,13 +130,50 @@ $(document).ready(function(){initNavTree('Character_8cpp_source.html','');});
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="comment">//Draw</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        window-&gt;draw(sprite);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="classCharacter.html#a8ced6ea22cd31b916b5d93519e16d96b">   29</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCharacter.html#a8ced6ea22cd31b916b5d93519e16d96b">Character::characterMovementLeft</a>()</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        sprite.move(-1.0, 0.0);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        characterPosX--;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">updatePosition</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="classCharacter.html#aa3d311da439b60642b6ada277e217dc9">   37</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCharacter.html#aa3d311da439b60642b6ada277e217dc9">Character::characterMovementRight</a>()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        sprite.move(1.0, 0.0);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        characterPosX++;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">updatePosition</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classCharacter.html#abdfcf4810b53b632e83b9643f4b3f763">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCharacter.html#abdfcf4810b53b632e83b9643f4b3f763">Character::characterMovementUp</a>()</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        sprite.move(0.0, -1.0);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        characterPosY--;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">updatePosition</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classCharacter.html#abdbc133e2f04e8e905d16627f06b0199">   51</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCharacter.html#abdbc133e2f04e8e905d16627f06b0199">Character::characterMovementDown</a>()</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        sprite.move(0.0, 1.0);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        characterPosY++;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">updatePosition</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classCharacter.html#ab540f21c0b2bf2d4604d67fa8cad8d0a">Character::updatePosition</a>()</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        std::cout&lt;&lt; <span class="stringliteral">&quot;X-position: &quot;</span> &lt;&lt; characterPosX &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        std::cout&lt;&lt; <span class="stringliteral">&quot;Y-position: &quot;</span> &lt;&lt; characterPosY &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_93fd307e3a82e4579b26f0adf3f1a22d.html">classes</a></li><li class="navelem"><a class="el" href="Character_8cpp.html">Character.cpp</a></li>
-    <li class="footer">Generated on Wed Sep 19 2012 15:01:33 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
