@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	sf::RenderWindow app(sf::VideoMode(800,600,32),"testWindow");
 //	bool running = true;
 	Character *player1 = new Character; //error when loading image
-	player1->draw(&app);
+	
 
 	while (app.isOpen())
 	{
@@ -26,6 +26,23 @@ int main(int argc, char **argv)
 
 		while (app.pollEvent(event))
         {
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				player1->characterMovementLeft();
+			}
+			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			{
+				player1->characterMovementRight();
+			}
+			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			{
+				player1->characterMovementUp();
+			}
+			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			{
+				player1->characterMovementDown();
+			}
+			player1->draw(&app);
             // Close window : exit
             if (event.type == sf::Event::Closed)
 			{

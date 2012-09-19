@@ -23,6 +23,7 @@
 #include <typeinfo>
 #include <string.h>
 #include <vector>
+#include <iostream>
 
 //// OpenMP ////
 //#pragma omp
