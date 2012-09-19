@@ -100,24 +100,30 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>  (int argc, char **argv)</dt>
+<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>  (int argc, char **argv)</dt>
 <dd><p class="startdd">make mapsizes parsed from arguments. </p>
 <p class="enddd">make System.{c,h}pp (maybe call it init?)  </p>
 </dd>
 <dt><a class="anchor" id="_todo000004"></a>Class <a class="el" href="classMineFactory.html">MineFactory</a>  </dt>
-<dd>should get instance and init in System.  </dd>
+<dd><p class="startdd">should get instance and init in System. </p>
+<p class="enddd">implement lock mechanism  </p>
+</dd>
 <dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classMineFactory.html#a15f8468b59c897b1782d0b28128124b8">MineFactory::getMine</a>  ()</dt>
 <dd><p class="startdd">if (readyMine.reInit()) { return pointer } else { wtf error } </p>
 <p>add mine-type as parameter here and to reInit() </p>
-<p class="enddd">tempMine.reInit(); </p>
+<p class="enddd">tempMine.reInit();  </p>
 </dd>
+<dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="classTile.html">Tile</a>  </dt>
+<dd>update documentation for wether(spelling?) pointers point to empty object or NULL  </dd>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTile.html#a224a7963c50edd19339146eb2ac793a5">Tile::updateCharacter</a>  (<a class="el" href="classCharacter.html">Character</a> *character)</dt>
+<dd>animation and drawing? think this properly through. don't just wave around grand ideas. </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Sep 18 2012 23:29:58 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Wed Sep 19 2012 14:28:41 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

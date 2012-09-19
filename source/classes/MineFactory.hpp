@@ -7,6 +7,7 @@
  *
  * @todo should get instance and init in System.
  * @note later we may want to have a constructor with a size parameter.
+ * @todo implement lock mechanism
  */
 class MineFactory
 {

@@ -12,6 +12,10 @@ var dir_93fd307e3a82e4579b26f0adf3f1a22d =
     [ "MineFactory.hpp", "MineFactory_8hpp.html", [
       [ "MineFactory", "classMineFactory.html", "classMineFactory" ]
     ] ],
+    [ "Tile.cpp", "Tile_8cpp.html", null ],
+    [ "Tile.hpp", "Tile_8hpp.html", [
+      [ "Tile", "classTile.html", "classTile" ]
+    ] ],
     [ "World.cpp", "World_8cpp.html", null ],
     [ "World.hpp", "World_8hpp.html", [
       [ "World", "classWorld.html", "classWorld" ]

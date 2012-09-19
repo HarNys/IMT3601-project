@@ -18,3 +18,7 @@ Q: MVC where model is pure 2d, view is isometric; feasible?
 A: yes
 Q: Factory pattern: one per class, or one?
 A: one per class, maybe one wrapper
+
+## meeting 3
+
+Q: networking: one thread per remote player?
