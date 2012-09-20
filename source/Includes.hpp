@@ -29,11 +29,11 @@
 //#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
-#include "classes/Character.hpp"
 #include "classes/Mine.hpp"
+#include "classes/MineFactory.hpp" // requires 'Mine.hpp'
+#include "classes/Character.hpp"
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-#include "classes/MineFactory.hpp"
 
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

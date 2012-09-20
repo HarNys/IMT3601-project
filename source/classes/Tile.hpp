@@ -21,6 +21,7 @@ private:
 	bool isWall; ///< \note isWall is true when 'Tile' is a wall.
 	Mine *hasMine;
 	Character *hasCharacter;
+	MineFactory *mineFactory;
 public:
 	Tile();
 	bool setWall(bool wall);

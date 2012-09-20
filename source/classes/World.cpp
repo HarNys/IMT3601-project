@@ -16,7 +16,7 @@ World::World()
 			map[xCount][yCount] = new Tile();
 		}
 	}
-	//*/
+//*/
 };
 
 /**
