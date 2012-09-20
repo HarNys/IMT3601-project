@@ -27,6 +27,12 @@
     <ClInclude Include="source\classes\Mine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\classes\Tile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\MineFactory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\classes\World.cpp">
@@ -36,6 +42,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\MineFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Mine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

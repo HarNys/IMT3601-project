@@ -28,9 +28,9 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			/*if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
-				player1->characterMovementLeft();
+				player1->characterMovementLeft(event);
 			}
 			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			{
@@ -43,17 +43,19 @@ int main(int argc, char **argv)
 			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
 				player1->characterMovementDown();
-			}
+			}*/
+			player1->characterMovement(event);
+
 			player1->draw(&screen);
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
 				World *world;
-				world = getWorld();
+				world = world->getWorld();
 				world->~World();
 
 				MineFactory *mineFactory;
-				mineFactory = getMineFactory();
+				mineFactory = mineFactory->getMineFactory();
 				mineFactory->~MineFactory();
 
 				screen.close();

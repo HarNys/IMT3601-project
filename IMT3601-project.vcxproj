@@ -13,11 +13,16 @@
   <ItemGroup>
     <ClInclude Include="source\classes\Character.hpp" />
     <ClInclude Include="source\classes\Mine.hpp" />
+    <ClInclude Include="source\classes\MineFactory.hpp" />
+    <ClInclude Include="source\classes\Tile.hpp" />
     <ClInclude Include="source\classes\World.hpp" />
     <ClInclude Include="source\Includes.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\classes\Character.cpp" />
+    <ClCompile Include="source\classes\Mine.cpp" />
+    <ClCompile Include="source\classes\MineFactory.cpp" />
+    <ClCompile Include="source\classes\Tile.cpp" />
     <ClCompile Include="source\classes\World.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
