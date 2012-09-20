@@ -28,22 +28,6 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-			/*if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			{
-				player1->characterMovementLeft(event);
-			}
-			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			{
-				player1->characterMovementRight();
-			}
-			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			{
-				player1->characterMovementUp();
-			}
-			else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			{
-				player1->characterMovementDown();
-			}*/
 			player1->characterMovement(event);
 
 			player1->draw(&screen);

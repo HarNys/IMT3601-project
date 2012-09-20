@@ -12,7 +12,6 @@ private:
         World();
         // member variables
         static World *world;
-
         Tile ***map;
 
 public:

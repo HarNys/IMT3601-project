@@ -28,9 +28,6 @@ void Character::draw(sf::RenderWindow *window)
 	window->draw(sprite);
 };
 
-
-
-
 void Character::updatePosition()
 {
 	std::cout<< "X-position: " << characterPosX << "\n";
@@ -77,4 +74,3 @@ void Character::characterMovement(sf::Event e)
 	}
 
 }
-

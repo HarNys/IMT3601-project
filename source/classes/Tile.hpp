@@ -14,6 +14,8 @@
  *
  * \todo update documentation for wether(spelling?) pointers point to
  * 	empty object or NULL
+ *
+ * @todo getters for the setters
  */
 class Tile
 {

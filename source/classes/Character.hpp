@@ -1,3 +1,8 @@
+#ifndef __CHARACTER__HEADER__GUARD__
+#define __CHARACTER__HEADER__GUARD__
+
+#include "../Includes.hpp"
+
 class Character
 {
 private:
@@ -17,3 +22,5 @@ public:
 	void updatePosition();
 	void characterMovement(sf::Event e);
 };
+
+#endif //__CHARACTER__HEADER__GUARD__
