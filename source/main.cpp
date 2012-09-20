@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	 * 	the system is ready).
 	 */
 	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
-	bool running = true;
+
 	Character *player1 = new Character; //error when loading image
 
 	while (screen.isOpen())
@@ -49,11 +49,11 @@ int main(int argc, char **argv)
 			if (event.type == sf::Event::Closed)
 			{
 				World *world;
-				world = getWorld();
+				world = world->getWorld();
 				world->~World();
 
 				MineFactory *mineFactory;
-				mineFactory = getMineFactory();
+				mineFactory = mineFactory->getMineFactory();
 				mineFactory->~MineFactory();
 
 				screen.close();

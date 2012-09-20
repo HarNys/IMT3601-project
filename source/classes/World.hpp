@@ -12,7 +12,7 @@ private:
         World();
         // member variables
         static World *world;
-        Tile **map;
+        Tile ***map;
 public:
         static World *getWorld();
 };
