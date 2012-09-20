@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	 * 	the system is ready).
 	 */
 	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
-	bool running = true;
+
 	Character *player1 = new Character; //error when loading image
 
 	while (screen.isOpen())

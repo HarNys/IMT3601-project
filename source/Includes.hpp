@@ -12,7 +12,7 @@
 //we are on linux
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include <Box2D.h>
+#include <Box2D/Box2D.h>
 
 #elif defined __APPLE__&__MACH__
 // we are on mac

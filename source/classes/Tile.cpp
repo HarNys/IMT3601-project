@@ -54,6 +54,7 @@ Tile::~Tile()
 {
 	if (hasMine)
 	{
+		mineFactory = mineFactory->getMineFactory();
 		mineFactory->releaseMine(hasMine);
 	}
 	if (hasCharacter)
