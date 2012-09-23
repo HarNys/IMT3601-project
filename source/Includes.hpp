@@ -6,7 +6,7 @@
 // we are on windows
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include <Box2D.h>
+
 
 #elif defined __linux__
 //we are on linux
@@ -25,6 +25,7 @@
 #include <string.h>
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 //// OpenMP ////
 //#pragma omp
