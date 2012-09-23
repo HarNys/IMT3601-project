@@ -1,7 +1,7 @@
 
 #include "../Includes.hpp"
 
-Character::Character()
+Character::Character(std::string characterType)
 {
 	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
@@ -17,7 +17,7 @@ Character::Character()
 
 	characterPosX = 10;
 	characterPosY = 10;
-
+	
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };
@@ -34,8 +34,11 @@ void Character::updatePosition()
 	std::cout<< "Y-position: " << characterPosY << "\n";
 };
 
+//movement-functions
+//checks if the key is pressed and then released
+//to reset characterDirectionX/Y
 void Character::characterMovement(sf::Event e)
-{
+{	
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		characterDirectionX = -1.0;
@@ -72,5 +75,10 @@ void Character::characterMovement(sf::Event e)
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 			characterDirectionY = 0;
 	}
+
+}
+
+void Character::placeMine(sf::Event e)
+{
 
 }

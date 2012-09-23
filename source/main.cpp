@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	 */
 	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
-	Character *player1 = new Character; //error when loading image
+	Character *player1 = new Character("Ninja"); //error when loading image
 
 	while (screen.isOpen())
 	{
@@ -30,8 +30,9 @@ int main(int argc, char **argv)
 		while (screen.pollEvent(event))
 		{
 			player1->characterMovement(event);
-
+			screen.clear();
 			player1->draw(&screen);
+			
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
@@ -43,6 +44,7 @@ int main(int argc, char **argv)
 				mineFactory = mineFactory->getMineFactory();
 				mineFactory->~MineFactory();
 
+				
 				screen.close();
 			}
 		}
