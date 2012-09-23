@@ -15,6 +15,8 @@ Tile::Tile()
  * 	or floor
  *
  * @return true on success
+ *
+ * @bug segfaults on isWall = wall for some reason
  */
 bool Tile::setWall(bool wall)
 {
@@ -44,6 +46,27 @@ bool Tile::setCharacter(Character *character)
 	/// @todo animation and drawing? think this properly through.
 	///	don't just wave around grand ideas.
 	return false;
+};
+
+bool Tile::initSprite(int xPos, int yPos)
+{
+	sf::Image image;
+	if (isWall)
+	{
+		image.loadFromFile("img/wall.gif");
+	}
+	else
+	{
+		image.loadFromFile("img/floor.gif");
+	}
+	tileTexture.loadFromImage(image);
+
+	// Create a sprite
+	tileSprite.setTexture(tileTexture);
+	tileSprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	tileSprite.setColor(sf::Color(255, 255, 255, 200));
+	tileSprite.setPosition(15*xPos, 15*yPos);
+	return true;
 };
 
 /**
