@@ -27,9 +27,11 @@ World::World()
 
 	const int area = 15;
 	char square[area][area];
+	map = new Tile**[area];
 
 	for (int i = 0; i<area; i++)
 	{
+		map[i] = new Tile*[area];
 		for (int j = 0; i<area; j++)
 		{
 			if(!file.eof())
@@ -41,19 +43,21 @@ World::World()
 					file.ignore(2, '!');
 					file.ignore(2, '\n');
 					std::cout << '\n';
+
 				}
 
 				square[i][j] = file.get();
 				std::cout << square[i][j];
+				//map[i][j] = new Tile(/*square[i][j]*/);
 
-				if(square[i][j]==' ')
-				{
+			//	if(square[i][j]==' ')
+			//	{
 			//	tile.loadFromFile("img/floor.gif");
-				}
-				else if (square[i][j]=='x')
-				{
+			//	}
+			//	else if (square[i][j]=='x')
+			//	{
 			//	tile.loadFromFile("img/wall.gif");
-				}
+			//	}
 //			texture.loadFromImage(tile);
 //			sprite.setTexture(texture);
 //			sprite.setTextureRect(sf::IntRect(0, 0, 10, 10));
@@ -66,6 +70,8 @@ World::World()
 
 	}
 
+
+	
 
 	file.close();
 /*

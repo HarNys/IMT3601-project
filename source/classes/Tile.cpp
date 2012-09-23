@@ -10,6 +10,20 @@ Tile::Tile()
 	hasCharacter = NULL;
 };
 
+Tile::Tile(char quality)
+{
+	if(quality=='x')
+	{
+		isWall = true;
+	}
+	 else
+	{
+	isWall = false;
+	}
+	hasMine = NULL;
+	hasCharacter = NULL;
+};
+
 /**
  * @param[in] wall: the new state of this tile, whether it is a wall
  * 	or floor
