@@ -5,7 +5,6 @@
 
 int main(int argc, char **argv)
 {
-
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
@@ -15,7 +14,16 @@ int main(int argc, char **argv)
 	 */
 	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
-	Character *player1 = new Character("Ninja"); //error when loading image
+/*	printf("before world->getWorld()");
+	World *world;
+	world = world->getWorld();
+
+	printf("after world->getWorld()\nbefore mineFactory->getMineFactory");
+	MineFactory *mineFactory;
+	mineFactory = mineFactory->getMineFactory();
+	printf("after mineFactory->getMineFactory()");
+//*/
+//	Character *player1 = new Character; //error when loading image
 
 	while (screen.isOpen())
 	{
@@ -29,22 +37,20 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-			player1->characterMovement(event);
+//			player1->characterMovement(event);
 			screen.clear();
-			player1->draw(&screen);
-			
+//			player1->draw(&screen);
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
-				World *world;
+/*				World *world;
 				world = world->getWorld();
 				world->~World();
 
 				MineFactory *mineFactory;
 				mineFactory = mineFactory->getMineFactory();
 				mineFactory->~MineFactory();
-
-				
+//*/
 				screen.close();
 			}
 		}

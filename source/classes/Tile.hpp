@@ -24,11 +24,15 @@ private:
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
+	sf::Texture tileTexture;
+	sf::Sprite tileSprite;
 public:
 	Tile();
+	Tile(char quality);
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
+	bool initSprite(int xPos, int yPos);
 	~Tile();
 };
 
