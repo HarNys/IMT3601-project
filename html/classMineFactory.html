@@ -138,9 +138,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classMineFactory.html" title="The MineFactory, creates the grand total of mines for this map setup.">MineFactory</a>, creates the grand total of mines for this map setup. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>should get instance and init in System. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>should get instance and init in System. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>later we may want to have a constructor with a size parameter. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>implement lock mechanism </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>implement lock mechanism </dd></dl>
 
 <p>Definition at line <a class="el" href="MineFactory_8hpp_source.html#l00012">12</a> of file <a class="el" href="MineFactory_8hpp_source.html">MineFactory.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -158,8 +158,10 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Deletes mines in both 'readyMines' and 'usedMines' before deleting itself. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>do a for instead of clear </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000002">Bug:</a></b></dt><dd>segfaults her, maybe? </dd></dl>
 
-<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00145">145</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
+<p>Definition at line <a class="el" href="MineFactory_8cpp_source.html#l00147">147</a> of file <a class="el" href="MineFactory_8cpp_source.html">MineFactory.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +279,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMineFactory.html">MineFactory</a></li>
-    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Sun Sep 23 2012 16:43:51 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

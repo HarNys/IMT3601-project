@@ -100,13 +100,13 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>  (int argc, char **argv)</dt>
+<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>  (int argc, char **argv)</dt>
 <dd><p class="startdd">make mapsizes parsed from arguments. </p>
 <p>make System.{c,h}pp (maybe call it init?) </p>
 <p>clean up int <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main(int,char**)</a>, move things where they should be(this depends of course on that the rest of the system is ready). </p>
 <p class="enddd">add escape as exit button  </p>
 </dd>
-<dt><a class="anchor" id="_todo000004"></a>Class <a class="el" href="classMineFactory.html">MineFactory</a>  </dt>
+<dt><a class="anchor" id="_todo000005"></a>Class <a class="el" href="classMineFactory.html">MineFactory</a>  </dt>
 <dd><p class="startdd">should get instance and init in System. </p>
 <p class="enddd">implement lock mechanism  </p>
 </dd>
@@ -115,21 +115,27 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <p>add mine-type as parameter here and to reInit() </p>
 <p class="enddd">tempMine.reInit();  </p>
 </dd>
-<dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="classTile.html">Tile</a>  </dt>
-<dd>update documentation for wether(spelling?) pointers point to empty object or NULL  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">Tile::setCharacter</a>  (<a class="el" href="classCharacter.html">Character</a> *character)</dt>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classMineFactory.html#a5ba02e4dcfac842be62be16e6117208c">MineFactory::~MineFactory</a>  ()</dt>
+<dd>do a for instead of clear  </dd>
+<dt><a class="anchor" id="_todo000009"></a>Class <a class="el" href="classTile.html">Tile</a>  </dt>
+<dd><p class="startdd">update documentation for wether(spelling?) pointers point to empty object or NULL</p>
+<p class="enddd">getters for the setters  </p>
+</dd>
+<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">Tile::setCharacter</a>  (<a class="el" href="classCharacter.html">Character</a> *character)</dt>
 <dd>animation and drawing? think this properly through. don't just wave around grand ideas.  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">Tile::~Tile</a>  ()</dt>
+<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">Tile::~Tile</a>  ()</dt>
 <dd>"getMineFactory.releaseMine(hasMine);" should do this in a way that works  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classWorld.html#a169819727e0c47b7f50faa1ef2cfbb39">World::getWorld</a>  ()</dt>
-<dd>needs locking when multithreading </dd>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classWorld.html#a169819727e0c47b7f50faa1ef2cfbb39">World::getWorld</a>  ()</dt>
+<dd>needs locking when multithreading  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="classWorld.html#a857b7a69c96fa3b0989cf7f20dd4bb8b">World::placeCharacter</a>  (<a class="el" href="classCharacter.html">Character</a> *character)</dt>
+<dd>make a proper algorithm for this, requires character factory </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Sun Sep 23 2012 16:43:51 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

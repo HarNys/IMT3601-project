@@ -122,15 +122,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af3c0dc9f24c50b9cdddb23e412f138cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a464d5ff612b6b7e336da480c1b6832f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">setCharacter</a> (<a class="el" href="classCharacter.html">Character</a> *character)</td></tr>
 <tr class="separator:a464d5ff612b6b7e336da480c1b6832f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85509d7a97eab174c3168d3c8a2a2412"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a85509d7a97eab174c3168d3c8a2a2412">initSprite</a> (int xPos, int yPos)</td></tr>
+<tr class="separator:a85509d7a97eab174c3168d3c8a2a2412"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98634abbd93fa13d0578d7103202d03d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">~Tile</a> ()</td></tr>
 <tr class="separator:a98634abbd93fa13d0578d7103202d03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section user"><dt></dt><dd>The '<a class="el" href="classWorld.html" title="world X is across, world Y is downwards">World</a>'s map arrays contains a set of '<a class="el" href="classTile.html">Tile</a>' objects(or pointers rather). Each tile currently has a bool for whether or not it is a floor or wall tile, a pointer to a '<a class="el" href="classMine.html">Mine</a>' object, and a pointer to a '<a class="el" href="classCharacter.html">Character</a>' object. </dd></dl>
 <dl class="section user"><dt></dt><dd>The pointers to '<a class="el" href="classMine.html">Mine</a>' and '<a class="el" href="classCharacter.html">Character</a>' will point to either an empty object, or be a NULL pointer.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>update documentation for wether(spelling?) pointers point to empty object or NULL </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>update documentation for wether(spelling?) pointers point to empty object or NULL</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>getters for the setters </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8hpp_source.html#l00018">18</a> of file <a class="el" href="Tile_8hpp_source.html">Tile.hpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8hpp_source.html#l00020">20</a> of file <a class="el" href="Tile_8hpp_source.html">Tile.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeeb5593bb6b75aae2edfcccbc84ab378"></a>
 <div class="memitem">
@@ -162,14 +165,42 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>"getMineFactory.releaseMine(hasMine);" should do this in a way that works </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>"getMineFactory.releaseMine(hasMine);" should do this in a way that works </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>cannot "delete hasCharacter;" here? character factory? </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00053">53</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00076">76</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a85509d7a97eab174c3168d3c8a2a2412"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tile::initSprite </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>xPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>yPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00051">51</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a464d5ff612b6b7e336da480c1b6832f3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -190,9 +221,9 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>animation and drawing? think this properly through. don't just wave around grand ideas. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>animation and drawing? think this properly through. don't just wave around grand ideas. </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00042">42</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00044">44</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
@@ -217,7 +248,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00030">30</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00032">32</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,9 +271,10 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success</dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000003">Bug:</a></b></dt><dd>segfaults on isWall = wall for some reason </dd></dl>
 
-<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00019">19</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Tile_8cpp_source.html#l00021">21</a> of file <a class="el" href="Tile_8cpp_source.html">Tile.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +288,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTile.html">Tile</a></li>
-    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Sun Sep 23 2012 16:43:51 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
