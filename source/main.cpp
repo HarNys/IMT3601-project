@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
-				World *world;
+/*				World *world;
 				world = world->getWorld();
 				world->~World();
 
