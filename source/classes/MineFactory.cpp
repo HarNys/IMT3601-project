@@ -50,6 +50,7 @@ MineFactory *MineFactory::getMineFactory()
  *
  * @todo if (readyMine.reInit()) { return pointer } else { wtf error }
  * @todo add mine-type as parameter here and to reInit()
+ * @bug 
  */
 Mine* MineFactory::getMine()
 {
@@ -57,7 +58,7 @@ Mine* MineFactory::getMine()
 	Mine *tempMine = NULL;
 	if (rmSize >= 0)
 	{
-		tempMine = readyMines[rmSize];
+		tempMine = readyMines.at(rmSize-1);
 		/// @todo tempMine.reInit();
 		usedMines.push_back(tempMine);
 		readyMines.pop_back();

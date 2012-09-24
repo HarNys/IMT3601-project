@@ -1,6 +1,7 @@
 
 #include "../Includes.hpp"
 
+CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
