@@ -12,7 +12,28 @@ int main(int argc, char **argv)
 	 * 	should be(this depends of course on that the rest of
 	 * 	the system is ready).
 	 */
-	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+	
+	sf::RenderWindow screen;
+	char fullscreenoption;
+	std::cout << "play in fullscreen? (Y/n)";
+	std::cin >> fullscreenoption;
+
+
+
+	if (fullscreenoption == 'n' || fullscreenoption == 'N')
+	{
+		screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+	}
+	else
+	{
+		int screenWith;
+		int ScreenHight;
+		std::cout << "what resolution do you like to have? example: 800 600 \n";
+		std::cin >> screenWith;
+		std::cin >> ScreenHight;
+
+		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
+	}
 
 /*	printf("before world->getWorld()");
 	World *world;
