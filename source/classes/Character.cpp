@@ -1,7 +1,7 @@
 
 #include "../Includes.hpp"
 
-Character::Character(std::string characterType)
+Character::Character()
 {
 	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
