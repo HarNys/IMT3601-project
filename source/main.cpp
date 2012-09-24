@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	mineFactory = mineFactory->getMineFactory();
 	printf("after mineFactory->getMineFactory()");
 //*/
-	Character *player1 = new Character("Ninja"); //error when loading image
+	Character *player1 = new Character(); //error when loading image
 
 	while (screen.isOpen())
 	{

@@ -12,12 +12,15 @@
 class CharacterFactory
 {
 private:
+	static CharacterFactory* characterFactory;
 	CharacterFactory();
 	std::vector<Character *> characters;
+	
 
 public:
-	CharacterFactory getCharacter();
+	Character getCharacter();
 	static CharacterFactory *getCharacterFactory();
+	void SetCharacter(std::string type);
 
 
 };

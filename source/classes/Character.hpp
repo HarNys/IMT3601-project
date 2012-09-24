@@ -17,7 +17,7 @@ private:
 
 public:
 
-	Character(std::string characterType);
+	Character();
 	void draw(sf::RenderWindow* window);
 	void draw();
 	void updatePosition();
