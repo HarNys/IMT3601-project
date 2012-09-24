@@ -73,6 +73,7 @@ Mine* MineFactory::getMine()
 			printf("MineFactory::getMine(): readyMines is empty,"
 				"wont give you anymore mines until the bug"
 				"is fixed\n");
+		}
 	}
 	else
 	{
