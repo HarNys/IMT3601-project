@@ -13,7 +13,9 @@ int main(int argc, char **argv)
 	 * 	the system is ready).
 	 */
 	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
-
+	
+	World *world;
+	world = world->getWorld();
 /*	printf("before world->getWorld()");
 	World *world;
 	world = world->getWorld();
@@ -47,14 +49,14 @@ int main(int argc, char **argv)
 			player1->characterInput(event);
 			screen.clear();
 			player1->draw(&screen);
+			world->draw(&screen);
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
-/*				World *world;
-				world = world->getWorld();
+				
 				world->~World();
 
-				MineFactory *mineFactory;
+/*				MineFactory *mineFactory;
 				mineFactory = mineFactory->getMineFactory();
 				mineFactory->~MineFactory();
 //*/
