@@ -10,7 +10,7 @@ MineFactory::MineFactory()
 	/// @todo not sure if resize(30) is correct, check.
 	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.resize(32);
-	readyMines.resize(32);
+	readyMines.reserve(32);
 
 	/// @note This may be extremely ugly, or ok?
 	//readyMines.assign(30, new Mine);
@@ -50,25 +50,36 @@ MineFactory *MineFactory::getMineFactory()
  *
  * @todo if (readyMine.reInit()) { return pointer } else { wtf error }
  * @todo add mine-type as parameter here and to reInit()
- * @bug 
+ * @bug segfaults when placing mine 31
  */
 Mine* MineFactory::getMine()
 {
+	std::vector<Mine *>::iterator rmIter;
+//	for (rmIter = readyMines.begin(); rmIter < readyMines.end(); rmIter++ )
+
 	int rmSize = readyMines.size();
 	Mine *tempMine = NULL;
 	if (rmSize >= 0)
 	{
-		tempMine = readyMines.at(rmSize-1);
-		/// @todo tempMine.reInit();
-		usedMines.push_back(tempMine);
-		readyMines.pop_back();
+		if (usedMines.size() < 30)
+		{
+			tempMine = readyMines.at(rmSize-1);
+			/// @todo tempMine.reInit();
+			usedMines.push_back(tempMine);
+			readyMines.pop_back();
+		}
+		else
+		{
+			printf("MineFactory::getMine(): readyMines is empty,"
+				"wont give you anymore mines until the bug"
+				"is fixed\n");
 	}
 	else
 	{
 		printf("MineFactory::getMine(): There are probably no "
 			"more ready mines. Two explanations are: the "
 			"map is full of mines, or the program is "
-			"leaking mines.");
+			"leaking mines.\n");
 	}
 	return tempMine;
 }
