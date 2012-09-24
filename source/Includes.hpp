@@ -36,6 +36,6 @@
 #include "classes/Character.hpp"
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-
+#include "classes/CharacterFactory.hpp"
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

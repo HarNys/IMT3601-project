@@ -7,6 +7,7 @@ World *World::world = NULL;
  */
 World::World()
 {
+
 	std::ifstream file;
 	file.open ("img/map.txt");
 	sf::Image tile;
