@@ -3,6 +3,11 @@
 
 CharacterFactory *CharacterFactory::characterFactory = NULL;
 
+/** creates the factory if non exists, and makes the characters 
+*   that the players and AI is going to use
+*	@todo make the function take a parameter for the amount of characters to create
+*/
+
 CharacterFactory::CharacterFactory()
 {
 	int maxChar=2;
@@ -20,7 +25,7 @@ CharacterFactory::CharacterFactory()
 };
 
 
-///Singleton that gets the mine factory for you
+///Singleton that gets the Character Factory for you when asked for
 CharacterFactory *CharacterFactory::getCharacterFactory()
 {
 	if (characterFactory == NULL)
@@ -35,8 +40,8 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 };
 
 
-/// @todo get the character you are after not cahracter[0]
-///gets one charecter for you to do some nasty things with
+/// @todo make the code fecth the character you are after not cahracter[0]
+///gets one charecter for you to do some nasty things with if an event is triggered
 Character CharacterFactory::getCharacter()
 {
 	return* characters[0];
@@ -44,6 +49,8 @@ Character CharacterFactory::getCharacter()
 
 /** @todo Make if statment (char type == this chartype)  like this to determin class of the player, example:
 * characters[i]= new mineguy(); or characters[i]= new rifleman();
+*
+* Sets the characters class example, ninja, rifleman, etc.
 */
 
 void CharacterFactory::SetCharacter(std::string type)

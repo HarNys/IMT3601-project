@@ -5,7 +5,7 @@ Character::Character()
 {
 	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
-	image.loadFromFile("img/player.gif");
+	//image.loadFromFile("img/player.gif");
 	texture.loadFromImage(image);
 
 	// Create a sprite
