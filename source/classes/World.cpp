@@ -5,37 +5,56 @@ World *World::world = NULL;
 /**
  * 100 was just a number dragged from my arse.
  */
+
+/**
+ * @brief Loads a hardcoded map, to creat  map variable
+ * *
+ * @todo solve the problem with write errors that show up when loading occurs
+ */
 World::World()
 {
 
+	//@note loading the file that has the map
 	std::ifstream file;
 	file.open ("img/map.txt");
-	sf::Image tile;
 
+
+	//sf::Image tile;
+
+
+	//@note creates a temp file for the chars
 	const int area = 15;
-	char square[area][area];
+	//char square[area][area];
+
+	//@note creates the map as tiles
 	map = new Tile*[area];
 
+
+	//@note the y value of the map
 	for (int i = 0; i<area; i++)
 	{
+		//@note creates tile pointer for each row
 		map[i] = new Tile[area];
-		for (int j = 0; i<area; j++)
+
+		//@note the x value of the map
+		for (int j = 0; j<area; j++)
 		{
+			//@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
+				//@note will increment to next if it encounters !, 
 				if (file.peek()=='!')
 				{
 					i++;
 					j=0;
 					file.ignore(2, '!');
 					file.ignore(2, '\n');
-					std::cout << '\n';
 
 				}
-
-				square[i][j] = file.get();
-				std::cout << square[i][j];
-				//map[i][j] = new Tile(/*square[i][j]*/);
+				map[i][j] = new Tile;
+				//square[i][j] = file.get();
+				//std::cout << square[i][j];
+				
 
 			//	if(square[i][j]==' ')
 			//	{
