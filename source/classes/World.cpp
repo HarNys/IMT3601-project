@@ -34,9 +34,9 @@ World::World()
 			///@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
-				///@note will increment to next if it encounters !, 
 				map[i][j] = new Tile(file.get());
 				map[i][j]->initSprite(i, j);
+
 			}
 		}
 		file.ignore(1, '\n');

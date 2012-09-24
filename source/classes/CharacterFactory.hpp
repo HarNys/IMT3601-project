@@ -18,9 +18,9 @@ private:
 	
 
 public:
-	Character getCharacter();
-	static CharacterFactory *getCharacterFactory();
-	void SetCharacter(std::string type);
+	Character* getCharacter();						///< Gets one character for when an event is trigerd
+	static CharacterFactory *getCharacterFactory(); ///< Singleton that makes sure only one character factory exists 
+	void SetCharacter(std::string type);			///< sets the class for a character, example: rifleman, ninja, mine-guy
 
 
 };

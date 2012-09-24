@@ -17,7 +17,7 @@ Character::Character()
 
 	characterPosX = 10;
 	characterPosY = 10;
-	
+
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };
@@ -38,7 +38,7 @@ void Character::updatePosition()
 //checks if the key is pressed and then released
 //to reset characterDirectionX/Y
 void Character::characterInput(sf::Event e)
-{	
+{
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		characterDirectionX = -1.0;
