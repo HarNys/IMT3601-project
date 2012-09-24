@@ -23,8 +23,13 @@ int main(int argc, char **argv)
 	mineFactory = mineFactory->getMineFactory();
 	printf("after mineFactory->getMineFactory()");
 //*/
-	Character *player1 = new Character(); //error when loading image
-	//CharacterFactory ;
+
+	/// Makes two characters, only one is used at this point (player1)
+	/// @todo Have the characterfactory return more than just one player 
+	CharacterFactory* characterFactory;
+	characterFactory = characterFactory->getCharacterFactory();
+	Character *player1 = characterFactory->getCharacter(); //error when loading image
+	
 
 	while (screen.isOpen())
 	{

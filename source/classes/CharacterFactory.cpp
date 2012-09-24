@@ -42,9 +42,9 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 
 /// @todo make the code fecth the character you are after not cahracter[0]
 ///gets one charecter for you to do some nasty things with if an event is triggered
-Character CharacterFactory::getCharacter()
+Character* CharacterFactory::getCharacter()
 {
-	return* characters[0];
+	return characters[0];
 };
 
 /** @todo Make if statment (char type == this chartype)  like this to determin class of the player, example:
