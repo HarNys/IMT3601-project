@@ -13,7 +13,7 @@ CharacterFactory::CharacterFactory()
 };
 
 
-CharacterFactory CharacterFactory::*getCharacterFactory()
+CharacterFactory *CharacterFactory::getCharacterFactory()
 {
 	if (characterFactory == NULL)
 	{
