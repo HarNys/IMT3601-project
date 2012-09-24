@@ -19,8 +19,6 @@ int main(int argc, char **argv)
 	std::cout << "play in fullscreen? (Y/n)";
 	std::cin >> fullscreenoption;
 
-
-
 	if (fullscreenoption == 'n' || fullscreenoption == 'N')
 	{
 		screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
