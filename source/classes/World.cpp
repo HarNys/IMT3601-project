@@ -13,7 +13,7 @@ World *World::world = NULL;
  */
 World::World()
 {
-
+/*
 	//@note loading the file that has the map
 	std::ifstream file;
 	file.open ("img/map.txt");
@@ -42,7 +42,7 @@ World::World()
 			//@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
-				//@note will increment to next if it encounters !, 
+				//@note will increment to next if it encounters !,
 				if (file.peek()=='!')
 				{
 					i++;
@@ -54,7 +54,7 @@ World::World()
 				map[i][j] = new Tile;
 				//square[i][j] = file.get();
 				//std::cout << square[i][j];
-				
+
 
 			//	if(square[i][j]==' ')
 			//	{
@@ -80,7 +80,7 @@ World::World()
 
 
 	file.close();
-/*
+
 	for (int i = 0; i<area; i++)
 	{
 		for (int j = 0; i<area; j++)
