@@ -1,6 +1,6 @@
 # template makefile
 BINARY = ../main.bin
-OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o
+OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
 GCC = g++ -Wall -O0 #-fopenmp
@@ -41,3 +41,6 @@ $(BINARY) : $(OBJECTS)
 
 ../Debug/Tile.o : classes/Tile.cpp classes/Tile.hpp Includes.hpp
 	$(GCC) $(COMPILEFLAGS) classes/Tile.cpp -o ../Debug/Tile.o
+
+../Debug/CharacterFactory.o : classes/CharacterFactory.cpp classes/CharacterFactory.hpp Includes.hpp
+	$(GCC) $(COMPILEFLAGS) classes/CharacterFactory.cpp -o ../Debug/CharacterFactory.o

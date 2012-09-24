@@ -3,21 +3,21 @@
 
 Character::Character()
 {
-	sf::Image image;
+	sf::Image *image = new sf::Image;
 	/// @bug this path is not correct in windows for some reason
-	//image.loadFromFile("img/player.gif");
-	texture.loadFromImage(image);
+	image->loadFromFile("img/player.png");
+	texture.loadFromImage(*(image));
 
 	// Create a sprite
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 10, 10));
+	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(10, 10);
 
 
 	characterPosX = 10;
 	characterPosY = 10;
-
+//*/
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };

@@ -27,6 +27,7 @@ private:
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
 public:
+	
 	Tile();
 	Tile(char quality);
 	bool setWall(bool wall);
@@ -34,6 +35,7 @@ public:
 	bool setCharacter(Character *character);
 	bool initSprite(int xPos, int yPos);
 	~Tile();
+	sf::Sprite getSprite();
 };
 
 #endif // __TILE__HEADER__GUARD__

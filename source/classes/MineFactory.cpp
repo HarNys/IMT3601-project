@@ -9,11 +9,11 @@ MineFactory::MineFactory()
 {
 	/// @todo not sure if resize(30) is correct, check.
 	/// @note 30+2 is chosen because 15x15 is the default map size
-	usedMines.resize(32);
-	readyMines.reserve(32);
+	usedMines.reserve(32);
+	readyMines.resize(32);//reserve(32);
 
 	/// @note This may be extremely ugly, or ok?
-	//readyMines.assign(30, new Mine);
+//	readyMines.assign(30, new Mine);
 
 /// @note This is code from before i thought of using assign(),
 ///	if assign is ugly we may opt to go back to this.
@@ -27,6 +27,9 @@ MineFactory::MineFactory()
 		tempMine = new Mine;
 		*(rmIter) = tempMine;
 	}
+//*/
+	int t = 7;
+	t = t+9;
 };
 
 MineFactory *MineFactory::getMineFactory()
@@ -54,7 +57,7 @@ MineFactory *MineFactory::getMineFactory()
  */
 Mine* MineFactory::getMine()
 {
-	std::vector<Mine *>::iterator rmIter;
+//	std::vector<Mine *>::iterator rmIter;
 //	for (rmIter = readyMines.begin(); rmIter < readyMines.end(); rmIter++ )
 
 	int rmSize = readyMines.size();
@@ -71,8 +74,8 @@ Mine* MineFactory::getMine()
 		else
 		{
 			printf("MineFactory::getMine(): readyMines is empty,"
-				"wont give you anymore mines until the bug"
-				"is fixed\n");
+				" wont give you anymore mines until the bug"
+				" is fixed\n");
 		}
 	}
 	else
