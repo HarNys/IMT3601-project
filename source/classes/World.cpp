@@ -8,7 +8,7 @@ World *World::world = NULL;
 World::World()
 {
 	int mapSize = 100;
-	map = new Tile**[mapSize];
+	map = new Tile**[mapSize];						//< map is mapSize x mapSize
 	for (int yCount = 0; yCount < mapSize; yCount++)
 	{
 		map[yCount] = new Tile*[mapSize];
