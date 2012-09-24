@@ -1,11 +1,11 @@
 
 #include "../Includes.hpp"
 
-Character::Character()
+Character::Character(std::string characterType)
 {
 	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
-	//image.loadFromFile("img/player.gif");
+	image.loadFromFile("img/player.gif");
 	texture.loadFromImage(image);
 
 	// Create a sprite
@@ -17,7 +17,7 @@ Character::Character()
 
 	characterPosX = 10;
 	characterPosY = 10;
-
+	
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };
@@ -28,17 +28,17 @@ void Character::draw(sf::RenderWindow *window)
 	window->draw(sprite);
 };
 
-
-
-
 void Character::updatePosition()
 {
 	std::cout<< "X-position: " << characterPosX << "\n";
 	std::cout<< "Y-position: " << characterPosY << "\n";
 };
 
+//movement-functions
+//checks if the key is pressed and then released
+//to reset characterDirectionX/Y
 void Character::characterMovement(sf::Event e)
-{
+{	
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		characterDirectionX = -1.0;
@@ -78,3 +78,7 @@ void Character::characterMovement(sf::Event e)
 
 }
 
+void Character::placeMine(sf::Event e)
+{
+
+}

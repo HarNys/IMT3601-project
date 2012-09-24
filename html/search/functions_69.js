@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initminefactory',['initMineFactory',['../classMineFactory.html#a65a5a3b28ac40a1240a4cc7d7237f42b',1,'MineFactory']]]
+  ['initsprite',['initSprite',['../classTile.html#a85509d7a97eab174c3168d3c8a2a2412',1,'Tile']]]
 ];

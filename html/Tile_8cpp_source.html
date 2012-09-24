@@ -114,41 +114,63 @@ $(document).ready(function(){initNavTree('Tile_8cpp_source.html','');});
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        hasCharacter = NULL;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;};</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4">   19</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4">Tile::setWall</a>(<span class="keywordtype">bool</span> wall)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        isWall = wall;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf">   30</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf">Tile::setMine</a>(<a class="code" href="classMine.html">Mine</a> *mine)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        hasMine = mine;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">   42</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">Tile::setCharacter</a>(<a class="code" href="classCharacter.html">Character</a> *character)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">   53</a></span>&#160;<a class="code" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">Tile::~Tile</a>()</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (hasMine)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//              getMineFactory.releaseMine(hasMine);</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">if</span> (hasCharacter)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">delete</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4">   21</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#a6d5f974d5aa937968bf898bdc8c96ad4">Tile::setWall</a>(<span class="keywordtype">bool</span> wall)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        isWall = wall;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf">   32</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#af3c0dc9f24c50b9cdddb23e412f138cf">Tile::setMine</a>(<a class="code" href="classMine.html">Mine</a> *mine)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        hasMine = mine;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">   44</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#a464d5ff612b6b7e336da480c1b6832f3">Tile::setCharacter</a>(<a class="code" href="classCharacter.html">Character</a> *character)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classTile.html#a85509d7a97eab174c3168d3c8a2a2412">   51</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classTile.html#a85509d7a97eab174c3168d3c8a2a2412">Tile::initSprite</a>(<span class="keywordtype">int</span> xPos, <span class="keywordtype">int</span> yPos)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        sf::Image image;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (isWall)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                image.loadFromFile(<span class="stringliteral">&quot;img/wall.gif&quot;</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                image.loadFromFile(<span class="stringliteral">&quot;img/floor.gif&quot;</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        tileTexture.loadFromImage(image);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// Create a sprite</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        tileSprite.setTexture(tileTexture);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        tileSprite.setTextureRect(sf::IntRect(0, 0, 15, 15));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        tileSprite.setColor(sf::Color(255, 255, 255, 200));</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        tileSprite.setPosition(15*xPos, 15*yPos);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">   76</a></span>&#160;<a class="code" href="classTile.html#a98634abbd93fa13d0578d7103202d03d">Tile::~Tile</a>()</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (hasMine)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                mineFactory = mineFactory-&gt;<a class="code" href="classMineFactory.html#a322fe3d91188934e537a1c5f1e1e66d1">getMineFactory</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                mineFactory-&gt;<a class="code" href="classMineFactory.html#a0ea5231caffbf00cbc5ea0f5dcddb78a" title="Moves a released mine from &#39;usedMines&#39; to &#39;readyMines&#39;.">releaseMine</a>(hasMine);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span> (hasCharacter)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">delete</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_93fd307e3a82e4579b26f0adf3f1a22d.html">classes</a></li><li class="navelem"><a class="el" href="Tile_8cpp.html">Tile.cpp</a></li>
-    <li class="footer">Generated on Thu Sep 20 2012 00:48:44 for Frank Darkhawk's maze RPG by
+    <li class="footer">Generated on Sun Sep 23 2012 16:43:51 for Frank Darkhawk's maze RPG by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

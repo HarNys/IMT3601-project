@@ -141,6 +141,8 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
 /**
  * @brief Deletes mines in both 'readyMines' and 'usedMines' before
  * 	deleting itself.
+ * @todo do a for instead of clear
+ * @bug segfaults her, maybe?
  */
 MineFactory::~MineFactory()
 {
