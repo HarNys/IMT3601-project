@@ -34,8 +34,8 @@
 #include "classes/Mine.hpp"
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Character.hpp"
+#include "classes/CharacterFactory.hpp" // requires 'Character.hpp'
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-#include "classes/CharacterFactory.hpp"
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

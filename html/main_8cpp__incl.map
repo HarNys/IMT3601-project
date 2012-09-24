@@ -1,7 +1,0 @@
-<map id="source/main.cpp" name="source/main.cpp">
-<area shape="rect" id="node3" href="$Includes_8hpp.html" title="Includes.hpp" alt="" coords="289,80,385,107"/>
-<area shape="rect" id="node11" href="$World_8hpp.html" title="classes/World.hpp" alt="" coords="272,155,401,181"/>
-<area shape="rect" id="node13" href="$Character_8hpp.html" title="classes/Character.hpp" alt="" coords="426,155,579,181"/>
-<area shape="rect" id="node15" href="$Mine_8hpp.html" title="classes/Mine.hpp" alt="" coords="603,155,727,181"/>
-<area shape="rect" id="node17" href="$MineFactory_8hpp.html" title="classes/MineFactory.hpp" alt="" coords="752,155,920,181"/>
-</map>
