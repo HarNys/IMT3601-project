@@ -24,6 +24,7 @@ int main(int argc, char **argv)
 	printf("after mineFactory->getMineFactory()");
 //*/
 	Character *player1 = new Character(); //error when loading image
+	//CharacterFactory ;
 
 	while (screen.isOpen())
 	{
@@ -37,6 +38,7 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
+
 			player1->characterInput(event);
 			screen.clear();
 			player1->draw(&screen);
