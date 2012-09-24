@@ -3,10 +3,19 @@
 
 Character::Character()
 {
-	sf::Image *image = new sf::Image;
+	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
-	image->loadFromFile("img/player.png");
-	texture.loadFromImage(*(image));
+	if (image.loadFromFile("img/player.png"))
+	{
+		printf("Character::Character(): loaded img/player.png\n");
+	}
+	else
+	{
+		printf("Character::Character(): could not load image "
+			"'img/player.png'\n");
+		exit(1);
+	}
+	texture.loadFromImage(image);
 
 	// Create a sprite
 	sprite.setTexture(texture);
