@@ -69,7 +69,7 @@ bool Tile::setCharacter(Character *character)
 *
 * @param [in] xpos: the x position of the tile
 * @param [in] ypos: the y position of the tile
-* 
+*
 * @ return true on success
 */
 
@@ -78,11 +78,11 @@ bool Tile::initSprite(int xPos, int yPos)
 	sf::Image image;
 	if (isWall)
 	{
-		//image.loadFromFile("img/wall.gif");
+		image.loadFromFile("img/wall.gif");
 	}
 	else
 	{
-		//image.loadFromFile("img/floor.gif");
+		image.loadFromFile("img/floor.gif");
 	}
 	tileTexture.loadFromImage(image);
 
@@ -98,7 +98,7 @@ bool Tile::initSprite(int xPos, int yPos)
 
 sf::Sprite Tile::getSprite()
 {
-	return tileSprite;	
+	return tileSprite;
 };
 /**
  * @todo "getMineFactory.releaseMine(hasMine);" should do this in a way

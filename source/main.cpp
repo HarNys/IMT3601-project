@@ -12,9 +12,10 @@ int main(int argc, char **argv)
 	 * 	should be(this depends of course on that the rest of
 	 * 	the system is ready).
 	 */
-
-	
 	sf::RenderWindow screen;
+	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+
+/*
 	char fullscreenoption;
 	std::cout << "play in fullscreen? (Y/n)";
 	std::cin >> fullscreenoption;
@@ -33,10 +34,13 @@ int main(int argc, char **argv)
 
 		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
 	}
+//*/
 
-	
 	World *world;
 	world = world->getWorld();
+
+	MineFactory *mineFactory;
+	mineFactory = mineFactory->getMineFactory();
 
 /*	printf("before world->getWorld()");
 	World *world;
@@ -49,11 +53,11 @@ int main(int argc, char **argv)
 //*/
 
 	/// Makes two characters, only one is used at this point (player1)
-	/// @todo Have the characterfactory return more than just one player 
+	/// @todo Have the characterfactory return more than just one player
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 	Character *player1 = characterFactory->getCharacter(); //error when loading image
-	
+
 
 	while (screen.isOpen())
 	{
@@ -70,18 +74,16 @@ int main(int argc, char **argv)
 
 			player1->characterInput(event);
 			screen.clear();
-			player1->draw(&screen);
 			world->draw(&screen);
+			player1->draw(&screen);
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
-				
+
 				world->~World();
 
-/*				MineFactory *mineFactory;
-				mineFactory = mineFactory->getMineFactory();
 				mineFactory->~MineFactory();
-//*/
+
 				screen.close();
 			}
 		}
