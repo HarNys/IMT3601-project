@@ -36,8 +36,6 @@ int main(int argc, char **argv)
 		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
 	}
 
-
-	sf::RenderWindow screen(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 	
 	World *world;
 	world = world->getWorld();
