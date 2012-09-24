@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	mineFactory = mineFactory->getMineFactory();
 	printf("after mineFactory->getMineFactory()");
 //*/
-//	Character *player1 = new Character; //error when loading image
+	Character *player1 = new Character("Ninja"); //error when loading image
 
 	while (screen.isOpen())
 	{
@@ -37,9 +37,9 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-//			player1->characterMovement(event);
+			player1->characterInput(event);
 			screen.clear();
-//			player1->draw(&screen);
+			player1->draw(&screen);
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
