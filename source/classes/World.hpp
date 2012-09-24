@@ -12,11 +12,12 @@ private:
         World();
         // member variables
         static World *world;
-        Tile **map;
+        Tile ***map;
 
 public:
         static World *getWorld();
         bool placeCharacter(Character *character);
+		void draw(sf::RenderWindow *window);
 };
 
 #endif // __WORLD__HEADER__GUARD__
