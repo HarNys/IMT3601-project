@@ -13,21 +13,23 @@ MineFactory::MineFactory()
 	readyMines.resize(32);
 
 	/// @note This may be extremely ugly, or ok?
-	readyMines.assign(30, new Mine);
+	//readyMines.assign(30, new Mine);
 
 /// @note This is code from before i thought of using assign(),
 ///	if assign is ugly we may opt to go back to this.
-/*
+
 	int rmSize = readyMines.size() - 2;
 
 	std::vector<Mine *>::iterator rmIter;
+	Mine * tempMine = new Mine;
+	
 	for (rmIter = readyMines.begin(); rmIter < readyMines.end(); rmIter++ )
 	{
-		Mine * tempMine = new Mine;
-		readyMines.pushback(tempMine);
+		
+		readyMines.push_back(tempMine);
 	}
 // the first part is a quick attempt at doing the below part with ioterators
-	for (int rmCount = 0; rmCount > rmSize; rmCount++)
+/*	for (int rmCount = 0; rmCount > rmSize; rmCount++)
 	{
 		readyMines[rmCount] = new Mine;
 	}

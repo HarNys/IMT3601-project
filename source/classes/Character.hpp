@@ -21,7 +21,7 @@ public:
 	void draw(sf::RenderWindow* window);
 	void draw();
 	void updatePosition();
-	void characterMovement(sf::Event e);
+	void characterInput(sf::Event e);
 	void placeMine(sf::Event e);
 };
 

@@ -39,6 +39,8 @@ bool Tile::setWall(bool wall)
 };
 
 /**
+ * @todo check whether there already is a mine there
+ *
  * @param[in] mine: the new mine, either a NULL pointer or a 'Mine'
  *
  * @return true on success

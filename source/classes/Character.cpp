@@ -5,7 +5,7 @@ Character::Character(std::string characterType)
 {
 	sf::Image image;
 	/// @bug this path is not correct in windows for some reason
-	image.loadFromFile("img/player.gif");
+	//image.loadFromFile("img/player.gif");
 	texture.loadFromImage(image);
 
 	// Create a sprite
@@ -37,7 +37,7 @@ void Character::updatePosition()
 //movement-functions
 //checks if the key is pressed and then released
 //to reset characterDirectionX/Y
-void Character::characterMovement(sf::Event e)
+void Character::characterInput(sf::Event e)
 {	
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -75,10 +75,23 @@ void Character::characterMovement(sf::Event e)
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 			characterDirectionY = 0;
 	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	{
+		MineFactory *mineFactory;
+		mineFactory = mineFactory->getMineFactory();
+
+		if(e.KeyReleased && e.key.code == sf::Keyboard::E)
+		{
+			mineFactory->getMine();
+			std::cout<< "Mine placed\n";
+		}
+	}
 
 }
 
 void Character::placeMine(sf::Event e)
 {
+	 MineFactory *mineFactory;
+	 mineFactory = mineFactory->getMineFactory();
 
 }
