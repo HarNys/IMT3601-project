@@ -1,18 +1,26 @@
 
 #include "../Includes.hpp"
 
+CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
 	int maxChar=2;
+	Character* tempchar;
+	
 	characters.resize(maxChar);
-	for (int i=0;i<maxChar;i++)
+	
+	std::vector<Character *>::iterator cIter;
+
+	for (cIter=characters.begin();cIter < characters.end(); cIter ++)
 	{
-		characters[i]= new Character();
+		tempchar= new Character();
+		*(cIter)=tempchar;
 	}
 };
 
 
+///Singleton that gets the mine factory for you
 CharacterFactory *CharacterFactory::getCharacterFactory()
 {
 	if (characterFactory == NULL)
@@ -27,6 +35,8 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 };
 
 
+/// @todo get the character you are after not cahracter[0]
+///gets one charecter for you to do some nasty things with
 Character CharacterFactory::getCharacter()
 {
 	return* characters[0];
