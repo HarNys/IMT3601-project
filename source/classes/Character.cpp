@@ -43,9 +43,10 @@ void Character::updatePosition()
 	std::cout<< "Y-position: " << characterPosY << "\n";
 };
 
-//movement-functions
-//checks if the key is pressed and then released
-//to reset characterDirectionX/Y
+///movement-functions
+///checks if the key is pressed and then released
+///to reset characterDirectionX/Y
+/// @todo comment parameter
 void Character::characterInput(sf::Event e)
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))

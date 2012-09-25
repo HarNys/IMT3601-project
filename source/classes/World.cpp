@@ -15,7 +15,8 @@ World::World()
 {
 	///@note loading the file that has the map
 	std::ifstream file;
-	file.open ("map/mega.txt");
+//	file.open ("map/mega.txt");
+	file.open ("map/map.txt");
 	//sf::Image tile;
 	///@note creates a temp file for the chars
 	 int area = 0;
@@ -38,8 +39,12 @@ World::World()
 			if(!file.eof())
 			{
 				map[i][j] = new Tile(file.get());
-				map[i][j]->initSprite(i, j);
-
+				if (map[i][j]->initSprite(i, j))
+				{
+					static int count = 0;
+					count++;
+					printf("World::World(): count: %i\n", count);
+				}
 			}
 		}
 		file.ignore(1, '\n');
@@ -72,12 +77,13 @@ World *World::getWorld()
  */
 bool World::placeCharacter(Character *character)
 {
-	map[1][1]->setCharacter(character);
+	static int xSpace = 1;
+	map[xSpace++][1]->setCharacter(character);
 	return true;
 };
 
 /**
-* draws the map to screen, 
+* draws the map to screen,
 *
 * @param [in] window: pointer to the window shit should be placed in
 *

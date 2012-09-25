@@ -78,10 +78,12 @@ bool Tile::initSprite(int xPos, int yPos)
 	if (isWall)
 	{
 		image.loadFromFile("img/wall.gif");
+//		printf("Tile::initSprite(int,int): loaded img/wall.gif\n");
 	}
 	else
 	{
 		image.loadFromFile("img/floor.gif");
+//		printf("Tile::initSprite(int,int): loaded img/floor.gif\n");
 	}
 	tileTexture.loadFromImage(image);
 

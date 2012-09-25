@@ -71,7 +71,6 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-
 			player1->characterInput(event);
 			screen.clear();
 			world->draw(&screen);
@@ -79,7 +78,6 @@ int main(int argc, char **argv)
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
-
 				world->~World();
 
 				mineFactory->~MineFactory();

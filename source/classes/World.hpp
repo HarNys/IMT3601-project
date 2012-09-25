@@ -13,12 +13,12 @@ private:
         // member variables
         static World *world;
         Tile ***map;
-		int area; //size to a side of the map
+        int area; //size to a side of the map
 
 public:
         static World *getWorld();
         bool placeCharacter(Character *character);
-		void draw(sf::RenderWindow *window);
+        void draw(sf::RenderWindow *window);
 };
 
 #endif // __WORLD__HEADER__GUARD__
