@@ -67,12 +67,11 @@ bool Tile::setCharacter(Character *character)
 /**
 * draws the map
 *
-* @param [in] xpos: the x position of the tile
-* @param [in] ypos: the y position of the tile
+* @param [in] xPos: the x position of the tile
+* @param [in] yPos: the y position of the tile
 *
 * @ return true on success
 */
-
 bool Tile::initSprite(int xPos, int yPos)
 {
 	sf::Image image;
