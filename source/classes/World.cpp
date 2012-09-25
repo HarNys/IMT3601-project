@@ -15,11 +15,14 @@ World::World()
 {
 	///@note loading the file that has the map
 	std::ifstream file;
-	file.open ("img/map.txt");
+	file.open ("map/mega.txt");
 	//sf::Image tile;
 	///@note creates a temp file for the chars
-	const int area = 15;
-	//char square[area][area];
+	 int area = 0;
+	 while (file.get()!='\n'){
+		 area++;
+	 }
+	 file.seekg(0);
 	///@note creates the map as tiles
 	map = new Tile**[area];
 	///@note the y value of the map
@@ -83,9 +86,9 @@ bool World::placeCharacter(Character *character)
 
 void World::draw(sf::RenderWindow *window)
 {
-	for (int xCount = 0; xCount < 15; xCount++)
+	for (int xCount = 0; xCount < area; xCount++)
 	{
-		for (int yCount = 0; yCount < 15; yCount++)
+		for (int yCount = 0; yCount < area; yCount++)
 		{
 			window->draw(map[xCount][yCount]->getSprite());
 		}
