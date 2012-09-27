@@ -10,6 +10,7 @@ World *World::world = NULL;
  * @brief Loads a hardcoded map, to creat  map variable
  * *
  * @todo solve the problem with write errors that show up when loading occurs
+ * @todo separate constructor and map init/loading
  */
 World::World()
 {
@@ -19,13 +20,16 @@ World::World()
 	file.open ("map/map.txt");
 	//sf::Image tile;
 	///@note creates a temp file for the chars
-	 int area = 0;
-	 while (file.get()!='\n'){
-		 area++;
-	 }
-	 file.seekg(0);
+	area = 0;
+	while (file.get()!='\n'){
+		area++;
+	}
+	file.seekg(0);
 	///@note creates the map as tiles
+	/// Initializes the tile images
 	map = new Tile**[area];
+	Tile *tempTile = new Tile();
+	tempTile->initImage();
 	///@note the y value of the map
 	for (int i = 0; i<area; i++)
 	{
@@ -38,7 +42,8 @@ World::World()
 			///@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
-				map[i][j] = new Tile(file.get());
+				map[i][j] = new Tile(*tempTile);
+				map[i][j]->initTile(file.get());
 				if (map[i][j]->initSprite(i, j))
 				{
 					static int count = 0;

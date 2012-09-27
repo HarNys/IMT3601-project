@@ -28,8 +28,6 @@ MineFactory::MineFactory()
 		*(rmIter) = tempMine;
 	}
 //*/
-	int t = 7;
-	t = t+9;
 };
 
 MineFactory *MineFactory::getMineFactory()
