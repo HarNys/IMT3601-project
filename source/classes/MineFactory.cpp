@@ -155,6 +155,7 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
  * @todo do a for instead of clear
  * @bug segfaults her, maybe?
  */
+
 MineFactory::~MineFactory()
 {
 	readyMines.clear();
