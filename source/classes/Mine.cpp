@@ -38,7 +38,7 @@ bool Mine::update(Character *character)
 	visibilityTimer--;
 	if (character)
 	{
-		printf("Mine::update(Character*): BANG! %s triggered a mine", character);
+		printf("Mine::update(Character*): BANG! someone triggered a mine");
 	}
 	return true;
 };

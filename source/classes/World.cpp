@@ -44,7 +44,7 @@ World::World()
 				{
 					static int count = 0;
 					count++;
-					printf("World::World(): count: %i\n", count);
+//					printf("World::World(): count: %i\n", count);
 				}
 			}
 		}

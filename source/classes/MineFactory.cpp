@@ -7,23 +7,24 @@ MineFactory *MineFactory::mineFactory = NULL;
 
 MineFactory::MineFactory()
 {
-	/// @todo not sure if resize(30) is correct, check.
 	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.reserve(32);
-	readyMines.resize(32); //reserve(32);
+//	readyMines.resize(32);
 
-	/// @note This may be extremely ugly, or ok?
-//	readyMines.assign(30, new Mine);
+	/**
+	* @note This may be extremely ugly, or ok?
+	* It seems to be working just fine, the effect is as good as equal to
+	* what we have designed ourselves.
+	*/
+	readyMines.assign(30, new Mine);
 
 /// @note This is code from before i thought of using assign(),
 ///	if assign is ugly we may opt to go back to this.
-
-	std::vector<Mine *>::iterator rmIter;
+/* 	std::vector<Mine *>::iterator rmIter;
 	Mine * tempMine;
 
 	for (rmIter = readyMines.begin(); rmIter < readyMines.end(); rmIter++ )
 	{
-
 		tempMine = new Mine;
 		*(rmIter) = tempMine;
 	}
@@ -51,6 +52,7 @@ MineFactory *MineFactory::getMineFactory()
  *
  * @todo if (readyMine.reInit()) { return pointer } else { wtf error }
  * @todo add mine-type as parameter here and to reInit()
+ *
  * @bug segfaults when placing mine 31
  */
 Mine* MineFactory::getMine()
@@ -156,7 +158,23 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
 
 MineFactory::~MineFactory()
 {
-	readyMines.clear();
-	usedMines.clear();
-	delete this;
+	std::vector<Mine *>::iterator rmIter;
+	for (rmIter = readyMines.end(); rmIter >= readyMines.begin(); rmIter--)
+	{
+		if (*rmIter)
+		{
+			delete (*rmIter);
+		}
+	}
+
+	std::vector<Mine *>::iterator umIter;
+	for (umIter = usedMines.end(); umIter >= usedMines.begin(); umIter--)
+	{
+		if (*umIter)
+		{
+			delete *(umIter);
+		}
+	}
+//	readyMines.clear();
+//	usedMines.clear();
 };

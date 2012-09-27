@@ -1,5 +1,6 @@
 #ifndef __MINE__HEADER__GUARD__
 #define __MINE__HEADER__GUARD__
+#include "../Includes.hpp"
 
 class Mine
 {

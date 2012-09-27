@@ -4,6 +4,7 @@
 
 /**
  * @brief world X is across, world Y is downwards
+ *
  * @todo add the mine image to Tile's image list
  * @todo make the characters move on the tiles
  * @todo place and update mines
