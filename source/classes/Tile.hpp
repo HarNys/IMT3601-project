@@ -24,16 +24,19 @@ private:
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
+	static sf::Image *wallImg;
+	static sf::Image *floorImg;
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
 public:
-	
 	Tile();
 	Tile(char quality);
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
 	bool initSprite(int xPos, int yPos);
+	void initImage();
+	bool initTile(char quality);
 	~Tile();
 	sf::Sprite getSprite();
 };

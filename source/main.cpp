@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
 
-	
+
 	/// Makes two characters, only one is used at this point (player1)
 	/// @todo Have the characterfactory return more than just one player
 	CharacterFactory* characterFactory;
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 
 	while (screen.isOpen())
 	{
-		
+
 		screen.clear();
 		world->draw(&screen);
 		player1->draw(&screen);
@@ -72,6 +72,8 @@ int main(int argc, char **argv)
 			{
 				world->~World();
 
+				/// @bug program segfaults in here, commented
+				///	out temporarily
 				//mineFactory->~MineFactory();
 
 				screen.close();

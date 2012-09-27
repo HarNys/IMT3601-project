@@ -28,8 +28,6 @@ MineFactory::MineFactory()
 		*(rmIter) = tempMine;
 	}
 //*/
-	int t = 7;
-	t = t+9;
 };
 
 MineFactory *MineFactory::getMineFactory()
@@ -153,7 +151,7 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
  * @brief Deletes mines in both 'readyMines' and 'usedMines' before
  * 	deleting itself.
  * @todo do a for instead of clear
- * @bug segfaults her, maybe?
+ * @bug segfaults here, maybe?
  */
 
 MineFactory::~MineFactory()
