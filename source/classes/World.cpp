@@ -3,11 +3,7 @@
 World *World::world = NULL;
 
 /**
- * 100 was just a number dragged from my arse.
- */
-
-/**
- * @brief Loads a hardcoded map, to creat  map variable
+ * @brief Loads a hardcoded map, to create  map variable
  * *
  * @todo solve the problem with write errors that show up when loading occurs
  * @todo separate constructor and map init/loading
