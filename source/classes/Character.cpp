@@ -15,7 +15,7 @@ Character::Character()
 			"'img/player.png'\n");
 		exit(1);
 	}
-	sf::Color alpha(251,151,251);		//Alpha color that is not to be drawn
+	sf::Color alpha(151,251,151);		//Alpha color that is not to be drawn
 	image.createMaskFromColor(alpha,0);	//Alpha out the alpha color
 	texture.loadFromImage(image);		//loads image to texture
 	//createMaskFromColor
