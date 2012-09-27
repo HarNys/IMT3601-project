@@ -42,15 +42,6 @@ int main(int argc, char **argv)
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
 
-/*	printf("before world->getWorld()");
-	World *world;
-	world = world->getWorld();
-
-	printf("after world->getWorld()\nbefore mineFactory->getMineFactory");
-	MineFactory *mineFactory;
-	mineFactory = mineFactory->getMineFactory();
-	printf("after mineFactory->getMineFactory()");
-//*/
 
 	/// Makes two characters, only one is used at this point (player1)
 	/// @todo Have the characterfactory return more than just one player
@@ -61,8 +52,11 @@ int main(int argc, char **argv)
 
 	while (screen.isOpen())
 	{
-		screen.display();
 
+		screen.clear();
+		world->draw(&screen);
+		player1->draw(&screen);
+		screen.display();
 
 		// Process events
 		sf::Event event;
@@ -72,15 +66,15 @@ int main(int argc, char **argv)
 		while (screen.pollEvent(event))
 		{
 			player1->characterInput(event);
-			screen.clear();
-			world->draw(&screen);
-			player1->draw(&screen);
+
 			// Close window : exit
 			if (event.type == sf::Event::Closed)
 			{
 				world->~World();
 
-				mineFactory->~MineFactory();
+				/// @bug program segfaults in here, commented
+				///	out temporarily
+				//mineFactory->~MineFactory();
 
 				screen.close();
 			}
