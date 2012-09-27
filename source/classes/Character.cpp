@@ -15,12 +15,15 @@ Character::Character()
 			"'img/player.png'\n");
 		exit(1);
 	}
-	texture.loadFromImage(image);
+	sf::Color alpha(251,151,251);		//Alpha color that is not to be drawn
+	image.createMaskFromColor(alpha,0);	//Alpha out the alpha color
+	texture.loadFromImage(image);		//loads image to texture
+	//createMaskFromColor
 
 	// Create a sprite
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
-	sprite.setColor(sf::Color(151, 251, 151, 255));
+	//sprite.setColor(sf::Color(151, 251, 151, 255));
 	sprite.setPosition(10, 10);
 
 
