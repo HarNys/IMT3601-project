@@ -8,6 +8,7 @@ Tile::Tile()
 	isWall = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
+	printf("Tile is created");
 };
 
 Tile::Tile(char quality)
@@ -22,6 +23,7 @@ Tile::Tile(char quality)
 	}
 	hasMine = NULL;
 	hasCharacter = NULL;
+	printf("Tile is created");
 };
 
 /**

@@ -10,7 +10,7 @@ MineFactory::MineFactory()
 	/// @todo not sure if resize(30) is correct, check.
 	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.reserve(32);
-	readyMines.resize(32);//reserve(32);
+	readyMines.resize(32); //reserve(32);
 
 	/// @note This may be extremely ugly, or ok?
 //	readyMines.assign(30, new Mine);

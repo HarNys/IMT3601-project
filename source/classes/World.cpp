@@ -19,7 +19,7 @@ World::World()
 	file.open ("map/map.txt");
 	//sf::Image tile;
 	///@note creates a temp file for the chars
-	 int area = 0;
+	 area = 0;
 	 while (file.get()!='\n'){
 		 area++;
 	 }
