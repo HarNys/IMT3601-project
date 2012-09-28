@@ -3,16 +3,16 @@
 #include "../Includes.hpp"
 
 /**
- * \par
+ * @par
  * 	The 'World's map arrays contains a set of 'Tile' objects(or
  * 	pointers rather). Each tile currently has a bool for whether or
  * 	not it is a floor or wall tile, a pointer to a 'Mine' object,
  * 	and a pointer to a 'Character' object.
- * \par
+ * @par
  * 	The pointers to 'Mine' and 'Character' will point to either an
  * 	empty object, or be a NULL pointer.
  *
- * \todo update documentation for wether(spelling?) pointers point to
+ * @todo update documentation for wether(spelling?) pointers point to
  * 	empty object or NULL
  *
  * @todo getters for the setters
@@ -20,20 +20,23 @@
 class Tile
 {
 private:
-	bool isWall; ///< \note isWall is true when 'Tile' is a wall.
+	bool isWall; ///< @note isWall is true when 'Tile' is a wall.
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
+	static sf::Image *wallImg;
+	static sf::Image *floorImg;
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
 public:
-	
 	Tile();
 	Tile(char quality);
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
 	bool initSprite(int xPos, int yPos);
+	void initImage();
+	bool initTile(char quality);
 	~Tile();
 	sf::Sprite getSprite();
 };

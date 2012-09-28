@@ -15,12 +15,15 @@ Character::Character()
 			"'img/player.png'\n");
 		exit(1);
 	}
-	texture.loadFromImage(image);
+	sf::Color alpha(151,251,151);		//Alpha color that is not to be drawn
+	image.createMaskFromColor(alpha,0);	//Alpha out the alpha color
+	texture.loadFromImage(image);		//loads image to texture
+	//createMaskFromColor
 
 	// Create a sprite
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
-	sprite.setColor(sf::Color(255, 255, 255, 200));
+	//sprite.setColor(sf::Color(151, 251, 151, 255));
 	sprite.setPosition(10, 10);
 
 
@@ -43,9 +46,10 @@ void Character::updatePosition()
 	std::cout<< "Y-position: " << characterPosY << "\n";
 };
 
-//movement-functions
-//checks if the key is pressed and then released
-//to reset characterDirectionX/Y
+///movement-functions
+///checks if the key is pressed and then released
+///to reset characterDirectionX/Y
+/// @todo comment parameter
 void Character::characterInput(sf::Event e)
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -54,15 +58,20 @@ void Character::characterInput(sf::Event e)
 		sprite.move(-1.0, 0.0);
 		characterPosX--;
 		updatePosition();
+		sprite.setTextureRect(sf::IntRect(0, 51, 15, 15));
+
 		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
 			characterDirectionX = 0;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
+
 		characterDirectionX = 1.0;
 		sprite.move(1.0, 0.0);
 		characterPosX++;
 		updatePosition();
+		sprite.setTextureRect(sf::IntRect(0, 17, 15, 15));
+		
 		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
 			characterDirectionX = 0;
 	}
@@ -72,6 +81,8 @@ void Character::characterInput(sf::Event e)
 		sprite.move(0.0, -1.0);
 		characterPosY--;
 		updatePosition();
+		sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+
 		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
 			characterDirectionY = 0;
 	}
@@ -81,6 +92,8 @@ void Character::characterInput(sf::Event e)
 		sprite.move(0.0, 1.0);
 		characterPosY++;
 		updatePosition();
+		sprite.setTextureRect(sf::IntRect(0, 34, 15, 15));
+
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 			characterDirectionY = 0;
 	}

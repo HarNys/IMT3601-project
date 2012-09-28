@@ -21,4 +21,6 @@ A: one per class, maybe one wrapper
 
 ## meeting 3
 
+DEADLINE: prototype finished by monday
+
 Q: networking: one thread per remote player?
