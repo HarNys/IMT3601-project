@@ -35,7 +35,7 @@ Tile::Tile(char quality)
  *
  * @return true on success
  *
- * @bug segfaults on isWall = wall for some reason
+ * @bug segfaults on isWall = wall for some reason. This may have been fixed. please confirm
  */
 bool Tile::setWall(bool wall)
 {
