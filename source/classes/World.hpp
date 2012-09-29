@@ -24,6 +24,7 @@ public:
         static World *getWorld();
         bool placeCharacter(Character *character);
         void draw(sf::RenderWindow *window);
+        bool update();
 };
 
 #endif // __WORLD__HEADER__GUARD__

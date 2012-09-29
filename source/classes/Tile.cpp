@@ -88,7 +88,7 @@ bool Tile::setMine(Mine *mine)
 };
 
 /**
- * @param in character: the new character, either a NULL pointer or a
+ * @param [in] character: the new character, either a NULL pointer or a
  * 	'character'
  *
  * @return true on success

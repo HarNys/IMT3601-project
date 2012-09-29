@@ -35,21 +35,23 @@ int main(int argc, char **argv)
 		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
 	}
 //*/
-
+	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	World *world;
 	world = world->getWorld();
 
+	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
 
-
-	/// Makes two characters, only one is used at this point (player1)
-	/// @todo Have the characterfactory return more than just one player
+	printf("main(int,char**): has got MineFactory, getting CharacterFactory\n");
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
+
+	printf("main(int,char**): has got CharacterFactory, getting player1\n");
 	Character *player1 = characterFactory->getCharacter(); //error when loading image
+	world->placeCharacter(player1);
 
-
+	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
 	{
 

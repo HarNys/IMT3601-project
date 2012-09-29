@@ -3,21 +3,25 @@
 
 #include "../Includes.hpp"
 
+/**
+ * These could probably be made int's.
+ * but this is a performance issue.
+ */
 class Character
 {
 private:
 	//member variables
-	float characterPosX;
-	float characterPosY;
+//	float characterPosX;
+//	float characterPosY;
 	float characterDirectionX;
 	float characterDirectionY;
+	static sf::Image *characterImage;
 	sf::Texture texture;
 	sf::Sprite sprite;
-//protected:
-
 public:
-
 	Character();
+	bool initImage();
+	bool initCharacter();
 	void draw(sf::RenderWindow* window);
 	void draw();
 	void updatePosition();

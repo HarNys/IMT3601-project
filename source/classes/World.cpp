@@ -74,6 +74,8 @@ World *World::getWorld()
  *
  * @param [in] character: pointer to the character to be placed.
  *
+ * @return true on success
+ *
  * @todo make a proper algorithm for this, requires character factory
  */
 bool World::placeCharacter(Character *character)
@@ -84,13 +86,23 @@ bool World::placeCharacter(Character *character)
 };
 
 /**
-* draws the map to screen,
-*
-* @param [in] window: pointer to the window shit should be placed in
-*
-*
-*/
+ * runs through all active tiles(tiles within 'area'), and updates them
+ * according to the characters and mines on them.
+ *
+ * @return true on success
+ */
+bool World::update()
+{
+	return true;
+};
 
+/**
+ * draws the map to screen,
+ *
+ * @param [in] window: pointer to the window shit should be placed in
+ *
+ *
+ */
 void World::draw(sf::RenderWindow *window)
 {
 	for (int xCount = 0; xCount < area; xCount++)

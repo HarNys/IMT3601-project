@@ -11,17 +11,21 @@ CharacterFactory *CharacterFactory::characterFactory = NULL;
 CharacterFactory::CharacterFactory()
 {
 	int maxChar=2;
-	Character* tempchar;
+	Character* tempChar = new Character;
+	tempChar->initImage();
 
-	characters.resize(maxChar);
-
+	usedCharacters.reserve(maxChar);
+//	readyCharacters.resize(maxChar);
+	readyCharacters.assign(maxChar, new Character(*tempChar));
+/*
 	std::vector<Character *>::iterator cIter;
 
 	for (cIter=characters.begin();cIter < characters.end(); cIter ++)
 	{
-		tempchar= new Character();
-		*(cIter)=tempchar;
+		tempChar= new Character();
+		*(cIter)=tempChar;
 	}
+//*/
 };
 
 
@@ -40,11 +44,30 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 };
 
 
-///gets one charecter for you to do some nasty things with if an event is triggered
-/// @todo make the code fecth the character you are after not cahracter[0]
+/**
+ * gets one charecter for you to do some nasty things with if an event is
+ * triggered.
+ *
+ * @return on succes: pointer to a new(read: reinitialized) Character
+ * 	\n on failure: NULL
+ */
 Character* CharacterFactory::getCharacter()
 {
-	return characters[0];
+	Character *tempCharacter = NULL;
+	if (readyCharacters.size() >= 0)
+	{
+		tempCharacter = readyCharacters.at(readyCharacters.size() - 1);
+		usedCharacters.push_back(tempCharacter);
+		readyCharacters.pop_back();
+		tempCharacter->initCharacter();
+	}
+	else
+	{
+		printf("CharacterFactory::getCharacter(): Something went wrong,"
+			"can not return a Character.");
+		return NULL;
+	}
+	return tempCharacter;
 };
 
 /**
@@ -55,6 +78,4 @@ Character* CharacterFactory::getCharacter()
 */
 void CharacterFactory::SetCharacter(std::string type)
 {
-
-
-}
+};

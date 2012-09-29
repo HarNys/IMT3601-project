@@ -14,13 +14,12 @@ class CharacterFactory
 private:
 	static CharacterFactory* characterFactory;
 	CharacterFactory();
-	std::vector<Character *> characters;
-	
-
+	std::vector<Character *> readyCharacters;
+	std::vector<Character *> usedCharacters;
 public:
-	Character* getCharacter();						///< Gets one character for when an event is trigerd
-	static CharacterFactory *getCharacterFactory(); ///< Singleton that makes sure only one character factory exists 
-	void SetCharacter(std::string type);			///< sets the class for a character, example: rifleman, ninja, mine-guy
+	Character* getCharacter(); ///< Gets one character for when an event is trigerd
+	static CharacterFactory *getCharacterFactory(); ///< Singleton that makes sure only one character factory exists
+	void SetCharacter(std::string type); ///< sets the class for a character, example: rifleman, ninja, mine-guy
 
 
 };
