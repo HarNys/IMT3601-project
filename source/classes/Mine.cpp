@@ -42,3 +42,11 @@ bool Mine::update(Character *character)
 	}
 	return true;
 };
+
+/**
+ * decrements the invisibility timer
+ */
+void visibilityCountDown()
+{
+	visibilityTimer--;
+};

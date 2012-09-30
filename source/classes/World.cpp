@@ -89,10 +89,36 @@ bool World::placeCharacter(Character *character)
  * runs through all active tiles(tiles within 'area'), and updates them
  * according to the characters and mines on them.
  *
+ * @note we may want to reset "this{Tile, Mine, Character}" after each yCount
+ *
  * @return true on success
  */
 bool World::update()
 {
+	int xCount = 0;
+	int yCount = 0;
+	/// area is defined in constructor and header
+	Tile *thisTile = NULL;
+	Mine *thisMine = NULL;
+	Character *thisCharacter = NULL;
+	for (; xCount < area; xCount++)
+	{
+		for (; yCount < area; yCount++)
+		{
+			thisTile = map[xCount][yCount];
+			if (!thisTile->getIsWall())
+			{
+				if (thisMine = thisTile->getHasMine())
+				{
+					thisMine->visibilityCountDown();
+				}
+				if (thisCharacter = thisTile->getHasCharacter())
+				{
+					//thisCharacter->
+				}
+			}
+		} // end yCount
+	} // end xCount
 	return true;
 };
 

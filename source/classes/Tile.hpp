@@ -34,6 +34,9 @@ public:
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
+	bool getIsWall();
+	Mine *getHasMine;
+	Character *getHasCharacter;
 	bool initSprite(int xPos, int yPos);
 	void initImage();
 	bool initTile(char quality);

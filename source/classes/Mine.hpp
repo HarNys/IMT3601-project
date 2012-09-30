@@ -12,6 +12,7 @@ public:
         Mine();
         bool initMine(int timeShown);
         bool update(Character *character);
+        void visibilityCountDown();
 };
 
 #endif // __MINE__HEADER__GUARD__

@@ -51,6 +51,39 @@ bool Tile::setWall(bool wall)
 };
 
 /**
+ * returns the true or false based on the isWall bool.
+ *
+ * @return value of the isWall bool
+ */
+bool World::getIsWall()
+{
+	return isWall;
+};
+
+/**
+ * returns a pointer to the Mine on this tile. This Mine pointer is NULL if
+ * this Tile has no mine so you need to check for this when using this method.
+ *
+ * @return the Mine on this Tile, NULL if no Mine is present.
+ */
+Mine *World::getHasMine()
+{
+	return hasMine;
+};
+
+/**
+ * returns a pointer to the Character on this tile. This Character pointer is
+ * NULL if this Tile has no Character you need to check for this when using
+ * the method.
+ *
+ * @return the Character on this Tile, NULL if no Character is present.
+ */
+Character *World::getHasCharacter()
+{
+	return hasCharacter;
+};
+
+/**
  * sets all of a Tile's variables to sent values.
  * This is for reading in a new map, therefore hasMine and hasCharacter should
  * NULL, as this is initialized by the world at a later time.

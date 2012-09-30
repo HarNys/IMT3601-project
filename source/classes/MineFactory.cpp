@@ -155,7 +155,6 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
  * @todo do a for instead of clear
  * @bug segfaults here, maybe?
  */
-
 MineFactory::~MineFactory()
 {
 	std::vector<Mine *>::iterator rmIter;
