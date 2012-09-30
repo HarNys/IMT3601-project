@@ -55,7 +55,7 @@ bool Tile::setWall(bool wall)
  *
  * @return value of the isWall bool
  */
-bool World::getIsWall()
+bool Tile::getIsWall()
 {
 	return isWall;
 };
@@ -66,7 +66,7 @@ bool World::getIsWall()
  *
  * @return the Mine on this Tile, NULL if no Mine is present.
  */
-Mine *World::getHasMine()
+Mine *Tile::getHasMine()
 {
 	return hasMine;
 };
@@ -78,7 +78,7 @@ Mine *World::getHasMine()
  *
  * @return the Character on this Tile, NULL if no Character is present.
  */
-Character *World::getHasCharacter()
+Character *Tile::getHasCharacter()
 {
 	return hasCharacter;
 };

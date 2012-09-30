@@ -46,7 +46,7 @@ bool Mine::update(Character *character)
 /**
  * decrements the invisibility timer
  */
-void visibilityCountDown()
+void Mine::visibilityCountDown()
 {
 	visibilityTimer--;
 };

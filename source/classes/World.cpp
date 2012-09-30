@@ -108,11 +108,11 @@ bool World::update()
 			thisTile = map[xCount][yCount];
 			if (!thisTile->getIsWall())
 			{
-				if (thisMine = thisTile->getHasMine())
+				if ((thisMine = thisTile->getHasMine()))
 				{
 					thisMine->visibilityCountDown();
 				}
-				if (thisCharacter = thisTile->getHasCharacter())
+				if ((thisCharacter = thisTile->getHasCharacter()))
 				{
 					//thisCharacter->
 				}
