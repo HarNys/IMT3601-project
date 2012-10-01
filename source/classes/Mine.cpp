@@ -35,9 +35,10 @@ bool Mine::initMine(int timeShown)
  */
 bool Mine::update(Character *character)
 {
+	static int count = 0;
 	if (character)
 	{
-		printf("Mine::update(Character*): BANG! someone triggered a mine\n");
+		printf("Mine::update(Character*): BANG! someone triggered a mine %d\n",++count);
 	}
 	return true;
 };

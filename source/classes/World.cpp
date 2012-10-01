@@ -107,9 +107,9 @@ bool World::update()
 	Character *thisCharacter = NULL;
 	int thisCharacterDirectionX = 0;
 	int thisCharacterDirectionY = 0;
-	for (xCount = 0; xCount < area; xCount++)
+	for (yCount = 0; yCount < area; yCount++)
 	{
-		for (yCount = 0; yCount < area; yCount++)
+		for (xCount = 0; xCount < area; xCount++)
 		{
 			thisTile = map[xCount][yCount];
 			if (!thisTile->getIsWall())
@@ -132,15 +132,10 @@ bool World::update()
 					thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
 					if (thisCharacterDirectionX != 0) ///< this check may not be necessary
 					{ // check and move if possible X++
-
-/**
- * @bug The 2 lines where nextTile is assigned beneath here makes the program
- * segfault. Probably because it tries to access an element to far into map's
- * xCount. At the same time it does not seem to attempt accessing anything
- * outside of the array, meking me think the problem lies elsewhere.
- */
-
-						nextTile = map[xCount + thisCharacterDirectionX][yCount];
+						if ((xCount + thisCharacterDirectionX) < area)
+						{
+							nextTile = map[xCount + thisCharacterDirectionX][yCount];
+						}
 						if (!nextTile->getIsWall())
 						{
 							if (!nextTile->getHasCharacter())
@@ -148,17 +143,21 @@ bool World::update()
 								thisTile->setCharacter(NULL);
 								nextTile->setCharacter(thisCharacter);
 								nextTile->getHasMine()->update(thisCharacter);
+								thisCharacter->resetDirection();
 							}
 						}
 						else
 						{
 							printf("World::update(): can't move, there is a wall in "
-								"direction %dX",thisCharacterDirectionX);
+								"direction %dX\n",thisCharacterDirectionX);
 						}
 					}
 					if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
 					{ // check and move if possible Y++
-						nextTile = map[xCount][yCount + thisCharacterDirectionY];
+						if ((xCount + thisCharacterDirectionX) < area)
+						{
+							nextTile = map[xCount][yCount + thisCharacterDirectionY];
+						}
 						if (!nextTile->getIsWall())
 						{
 							if (!nextTile->getHasCharacter())
@@ -166,12 +165,13 @@ bool World::update()
 								thisTile->setCharacter(NULL);
 								nextTile->setCharacter(thisCharacter);
 								nextTile->getHasMine()->update(thisCharacter);
+								thisCharacter->resetDirection();
 							}
 						}
 						else
 						{
 							printf("World::update(): can't move, there is a wall in "
-								"direction %dY",thisCharacterDirectionY);
+								"direction %dY\n",thisCharacterDirectionY);
 						}
 					}
 				}

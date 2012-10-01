@@ -27,6 +27,7 @@ public:
 	void draw(sf::RenderWindow* window);
 	void draw();
 	void updatePosition();
+	void resetDirection();
 	void characterInput(sf::Event e);
 	void placeMine(sf::Event e);
 	sf::Sprite getSprite();

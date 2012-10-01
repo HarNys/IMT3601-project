@@ -88,6 +88,15 @@ void Character::updatePosition()
 //	std::cout<< "Y-position: " << characterPosY << "\n";
 };
 
+/**
+ * resets Character's direction, is a dirty way o doing it.
+ */
+void Character::resetDirection()
+{
+	characterDirectionX = 0;
+	characterDirectionY = 0;
+};
+
 ///movement-functions
 ///checks if the key is pressed and then released
 ///to reset characterDirectionX/Y
