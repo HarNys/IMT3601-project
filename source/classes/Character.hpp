@@ -13,6 +13,7 @@ private:
 	//member variables
 //	float characterPosX;
 //	float characterPosY;
+	bool minePlaced;
 	float characterDirectionX;
 	float characterDirectionY;
 	static sf::Image *characterImage;
@@ -22,10 +23,11 @@ public:
 	Character();
 	bool initImage();
 	bool initCharacter();
+	bool getMinePlaced();
+	void setMinePlaced(bool placeMine);
 	float getCharacterDirectionX();
 	float getCharacterDirectionY();
 	void draw(sf::RenderWindow* window);
-	void draw();
 	void updatePosition();
 	void resetDirection();
 	void characterInput(sf::Event e);

@@ -51,6 +51,22 @@ bool Character::initCharacter()
 };
 
 /**
+ *
+ */
+bool Character::getMinePlaced()
+{
+	return minePlaced;
+};
+
+/**
+ *
+ */
+void Character::setMinePlaced(bool placeMine)
+{
+	minePlaced = placeMine;
+};
+
+/**
  * returns the value of this Character's characterDirectionX.
  *
  * @return characterDirectionX
@@ -155,8 +171,11 @@ void Character::characterInput(sf::Event e)
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::E)
 		{
-			mineFactory->getMine();
-			std::cout<< "Mine placed\n";
+/*			World *world = world->getWorld();
+			world->placeMine();
+//*/
+
+			std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
 		}
 	}
 

@@ -10,10 +10,11 @@ World *World::world = NULL;
  */
 World::World()
 {
+	mineFactory = mineFactory->getMineFactory();
 	///@note loading the file that has the map
 	std::ifstream file;
 //	file.open ("map/mega.txt");
-	file.open ("map/map.txt");
+	file.open ("map/maptwo.txt");
 	//sf::Image tile;
 	///@note creates a temp file for the chars
 	area = 0;
@@ -80,8 +81,19 @@ World *World::getWorld()
  */
 bool World::placeCharacter(Character *character)
 {
-	static int xSpace = 0;
-	map[xSpace++][0]->setCharacter(character);
+	static int xSpace = 1;
+	map[xSpace++][1]->setCharacter(character);
+	character->getSprite()->setPosition(15 * xSpace, 15);
+	return true;
+};
+
+/**
+ * this may be BS.
+ */
+bool World::placeMine()
+{
+	mineFactory->getMine();
+	printf("Character::characterInput(sf::Event e): Mine placed\n");
 	return true;
 };
 
@@ -141,7 +153,10 @@ bool World::update()
 								{
 									thisTile->setCharacter(NULL);
 									nextTile->setCharacter(thisCharacter);
-//									nextTile->getHasMine()->update(thisCharacter);
+									if (nextTile->getHasMine())
+									{
+										nextTile->getHasMine()->update(thisCharacter);
+									}
 								}
 							}
 							else
@@ -153,7 +168,7 @@ bool World::update()
 					}
 					if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
 					{ // check and move if possible Y++
-						if ((xCount + thisCharacterDirectionX) < area)
+						if ((yCount + thisCharacterDirectionY) < area)
 						{
 							nextTile = map[xCount][yCount + thisCharacterDirectionY];
 							if (!nextTile->getIsWall())
@@ -162,7 +177,10 @@ bool World::update()
 								{
 									thisTile->setCharacter(NULL);
 									nextTile->setCharacter(thisCharacter);
-//									nextTile->getHasMine()->update(thisCharacter);
+									if (nextTile->getHasMine())
+									{
+										nextTile->getHasMine()->update(thisCharacter);
+									}
 								}
 							}
 							else
@@ -201,7 +219,7 @@ void World::draw(sf::RenderWindow *window)
 			if (thisCharacter)
 			{
 //				printf("World::draw(sf::RenderWindow*): should draw a character at this very moment\n");
-				thisCharacter->getSprite()->move(((float)(15 * xCount)), ((float)(15 * yCount)));
+				thisCharacter->getSprite()->setPosition(((float)(15 * xCount)), ((float)(15 * yCount)));
 				window->draw(*thisCharacter->getSprite());
 //				thisCharacter->draw(window);
 			}

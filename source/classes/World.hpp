@@ -19,10 +19,12 @@ private:
         static World *world;
         Tile ***map;
         int area; //size to a side of the map
+        MineFactory *mineFactory;
 
 public:
         static World *getWorld();
         bool placeCharacter(Character *character);
+        bool placeMine();
         void draw(sf::RenderWindow *window);
         bool update();
 };
