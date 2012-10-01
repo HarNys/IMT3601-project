@@ -140,6 +140,10 @@ bool World::update()
 				if ((thisCharacter = thisTile->getHasCharacter()))
 				{
 //					printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
+					if (thisCharacter->getMinePlaced())
+					{
+						thisTile->setMine(mineFactory->getMine());
+					}
 					thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
 					thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
 					if (thisCharacterDirectionX != 0) ///< this check may not be necessary

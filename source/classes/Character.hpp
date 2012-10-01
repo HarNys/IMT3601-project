@@ -13,7 +13,7 @@ private:
 	//member variables
 //	float characterPosX;
 //	float characterPosY;
-	bool minePlaced;
+	bool minePlaced; ///< whether or not we want to place a Mine.
 	float characterDirectionX;
 	float characterDirectionY;
 	static sf::Image *characterImage;
@@ -24,7 +24,7 @@ public:
 	bool initImage();
 	bool initCharacter();
 	bool getMinePlaced();
-	void setMinePlaced(bool placeMine);
+	void setMinePlaced(bool minePlace);
 	float getCharacterDirectionX();
 	float getCharacterDirectionY();
 	void draw(sf::RenderWindow* window);

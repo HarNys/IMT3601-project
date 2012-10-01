@@ -8,6 +8,7 @@ sf::Image *Character::characterImage = NULL;
  */
 Character::Character()
 {
+	minePlaced = false;
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };
@@ -42,16 +43,16 @@ bool Character::initImage()
  */
 bool Character::initCharacter()
 {
-	printf("Character::initCharacter(): before texture.loadFromImage(sf::Image)\n");
+//	printf("Character::initCharacter(): before texture.loadFromImage(sf::Image)\n");
 	texture.loadFromImage(*characterImage);
-	printf("Character::initCharacter(): after texture.loadFromImage(sf::Image)\n");
+//	printf("Character::initCharacter(): after texture.loadFromImage(sf::Image)\n");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	return true;
 };
 
 /**
- *
+ * @return minePlaced
  */
 bool Character::getMinePlaced()
 {
@@ -59,11 +60,11 @@ bool Character::getMinePlaced()
 };
 
 /**
- *
+ * @param [in] placeMine: the new value of placeMine
  */
-void Character::setMinePlaced(bool placeMine)
+void Character::setMinePlaced(bool minePlace)
 {
-	minePlaced = placeMine;
+	minePlaced = minePlace;
 };
 
 /**
@@ -174,7 +175,7 @@ void Character::characterInput(sf::Event e)
 /*			World *world = world->getWorld();
 			world->placeMine();
 //*/
-
+			minePlaced = true;
 			std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
 		}
 	}

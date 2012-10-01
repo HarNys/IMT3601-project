@@ -51,11 +51,11 @@ MineFactory *MineFactory::getMineFactory()
  * @return pointer to a ready mine
  *
  * @todo if (readyMine.reInit()) { return pointer } else { wtf error }
- * @todo add mine-type as parameter here and to reInit()
+ * @todo add mine-type as parameter here and to do Mine.initMine(int) properly
  *
  * @bug segfaults when placing mine 31
  */
-Mine* MineFactory::getMine()
+Mine *MineFactory::getMine()
 {
 //	std::vector<Mine *>::iterator rmIter;
 //	for (rmIter = readyMines.begin(); rmIter < readyMines.end(); rmIter++ )
@@ -70,6 +70,7 @@ Mine* MineFactory::getMine()
 			/// @todo tempMine.reInit();
 			usedMines.push_back(tempMine);
 			readyMines.pop_back();
+			tempMine->initMine(5);
 		}
 		else
 		{
