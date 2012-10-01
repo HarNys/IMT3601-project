@@ -192,11 +192,11 @@ void Tile::setFloor(bool mineVisible)
 {
 	if (mineVisible)
 	{
-		tileSprite.setTextureRect(sf::IntRect(17, 0, 15, 15));
+		tileSprite.setTextureRect(sf::IntRect(17, 0, 16, 16));
 	}
 	else
 	{
-		tileSprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+		tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	}
 };
 

@@ -70,7 +70,7 @@ Mine *MineFactory::getMine()
 			/// @todo tempMine.reInit();
 			usedMines.push_back(tempMine);
 			readyMines.pop_back();
-			tempMine->initMine(500000000);
+			tempMine->initMine(50000000);
 		}
 		else
 		{

@@ -119,98 +119,104 @@ bool World::update()
 	Mine *thisMine = NULL;
 	Mine *tempPlaceMine = NULL;
 	Character *thisCharacter = NULL;
-	static sf::Clock fpsUpdateTimer = new sf::Clock;
+	static sf::Clock fpsUpdateTimer;
 	int thisCharacterDirectionX = 0;
 	int thisCharacterDirectionY = 0;
+	float ticksTime = 10;
 
 	// start of operations
-//	if (fpsUpdateTimer.
-	for (yCount = 0; yCount < area; yCount++)
+//	printf("World::update(): FPS: %d\n",fpsUpdateTimer.getElapsedTime().asMilliseconds());
+	if ((fpsUpdateTimer.getElapsedTime().asMicroseconds()) > ticksTime)
 	{
-		for (xCount = 0; xCount < area; xCount++)
+		printf("World::update(): FPS: %d\n",fpsUpdateTimer.getElapsedTime().asMilliseconds());
+		fpsUpdateTimer.restart();
+		for (yCount = 0; yCount < area; yCount++)
 		{
-			thisTile = map[xCount][yCount];
-			if (!thisTile->getIsWall())
+			for (xCount = 0; xCount < area; xCount++)
 			{
-				if ((thisMine = thisTile->getHasMine()))
+				thisTile = map[xCount][yCount];
+				if (!thisTile->getIsWall())
 				{
-					if (!thisMine->visibilityCountDown())
+					if ((thisMine = thisTile->getHasMine()))
 					{
-						thisTile->setFloor(true);
-					}
-					else
-					{
-						thisTile->setFloor(false);
-					}
-				}
-				if ((thisCharacter = thisTile->getHasCharacter()))
-				{
-//					printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
-					if (thisCharacter->getMinePlaced())
-					{
-						tempPlaceMine = mineFactory->getMine();
-						if (tempPlaceMine)
+						if (!thisMine->visibilityCountDown())
 						{
-							thisTile->setMine(tempPlaceMine);
 							thisTile->setFloor(true);
 						}
-						thisCharacter->setMinePlaced(false);
-					}
-					thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
-					thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
-					if (thisCharacterDirectionX != 0) ///< this check may not be necessary
-					{ // check and move if possible X++
-						if ((xCount + thisCharacterDirectionX) < area)
+						else
 						{
-							nextTile = map[xCount + thisCharacterDirectionX][yCount];
-							if (!nextTile->getIsWall())
-							{
-								if (!nextTile->getHasCharacter())
-								{
-									thisTile->setCharacter(NULL);
-									nextTile->setCharacter(thisCharacter);
-									if (nextTile->getHasMine())
-									{
-										nextTile->getHasMine()->update(thisCharacter);
-									}
-								}
-							}
-							else
-							{
-								printf("World::update(): can't move, there is a wall in "
-									"direction %dX\n",thisCharacterDirectionX);
-							}
+							thisTile->setFloor(false);
 						}
 					}
-					if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
-					{ // check and move if possible Y++
-						if ((yCount + thisCharacterDirectionY) < area)
+					if ((thisCharacter = thisTile->getHasCharacter()))
+					{
+	//					printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
+						if (thisCharacter->getMinePlaced())
 						{
-							nextTile = map[xCount][yCount + thisCharacterDirectionY];
-							if (!nextTile->getIsWall())
+							tempPlaceMine = mineFactory->getMine();
+							if (tempPlaceMine)
 							{
-								if (!nextTile->getHasCharacter())
+								thisTile->setMine(tempPlaceMine);
+								thisTile->setFloor(true);
+							}
+							thisCharacter->setMinePlaced(false);
+						}
+						thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
+						thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
+						if (thisCharacterDirectionX != 0) ///< this check may not be necessary
+						{ // check and move if possible X++
+							if ((xCount + thisCharacterDirectionX) < area)
+							{
+								nextTile = map[xCount + thisCharacterDirectionX][yCount];
+								if (!nextTile->getIsWall())
 								{
-									thisTile->setCharacter(NULL);
-									nextTile->setCharacter(thisCharacter);
-									if (nextTile->getHasMine())
+									if (!nextTile->getHasCharacter())
 									{
-										nextTile->getHasMine()->update(thisCharacter);
+										thisTile->setCharacter(NULL);
+										nextTile->setCharacter(thisCharacter);
+										if (nextTile->getHasMine())
+										{
+											nextTile->getHasMine()->update(thisCharacter);
+										}
 									}
 								}
-							}
-							else
-							{
-								printf("World::update(): can't move, there is a wall in "
-									"direction %dY\n",thisCharacterDirectionY);
+								else
+								{
+									printf("World::update(): can't move, there is a wall in "
+										"direction %dX\n",thisCharacterDirectionX);
+								}
 							}
 						}
+						if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
+						{ // check and move if possible Y++
+							if ((yCount + thisCharacterDirectionY) < area)
+							{
+								nextTile = map[xCount][yCount + thisCharacterDirectionY];
+								if (!nextTile->getIsWall())
+								{
+									if (!nextTile->getHasCharacter())
+									{
+										thisTile->setCharacter(NULL);
+										nextTile->setCharacter(thisCharacter);
+										if (nextTile->getHasMine())
+										{
+											nextTile->getHasMine()->update(thisCharacter);
+										}
+									}
+								}
+								else
+								{
+									printf("World::update(): can't move, there is a wall in "
+										"direction %dY\n",thisCharacterDirectionY);
+								}
+							}
+						}
+						thisCharacter->resetDirection();
 					}
-					thisCharacter->resetDirection();
-				}
-			} // end if (!thisTile->getIsWall())
-		} // end xCount
-	} // end yCount
+				} // end if (!thisTile->getIsWall())
+			} // end xCount
+		} // end yCount
+	}
 	return true;
 };
 
