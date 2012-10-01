@@ -180,7 +180,7 @@ void Character::placeMine(sf::Event e)
  *
  * @return the current Character's sprite.
  */
-sf::Sprite Character::getSprite()
+sf::Sprite *Character::getSprite()
 {
-	return sprite;
+	return &sprite;
 };
