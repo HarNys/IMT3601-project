@@ -110,15 +110,21 @@ bool World::placeMine()
 bool World::update()
 {
 //	printf("World::update(): in World::update()\n");
+	// variables to be used
 	int xCount = 0;
 	int yCount = 0;
 	// area is defined in constructor and header
 	Tile *thisTile = NULL;
 	Tile *nextTile = NULL;
 	Mine *thisMine = NULL;
+	Mine *tempPlaceMine = NULL;
 	Character *thisCharacter = NULL;
+	static sf::Clock fpsUpdateTimer = new sf::Clock;
 	int thisCharacterDirectionX = 0;
 	int thisCharacterDirectionY = 0;
+
+	// start of operations
+//	if (fpsUpdateTimer.
 	for (yCount = 0; yCount < area; yCount++)
 	{
 		for (xCount = 0; xCount < area; xCount++)
@@ -142,7 +148,13 @@ bool World::update()
 //					printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
 					if (thisCharacter->getMinePlaced())
 					{
-						thisTile->setMine(mineFactory->getMine());
+						tempPlaceMine = mineFactory->getMine();
+						if (tempPlaceMine)
+						{
+							thisTile->setMine(tempPlaceMine);
+							thisTile->setFloor(true);
+						}
+						thisCharacter->setMinePlaced(false);
 					}
 					thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
 					thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();

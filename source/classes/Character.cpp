@@ -60,7 +60,7 @@ bool Character::getMinePlaced()
 };
 
 /**
- * @param [in] placeMine: the new value of placeMine
+ * @param [in] minePlace: the new value of minePlace.
  */
 void Character::setMinePlaced(bool minePlace)
 {

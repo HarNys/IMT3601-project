@@ -152,7 +152,7 @@ bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
 	}
 	// Create a sprite
 	tileSprite.setTexture(tileTexture);
-	tileSprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
 //	tileSprite->setScale(window->getSize());
@@ -184,13 +184,15 @@ void Tile::initImage()
 };
 
 /**
+ * sets visibility of the floor
  *
+ * @param [in] mineVisible: true sets the Mine sprite; false sets floor sprite.
  */
 void Tile::setFloor(bool mineVisible)
 {
 	if (mineVisible)
 	{
-		tileSprite.setTextureRect(sf::IntRect(15, 15, 15, 15));
+		tileSprite.setTextureRect(sf::IntRect(17, 0, 15, 15));
 	}
 	else
 	{
