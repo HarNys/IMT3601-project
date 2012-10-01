@@ -135,21 +135,20 @@ bool World::update()
 						if ((xCount + thisCharacterDirectionX) < area)
 						{
 							nextTile = map[xCount + thisCharacterDirectionX][yCount];
-						}
-						if (!nextTile->getIsWall())
-						{
-							if (!nextTile->getHasCharacter())
+							if (!nextTile->getIsWall())
 							{
-								thisTile->setCharacter(NULL);
-								nextTile->setCharacter(thisCharacter);
-								nextTile->getHasMine()->update(thisCharacter);
-								thisCharacter->resetDirection();
+								if (!nextTile->getHasCharacter())
+								{
+									thisTile->setCharacter(NULL);
+									nextTile->setCharacter(thisCharacter);
+//									nextTile->getHasMine()->update(thisCharacter);
+								}
 							}
-						}
-						else
-						{
-							printf("World::update(): can't move, there is a wall in "
-								"direction %dX\n",thisCharacterDirectionX);
+							else
+							{
+								printf("World::update(): can't move, there is a wall in "
+									"direction %dX\n",thisCharacterDirectionX);
+							}
 						}
 					}
 					if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
@@ -157,27 +156,27 @@ bool World::update()
 						if ((xCount + thisCharacterDirectionX) < area)
 						{
 							nextTile = map[xCount][yCount + thisCharacterDirectionY];
-						}
-						if (!nextTile->getIsWall())
-						{
-							if (!nextTile->getHasCharacter())
+							if (!nextTile->getIsWall())
 							{
-								thisTile->setCharacter(NULL);
-								nextTile->setCharacter(thisCharacter);
-								nextTile->getHasMine()->update(thisCharacter);
-								thisCharacter->resetDirection();
+								if (!nextTile->getHasCharacter())
+								{
+									thisTile->setCharacter(NULL);
+									nextTile->setCharacter(thisCharacter);
+//									nextTile->getHasMine()->update(thisCharacter);
+								}
+							}
+							else
+							{
+								printf("World::update(): can't move, there is a wall in "
+									"direction %dY\n",thisCharacterDirectionY);
 							}
 						}
-						else
-						{
-							printf("World::update(): can't move, there is a wall in "
-								"direction %dY\n",thisCharacterDirectionY);
-						}
 					}
+					thisCharacter->resetDirection();
 				}
 			} // end if (!thisTile->getIsWall())
-		} // end yCount
-	} // end xCount
+		} // end xCount
+	} // end yCount
 	return true;
 };
 
@@ -191,9 +190,9 @@ void World::draw(sf::RenderWindow *window)
 //	printf("World::draw(sf::RenderWindow*): in World::draw(sf::RenderWindow*)\n");
 	Tile *thisTile = NULL;
 	Character *thisCharacter = NULL;
-	for (int xCount = 0; xCount < area; xCount++)
+	for (int yCount = 0; yCount < area; yCount++)
 	{
-		for (int yCount = 0; yCount < area; yCount++)
+		for (int xCount = 0; xCount < area; xCount++)
 		{
 			thisTile = map[xCount][yCount];
 			thisCharacter = thisTile->getHasCharacter();
@@ -202,8 +201,8 @@ void World::draw(sf::RenderWindow *window)
 			if (thisCharacter)
 			{
 //				printf("World::draw(sf::RenderWindow*): should draw a character at this very moment\n");
-//				thisCharacter->getSprite().move((float)(15 * xCount), (float)(15 * yCount));
-				window->draw(thisCharacter->getSprite());
+				thisCharacter->getSprite()->move(((float)(15 * xCount)), ((float)(15 * yCount)));
+				window->draw(*thisCharacter->getSprite());
 //				thisCharacter->draw(window);
 			}
 		}

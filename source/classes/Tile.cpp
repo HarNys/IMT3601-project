@@ -138,9 +138,9 @@ bool Tile::setCharacter(Character *character)
 * @param [in] xPos: the x position of the tile
 * @param [in] yPos: the y position of the tile
 *
-* @ return true on success
+* @return true on success
 */
-bool Tile::initSprite(int xPos, int yPos)
+bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
 {
 	if (isWall)
 	{
@@ -155,6 +155,7 @@ bool Tile::initSprite(int xPos, int yPos)
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
+//	tileSprite->setScale(window->getSize());
 	return true;
 };
 

@@ -30,7 +30,7 @@ public:
 	void resetDirection();
 	void characterInput(sf::Event e);
 	void placeMine(sf::Event e);
-	sf::Sprite getSprite();
+	sf::Sprite *getSprite();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__
