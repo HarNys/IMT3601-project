@@ -128,9 +128,8 @@ bool Tile::setMine(Mine *mine)
  */
 bool Tile::setCharacter(Character *character)
 {
-	/// @todo animation and drawing? think this properly through.
-	///	don't just wave around grand ideas.
-	return false;
+	hasCharacter = character;
+	return true;
 };
 
 /**
@@ -180,6 +179,21 @@ void Tile::initImage()
 	if ((*floorImg).loadFromFile("img/floor.gif"))
 	{
 		printf("Tile::initImage(): loaded img/floor.gif\n");
+	}
+};
+
+/**
+ *
+ */
+void Tile::setFloor(bool mineVisible)
+{
+	if (mineVisible)
+	{
+		tileSprite.setTextureRect(sf::IntRect(15, 15, 15, 15));
+	}
+	else
+	{
+		tileSprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	}
 };
 

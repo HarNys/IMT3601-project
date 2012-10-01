@@ -22,11 +22,14 @@ public:
 	Character();
 	bool initImage();
 	bool initCharacter();
+	float getCharacterDirectionX();
+	float getCharacterDirectionY();
 	void draw(sf::RenderWindow* window);
 	void draw();
 	void updatePosition();
 	void characterInput(sf::Event e);
 	void placeMine(sf::Event e);
+	sf::Sprite getSprite();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

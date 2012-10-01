@@ -54,10 +54,10 @@ int main(int argc, char **argv)
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
 	{
-
+		world->update();
 		screen.clear();
 		world->draw(&screen);
-		player1->draw(&screen);
+//		player1->draw(&screen);
 		screen.display();
 
 		// Process events

@@ -5,42 +5,9 @@ sf::Image *Character::characterImage = NULL;
 
 /**
  * Default constructor for the Character class, called by the CharacterFactory.
- *
- * @todo make this set values to the bare minimum required, use an init method
- * to set values as apropriate.
  */
 Character::Character()
 {
-/*	sf::Image image;
-	/// @bug this path is not correct in windows for some reason
-	if (image.loadFromFile("img/player.png"))
-	{
-		printf("Character::Character(): loaded img/player.png\n");
-	}
-	else
-	{
-		printf("Character::Character(): could not load image "
-			"'img/player.png'\n");
-		exit(1);
-	}
-	sf::Color alpha(151,251,151);		//Alpha color that is not to be drawn
-	image.createMaskFromColor(alpha,0);	//Alpha out the alpha color
-//*/	//createMaskFromColor
-
-/*	printf("Character::Character(): before texture.loadFromImage(sf::Image)");
-	/// @bug segfaults in here it seems
-	texture.loadFromImage(*characterImage);		//loads image to texture
-	printf("Character::Character(): after texture.loadFromImage(sf::Image)");
-	// Create a sprite
-	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
-//*/	//sprite.setColor(sf::Color(151, 251, 151, 255));
-//	sprite.setPosition(10, 10);
-
-/*
-	characterPosX = 10;
-	characterPosY = 10;
-//*/
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };
@@ -84,6 +51,26 @@ bool Character::initCharacter()
 };
 
 /**
+ * returns the value of this Character's characterDirectionX.
+ *
+ * @return characterDirectionX
+ */
+float Character::getCharacterDirectionX()
+{
+	return characterDirectionX;
+};
+
+/**
+ *returns the value of this Character's characterDirectionY.
+ *
+ * @return characterDirectionY
+ */
+float Character::getCharacterDirectionY()
+{
+	return characterDirectionY;
+};
+
+/**
  * @todo document this function
  */
 void Character::draw(sf::RenderWindow *window)
@@ -113,7 +100,7 @@ void Character::characterInput(sf::Event e)
 //		sprite.move(-1.0, 0.0);
 //		characterPosX--;
 //		updatePosition();
-//		sprite.setTextureRect(sf::IntRect(0, 51, 15, 15));
+		sprite.setTextureRect(sf::IntRect(0, 51, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
 			characterDirectionX = 0;
@@ -125,7 +112,7 @@ void Character::characterInput(sf::Event e)
 //		sprite.move(1.0, 0.0);
 //		characterPosX++;
 //		updatePosition();
-//		sprite.setTextureRect(sf::IntRect(0, 17, 15, 15));
+		sprite.setTextureRect(sf::IntRect(0, 17, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
 			characterDirectionX = 0;
@@ -136,7 +123,7 @@ void Character::characterInput(sf::Event e)
 //		sprite.move(0.0, -1.0);
 //		characterPosY--;
 //		updatePosition();
-//		sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+		sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
 			characterDirectionY = 0;
@@ -147,7 +134,7 @@ void Character::characterInput(sf::Event e)
 //		sprite.move(0.0, 1.0);
 //		characterPosY++;
 //		updatePosition();
-//		sprite.setTextureRect(sf::IntRect(0, 34, 15, 15));
+		sprite.setTextureRect(sf::IntRect(0, 34, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 			characterDirectionY = 0;
@@ -164,7 +151,7 @@ void Character::characterInput(sf::Event e)
 		}
 	}
 
-}
+};
 
 /**
  * places a mine... NEEDS WORK!
@@ -177,4 +164,14 @@ void Character::placeMine(sf::Event e)
 	 MineFactory *mineFactory;
 	 mineFactory = mineFactory->getMineFactory();
 
-}
+};
+
+/**
+ * returns the current sprite.
+ *
+ * @return the current Character's sprite.
+ */
+sf::Sprite Character::getSprite()
+{
+	return sprite;
+};

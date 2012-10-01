@@ -40,6 +40,7 @@ public:
 	bool initSprite(int xPos, int yPos);
 	void initImage();
 	bool initTile(char quality);
+	void setFloor(bool mineVisible);
 	~Tile();
 	sf::Sprite getSprite();
 };

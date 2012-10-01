@@ -35,18 +35,24 @@ bool Mine::initMine(int timeShown)
  */
 bool Mine::update(Character *character)
 {
-	visibilityTimer--;
 	if (character)
 	{
-		printf("Mine::update(Character*): BANG! someone triggered a mine");
+		printf("Mine::update(Character*): BANG! someone triggered a mine\n");
 	}
 	return true;
 };
 
 /**
- * decrements the invisibility timer
+ * decrements the invisibility timer.
+ *
+ * @return false if visibilityTimer is 0. else true.
  */
-void Mine::visibilityCountDown()
+bool Mine::visibilityCountDown()
 {
 	visibilityTimer--;
+	if (visibilityTimer == 0)
+	{
+		return false;
+	}
+	return true;
 };

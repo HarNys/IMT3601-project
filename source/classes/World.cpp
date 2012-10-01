@@ -80,8 +80,8 @@ World *World::getWorld()
  */
 bool World::placeCharacter(Character *character)
 {
-	static int xSpace = 1;
-	map[xSpace++][1]->setCharacter(character);
+	static int xSpace = 0;
+	map[xSpace++][0]->setCharacter(character);
 	return true;
 };
 
@@ -90,52 +90,122 @@ bool World::placeCharacter(Character *character)
  * according to the characters and mines on them.
  *
  * @note we may want to reset "this{Tile, Mine, Character}" after each yCount
+ * @note this function is turning out to be bigger and and more complex than I
+ * 	thought. We may want to break it up into more manageable peices.
  *
  * @return true on success
  */
 bool World::update()
 {
+//	printf("World::update(): in World::update()\n");
 	int xCount = 0;
 	int yCount = 0;
-	/// area is defined in constructor and header
+	// area is defined in constructor and header
 	Tile *thisTile = NULL;
+	Tile *nextTile = NULL;
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
-	for (; xCount < area; xCount++)
+	int thisCharacterDirectionX = 0;
+	int thisCharacterDirectionY = 0;
+	for (xCount = 0; xCount < area; xCount++)
 	{
-		for (; yCount < area; yCount++)
+		for (yCount = 0; yCount < area; yCount++)
 		{
 			thisTile = map[xCount][yCount];
 			if (!thisTile->getIsWall())
 			{
 				if ((thisMine = thisTile->getHasMine()))
 				{
-					thisMine->visibilityCountDown();
+					if (!thisMine->visibilityCountDown())
+					{
+						thisTile->setFloor(true);
+					}
+					else
+					{
+						thisTile->setFloor(false);
+					}
 				}
 				if ((thisCharacter = thisTile->getHasCharacter()))
 				{
-					//thisCharacter->
+//					printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
+					thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
+					thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
+					if (thisCharacterDirectionX != 0) ///< this check may not be necessary
+					{ // check and move if possible X++
+
+/**
+ * @bug The 2 lines where nextTile is assigned beneath here makes the program
+ * segfault. Probably because it tries to access an element to far into map's
+ * xCount. At the same time it does not seem to attempt accessing anything
+ * outside of the array, meking me think the problem lies elsewhere.
+ */
+
+						nextTile = map[xCount + thisCharacterDirectionX][yCount];
+						if (!nextTile->getIsWall())
+						{
+							if (!nextTile->getHasCharacter())
+							{
+								thisTile->setCharacter(NULL);
+								nextTile->setCharacter(thisCharacter);
+								nextTile->getHasMine()->update(thisCharacter);
+							}
+						}
+						else
+						{
+							printf("World::update(): can't move, there is a wall in "
+								"direction %dX",thisCharacterDirectionX);
+						}
+					}
+					if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
+					{ // check and move if possible Y++
+						nextTile = map[xCount][yCount + thisCharacterDirectionY];
+						if (!nextTile->getIsWall())
+						{
+							if (!nextTile->getHasCharacter())
+							{
+								thisTile->setCharacter(NULL);
+								nextTile->setCharacter(thisCharacter);
+								nextTile->getHasMine()->update(thisCharacter);
+							}
+						}
+						else
+						{
+							printf("World::update(): can't move, there is a wall in "
+								"direction %dY",thisCharacterDirectionY);
+						}
+					}
 				}
-			}
+			} // end if (!thisTile->getIsWall())
 		} // end yCount
 	} // end xCount
 	return true;
 };
 
 /**
- * draws the map to screen,
+ * draws the map to screen.
  *
  * @param [in] window: pointer to the window shit should be placed in
- *
- *
  */
 void World::draw(sf::RenderWindow *window)
 {
+//	printf("World::draw(sf::RenderWindow*): in World::draw(sf::RenderWindow*)\n");
+	Tile *thisTile = NULL;
+	Character *thisCharacter = NULL;
 	for (int xCount = 0; xCount < area; xCount++)
 	{
 		for (int yCount = 0; yCount < area; yCount++)
 		{
-			window->draw(map[xCount][yCount]->getSprite());
+			thisTile = map[xCount][yCount];
+			thisCharacter = thisTile->getHasCharacter();
+			// draw the Tile
+			window->draw(thisTile->getSprite());
+			if (thisCharacter)
+			{
+//				printf("World::draw(sf::RenderWindow*): should draw a character at this very moment\n");
+//				thisCharacter->getSprite().move((float)(15 * xCount), (float)(15 * yCount));
+				window->draw(thisCharacter->getSprite());
+//				thisCharacter->draw(window);
+			}
 		}
 	}
 };
