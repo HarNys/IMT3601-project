@@ -23,4 +23,11 @@ A: one per class, maybe one wrapper
 
 DEADLINE: prototype finished by monday
 
-Q: networking: one thread per remote player?
+Q: networking: one thread per remote player? -ask in parallell class
+
+## meeting 4
+
+set goals Thursday.
+
+Q request git/branching?
+A may be done, learn ourselves if not.

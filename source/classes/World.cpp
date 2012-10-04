@@ -3,8 +3,9 @@
 World *World::world = NULL;
 
 /**
- * @brief Loads a hardcoded map, to create  map variable
- * *
+ * World constructor. Should only do the bare minimum for using, should
+ * initialize in another init function
+ *
  * @todo solve the problem with write errors that show up when loading occurs
  * @todo separate constructor and map init/loading
  */
@@ -55,6 +56,10 @@ World::World()
 };
 
 /**
+ * The singleton handler, returns a working World object.
+ *
+ * @return World singleton object.
+ *
  * @todo needs locking when multithreading
  */
 World *World::getWorld()
@@ -122,7 +127,7 @@ bool World::update()
 	static sf::Clock fpsUpdateTimer;
 	int thisCharacterDirectionX = 0;
 	int thisCharacterDirectionY = 0;
-	float ticksTime = 10;
+	float ticksTime = 300000;
 
 	// start of operations
 //	printf("World::update(): FPS: %d\n",fpsUpdateTimer.getElapsedTime().asMilliseconds());
@@ -150,7 +155,7 @@ bool World::update()
 					}
 					if ((thisCharacter = thisTile->getHasCharacter()))
 					{
-	//					printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
+//						printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
 						if (thisCharacter->getMinePlaced())
 						{
 							tempPlaceMine = mineFactory->getMine();
@@ -236,6 +241,7 @@ void World::draw(sf::RenderWindow *window)
 		{
 			thisTile = map[xCount][yCount];
 			thisCharacter = thisTile->getHasCharacter();
+
 			// draw the Tile
 			window->draw(thisTile->getSprite());
 			if (thisCharacter)
@@ -243,7 +249,6 @@ void World::draw(sf::RenderWindow *window)
 //				printf("World::draw(sf::RenderWindow*): should draw a character at this very moment\n");
 				thisCharacter->getSprite()->setPosition(((float)(15 * xCount)), ((float)(15 * yCount)));
 				window->draw(*thisCharacter->getSprite());
-//				thisCharacter->draw(window);
 			}
 		}
 	}
