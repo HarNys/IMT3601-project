@@ -32,7 +32,7 @@ PROJECT_NAME           = "Frank Darkhawk's maze RPG"
 # This could be handy for archiving the generated documentation or 
 # if some version control system is used.
 
-PROJECT_NUMBER         = 
+PROJECT_NUMBER         = ALPHA
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description 
 # for a project that appears at the top of each page and should give viewer 
@@ -52,7 +52,7 @@ PROJECT_LOGO           = /home/thomas/workspace/gameprogramming/IMT3601-project/
 # If a relative path is entered, it will be relative to the location 
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = ./
+OUTPUT_DIRECTORY       = ../../../hig-html/neuton
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 
 # 4096 sub-directories (in 2 levels) under the output directory of each output 
@@ -639,7 +639,7 @@ WARN_IF_DOC_ERROR      = YES
 # wrong or incomplete parameter documentation, but not about the absence of 
 # documentation.
 
-WARN_NO_PARAMDOC       = NO
+WARN_NO_PARAMDOC       = YES
 
 # The WARN_FORMAT tag determines the format of the warning messages that 
 # doxygen can produce. The string should contain the $file, $line, and $text 
@@ -871,7 +871,7 @@ GENERATE_HTML          = YES
 # If a relative path is entered the value of OUTPUT_DIRECTORY will be 
 # put in front of it. If left blank `html' will be used as the default path.
 
-HTML_OUTPUT            = html
+HTML_OUTPUT            = ./
 
 # The HTML_FILE_EXTENSION tag can be used to specify the file extension for 
 # each generated HTML page (for example: .htm,.php,.asp). If it is left blank 
@@ -1610,7 +1610,7 @@ HIDE_UNDOC_RELATIONS   = YES
 # toolkit from AT&T and Lucent Bell Labs. The other options in this section 
 # have no effect if this option is set to NO (the default)
 
-HAVE_DOT               = NO
+HAVE_DOT               = YES
 
 # The DOT_NUM_THREADS specifies the number of dot invocations doxygen is 
 # allowed to run in parallel. When set to 0 (the default) doxygen will 
@@ -1627,7 +1627,7 @@ DOT_NUM_THREADS        = 0
 # the DOTFONTPATH environment variable or by setting DOT_FONTPATH to the 
 # directory containing the font.
 
-DOT_FONTNAME           = Helvetica
+DOT_FONTNAME           = Monospace
 
 # The DOT_FONTSIZE tag can be used to set the size of the font of dot graphs. 
 # The default size is 10pt.
@@ -1663,7 +1663,7 @@ GROUP_GRAPHS           = YES
 # collaboration diagrams in a style similar to the OMG's Unified Modeling 
 # Language.
 
-UML_LOOK               = NO
+UML_LOOK               = YES
 
 # If the UML_LOOK tag is enabled, the fields and methods are shown inside 
 # the class node. If there are many fields or methods and many nodes the 
@@ -1672,12 +1672,12 @@ UML_LOOK               = NO
 # managable. Set this to 0 for no limit. Note that the threshold may be 
 # exceeded by 50% before the limit is enforced.
 
-UML_LIMIT_NUM_FIELDS   = 10
+UML_LIMIT_NUM_FIELDS   = 40
 
 # If set to YES, the inheritance and collaboration graphs will show the 
 # relations between templates and their instances.
 
-TEMPLATE_RELATIONS     = NO
+TEMPLATE_RELATIONS     = YES
 
 # If the ENABLE_PREPROCESSING, SEARCH_INCLUDES, INCLUDE_GRAPH, and HAVE_DOT 
 # tags are set to YES then doxygen will generate a graph for each documented 
@@ -1736,7 +1736,7 @@ DOT_IMAGE_FORMAT       = png
 # need to set HTML_FILE_EXTENSION to xhtml in order to make the SVG files 
 # visible. Older versions of IE do not have SVG support.
 
-INTERACTIVE_SVG        = NO
+INTERACTIVE_SVG        = YES
 
 # The tag DOT_PATH can be used to specify the path where the dot tool can be 
 # found. If left blank, it is assumed the dot tool can be found in the path.
@@ -1781,7 +1781,7 @@ MAX_DOT_GRAPH_DEPTH    = 0
 # enabling this option may lead to badly anti-aliased labels on the edges of 
 # a graph (i.e. they become hard to read).
 
-DOT_TRANSPARENT        = NO
+DOT_TRANSPARENT        = YES
 
 # Set the DOT_MULTI_TARGETS tag to YES allow dot to generate multiple output 
 # files in one run (i.e. multiple -o and -T options on the command line). This 

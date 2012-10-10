@@ -130,10 +130,10 @@ bool World::update()
 	float ticksTime = 300000;
 
 	// start of operations
-//	printf("World::update(): FPS: %d\n",fpsUpdateTimer.getElapsedTime().asMilliseconds());
+	printf("World::update(): FPS: %d\r",fpsUpdateTimer.getElapsedTime().asMilliseconds());
 	if ((fpsUpdateTimer.getElapsedTime().asMicroseconds()) > ticksTime)
 	{
-		printf("World::update(): FPS: %d\n",fpsUpdateTimer.getElapsedTime().asMilliseconds());
+		printf("World::update(): FPS: %d\r",fpsUpdateTimer.getElapsedTime().asMilliseconds());
 		fpsUpdateTimer.restart();
 		for (yCount = 0; yCount < area; yCount++)
 		{
