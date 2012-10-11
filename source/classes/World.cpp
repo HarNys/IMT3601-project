@@ -226,9 +226,9 @@ bool World::update()
 };
 
 /**
- * draws the map to screen.
+ * Draws this World Tile's and Character's.
  *
- * @param [in] window: pointer to the window shit should be placed in
+ * @param [in] window: pointer to the sf::RenderWindow* we draw to.
  */
 void World::draw(sf::RenderWindow *window)
 {
