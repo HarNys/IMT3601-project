@@ -24,9 +24,9 @@ private:
 public:
         static World *getWorld();
         bool placeCharacter(Character *character);
-        bool placeMine();
-        void draw(sf::RenderWindow *window);
+        bool placeMine(Character *character, Tile *tile);
         bool update();
+        void draw(sf::RenderWindow *window);
 };
 
 #endif // __WORLD__HEADER__GUARD__

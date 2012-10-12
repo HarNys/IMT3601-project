@@ -93,12 +93,25 @@ bool World::placeCharacter(Character *character)
 };
 
 /**
- * this may be BS.
+ * Puts a Mine on the Tile parameter.
+ *
+ * @param[in,out] character The character placing the Mine.
+ * @param[out] characterPosition the Tile to place the Mine on.
+ *
+ * @return true on success
+ *
+ * @todo fix Minefactory and Mine so it is global for class World.
  */
-bool World::placeMine()
+bool World::placeMine(Character *character, Tile *characterPosition)
 {
-	mineFactory->getMine();
-	printf("Character::characterInput(sf::Event e): Mine placed\n");
+	MineFactory *mineFactory = mineFactory->getMineFactory();
+	Mine *tempPlaceMine = mineFactory->getMine();
+	if (tempPlaceMine)
+	{
+		characterPosition->setMine(tempPlaceMine);
+		characterPosition->setFloor(true);
+	}
+	character->setMinePlaced(false);
 	return true;
 };
 
@@ -106,7 +119,7 @@ bool World::placeMine()
  * runs through all active tiles(tiles within 'area'), and updates them
  * according to the characters and mines on them.
  *
- * @note we may want to reset "this{Tile, Mine, Character}" after each yCount
+ * @note we may want to reset "this{Tile, Mine, Character}" after each yCount (xCount?)
  * @note this function is turning out to be bigger and and more complex than I
  * 	thought. We may want to break it up into more manageable peices.
  *
@@ -158,13 +171,7 @@ bool World::update()
 //						printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
 						if (thisCharacter->getMinePlaced())
 						{
-							tempPlaceMine = mineFactory->getMine();
-							if (tempPlaceMine)
-							{
-								thisTile->setMine(tempPlaceMine);
-								thisTile->setFloor(true);
-							}
-							thisCharacter->setMinePlaced(false);
+							placeMine(thisCharacter, thisTile);
 						}
 						thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
 						thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
