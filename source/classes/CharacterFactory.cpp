@@ -15,19 +15,8 @@ CharacterFactory::CharacterFactory()
 	tempChar->initImage();
 
 	usedCharacters.reserve(maxChar);
-//	readyCharacters.resize(maxChar);
 	readyCharacters.assign(maxChar, new Character(*tempChar));
-/*
-	std::vector<Character *>::iterator cIter;
-
-	for (cIter=characters.begin();cIter < characters.end(); cIter ++)
-	{
-		tempChar= new Character();
-		*(cIter)=tempChar;
-	}
-//*/
 };
-
 
 ///Singleton that gets the Character Factory for you when asked for
 CharacterFactory *CharacterFactory::getCharacterFactory()
