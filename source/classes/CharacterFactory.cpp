@@ -66,7 +66,7 @@ Character* CharacterFactory::getCharacter()
  *
  * @return true on success.
  */
-bool releaseCharacter(Character *characterReleased)
+bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
 	printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
 	return true;

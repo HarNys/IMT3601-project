@@ -29,20 +29,20 @@ World::World()
 	Tile *tempTile = new Tile();
 	tempTile->initImage();
 	///@note the y value of the map
-	for (int i = 0; i<area; i++)
+	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
 		///@note creates tile pointer for each row
-		map[i] = new Tile*[area];
+		map[yPosition] = new Tile*[area];
 
 		///@note the x value of the map
-		for (int j = 0; j<area; j++)
+		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
 			///@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
-				map[i][j] = new Tile(*tempTile);
-				map[i][j]->initTile(file.get());
-				if (map[i][j]->initSprite(i, j))
+				map[yPosition][xPosition] = new Tile(*tempTile);
+				map[yPosition][xPosition]->initTile(file.get());
+				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
 				{
 					static int count = 0;
 					count++;

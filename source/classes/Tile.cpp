@@ -11,6 +11,8 @@ Tile::Tile()
 	isWall = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
+	characterFactory = characterFactory->getCharacterFactory();
+	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(): done standard Tile constructor\n");
 };
 
@@ -31,6 +33,8 @@ Tile::Tile(char quality)
 	}
 	hasMine = NULL;
 	hasCharacter = NULL;
+	characterFactory = characterFactory->getCharacterFactory();
+	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(char): done overloaded Tile constructor\n");
 };
 
@@ -215,14 +219,12 @@ void Tile::setFloor(bool mineVisible)
 };
 
 /**
- * @todo "getMineFactory.releaseMine(hasMine);" should do this in a way
- * 	that works
+ * Releases and sets to NULL the hasMine and hasCharacter pointer in this Tile.
  */
 Tile::~Tile()
 {
 	if (hasMine)
 	{
-		mineFactory = mineFactory->getMineFactory();
 		mineFactory->releaseMine(hasMine);
 		hasMine = NULL;
 	}

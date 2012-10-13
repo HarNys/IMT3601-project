@@ -12,10 +12,11 @@ class World
 private:
         // constructor
         World();
+
         // member variables
         static World *world;
         Tile ***map;
-        int area; //size from origin to a side of the map
+        int area; //size from origin to one side of the map
         MineFactory *mineFactory;
 public:
         static World *getWorld();
