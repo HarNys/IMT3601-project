@@ -14,6 +14,11 @@ Tile::Tile()
 	printf("Tile::Tile(): done standard Tile constructor\n");
 };
 
+/**
+ * Constructor for Tile, this is the one that should be used.
+ *
+ * @param[in] quality what type of Tile this should be initialized as.
+ */
 Tile::Tile(char quality)
 {
 	if(quality=='x')
@@ -34,8 +39,6 @@ Tile::Tile(char quality)
  * 	or floor
  *
  * @return true on success
- *
- * @bug segfaults on isWall = wall for some reason. This may have been fixed. please confirm
  */
 bool Tile::setWall(bool wall)
 {
@@ -86,7 +89,7 @@ Character *Tile::getHasCharacter()
 /**
  * sets all of a Tile's variables to sent values.
  * This is for reading in a new map, therefore hasMine and hasCharacter should
- * NULL, as this is initialized by the world at a later time.
+ * be NULL, as this is initialized by the world at a later time.
  *
  * @param[in] quality: the character read from the map, x is wall anything else is floor
  *
@@ -108,7 +111,7 @@ bool Tile::initTile(char quality)
 };
 
 /**
- * @todo check whether there already is a mine there
+ * Sets hasMine if it is empty.
  *
  * @param[in] mine: the new mine, either a NULL pointer or a 'Mine'
  *
@@ -116,7 +119,14 @@ bool Tile::initTile(char quality)
  */
 bool Tile::setMine(Mine *mine)
 {
-	hasMine = mine;
+	if (hasMine)
+	{
+		return false;
+	}
+	else
+	{
+		hasMine = mine;
+	}
 	return true;
 };
 
@@ -160,7 +170,11 @@ bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
 };
 
 
-
+/**
+ * Gets the sf::Sprite for this Tile.
+ *
+ * @return this Tile's tileSprite.
+ */
 sf::Sprite Tile::getSprite()
 {
 	return tileSprite;
@@ -210,11 +224,11 @@ Tile::~Tile()
 	{
 		mineFactory = mineFactory->getMineFactory();
 		mineFactory->releaseMine(hasMine);
+		hasMine = NULL;
 	}
 	if (hasCharacter)
 	{
-		/// @note cannot "delete hasCharacter;" here? character
-		///	factory?
+		characterFactory->releaseCharacter(hasCharacter);
+		hasCharacter = NULL;
 	}
-	delete this;
 };

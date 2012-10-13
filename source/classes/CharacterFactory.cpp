@@ -60,11 +60,14 @@ Character* CharacterFactory::getCharacter()
 };
 
 /**
-* Sets the characters class example, ninja, rifleman, etc.
-*
-*  @todo Make if statment (char type == this chartype)  like this to determin class of the player, example:
-* characters[i]= new mineguy(); or characters[i]= new rifleman();
-*/
-void CharacterFactory::SetCharacter(std::string type)
+ * releases a Character from World.
+ *
+ * @todo implement function!
+ *
+ * @return true on success.
+ */
+bool releaseCharacter(Character *characterReleased)
 {
-};
+	printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
+	return true;
+}
