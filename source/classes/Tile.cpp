@@ -147,14 +147,14 @@ bool Tile::setCharacter(Character *character)
 };
 
 /**
-* draws the map
-*
-* @param [in] xPos: the x position of the tile
-* @param [in] yPos: the y position of the tile
-*
-* @return true on success
-*/
-bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
+ * Initializes the sprites used in Tiles
+ *
+ * @param [in] xPos: the x position of the tile
+ * @param [in] yPos: the y position of the tile
+ *
+ * @return true on success
+ */
+bool Tile::initSprite(int xPos, int yPos)
 {
 	if (isWall)
 	{
@@ -169,7 +169,6 @@ bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
-//	tileSprite->setScale(window->getSize());
 	return true;
 };
 

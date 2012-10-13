@@ -12,47 +12,8 @@ World *World::world = NULL;
 World::World()
 {
 	mineFactory = mineFactory->getMineFactory();
-	///@note loading the file that has the map
-	std::ifstream file;
-//	file.open ("map/mega.txt");
-	file.open ("map/maptwo.txt");
-	//sf::Image tile;
-	///@note creates a temp file for the chars
 	area = 0;
-	while (file.get()!='\n'){
-		area++;
-	}
-	file.seekg(0);
-	///@note creates the map as tiles
-	/// Initializes the tile images
-	map = new Tile**[area];
-	Tile *tempTile = new Tile();
-	tempTile->initImage();
-	///@note the y value of the map
-	for (int yPosition = 0; yPosition < area; yPosition++)
-	{
-		///@note creates tile pointer for each row
-		map[yPosition] = new Tile*[area];
-
-		///@note the x value of the map
-		for (int xPosition = 0; xPosition < area; xPosition++)
-		{
-			///@note makes sure the file is not overextended, this is meant to be redundant
-			if(!file.eof())
-			{
-				map[yPosition][xPosition] = new Tile(*tempTile);
-				map[yPosition][xPosition]->initTile(file.get());
-				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
-				{
-					static int count = 0;
-					count++;
-//					printf("World::World(): count: %i\n", count);
-				}
-			}
-		}
-		file.ignore(1, '\n');
-	}
-	file.close();
+	map = NULL;
 };
 
 /**
@@ -73,6 +34,62 @@ World *World::getWorld()
 	{
 		return world;
 	}
+};
+
+/**
+ * Initializes the map using 'mapFile'
+ *
+ * @param[in] mapFile the relative path to the text file containing the map to
+ * 	be loaded.
+ * @param[out] windowSize the size of the window we draw to.
+ *
+ * @return true on success.
+ */
+bool World::initMap(char *mapFile)
+{
+	if (!map[0][0])
+	{
+		/**
+		 * delete map?
+		 */
+	}
+	/// loading the file that has the map
+	std::ifstream file;
+	file.open(mapFile);
+	area = 0;
+	while (file.get() != '\n'){
+		area++;
+	}
+	file.seekg(0);
+	map = new Tile**[area];
+	Tile *tempTile = new Tile();
+	tempTile->initImage();
+	for (int yPosition = 0; yPosition < area; yPosition++)
+	{
+		///@note creates tile pointer for each row
+		map[yPosition] = new Tile*[area];
+
+		///@note the x value of the map
+		for (int xPosition = 0; xPosition < area; xPosition++)
+		{
+			///@note makes sure the file is not overextended, this is meant to be redundant
+			if(!file.eof())
+			{
+				map[yPosition][xPosition] = new Tile(*tempTile);
+				map[yPosition][xPosition]->initTile(file.get());
+				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
+					//, (windowSize.x/area), (windowSize.y/area)))
+				{
+					static int count = 0;
+					count++;
+//					printf("World::World(): count: %i\n", count);
+				}
+			}
+		}
+		file.ignore(1, '\n');
+	}
+	file.close();
+	return true;
 };
 
 /**

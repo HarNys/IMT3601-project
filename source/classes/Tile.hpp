@@ -32,7 +32,7 @@ public:
 	bool getIsWall();
 	Mine *getHasMine();
 	Character *getHasCharacter();
-	bool initSprite(int xPos, int yPos);//, sf::RenderWindow *window);
+	bool initSprite(int xPos, int yPos);
 	void initImage();
 	bool initTile(char quality);
 	void setFloor(bool mineVisible);
