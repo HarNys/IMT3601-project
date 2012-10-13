@@ -44,6 +44,8 @@ World *World::getWorld()
  * @param[out] windowSize the size of the window we draw to.
  *
  * @return true on success.
+ *
+ * @bug It seems this function draws or reads x's and y's swapped.
  */
 bool World::initMap(char *mapFile)
 {
@@ -78,7 +80,7 @@ bool World::initMap(char *mapFile)
 				map[yPosition][xPosition] = new Tile(*tempTile);
 				map[yPosition][xPosition]->initTile(file.get());
 				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
-					//, (windowSize.x/area), (windowSize.y/area)))
+//					, (windowSize.x/area), (windowSize.y/area)))
 				{
 					static int count = 0;
 					count++;

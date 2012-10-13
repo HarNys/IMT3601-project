@@ -39,7 +39,13 @@ int main(int argc, char **argv)
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	World *world;
 	world = world->getWorld();
-	world->initMap((char *)"map/maptwo.txt");
+	if (argv[1]) {
+		world->initMap(argv[1]);
+	}
+	else
+	{
+		world->initMap((char *)"map/maptwo.txt");
+	}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
