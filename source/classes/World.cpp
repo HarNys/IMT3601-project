@@ -96,13 +96,10 @@ bool World::placeCharacter(Character *character)
  * Moves Character if possible.
  *
  * @param character Character to we are trying to move.
- * @param currentTile the Tile the Character we are trying to move is currently on.
  * @param xPosition the x coordinate Character is currently on.
  * @param yPosition the y coordinate Character is currently on.
  *
  * @return true on succesfull movement.
- *
- * @todo Make this work, and use it in World::update()
  */
  bool World::moveCharacter(Character *character, int xPosition, int yPosition)
  {
@@ -187,48 +184,42 @@ bool World::update()
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
 	static sf::Clock fpsUpdateTimer;
-//	float ticksTime = 300000;
 
 	// start of operations
-	printf("World::update(): FPS: %d\r",fpsUpdateTimer.getElapsedTime().asMilliseconds());
-//	if ((fpsUpdateTimer.getElapsedTime().asMicroseconds()) > ticksTime)
-//	{
-//		printf("World::update(): FPS: %d\r",fpsUpdateTimer.getElapsedTime().asMilliseconds());
-		fpsUpdateTimer.restart();
-		for (yCount = 0; yCount < area; yCount++)
+	fpsUpdateTimer.restart();
+	for (yCount = 0; yCount < area; yCount++)
+	{
+		for (xCount = 0; xCount < area; xCount++)
 		{
-			for (xCount = 0; xCount < area; xCount++)
+			thisTile = map[xCount][yCount];
+			if (!thisTile->getIsWall())
 			{
-				thisTile = map[xCount][yCount];
-				if (!thisTile->getIsWall())
+				if ((thisMine = thisTile->getHasMine()))
 				{
-					if ((thisMine = thisTile->getHasMine()))
+					if (!thisMine->visibilityCountDown())
 					{
-						if (!thisMine->visibilityCountDown())
-						{
-							thisTile->setFloor(true);
-						}
-						else
-						{
-							thisTile->setFloor(false);
-						}
+						thisTile->setFloor(true);
 					}
-					if ((thisCharacter = thisTile->getHasCharacter()))
+					else
 					{
-						if (thisCharacter->getMinePlaced())
-						{
-							placeMine(thisCharacter, thisTile);
-						}
-						if (moveCharacter(thisCharacter, xCount, yCount))
-						{
-							thisTile->setCharacter(NULL);
-						}
-						thisCharacter->resetDirection();
+						thisTile->setFloor(false);
 					}
-				} // end if (!thisTile->getIsWall())
-			} // end xCount
-		} // end yCount
-//	}
+				}
+				if ((thisCharacter = thisTile->getHasCharacter()))
+				{
+					if (thisCharacter->getMinePlaced())
+					{
+						placeMine(thisCharacter, thisTile);
+					}
+					if (moveCharacter(thisCharacter, xCount, yCount))
+					{
+						thisTile->setCharacter(NULL);
+					}
+					thisCharacter->resetDirection();
+				}
+			} // end if (!thisTile->getIsWall())
+		} // end xCount
+	} // end yCount
 	return true;
 };
 
