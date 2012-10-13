@@ -11,11 +11,9 @@ class Character
 {
 private:
 	//member variables
-//	float characterPosX;
-//	float characterPosY;
 	bool minePlaced; ///< whether or not we want to place a Mine.
-	float characterDirectionX;
-	float characterDirectionY;
+	int characterDirectionX; ///< Changed from float to int
+	int characterDirectionY; ///< Changed from float to int
 	static sf::Image *characterImage;
 	sf::Texture texture;
 	sf::Sprite sprite;
@@ -31,7 +29,6 @@ public:
 	void updatePosition();
 	void resetDirection();
 	void characterInput(sf::Event e);
-	void placeMine(sf::Event e);
 	sf::Sprite *getSprite();
 };
 

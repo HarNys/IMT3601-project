@@ -101,12 +101,12 @@ bool World::placeCharacter(Character *character)
  *
  * @return true on succesfull movement.
  */
- bool World::moveCharacter(Character *character, int xPosition, int yPosition)
- {
+bool World::moveCharacter(Character *character, int xPosition, int yPosition)
+{
 	int characterDirectionX = 0;
 	int characterDirectionY = 0;
-	characterDirectionX = (int) character->getCharacterDirectionX();
-	characterDirectionY = (int) character->getCharacterDirectionY();
+	characterDirectionX = character->getCharacterDirectionX();
+	characterDirectionY = character->getCharacterDirectionY();
 	char *whatIsThere = NULL;
 	if ((characterDirectionX + characterDirectionY) == 0)
 	{
