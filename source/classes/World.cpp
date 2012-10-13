@@ -107,7 +107,12 @@ bool World::placeCharacter(Character *character)
 	int characterDirectionY = 0;
 	characterDirectionX = (int) character->getCharacterDirectionX();
 	characterDirectionY = (int) character->getCharacterDirectionY();
-	if ((characterDirectionX + characterDirectionY) != 0)
+	char *whatIsThere = NULL;
+	if ((characterDirectionX + characterDirectionY) == 0)
+	{
+		return false;
+	}
+	else
 	{
 		if (((xPosition + characterDirectionX) > 0)
 			&& ((yPosition + characterDirectionY) > 0))
@@ -128,18 +133,30 @@ bool World::placeCharacter(Character *character)
 						}
 						return true;
 					}
+					else
+					{
+						whatIsThere = (char *) "there is a Character";
+					}
 				}
 				else
 				{
-					printf("World::update(): can't move, there is a wall in "
-						"direction %dX\n",characterDirectionX);
-					return false;
+					whatIsThere = (char *) "there is a Wall";
 				}
 			}
+			else
+			{
+				whatIsThere = (char *) "nextTile is out of bounds, bigger.";
+			}
+		}
+		else
+		{
+			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
 		}
 	}
+	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
+		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
- };
+};
 
 /**
  * Puts a Mine on the Tile parameter.
