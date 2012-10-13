@@ -104,7 +104,6 @@ bool World::placeCharacter(Character *character)
  */
 bool World::placeMine(Character *character, Tile *characterPosition)
 {
-	MineFactory *mineFactory = mineFactory->getMineFactory();
 	Mine *tempPlaceMine = mineFactory->getMine();
 	if (tempPlaceMine)
 	{
@@ -135,7 +134,6 @@ bool World::update()
 	Tile *thisTile = NULL;
 	Tile *nextTile = NULL;
 	Mine *thisMine = NULL;
-	Mine *tempPlaceMine = NULL;
 	Character *thisCharacter = NULL;
 	static sf::Clock fpsUpdateTimer;
 	int thisCharacterDirectionX = 0;
