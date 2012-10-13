@@ -18,10 +18,10 @@ private:
         Tile ***map;
         int area; //size from origin to a side of the map
         MineFactory *mineFactory;
-
 public:
         static World *getWorld();
         bool placeCharacter(Character *character);
+        bool moveCharacter(Character *character, int xPosition, int yPosition);
         bool placeMine(Character *character, Tile *tile);
         bool update();
         void draw(sf::RenderWindow *window);
