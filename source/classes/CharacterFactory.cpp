@@ -15,19 +15,8 @@ CharacterFactory::CharacterFactory()
 	tempChar->initImage();
 
 	usedCharacters.reserve(maxChar);
-//	readyCharacters.resize(maxChar);
 	readyCharacters.assign(maxChar, new Character(*tempChar));
-/*
-	std::vector<Character *>::iterator cIter;
-
-	for (cIter=characters.begin();cIter < characters.end(); cIter ++)
-	{
-		tempChar= new Character();
-		*(cIter)=tempChar;
-	}
-//*/
 };
-
 
 ///Singleton that gets the Character Factory for you when asked for
 CharacterFactory *CharacterFactory::getCharacterFactory()
@@ -71,11 +60,14 @@ Character* CharacterFactory::getCharacter()
 };
 
 /**
-* Sets the characters class example, ninja, rifleman, etc.
-*
-*  @todo Make if statment (char type == this chartype)  like this to determin class of the player, example:
-* characters[i]= new mineguy(); or characters[i]= new rifleman();
-*/
-void CharacterFactory::SetCharacter(std::string type)
+ * releases a Character from World.
+ *
+ * @todo implement function!
+ *
+ * @return true on success.
+ */
+bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
-};
+	printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
+	return true;
+}

@@ -5,9 +5,6 @@
 /**
  * @brief world X is across, world Y is downwards
  *
- * @todo add the mine image to Tile's image list
- * @todo make the characters move on the tiles
- * @todo place and update mines
  * @todo fix clock for timing of ticks
  */
 class World
@@ -15,18 +12,20 @@ class World
 private:
         // constructor
         World();
+
         // member variables
         static World *world;
         Tile ***map;
-        int area; //size to a side of the map
+        int area; //size from origin to one side of the map
         MineFactory *mineFactory;
-
 public:
         static World *getWorld();
+        bool initMap(char *mapFile);
         bool placeCharacter(Character *character);
-        bool placeMine();
-        void draw(sf::RenderWindow *window);
+        bool moveCharacter(Character *character, int xPosition, int yPosition);
+        bool placeMine(Character *character, Tile *tile);
         bool update();
+        void draw(sf::RenderWindow *window);
 };
 
 #endif // __WORLD__HEADER__GUARD__

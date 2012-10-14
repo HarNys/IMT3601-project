@@ -43,9 +43,7 @@ bool Character::initImage()
  */
 bool Character::initCharacter()
 {
-//	printf("Character::initCharacter(): before texture.loadFromImage(sf::Image)\n");
 	texture.loadFromImage(*characterImage);
-//	printf("Character::initCharacter(): after texture.loadFromImage(sf::Image)\n");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	return true;
@@ -96,17 +94,7 @@ void Character::draw(sf::RenderWindow *window)
 };
 
 /**
- * @bug What is the intention of this function?
- * What it does is not even remotely connected to what it's named
- */
-void Character::updatePosition()
-{
-//	std::cout<< "X-position: " << characterPosX << "\n";
-//	std::cout<< "Y-position: " << characterPosY << "\n";
-};
-
-/**
- * resets Character's direction, is a dirty way o doing it.
+ * resets Character's direction, is a dirty way of doing it.
  */
 void Character::resetDirection()
 {
@@ -122,10 +110,7 @@ void Character::characterInput(sf::Event e)
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		characterDirectionX = -1.0;
-//		sprite.move(-1.0, 0.0);
-//		characterPosX--;
-//		updatePosition();
+		characterDirectionX = -1;
 		sprite.setTextureRect(sf::IntRect(0, 51, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
@@ -134,10 +119,7 @@ void Character::characterInput(sf::Event e)
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 
-		characterDirectionX = 1.0;
-//		sprite.move(1.0, 0.0);
-//		characterPosX++;
-//		updatePosition();
+		characterDirectionX = 1;
 		sprite.setTextureRect(sf::IntRect(0, 17, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
@@ -145,10 +127,7 @@ void Character::characterInput(sf::Event e)
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		characterDirectionY = -1.0;
-//		sprite.move(0.0, -1.0);
-//		characterPosY--;
-//		updatePosition();
+		characterDirectionY = -1;
 		sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
@@ -156,10 +135,7 @@ void Character::characterInput(sf::Event e)
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		characterDirectionY = 1.0;
-//		sprite.move(0.0, 1.0);
-//		characterPosY++;
-//		updatePosition();
+		characterDirectionY = 1;
 		sprite.setTextureRect(sf::IntRect(0, 34, 15, 15));
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
@@ -167,31 +143,12 @@ void Character::characterInput(sf::Event e)
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
-		MineFactory *mineFactory;
-		mineFactory = mineFactory->getMineFactory();
-
 		if(e.KeyReleased && e.key.code == sf::Keyboard::E)
 		{
-/*			World *world = world->getWorld();
-			world->placeMine();
-//*/
 			minePlaced = true;
-			std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
+//			std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
 		}
 	}
-
-};
-
-/**
- * places a mine... NEEDS WORK!
- *
- * @todo should place a mine in a space other than RAM
- * @todo what is e?
- */
-void Character::placeMine(sf::Event e)
-{
-	 MineFactory *mineFactory;
-	 mineFactory = mineFactory->getMineFactory();
 
 };
 

@@ -11,9 +11,16 @@ Tile::Tile()
 	isWall = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
+	characterFactory = characterFactory->getCharacterFactory();
+	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(): done standard Tile constructor\n");
 };
 
+/**
+ * Constructor for Tile, this is the one that should be used.
+ *
+ * @param[in] quality what type of Tile this should be initialized as.
+ */
 Tile::Tile(char quality)
 {
 	if(quality=='x')
@@ -26,6 +33,8 @@ Tile::Tile(char quality)
 	}
 	hasMine = NULL;
 	hasCharacter = NULL;
+	characterFactory = characterFactory->getCharacterFactory();
+	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(char): done overloaded Tile constructor\n");
 };
 
@@ -34,8 +43,6 @@ Tile::Tile(char quality)
  * 	or floor
  *
  * @return true on success
- *
- * @bug segfaults on isWall = wall for some reason. This may have been fixed. please confirm
  */
 bool Tile::setWall(bool wall)
 {
@@ -86,7 +93,7 @@ Character *Tile::getHasCharacter()
 /**
  * sets all of a Tile's variables to sent values.
  * This is for reading in a new map, therefore hasMine and hasCharacter should
- * NULL, as this is initialized by the world at a later time.
+ * be NULL, as this is initialized by the world at a later time.
  *
  * @param[in] quality: the character read from the map, x is wall anything else is floor
  *
@@ -108,7 +115,7 @@ bool Tile::initTile(char quality)
 };
 
 /**
- * @todo check whether there already is a mine there
+ * Sets hasMine if it is empty.
  *
  * @param[in] mine: the new mine, either a NULL pointer or a 'Mine'
  *
@@ -116,7 +123,14 @@ bool Tile::initTile(char quality)
  */
 bool Tile::setMine(Mine *mine)
 {
-	hasMine = mine;
+	if (hasMine)
+	{
+		return false;
+	}
+	else
+	{
+		hasMine = mine;
+	}
 	return true;
 };
 
@@ -133,14 +147,14 @@ bool Tile::setCharacter(Character *character)
 };
 
 /**
-* draws the map
-*
-* @param [in] xPos: the x position of the tile
-* @param [in] yPos: the y position of the tile
-*
-* @return true on success
-*/
-bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
+ * Initializes the sprites used in Tiles
+ *
+ * @param [in] xPos: the x position of the tile
+ * @param [in] yPos: the y position of the tile
+ *
+ * @return true on success
+ */
+bool Tile::initSprite(int xPos, int yPos)
 {
 	if (isWall)
 	{
@@ -155,12 +169,15 @@ bool Tile::initSprite(int xPos, int yPos)//, sf::RenderWindow *window)
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
-//	tileSprite->setScale(window->getSize());
 	return true;
 };
 
 
-
+/**
+ * Gets the sf::Sprite for this Tile.
+ *
+ * @return this Tile's tileSprite.
+ */
 sf::Sprite Tile::getSprite()
 {
 	return tileSprite;
@@ -201,20 +218,18 @@ void Tile::setFloor(bool mineVisible)
 };
 
 /**
- * @todo "getMineFactory.releaseMine(hasMine);" should do this in a way
- * 	that works
+ * Releases and sets to NULL the hasMine and hasCharacter pointer in this Tile.
  */
 Tile::~Tile()
 {
 	if (hasMine)
 	{
-		mineFactory = mineFactory->getMineFactory();
 		mineFactory->releaseMine(hasMine);
+		hasMine = NULL;
 	}
 	if (hasCharacter)
 	{
-		/// @note cannot "delete hasCharacter;" here? character
-		///	factory?
+		characterFactory->releaseCharacter(hasCharacter);
+		hasCharacter = NULL;
 	}
-	delete this;
 };

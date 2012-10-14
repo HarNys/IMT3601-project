@@ -39,6 +39,13 @@ int main(int argc, char **argv)
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	World *world;
 	world = world->getWorld();
+	if (argv[1]) {
+		world->initMap(argv[1]);
+	}
+	else
+	{
+		world->initMap((char *)"map/maptwo.txt");
+	}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
@@ -49,7 +56,7 @@ int main(int argc, char **argv)
 	characterFactory = characterFactory->getCharacterFactory();
 
 	printf("main(int,char**): has got CharacterFactory, getting player1\n");
-	Character *player1 = characterFactory->getCharacter(); //error when loading image
+	Character *player1 = characterFactory->getCharacter();
 	world->placeCharacter(player1);
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");

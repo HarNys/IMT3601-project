@@ -9,13 +9,7 @@
  * 	not it is a floor or wall tile, a pointer to a 'Mine' object,
  * 	and a pointer to a 'Character' object.
  * @par
- * 	The pointers to 'Mine' and 'Character' will point to either an
- * 	empty object, or be a NULL pointer.
- *
- * @todo update documentation for wether(spelling?) pointers point to
- * 	empty object or NULL
- *
- * @todo getters for the setters
+ * 	The pointers to 'Mine' and 'Character' will be a NULL pointer.
  */
 class Tile
 {
@@ -24,6 +18,7 @@ private:
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
+	CharacterFactory *characterFactory;
 	static sf::Image *wallImg;
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;
@@ -37,7 +32,7 @@ public:
 	bool getIsWall();
 	Mine *getHasMine();
 	Character *getHasCharacter();
-	bool initSprite(int xPos, int yPos);//, sf::RenderWindow *window);
+	bool initSprite(int xPos, int yPos);
 	void initImage();
 	bool initTile(char quality);
 	void setFloor(bool mineVisible);

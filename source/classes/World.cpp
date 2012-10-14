@@ -12,47 +12,8 @@ World *World::world = NULL;
 World::World()
 {
 	mineFactory = mineFactory->getMineFactory();
-	///@note loading the file that has the map
-	std::ifstream file;
-//	file.open ("map/mega.txt");
-	file.open ("map/maptwo.txt");
-	//sf::Image tile;
-	///@note creates a temp file for the chars
 	area = 0;
-	while (file.get()!='\n'){
-		area++;
-	}
-	file.seekg(0);
-	///@note creates the map as tiles
-	/// Initializes the tile images
-	map = new Tile**[area];
-	Tile *tempTile = new Tile();
-	tempTile->initImage();
-	///@note the y value of the map
-	for (int i = 0; i<area; i++)
-	{
-		///@note creates tile pointer for each row
-		map[i] = new Tile*[area];
-
-		///@note the x value of the map
-		for (int j = 0; j<area; j++)
-		{
-			///@note makes sure the file is not overextended, this is meant to be redundant
-			if(!file.eof())
-			{
-				map[i][j] = new Tile(*tempTile);
-				map[i][j]->initTile(file.get());
-				if (map[i][j]->initSprite(i, j))
-				{
-					static int count = 0;
-					count++;
-//					printf("World::World(): count: %i\n", count);
-				}
-			}
-		}
-		file.ignore(1, '\n');
-	}
-	file.close();
+	map = NULL;
 };
 
 /**
@@ -76,6 +37,64 @@ World *World::getWorld()
 };
 
 /**
+ * Initializes the map using 'mapFile'
+ *
+ * @param[in] mapFile the relative path to the text file containing the map to
+ * 	be loaded.
+ * @param[out] windowSize the size of the window we draw to.
+ *
+ * @return true on success.
+ *
+ * @bug It seems this function draws or reads x's and y's swapped.
+ */
+bool World::initMap(char *mapFile)
+{
+	if (!map[0][0])
+	{
+		/**
+		 * delete map?
+		 */
+	}
+	/// loading the file that has the map
+	std::ifstream file;
+	file.open(mapFile);
+	area = 0;
+	while (file.get() != '\n'){
+		area++;
+	}
+	file.seekg(0);
+	map = new Tile**[area];
+	Tile *tempTile = new Tile();
+	tempTile->initImage();
+	for (int yPosition = 0; yPosition < area; yPosition++)
+	{
+		///@note creates tile pointer for each row
+		map[yPosition] = new Tile*[area];
+
+		///@note the x value of the map
+		for (int xPosition = 0; xPosition < area; xPosition++)
+		{
+			///@note makes sure the file is not overextended, this is meant to be redundant
+			if(!file.eof())
+			{
+				map[yPosition][xPosition] = new Tile(*tempTile);
+				map[yPosition][xPosition]->initTile(file.get());
+				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
+//					, (windowSize.x/area), (windowSize.y/area)))
+				{
+					static int count = 0;
+					count++;
+//					printf("World::World(): count: %i\n", count);
+				}
+			}
+		}
+		file.ignore(1, '\n');
+	}
+	file.close();
+	return true;
+};
+
+/**
  * places a character in the world
  *
  * @param [in] character: pointer to the character to be placed.
@@ -93,12 +112,90 @@ bool World::placeCharacter(Character *character)
 };
 
 /**
- * this may be BS.
+ * Moves Character if possible.
+ *
+ * @param character Character to we are trying to move.
+ * @param xPosition the x coordinate Character is currently on.
+ * @param yPosition the y coordinate Character is currently on.
+ *
+ * @return true on succesfull movement.
  */
-bool World::placeMine()
+bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
-	mineFactory->getMine();
-	printf("Character::characterInput(sf::Event e): Mine placed\n");
+	int characterDirectionX = 0;
+	int characterDirectionY = 0;
+	characterDirectionX = character->getCharacterDirectionX();
+	characterDirectionY = character->getCharacterDirectionY();
+	char *whatIsThere = NULL;
+	if ((characterDirectionX + characterDirectionY) == 0)
+	{
+		return false;
+	}
+	else
+	{
+		if (((xPosition + characterDirectionX) > 0)
+			&& ((yPosition + characterDirectionY) > 0))
+		{
+			if (((xPosition + characterDirectionX) < area)
+				&& ((yPosition + characterDirectionY) < area))
+			{
+				Tile *nextTile = NULL;
+				nextTile = map[xPosition + characterDirectionX][yPosition + characterDirectionY];
+				if (!nextTile->getIsWall())
+				{
+					if (!nextTile->getHasCharacter())
+					{
+						nextTile->setCharacter(character);
+						if (nextTile->getHasMine())
+						{
+							nextTile->getHasMine()->update(character);
+						}
+						return true;
+					}
+					else
+					{
+						whatIsThere = (char *) "there is a Character";
+					}
+				}
+				else
+				{
+					whatIsThere = (char *) "there is a Wall";
+				}
+			}
+			else
+			{
+				whatIsThere = (char *) "nextTile is out of bounds, bigger.";
+			}
+		}
+		else
+		{
+			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
+		}
+	}
+	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
+		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
+	return false;
+};
+
+/**
+ * Puts a Mine on the Tile parameter.
+ *
+ * @param[in,out] character The character placing the Mine.
+ * @param[out] characterPosition the Tile to place the Mine on.
+ *
+ * @return true on success
+ *
+ * @todo fix Minefactory and Mine so it is global for class World.
+ */
+bool World::placeMine(Character *character, Tile *characterPosition)
+{
+	Mine *tempPlaceMine = mineFactory->getMine();
+	if (tempPlaceMine)
+	{
+		characterPosition->setMine(tempPlaceMine);
+		characterPosition->setFloor(true);
+	}
+	character->setMinePlaced(false);
 	return true;
 };
 
@@ -106,7 +203,7 @@ bool World::placeMine()
  * runs through all active tiles(tiles within 'area'), and updates them
  * according to the characters and mines on them.
  *
- * @note we may want to reset "this{Tile, Mine, Character}" after each yCount
+ * @note we may want to reset "this{Tile, Mine, Character}" after each yCount (xCount?)
  * @note this function is turning out to be bigger and and more complex than I
  * 	thought. We may want to break it up into more manageable peices.
  *
@@ -120,115 +217,52 @@ bool World::update()
 	int yCount = 0;
 	// area is defined in constructor and header
 	Tile *thisTile = NULL;
-	Tile *nextTile = NULL;
 	Mine *thisMine = NULL;
-	Mine *tempPlaceMine = NULL;
 	Character *thisCharacter = NULL;
 	static sf::Clock fpsUpdateTimer;
-	int thisCharacterDirectionX = 0;
-	int thisCharacterDirectionY = 0;
-	float ticksTime = 300000;
 
 	// start of operations
-	printf("World::update(): FPS: %d\r",fpsUpdateTimer.getElapsedTime().asMilliseconds());
-	if ((fpsUpdateTimer.getElapsedTime().asMicroseconds()) > ticksTime)
+	fpsUpdateTimer.restart();
+	for (yCount = 0; yCount < area; yCount++)
 	{
-		printf("World::update(): FPS: %d\r",fpsUpdateTimer.getElapsedTime().asMilliseconds());
-		fpsUpdateTimer.restart();
-		for (yCount = 0; yCount < area; yCount++)
+		for (xCount = 0; xCount < area; xCount++)
 		{
-			for (xCount = 0; xCount < area; xCount++)
+			thisTile = map[xCount][yCount];
+			if (!thisTile->getIsWall())
 			{
-				thisTile = map[xCount][yCount];
-				if (!thisTile->getIsWall())
+				if ((thisMine = thisTile->getHasMine()))
 				{
-					if ((thisMine = thisTile->getHasMine()))
+					if (!thisMine->visibilityCountDown())
 					{
-						if (!thisMine->visibilityCountDown())
-						{
-							thisTile->setFloor(true);
-						}
-						else
-						{
-							thisTile->setFloor(false);
-						}
+						thisTile->setFloor(true);
 					}
-					if ((thisCharacter = thisTile->getHasCharacter()))
+					else
 					{
-//						printf("World::update(): thisCharacter exists on Tile: %dX, %dY\n", xCount, yCount);
-						if (thisCharacter->getMinePlaced())
-						{
-							tempPlaceMine = mineFactory->getMine();
-							if (tempPlaceMine)
-							{
-								thisTile->setMine(tempPlaceMine);
-								thisTile->setFloor(true);
-							}
-							thisCharacter->setMinePlaced(false);
-						}
-						thisCharacterDirectionX = (int) thisCharacter->getCharacterDirectionX();
-						thisCharacterDirectionY = (int) thisCharacter->getCharacterDirectionY();
-						if (thisCharacterDirectionX != 0) ///< this check may not be necessary
-						{ // check and move if possible X++
-							if ((xCount + thisCharacterDirectionX) < area)
-							{
-								nextTile = map[xCount + thisCharacterDirectionX][yCount];
-								if (!nextTile->getIsWall())
-								{
-									if (!nextTile->getHasCharacter())
-									{
-										thisTile->setCharacter(NULL);
-										nextTile->setCharacter(thisCharacter);
-										if (nextTile->getHasMine())
-										{
-											nextTile->getHasMine()->update(thisCharacter);
-										}
-									}
-								}
-								else
-								{
-									printf("World::update(): can't move, there is a wall in "
-										"direction %dX\n",thisCharacterDirectionX);
-								}
-							}
-						}
-						if (thisCharacterDirectionY != 0) ///< this check may also not be necessary
-						{ // check and move if possible Y++
-							if ((yCount + thisCharacterDirectionY) < area)
-							{
-								nextTile = map[xCount][yCount + thisCharacterDirectionY];
-								if (!nextTile->getIsWall())
-								{
-									if (!nextTile->getHasCharacter())
-									{
-										thisTile->setCharacter(NULL);
-										nextTile->setCharacter(thisCharacter);
-										if (nextTile->getHasMine())
-										{
-											nextTile->getHasMine()->update(thisCharacter);
-										}
-									}
-								}
-								else
-								{
-									printf("World::update(): can't move, there is a wall in "
-										"direction %dY\n",thisCharacterDirectionY);
-								}
-							}
-						}
-						thisCharacter->resetDirection();
+						thisTile->setFloor(false);
 					}
-				} // end if (!thisTile->getIsWall())
-			} // end xCount
-		} // end yCount
-	}
+				}
+				if ((thisCharacter = thisTile->getHasCharacter()))
+				{
+					if (thisCharacter->getMinePlaced())
+					{
+						placeMine(thisCharacter, thisTile);
+					}
+					if (moveCharacter(thisCharacter, xCount, yCount))
+					{
+						thisTile->setCharacter(NULL);
+					}
+					thisCharacter->resetDirection();
+				}
+			} // end if (!thisTile->getIsWall())
+		} // end xCount
+	} // end yCount
 	return true;
 };
 
 /**
- * draws the map to screen.
+ * Draws this World Tile's and Character's.
  *
- * @param [in] window: pointer to the window shit should be placed in
+ * @param [in] window: pointer to the sf::RenderWindow* we draw to.
  */
 void World::draw(sf::RenderWindow *window)
 {
