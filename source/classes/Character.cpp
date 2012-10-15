@@ -43,6 +43,7 @@ bool Character::initImage()
 	}
 	else
 	{
+
 		printf("Character::initImage(): could not load image "
 			"'img/playertrans.png'\n");
 		return false;
