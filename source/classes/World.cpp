@@ -219,10 +219,9 @@ bool World::update()
 	Tile *thisTile = NULL;
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
-	static sf::Clock fpsUpdateTimer;
+	
 
 	// start of operations
-	fpsUpdateTimer.restart();
 	for (yCount = 0; yCount < area; yCount++)
 	{
 		for (xCount = 0; xCount < area; xCount++)
