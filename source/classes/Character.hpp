@@ -14,6 +14,7 @@ private:
 	bool minePlaced; ///< whether or not we want to place a Mine.
 	int characterDirectionX; ///< Changed from float to int
 	int characterDirectionY; ///< Changed from float to int
+	int characterHealth;	///< How much healt the player have left
 	static sf::Image *characterImage;
 	sf::Texture texture;
 	sf::Sprite sprite;
@@ -29,6 +30,7 @@ public:
 	void updatePosition();
 	void resetDirection();
 	void characterInput(sf::Event e);
+	void updateCharacterHealt(int health);
 	sf::Sprite *getSprite();
 };
 
