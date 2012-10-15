@@ -11,7 +11,25 @@ Character::Character()
 	minePlaced = false;
 	characterDirectionX = 0;
 	characterDirectionY = 0;
+	characterHealth = 10;
 };
+
+/**
+*	@brif: Updates characters healt if it taks demages og health is refreshed etc.
+*	@parameter: The amount of healt to add/subtract.
+*	@todo: when dead give signal to pop up manu or something like that.
+*/
+void Character::updateCharacterHealt(int health)
+{
+	characterHealth += health;
+	printf("palyer healt is %d \n",characterHealth);
+	if(characterHealth < 1)
+	{
+		printf("\n\n---You are dead---\n\n");
+		updateCharacterHealt(10);		///< resets characters healt if dead
+
+	}
+}
 
 /**
  * loads the static image for the characters, should be done only once
