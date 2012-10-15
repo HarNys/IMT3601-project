@@ -47,9 +47,8 @@ int main(int argc, char **argv)
 	else
 	{
 		world->initMap((char *)"map/maptwo.txt");
-		
+		world->randomGenerate();
 	}
-world->randomGenerate();
 	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
