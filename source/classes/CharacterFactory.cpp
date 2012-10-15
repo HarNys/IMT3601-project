@@ -38,6 +38,8 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  * gets one charecter for you to do some nasty things with if an event is
  * triggered.
  *
+ *@param [in] 0 for player character, 1 for NonePlayerCharacter, 3 for network character. 
+ *
  * @return on succes: pointer to a new(read: reinitialized) Character
  * 	\n on failure: NULL
  */
@@ -47,12 +49,12 @@ Character* CharacterFactory::getCharacter(int type)
 	
 	switch (type)
 	{
-		case 0:
+		case 0:	
 			{
 				Character *tempCharacter = NULL;
 				break;
 			}
-		case 1:
+		case 1:		
 			{
 				NonePlayingCharacter *tempCharacter = NULL;
 				break;
