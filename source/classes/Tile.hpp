@@ -14,7 +14,8 @@
 class Tile
 {
 private:
-	bool isWall; ///< @note isWall is true when 'Tile' is a wall.
+	bool isWall; ///< @note isWall is true when 'Tile' is a wall.'
+	bool visited; ////< @note visited is used for procedural generation'
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
@@ -26,6 +27,8 @@ private:
 public:
 	Tile();
 	Tile(char quality);
+	void setVisited();
+	bool getVisited();
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);

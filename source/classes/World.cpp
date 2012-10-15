@@ -14,6 +14,9 @@ World::World()
 	mineFactory = mineFactory->getMineFactory();
 	area = 0;
 	map = NULL;
+
+	currentX = 1;
+	currentY = 1;
 };
 
 /**
@@ -91,6 +94,7 @@ bool World::initMap(char *mapFile)
 		file.ignore(1, '\n');
 	}
 	file.close();
+	map[currentX][currentY]->setVisited();
 	return true;
 };
 
@@ -102,11 +106,80 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate()
 {
-	int startDirection = rand() % 4 + 1;
+	srand(time(NULL));
+	int Direction = rand() % 4 + 1;
+	
 
-	if(startDirection != 0)
+	if(Direction == 1)
 	{
-		printf("HEI");
+		currentY--;
+		if(currentY == 0)
+			currentY++;
+		if(map[currentX][currentY - 1]->getVisited() == false && map[currentX - 1][currentY]->getVisited() == false && map[currentX + 1][currentY]->getVisited() == false)
+		{
+			
+			map[currentX][currentY]->setWall(false);
+			map[currentX][currentY]->setVisited();
+			randomGenerate();
+		}
+		else
+		{
+			map[currentX][currentY]->setVisited();
+		}
+	}
+	else if(Direction == 2)
+	{
+		currentX++;
+		if(currentX == area)
+			currentX--;
+
+		if(map[currentX + 1][currentY]->getVisited() == false && map[currentX][currentY - 1]->getVisited() == false && map[currentX][currentY + 1]->getVisited() == false)
+		{
+			
+			map[currentX][currentY]->setWall(false);
+			map[currentX][currentY]->setVisited();
+			randomGenerate();
+		}
+		else
+		{
+			map[currentX][currentY]->setVisited();
+		}
+	}
+	else if(Direction == 3)
+	{
+		currentY++;
+
+		if(currentY == area)
+			currentY--;
+		if(map[currentX][currentY + 1]->getVisited() == false && map[currentX - 1][currentY]->getVisited() == false && map[currentX + 1][currentY]->getVisited() == false)
+		{
+			
+			map[currentX][currentY]->setWall(false);
+			map[currentX][currentY]->setVisited();
+			randomGenerate();
+		}
+		else
+		{
+			map[currentX][currentY]->setVisited();
+		}
+	}
+	else if(Direction == 4)
+	{
+		currentX--;
+		if(currentX == 0)
+			currentX++;
+
+		if(map[currentX - 1][currentY]->getVisited() == false && map[currentX][currentY - 1]->getVisited() == false && map[currentX][currentY + 1]->getVisited() == false)
+		{
+			
+			map[currentX][currentY]->setWall(false);
+			map[currentX][currentY]->setVisited();
+			randomGenerate();
+		}
+		else
+		{
+			map[currentX][currentY]->setVisited();
+		}
 	}
 };
 

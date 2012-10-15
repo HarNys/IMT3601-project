@@ -36,6 +36,9 @@
     <ClInclude Include="source\classes\CharacterFactory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\classes\RandomGenerate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\classes\World.cpp">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\CharacterFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RandomGenerate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

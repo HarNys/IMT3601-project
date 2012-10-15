@@ -9,6 +9,7 @@ sf::Image *Tile::floorImg = NULL;
 Tile::Tile()
 {
 	isWall = false;
+	visited = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
 	characterFactory = characterFactory->getCharacterFactory();
@@ -44,6 +45,12 @@ Tile::Tile(char quality)
  *
  * @return true on success
  */
+
+void Tile::setVisited()
+{
+	visited = true;
+}
+
 bool Tile::setWall(bool wall)
 {
 	if(wall)
@@ -56,6 +63,18 @@ bool Tile::setWall(bool wall)
 	}
 	return true;
 };
+
+bool Tile::getVisited()
+{
+	if(visited)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 /**
  * returns the true or false based on the isWall bool.

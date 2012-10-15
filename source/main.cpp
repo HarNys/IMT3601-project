@@ -14,6 +14,7 @@ int main(int argc, char **argv)
 	 */
 	sf::RenderWindow screen;
 	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+	
 
 /*
 	char fullscreenoption;
@@ -42,14 +43,12 @@ int main(int argc, char **argv)
 	if (argv[1])
 	{
 		world->initMap(argv[1]);
-		world->randomGenerate();
 	}
 	else
 	{
 		world->initMap((char *)"map/maptwo.txt");
-		
+		world->randomGenerate();
 	}
-world->randomGenerate();
 	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
