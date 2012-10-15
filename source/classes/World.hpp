@@ -22,6 +22,7 @@ private:
 		int currentY;
 		
 public:
+
 		static World *getWorld();
 		bool initMap(char *mapFile);
 		void randomGenerate();
@@ -30,6 +31,7 @@ public:
 		bool placeMine(Character *character, Tile *tile);
 		bool update();
 		void draw(sf::RenderWindow *window);
+
 };
 
 #endif // __WORLD__HEADER__GUARD__
