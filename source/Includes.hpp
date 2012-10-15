@@ -37,5 +37,6 @@
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
+#include "classes\AI.hpp"
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

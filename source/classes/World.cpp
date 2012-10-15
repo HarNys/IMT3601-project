@@ -132,8 +132,8 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	}
 	else
 	{
-		if (((xPosition + characterDirectionX) > 0)
-			&& ((yPosition + characterDirectionY) > 0))
+		if (((xPosition + characterDirectionX) >= 0)
+			&& ((yPosition + characterDirectionY) >= 0))
 		{
 			if (((xPosition + characterDirectionX) < area)
 				&& ((yPosition + characterDirectionY) < area))
