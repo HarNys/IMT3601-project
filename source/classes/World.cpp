@@ -95,6 +95,22 @@ bool World::initMap(char *mapFile)
 };
 
 /**
+* generates a random map
+*
+* @return true on success
+* @todo make this shit work
+*/
+void World::randomGenerate()
+{
+	int startDirection = rand() % 4 + 1;
+
+	if(startDirection != 0)
+	{
+		printf("HEI");
+	}
+};
+
+/**
  * places a character in the world
  *
  * @param [in] character: pointer to the character to be placed.
