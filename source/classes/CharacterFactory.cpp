@@ -10,6 +10,7 @@ CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
+	
 	int maxChar=2;
 	Character* tempChar = new Character;
 	tempChar->initImage();
@@ -40,12 +41,33 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  * @return on succes: pointer to a new(read: reinitialized) Character
  * 	\n on failure: NULL
  */
-Character* CharacterFactory::getCharacter()
+Character* CharacterFactory::getCharacter(int type)
 {
-	Character *tempCharacter = NULL;
+	characterType typeOfplayer;
+	
+	switch (type)
+	{
+		case 0:
+			{
+				Character *tempCharacter = NULL;
+				break;
+			}
+		case 1:
+			{
+				NonePlayingCharacter *tempCharacter = NULL;
+				break;
+			}
+		default:
+			{
+				Character *tempCharacter = NULL;
+				break;
+			}
+
+	}
+
 	if (readyCharacters.size() >= 0)
 	{
-		tempCharacter = readyCharacters.at(readyCharacters.size() - 1);
+		tempCharacter = readyCharacters.at(readyCharacters.size()-1);
 		usedCharacters.push_back(tempCharacter);
 		readyCharacters.pop_back();
 		tempCharacter->initCharacter();

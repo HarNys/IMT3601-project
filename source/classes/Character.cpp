@@ -22,7 +22,7 @@ Character::Character()
 void Character::updateCharacterHealt(int health)
 {
 	characterHealth += health;
-	printf("palyer healt is %d \n",characterHealth);
+	printf("player health is %d \n",characterHealth);
 	if(characterHealth < 1)
 	{
 		printf("\n\n---You are dead---\n\n");

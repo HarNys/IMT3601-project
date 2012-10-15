@@ -6,11 +6,14 @@
 /** this class is going to have the AI
 
 */
-class AI: protected Character
+class NonePlayingCharacter: protected Character
 {
 private:
+
 protected:
 public:
+	void aStar(Tile**** const map);
+
 };
 
 

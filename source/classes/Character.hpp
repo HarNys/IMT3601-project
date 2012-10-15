@@ -18,6 +18,7 @@ private:
 	static sf::Image *characterImage;
 	sf::Texture texture;
 	sf::Sprite sprite;
+
 public:
 	Character();
 	bool initImage();

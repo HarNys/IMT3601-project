@@ -287,3 +287,8 @@ void World::draw(sf::RenderWindow *window)
 		}
 	}
 };
+
+Tile ***World::getMap()
+{
+	return map;
+}

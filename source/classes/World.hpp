@@ -26,6 +26,7 @@ public:
         bool placeMine(Character *character, Tile *tile);
         bool update();
         void draw(sf::RenderWindow *window);
+		Tile ***getMap();
 };
 
 #endif // __WORLD__HEADER__GUARD__

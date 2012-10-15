@@ -56,8 +56,11 @@ int main(int argc, char **argv)
 	characterFactory = characterFactory->getCharacterFactory();
 
 	printf("main(int,char**): has got CharacterFactory, getting player1\n");
-	Character *player1 = characterFactory->getCharacter();
+	Character *player1 = characterFactory->getCharacter(0);
 	world->placeCharacter(player1);
+
+	NonePlayingCharacter *player5 = characterFactory->getCharacter(1);
+	world->placeCharacter(player5);
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
