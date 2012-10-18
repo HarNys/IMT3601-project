@@ -133,6 +133,10 @@ sf::Sprite *Character::getSprite()
 	return &sprite;
 };
 
+/**
+*	@param [in]	CharacterDirection(x or y dir), The direction the character is moving(+ - dir), top left corner xand y of the sprite
+*			and with and hight of the sprite you want do draw
+*/
 void Character::move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight)
 {
 	sprite.setTextureRect(sf::IntRect(drawTopCornerX, drawTopCornerY, drawWith, drawHight));
