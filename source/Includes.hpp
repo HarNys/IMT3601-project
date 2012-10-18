@@ -28,9 +28,6 @@
 #include <iostream>
 #include <fstream>
 
-//// OpenMP ////
-//#pragma omp
-
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/Character.hpp"
 #include "classes/CharacterFactory.hpp" // requires 'Character.hpp'
