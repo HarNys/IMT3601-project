@@ -1,6 +1,5 @@
 #include "../Includes.hpp"
 
-
 ///movement-functions
 ///checks if the key is pressed and then released
 ///to reset characterDirectionX/Y

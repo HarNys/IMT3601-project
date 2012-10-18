@@ -12,6 +12,7 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
+	controllerType = 0;
 };
 
 /**
@@ -141,7 +142,7 @@ void Character::move(char CharacterDirection, int moveDirection, int drawTopCorn
 {
 	sprite.setTextureRect(sf::IntRect(drawTopCornerX, drawTopCornerY, drawWith, drawHight));
 
-	if ('x'== CharacterDirection)
+	if ('X'== CharacterDirection)
 	{
 		characterDirectionX = moveDirection;
 	}
@@ -151,4 +152,23 @@ void Character::move(char CharacterDirection, int moveDirection, int drawTopCorn
 	}
 	
 
+}
+
+
+void Character::updatePosition(sf::Event e, Character* thischaracter)
+{
+	enum controller{PlayerControl, AiControl, NetworkControl};
+
+	if (controllerType == PlayerControl)
+	{
+		localPlayerController.characterInput(e,thischaracter);
+	}
+	else if(controllerType == AiControl)
+	{
+
+	}
+	else if(controllerType == NetworkControl)
+	{
+
+	}
 }

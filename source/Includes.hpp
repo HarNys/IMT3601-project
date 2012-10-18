@@ -38,6 +38,9 @@
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
 #include "classes/AI.hpp"
-#include "classes/Player.hpp
+#include "classes\Player.hpp"
+
+//// Controllers ////
+static LocalPlayer localPlayerController;
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

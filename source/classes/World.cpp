@@ -122,6 +122,7 @@ bool World::placeCharacter(Character *character)
  */
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
+	
 	int characterDirectionX = 0;
 	int characterDirectionY = 0;
 	characterDirectionX = character->getCharacterDirectionX();
