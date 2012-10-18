@@ -15,6 +15,7 @@ World::World()
 	area = 0;
 	map = NULL;
 
+
 	currentX = 1;
 	currentY = 1;
 };
@@ -104,81 +105,51 @@ bool World::initMap(char *mapFile)
 * @return true on success
 * @todo make this shit work
 */
-void World::randomGenerate()
+void World::randomGenerate(bool start)
 {
-	srand(time(NULL));
-	int Direction = rand() % 4 + 1;
+	static std::list<Tile*> *unVisited;
+	static std::list<Tile*> *visited;
+	Tile *temp;
 	
-
-	if(Direction == 1)
+	int seed = time(NULL);
+	srand(seed);
+	int Direction = rand() % 4;
+	printf("%d", seed);
+	
+	if(start)
 	{
-		currentY--;
-		if(currentY == 0)
-			currentY++;
-		if(map[currentX][currentY - 1]->getVisited() == false && map[currentX - 1][currentY]->getVisited() == false && map[currentX + 1][currentY]->getVisited() == false)
-		{
-			
-			map[currentX][currentY]->setWall(false);
-			map[currentX][currentY]->setVisited();
-			randomGenerate();
-		}
-		else
-		{
-			map[currentX][currentY]->setVisited();
-		}
+		int StartX = rand() % (area-2) + 1; //add border late
+		int StartY = rand() % (area-2) + 1;
+		visited->push_front(map[StartX][StartY]);
+		currentX = StartX;
+		currentY = StartY;
+		map[currentX][currentY]->setVisited();
+
+		unVisited->push_front(map[currentX][currentY - 2]);
+		unVisited->push_front(map[currentX + 2][currentY]);
+		unVisited->push_front(map[currentX][currentY + 2]);
+		unVisited->push_front(map[currentX - 2][currentY]);
 	}
-	else if(Direction == 2)
-	{
-		currentX++;
-		if(currentX == area)
-			currentX--;
 
-		if(map[currentX + 1][currentY]->getVisited() == false && map[currentX][currentY - 1]->getVisited() == false && map[currentX][currentY + 1]->getVisited() == false)
+	//make an enumerator containing the orders then select one at random
+	
+	while(!unVisited->empty())
+	{
+		if(Direction == 1)
+		{
+									
+		}
+		else if(Direction == 2)
+		{
+		
+		}
+		else if(Direction == 3)
+		{
+		
+		}
+		else if(Direction == 4)
 		{
 			
-			map[currentX][currentY]->setWall(false);
-			map[currentX][currentY]->setVisited();
-			randomGenerate();
-		}
-		else
-		{
-			map[currentX][currentY]->setVisited();
-		}
-	}
-	else if(Direction == 3)
-	{
-		currentY++;
-
-		if(currentY == area)
-			currentY--;
-		if(map[currentX][currentY + 1]->getVisited() == false && map[currentX - 1][currentY]->getVisited() == false && map[currentX + 1][currentY]->getVisited() == false)
-		{
-			
-			map[currentX][currentY]->setWall(false);
-			map[currentX][currentY]->setVisited();
-			randomGenerate();
-		}
-		else
-		{
-			map[currentX][currentY]->setVisited();
-		}
-	}
-	else if(Direction == 4)
-	{
-		currentX--;
-		if(currentX == 0)
-			currentX++;
-
-		if(map[currentX - 1][currentY]->getVisited() == false && map[currentX][currentY - 1]->getVisited() == false && map[currentX][currentY + 1]->getVisited() == false)
-		{
-			
-			map[currentX][currentY]->setWall(false);
-			map[currentX][currentY]->setVisited();
-			randomGenerate();
-		}
-		else
-		{
-			map[currentX][currentY]->setVisited();
 		}
 	}
 };

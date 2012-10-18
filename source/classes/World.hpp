@@ -18,6 +18,10 @@ private:
 		Tile ***map;
 		int area; //size from origin to one side of the map
 		MineFactory *mineFactory;
+		enum RandomInsertion{"1234" = 1, "1243", "1423", "4123", "1324", "3124", "2134",
+							 "2341", "2143" ,"3412", "3421", "3142", "4132", "4213", "4231"
+							 "4321", "4312", "2413", "2431"};
+		//enumerator for the procedural generation of the maze
 		int currentX;
 		int currentY;
 		
@@ -25,7 +29,7 @@ public:
 
 		static World *getWorld();
 		bool initMap(char *mapFile);
-		void randomGenerate();
+		void randomGenerate(bool start = false);
 		bool placeCharacter(Character *character);
 		bool moveCharacter(Character *character, int xPosition, int yPosition);
 		bool placeMine(Character *character, Tile *tile);

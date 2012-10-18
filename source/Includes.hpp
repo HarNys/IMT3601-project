@@ -24,6 +24,7 @@
 #include <typeinfo>
 #include <string.h>
 #include <vector>
+#include <list>
 #include <iostream>
 #include <fstream>
 
