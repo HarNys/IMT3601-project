@@ -1,6 +1,6 @@
 #include "../Includes.hpp"
 
-void NonePlayingCharacter::aStar(Tile**** const map)
+void NonePlayerCharacter::aStar(Tile**** const map)
 {
 
 }

@@ -47,29 +47,11 @@ Character* CharacterFactory::getCharacter(int type)
 {
 	characterType typeOfplayer;
 	
-	switch (type)
-	{
-		case 0:	
-			{
-				Character *tempCharacter = NULL;
-				break;
-			}
-		case 1:		
-			{
-				NonePlayingCharacter *tempCharacter = NULL;
-				break;
-			}
-		default:
-			{
-				Character *tempCharacter = NULL;
-				break;
-			}
-
-	}
+	NonePlayerCharacter* tempCharacter;
 
 	if (readyCharacters.size() >= 0)
 	{
-		tempCharacter = readyCharacters.at(readyCharacters.size()-1);
+		//tempCharacter = readyCharacters.at(readyCharacters.size()-1);
 		usedCharacters.push_back(tempCharacter);
 		readyCharacters.pop_back();
 		tempCharacter->initCharacter();

@@ -6,7 +6,7 @@
 /** this class is going to have the AI
 
 */
-class NonePlayingCharacter: protected Character
+class NonePlayerCharacter: public Character
 {
 private:
 
