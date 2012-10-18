@@ -16,6 +16,8 @@ private:
 	int characterDirectionY; ///< Changed from float to int
 	int characterHealth;	///< How much healt the player have left
 	static sf::Image *characterImage;
+	enum type{mine,rifle};
+	enum controller{AiControl,PlayerControl};
 	sf::Texture texture;
 	sf::Sprite sprite;
 
@@ -30,8 +32,8 @@ public:
 	void draw(sf::RenderWindow* window);
 	void updatePosition();
 	void resetDirection();
-	void characterInput(sf::Event e);
 	void updateCharacterHealt(int health);
+	void move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight);
 	sf::Sprite *getSprite();
 };
 
