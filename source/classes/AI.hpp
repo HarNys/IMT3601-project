@@ -13,6 +13,7 @@ private:
 protected:
 public:
 	void aStar(Tile**** const map);
+	void movement(Character* tempchar);
 
 };
 

@@ -42,5 +42,6 @@
 
 //// Controllers ////
 static LocalPlayer localPlayerController;
+static NonePlayerCharacter npcController;
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__
