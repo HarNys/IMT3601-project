@@ -146,6 +146,10 @@ bool Tile::setCharacter(Character *character)
 	return true;
 };
 
+bool Tile::getIsGoal(){
+	return isGoal;
+};
+
 /**
  * Initializes the sprites used in Tiles
  *

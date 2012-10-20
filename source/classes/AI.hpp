@@ -10,6 +10,7 @@ class NonePlayerCharacter: public Character
 {
 private:
 
+
 protected:
 public:
 	void aStar(Tile**** const map);
@@ -17,4 +18,4 @@ public:
 };
 
 
-#endif // __AI__HEADER__GUARD__
+#endif  __AI__HEADER__GUARD__

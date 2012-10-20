@@ -26,6 +26,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 //// OpenMP ////
 //#pragma omp
@@ -38,5 +39,6 @@
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
 #include "classes/AI.hpp"
+#include "classes/Node.hpp"
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

@@ -15,6 +15,7 @@ class Tile
 {
 private:
 	bool isWall; ///< @note isWall is true when 'Tile' is a wall.
+	bool isGoal;
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
@@ -23,6 +24,7 @@ private:
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
+	
 public:
 	Tile();
 	Tile(char quality);
@@ -30,6 +32,7 @@ public:
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
 	bool getIsWall();
+	bool getIsGoal();
 	Mine *getHasMine();
 	Character *getHasCharacter();
 	bool initSprite(int xPos, int yPos);
