@@ -165,7 +165,7 @@ void Character::updatePosition(sf::Event e, Character* thischaracter)
 	}
 	else if(controllerType == AiControl)
 	{
-		npcController.movement(thischaracter)
+		npcController.movement(thischaracter);
 	}
 	else if(controllerType == NetworkControl)
 	{

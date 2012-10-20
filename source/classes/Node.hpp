@@ -18,20 +18,18 @@ protected:
 
 public:
 	
-	Node();
-	Node(int posx, int posy, Node* par = NULL, int step; int goalXValue, int goalYValue);
+	Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* par = NULL);
 	int getXPos ();
 	int getYPos ();
 	float getPriority();
 	int getLevel(); 
 	void visit();
 	Node* getParent();
-	Node* findCheapestUnusedRecursively();
 	Node* leftChild;
 	Node* rightChild;
 	Node* upChild;
 	Node* downChild;
-	
+	Node* findCheapestUnusedRecursively();
 
 };
-#endif  __NODE__HEADER__GUARD__
+#endif // __NODE__HEADER__GUARD__

@@ -293,3 +293,7 @@ Tile ***World::getMap()
 {
 	return map;
 }
+
+int World::getArea(){
+	return area;
+}

@@ -1,7 +1,7 @@
 #include "../Includes.hpp"
 
 
-Node(int posx, int posy, Node* par, int step; int goalXValue, int goalYValue)
+Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* par)	
 {
 	xValue=posx;
 	yValue=posy;
@@ -53,10 +53,10 @@ Node* Node::findCheapestUnusedRecursively()
 {
 	// returns the node with the lowest value on priority
 	Node * tempNode = NULL;
-	Node * smallestNode = NULL
+	Node * smallestNode = NULL;
 
-	if (up){
-		tempNode = up->findCheapestUnusedRecursively();
+	if (upChild){
+		tempNode = upChild->findCheapestUnusedRecursively();
 	}
 	
 	if (tempNode->priority < smallestNode->priority)
@@ -64,8 +64,8 @@ Node* Node::findCheapestUnusedRecursively()
 		smallestNode = tempNode;
 	}
 	
-	if (right){
-		tempNode = right->findCheapestUnusedRecursively();
+	if (rightChild){
+		tempNode = rightChild->findCheapestUnusedRecursively();
 	}
 	if (tempNode->priority < smallestNode->priority)
 	{
@@ -73,8 +73,8 @@ Node* Node::findCheapestUnusedRecursively()
 	}
 	
 	
-	if (down){
-		tempNode = down->findCheapestUnusedRecursively();
+	if (downChild){
+		tempNode = downChild->findCheapestUnusedRecursively();
 	}
 	if (tempNode->priority < smallestNode->priority)
 	{
@@ -82,8 +82,8 @@ Node* Node::findCheapestUnusedRecursively()
 	}
 	
 	
-	if (left){
-		tempNode = left->findCheapestUnusedRecursively();
+	if (leftChild){
+		tempNode = leftChild->findCheapestUnusedRecursively();
 	}
 	
 

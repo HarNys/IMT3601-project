@@ -24,13 +24,11 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	Node * startNode;
 	Node * goalNode;
 	Node * visitNode;
-	int currentXPos;
-	int currentYPos;
 	bool queueFlag = 0;
-	int xTemp;
-	int yTemp;
+	int area;
 
-	visitNode = new Node();
+	World * check =  World::getWorld();
+	area = check->getArea();
 
 	for (int yCount = 0; yCount < area; yCount++)
 	{
@@ -39,14 +37,14 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			thisTile = map[xCount] [yCount];
 			//needs to be expanded upon so that it can find one set character.
 			//should not be needed if the character could know position as well.
-			if ((*thisTile->getHasCharacter())) {
-				startNode = new Node(xCount, yCount, NULL, 0);
+			if ((thisTile->getHasCharacter())) {
+				startNode = new Node(xCount, yCount, 0, goalNode->getXPos(), goalNode->getYPos(), NULL);
 
 
 			}
 
-			if ((*thisTile->getHasGoal())) {
-				goalNode = new Node(xCount, yCount, NULL, 0);
+			if ((thisTile->getIsGoal())) {
+				goalNode = new Node(xCount, yCount, 0, xCount, yCount, NULL);
 			}
 		}
 	}
@@ -74,22 +72,22 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 		{			
 			
 			//checking for wall above
-			thisTile = *map [visitNode->getXPos()] [visitNode->getYPos()-1];
+			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
 			if  (!thisTile->getIsWall()){
-				visitNode->up = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode, visitNode->getStep());	
+				visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
 			}
 
-			thisTile = *map [visitNode->getXPos()+1] [visitNode->getYPos()];
+			thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
 			if  (!thisTile->getIsWall()){
-				visitNode->right = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode, visitNode->getStep());	
+				visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
 			}
-			thisTile = *map [visitNode->getXPos()] [visitNode->getYPos()+1];
+			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
 			if  (!thisTile->getIsWall()){
-				visitNode->down = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode, visitNode->getStep());
+				visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
 			}
-			thisTile = *map [visitNode->getXPos()-1] [visitNode->getYPos()];
+			thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
 			if  (!thisTile->getIsWall()){
-				visitNode->left = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode, visitNode->getStep());
+				visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
 			}
 			
 

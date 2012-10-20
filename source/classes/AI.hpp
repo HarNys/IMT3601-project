@@ -13,11 +13,10 @@ private:
 
 protected:
 public:
-	void aStar(Tile**** const map);
+	void aStar(Tile*** const map);
 	void movement(Character* tempchar);
 
 };
 
 
-<<<<<<< HEAD
-#endif  __AI__HEADER__GUARD__
+#endif  //__AI__HEADER__GUARD__
