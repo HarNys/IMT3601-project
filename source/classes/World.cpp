@@ -15,7 +15,7 @@ World::World()
 	area = 0;
 	map = NULL;
 
-
+	border = 1;
 	currentX = 1;
 	currentY = 1;
 };
@@ -107,10 +107,13 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate(bool start)
 {
+	int StartX = 0;
+	int StartY = 0;
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
-	Tile *temp;
-	
+	std::list<Tile*>::iterator temp_list; //this will be used to access elements in unVisited
+	Tile *temp; //holds 
+	int list_position = 0;
 	int seed = time(NULL);
 	srand(seed);
 	int Direction = rand() % 4;
@@ -118,38 +121,208 @@ void World::randomGenerate(bool start)
 	
 	if(start)
 	{
-		int StartX = rand() % (area-2) + 1; //add border late
-		int StartY = rand() % (area-2) + 1;
-		visited->push_front(map[StartX][StartY]);
+		unVisited = new std::list<Tile*>;
+		visited = new std::list<Tile*>;
+		StartX = (rand() % (area-2) + border);
+		StartY = (rand() % (area-2) + border);
+		printf("%d:%d", StartX, StartY);
+		
 		currentX = StartX;
 		currentY = StartY;
 		map[currentX][currentY]->setVisited();
+		map[currentX][currentY]->setWall(false);
+		map[currentX][currentY]->initSprite(currentX, currentY);
 
-		unVisited->push_front(map[currentX][currentY - 2]);
-		unVisited->push_front(map[currentX + 2][currentY]);
-		unVisited->push_front(map[currentX][currentY + 2]);
 		unVisited->push_front(map[currentX - 2][currentY]);
+		unVisited->push_front(map[currentX][currentY + 2]);
+		unVisited->push_front(map[currentX + 2][currentY]);
+		unVisited->push_front(map[currentX][currentY - 2]);
 	}
-
-	//make an enumerator containing the orders then select one at random
 	
-	while(!unVisited->empty())
+	while(visited->size() != ((area * area) - 64))
 	{
-		if(Direction == 1)
-		{
-									
+		if(Direction == 0)	//Direction equals up
+		{	
+			if(currentY - 2 > 0)	//as long as I'm not at the border
+			{
+				currentY = currentY - 2;
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				{
+					if(list_position == Direction)	//when I'm at the corresponding Direction
+					{
+						temp = *temp_list;	//get the current tile
+						
+						if(!temp->getVisited())	//if it's not visited
+						{
+							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
+							map[currentX][currentY]->setWall(false);
+							map[currentX][currentY]->initSprite(currentX, currentY);
+							unVisited->remove(temp);
+							visited->push_front(map[currentX][currentY]);
+
+							map[currentX][currentY+1]->setVisited();	//change the tile between current and previous tile to a floor
+							map[currentX][currentY+1]->setWall(false);
+							map[currentX][currentY+1]->initSprite(currentX, currentY+1);
+							visited->push_front(map[currentX][currentY+1]);
+
+							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							unVisited->push_front(map[currentX][currentY + 2]);
+							unVisited->push_front(map[currentX + 2][currentY]);
+							unVisited->push_front(map[currentX][currentY - 2]);	
+						}
+						else
+						{
+							unVisited->remove(temp);
+							currentY = currentY + 2;
+						}
+						break;
+					}
+				}
+
+				randomGenerate();
+			}
+			else
+			{
+				unVisited->pop_front(); //pops the top since this is the up dircetion (?)
+				randomGenerate();
+			}
 		}
-		else if(Direction == 2)
+		else if(Direction == 1)	//Direction equals right
 		{
-		
+			if(currentX + 2 < (area - border))	//as long as I'm not at the border
+			{
+				currentX = currentX + 2;
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				{
+					if(list_position == Direction)	//when I'm at the corresponding Direction
+					{
+						temp = *temp_list;	//get the current tile
+						
+						if(!temp->getVisited())	//if it's not visited
+						{
+							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
+							map[currentX][currentY]->setWall(false);
+							map[currentX][currentY]->initSprite(currentX, currentY);
+							unVisited->remove(temp);
+							visited->push_front(map[currentX][currentY]);
+
+							map[currentX-1][currentY]->setVisited();	//change the tile between current and previous tile to a floor
+							map[currentX-1][currentY]->setWall(false);
+							map[currentX-1][currentY]->initSprite(currentX-1, currentY);
+							visited->push_front(map[currentX-1][currentY]);
+
+							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							unVisited->push_front(map[currentX][currentY + 2]);
+							unVisited->push_front(map[currentX + 2][currentY]);
+							unVisited->push_front(map[currentX][currentY - 2]);	
+						}
+						else
+						{
+							unVisited->remove(temp);
+							currentX = currentX + 2;
+						}
+						break;
+					}
+				}
+
+				randomGenerate();
+			}
+			else
+			{
+				unVisited->pop_front(); //pops the top since this is the up dircetion (?)
+				randomGenerate();
+			}
 		}
-		else if(Direction == 3)
+		else if(Direction == 2) //Direction equals down
 		{
-		
+			if(currentY + 2 < area - border)	//as long as I'm not at the border
+			{
+				currentY = currentY + 2;
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				{
+					if(list_position == Direction)	//when I'm at the corresponding Direction
+					{
+						temp = *temp_list;	//get the current tile
+						
+						if(!temp->getVisited())	//if it's not visited
+						{
+							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
+							map[currentX][currentY]->setWall(false);
+							map[currentX][currentY]->initSprite(currentX, currentY);
+							unVisited->remove(temp);
+							visited->push_front(map[currentX][currentY]);
+
+							map[currentX][currentY-1]->setVisited();	//change the tile between current and previous tile to a floor
+							map[currentX][currentY-1]->setWall(false);
+							map[currentX][currentY-1]->initSprite(currentX, currentY-1);
+							visited->push_front(map[currentX][currentY-1]);
+
+							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							unVisited->push_front(map[currentX][currentY + 2]);
+							unVisited->push_front(map[currentX + 2][currentY]);
+							unVisited->push_front(map[currentX][currentY - 2]);	
+						}
+						else
+						{
+							unVisited->remove(temp);
+							currentY = currentY - 2;	//go back to previous tile
+						}
+						break;
+					}
+				}
+				randomGenerate();
+			}
+			else
+			{
+				unVisited->pop_front(); //pops the top since this is the up dircetion (?)
+				randomGenerate();
+			}
 		}
-		else if(Direction == 4)
+		else if(Direction == 3) //Direction equals left
 		{
-			
+			if(currentX - 2 > 0)	//as long as I'm not at the border
+			{
+				currentX = currentX - 2;
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				{
+					if(list_position == Direction)	//when I'm at the corresponding Direction
+					{
+						temp = *temp_list;	//get the current tile
+						
+						if(!temp->getVisited())	//if it's not visited
+						{
+							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
+							map[currentX][currentY]->setWall(false);
+							map[currentX][currentY]->initSprite(currentX, currentY);
+							unVisited->remove(temp);
+							visited->push_front(map[currentX][currentY]);
+
+							map[currentX+1][currentY]->setVisited();	//change the tile between current and previous tile to a floor
+							map[currentX+1][currentY]->setWall(false);
+							map[currentX+1][currentY]->initSprite(currentX+1, currentY);
+							visited->push_front(map[currentX+1][currentY]);
+
+							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							unVisited->push_front(map[currentX][currentY + 2]);
+							unVisited->push_front(map[currentX + 2][currentY]);
+							unVisited->push_front(map[currentX][currentY - 2]);	
+						}
+						else
+						{
+							unVisited->remove(temp);
+							currentX = currentX + 2;
+						}
+						break;
+					}
+				}
+
+				randomGenerate();
+			}
+			else
+			{
+				unVisited->pop_front(); //pops the top since this is the up direction (?)
+				randomGenerate();
+			}
 		}
 	}
 };
