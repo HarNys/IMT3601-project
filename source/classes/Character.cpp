@@ -12,6 +12,7 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
+	controllerType = 0;
 };
 
 /**
@@ -121,55 +122,7 @@ void Character::resetDirection()
 	characterDirectionY = 0;
 };
 
-///movement-functions
-///checks if the key is pressed and then released
-///to reset characterDirectionX/Y
-/// @todo document parameter
-void Character::characterInput(sf::Event e)
-{
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		characterDirectionX = -1;
-		sprite.setTextureRect(sf::IntRect(0, 51, 15, 15));
 
-		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
-			characterDirectionX = 0;
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-
-		characterDirectionX = 1;
-		sprite.setTextureRect(sf::IntRect(0, 17, 15, 15));
-
-		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
-			characterDirectionX = 0;
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		characterDirectionY = -1;
-		sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
-
-		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
-			characterDirectionY = 0;
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		characterDirectionY = 1;
-		sprite.setTextureRect(sf::IntRect(0, 34, 15, 15));
-
-		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
-			characterDirectionY = 0;
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-	{
-		if(e.KeyReleased && e.key.code == sf::Keyboard::E)
-		{
-			minePlaced = true;
-//			std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
-		}
-	}
-
-};
 
 /**
  * returns the current sprite.
@@ -180,3 +133,42 @@ sf::Sprite *Character::getSprite()
 {
 	return &sprite;
 };
+
+/**
+*	@param [in]	CharacterDirection(x or y dir), The direction the character is moving(+ - dir), top left corner xand y of the sprite
+*			and with and hight of the sprite you want do draw
+*/
+void Character::move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight)
+{
+	sprite.setTextureRect(sf::IntRect(drawTopCornerX, drawTopCornerY, drawWith, drawHight));
+
+	if ('X'== CharacterDirection)
+	{
+		characterDirectionX = moveDirection;
+	}
+	else
+	{
+		characterDirectionY = moveDirection;
+	}
+	
+
+}
+
+
+void Character::updatePosition(sf::Event e, Character* thischaracter)
+{
+	enum controller{PlayerControl, AiControl, NetworkControl};
+
+	if (controllerType == PlayerControl)
+	{
+		localPlayerController.characterInput(e,thischaracter);
+	}
+	else if(controllerType == AiControl)
+	{
+		npcController.movement(thischaracter)
+	}
+	else if(controllerType == NetworkControl)
+	{
+
+	}
+}

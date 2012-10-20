@@ -10,7 +10,6 @@ CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
-	
 	int maxChar=2;
 	Character* tempChar = new Character;
 	tempChar->initImage();
@@ -47,11 +46,11 @@ Character* CharacterFactory::getCharacter(int type)
 {
 	characterType typeOfplayer;
 	
-	NonePlayerCharacter* tempCharacter;
+	Character* tempCharacter;
 
 	if (readyCharacters.size() >= 0)
 	{
-		//tempCharacter = readyCharacters.at(readyCharacters.size()-1);
+		tempCharacter = readyCharacters.at(readyCharacters.size()-1);
 		usedCharacters.push_back(tempCharacter);
 		readyCharacters.pop_back();
 		tempCharacter->initCharacter();

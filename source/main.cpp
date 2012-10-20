@@ -59,8 +59,8 @@ int main(int argc, char **argv)
 	Character *player1 = characterFactory->getCharacter(0);				// 0 for local-player character
 	world->placeCharacter(player1);
 
-	Character *player5 = characterFactory->getCharacter(1);				// 1 none-playercharacter.
-	world->placeCharacter(player5);
+	//Character *player5 = characterFactory->getCharacter(1);				// 1 none-playercharacter.
+	//world->placeCharacter(player5);
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
@@ -78,7 +78,8 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-			player1->characterInput(event);
+			player1->updatePosition(event, player1);
+			//player1->characterInput(event);
 
 			// Close window : exit
 			if (event.type == sf::Event::Closed)

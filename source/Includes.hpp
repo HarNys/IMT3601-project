@@ -40,5 +40,11 @@
 #include "classes/World.hpp"
 #include "classes/AI.hpp"
 #include "classes/Node.hpp"
+#include "classes/Player.hpp"
+
+//// Controllers ////
+static LocalPlayer localPlayerController;
+static NonePlayerCharacter npcController;
+>>>>>>> bc6afb172d9397a48308de47f4eb2c4cfdaade66
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

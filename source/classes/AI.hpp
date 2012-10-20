@@ -1,12 +1,12 @@
-#ifndef __AI__HEADER__GUARD__
-#define __AI__HEADER__GUARD__
+#ifndef __NPC__HEADER__GUARD__
+#define __NPC__HEADER__GUARD__
 #include "../Includes.hpp"
 
 
 /** this class is going to have the AI
 
 */
-class NonePlayerCharacter: public Character
+class NonePlayerCharacter
 {
 private:
 
@@ -14,8 +14,10 @@ private:
 protected:
 public:
 	void aStar(Tile**** const map);
+	void movement(Character* tempchar);
 
 };
 
 
+<<<<<<< HEAD
 #endif  __AI__HEADER__GUARD__
