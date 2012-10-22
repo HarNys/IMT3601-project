@@ -175,6 +175,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
 		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
+
 };
 
 /**
@@ -268,6 +269,8 @@ bool World::update()
 	{
 		setGoal();
 	}
+
+	npcController.aStar(map);
 
 	return true;
 };

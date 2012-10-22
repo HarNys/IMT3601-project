@@ -17,7 +17,7 @@ private:
 	int characterHealth;	///< How much healt the player have left
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
-	int controllerType;		///< 1 for localplayer, 2 for NPC, 3 for networkPlayer.
+	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	sf::Texture texture;
 	sf::Sprite sprite;
 

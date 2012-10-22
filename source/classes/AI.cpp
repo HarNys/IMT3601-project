@@ -81,7 +81,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			
 			yDir = (queueNode->getYPos() - tempNode->getYPos());
 
-			movement(xDir, yDir);
+			//movement(xDir, yDir);
 		}
 		
 		//when goal is not reached
