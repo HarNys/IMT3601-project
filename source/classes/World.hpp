@@ -28,6 +28,7 @@ public:
         void draw(sf::RenderWindow *window);
 	Tile ***getMap();
 	int getArea();
+	void setGoal();
 };
 
 #endif // __WORLD__HEADER__GUARD__

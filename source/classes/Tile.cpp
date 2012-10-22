@@ -146,6 +146,12 @@ bool Tile::setCharacter(Character *character)
 	return true;
 };
 
+bool Tile::setGoal()
+{
+	isGoal= true;
+	return isGoal;
+}
+
 bool Tile::getIsGoal(){
 	return isGoal;
 };

@@ -24,6 +24,7 @@ private:
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
+
 	
 public:
 	Tile();
@@ -31,6 +32,7 @@ public:
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
+	bool setGoal();
 	bool getIsWall();
 	bool getIsGoal();
 	Mine *getHasMine();

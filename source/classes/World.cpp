@@ -289,6 +289,29 @@ void World::draw(sf::RenderWindow *window)
 	}
 };
 
+
+void World::setGoal()
+{
+	Tile* thisTile;
+	int x;
+	int y;
+	srand(time(NULL));
+	do 
+	{
+		do
+		{
+			x = (rand()%(area-2))+1;
+			y = (rand()%(area-2))+1;
+		}while(x == area || 0 == x || y == area || 0 == y);
+		
+		thisTile = map[x][y];
+
+	}while(thisTile->getIsWall());
+
+	thisTile->setGoal();
+
+}
+
 Tile ***World::getMap()
 {
 	return map;
