@@ -107,19 +107,26 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate()
 {
-	std::map<Tile*,sf::vector2i*> *frontier;
+	std::map<Tile*,sf::Vector2i*> frontier;
 	std::list<Tile*> visited;
 	int startX = 0;
 	int startY = 0;
+	int directionX = 0;
+	int directionY = 0;
+	sf::Vector2i *startVector = new sf::Vector2i((rand() % (area-2) + border),(rand() % (area-2) + border));
 
-	direction = (rand() % 4);
-	frontier = new std::map<Tile*,sf::vector2i>;
-	visited = new std::list<Tile*>;
+	directionX = ((rand() % 2) -1);
+	directionY = ((rand() % 2) -1);
+	frontier = new std::map<Tile*,sf::Vector2i*>;
+//	visited = new std::list<Tile*>;
 	startX = (rand() % (area-2) + border);
 	startY = (rand() % (area-2) + border);
 	printf("World::randomGenerate(): startx:%4d, starty:%4d\n", startX, startY);
+//	startVector->x = startX;
+//	startVector->y = startY;
+	frontier->insert((*map[startX][startY]), startVector);
 
-	recursiveRandomGenerate();
+	recursiveRandomGenerate(directionX, directionY, frontier, visited);
 };
 
 /**
@@ -130,7 +137,7 @@ void World::randomGenerate()
  *
  * @return true on success.
  */
-bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Tile*,sf::vector2i> *frontier, std::list *visited)
+bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Tile*,sf::Vector2i*> *frontier, std::list *visited)
 {
 	/// Should do the calculations before loop.
 	while(visited->size() != ((area * area) - 64))
