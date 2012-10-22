@@ -23,7 +23,8 @@ public:
 	int getYPos ();
 	float getPriority();
 	int getLevel(); 
-	void visit();
+	void setVisit();
+	bool checkVisited();
 	Node* getParent();
 	Node* leftChild;
 	Node* rightChild;

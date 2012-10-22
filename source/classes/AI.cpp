@@ -24,6 +24,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	Node * startNode;
 	Node * goalNode;
 	Node * visitNode;
+	Node * tempNode;
 	bool queueFlag = 0;
 	int area;
 
@@ -53,28 +54,43 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	//until a complete queue has flagged
 	while (!queueFlag)
 	{
-		visitNode = startNode->findCheapestUnusedRecursively();
-		visitNode->visit();
-		//when the goal has been reached, meaning they can create a queue
-		if( visitNode->getXPos() != goalNode->getXPos() 
-			|| visitNode->getYPos() != goalNode->getYPos())
+		if (startNode->findCheapestUnusedRecursively() != NULL)
 		{
-
-
-
-
-
-
-			queueFlag=1;
+			visitNode = startNode->findCheapestUnusedRecursively();
 		}
+		
+		else 
+		{
+			visitNode = startNode;
+		}
+
+		visitNode->setVisit();
+		
+		//when the goal has been reached, meaning they can create a queue
+		if( visitNode->getXPos() == goalNode->getXPos() 
+			&& visitNode->getYPos() == goalNode->getYPos())
+		{
+			queueNode = visitNode;
+			while (queueNode->getParent() != startNode)
+			{
+				queueNode = queueNode->getParent();
+			}
+			queueFlag = true;
+			tempNode = queueNode->getParent();
+			xDir = (queueNode->getXPos() - tempNode->getXPos());
+			
+			yDir = (queueNode->getYPos() - tempNode->getYPos());
+
+			movement(xDir, yDir);
+		}
+		
 		//when goal is not reached
 		else
 		{			
-			
 			//checking for wall above
 			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
 			if  (!thisTile->getIsWall()){
-				visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
+				visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
 			}
 
 			thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
@@ -90,8 +106,6 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 				visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
 			}
 			
-
-
 		}
 	}
 
