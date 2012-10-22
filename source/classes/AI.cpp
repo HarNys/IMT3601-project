@@ -39,7 +39,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			//needs to be expanded upon so that it can find one set character.
 			//should not be needed if the character could know position as well.
 			if (thisTile->getHasCharacter()) {
-				startNode = new Node(xCount, yCount, 0, goalNode->getXPos(), goalNode->getYPos(), NULL);
+				startNode = new Node(xCount, yCount, 0, 0, 0, NULL);
 			}
 
 			if (thisTile->getIsGoal()) {
@@ -61,16 +61,16 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			&& visitNode->getYPos() == goalNode->getYPos())
 		{
 			queueNode = visitNode;
-			while (queueNode->getParent() != startNode)
+			while (startNode != queueNode->getParent() )
 			{
 				queueNode = queueNode->getParent();
 			}
 			queueFlag = true;
 			tempNode = queueNode->getParent();
 			
-			xDir = (tempNode->getXPos() - queueNode->getXPos());
+			xDir = (queueNode->getXPos() - tempNode->getXPos());
 					
-			yDir = (tempNode->getYPos() - queueNode->getYPos());
+			yDir = (queueNode->getYPos() - tempNode->getYPos());
 			//movement(xDir, yDir);
 		}
 			//when goal is not reached
