@@ -14,6 +14,7 @@ Tile::Tile()
 	characterFactory = characterFactory->getCharacterFactory();
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(): done standard Tile constructor\n");
+	isGoal = false;
 };
 
 /**
@@ -213,18 +214,26 @@ void Tile::initImage()
 /**
  * sets visibility of the floor
  *
- * @param [in] mineVisible: true sets the Mine sprite; false sets floor sprite.
+ * @param [in] floorType: 0 for floor, 1 for mine and 2 for goal.
  */
-void Tile::setFloor(bool mineVisible)
+void Tile::setFloor(int static floorType)
 {
-	if (mineVisible)
-	{
-		tileSprite.setTextureRect(sf::IntRect(17, 0, 16, 16));
-	}
-	else
+
+	if(0 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	}
+	
+	if (1 == floorType)
+	{
+		tileSprite.setTextureRect(sf::IntRect(17, 0, 16, 16));
+	}
+	
+	if (2 == floorType)
+	{
+		tileSprite.setTextureRect(sf::IntRect(0, 17, 16, 16));
+	}
+
 };
 
 /**

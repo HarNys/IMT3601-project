@@ -222,6 +222,9 @@ bool World::update()
 	Character *thisCharacter = NULL;
 	static sf::Clock fpsUpdateTimer;
 
+	// 
+	 static bool goalExists;
+
 	// start of operations
 	fpsUpdateTimer.restart();
 	for (yCount = 0; yCount < area; yCount++)
@@ -235,11 +238,11 @@ bool World::update()
 				{
 					if (!thisMine->visibilityCountDown())
 					{
-						thisTile->setFloor(true);
+						thisTile->setFloor(1);
 					}
 					else
 					{
-						thisTile->setFloor(false);
+						thisTile->setFloor(0);
 					}
 				}
 				if ((thisCharacter = thisTile->getHasCharacter()))
@@ -254,9 +257,21 @@ bool World::update()
 					}
 					thisCharacter->resetDirection();
 				}
+				
+				if(thisTile->getIsGoal())
+				{
+					thisTile->setFloor(2);
+					goalExists = true;
+				}
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
+
+	if (!goalExists)		//if the is no goal then make one;
+	{
+		setGoal();
+	}
+
 	return true;
 };
 
@@ -296,20 +311,19 @@ void World::setGoal()
 	int x;
 	int y;
 	srand(time(NULL));
-	do 
+	do				//Do while tile (x,y) is a wall	
 	{
-		do
+		do			//DO while tile (x,y) is on the border
 		{
 			x = (rand()%(area-2))+1;
 			y = (rand()%(area-2))+1;
-		}while(x == area || 0 == x || y == area || 0 == y);
+		}while((x == area) || (0 == x) || (y == area) || (0 == y));
 		
 		thisTile = map[x][y];
 
 	}while(thisTile->getIsWall());
 
 	thisTile->setGoal();
-
 }
 
 Tile ***World::getMap()
