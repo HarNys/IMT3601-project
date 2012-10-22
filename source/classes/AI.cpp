@@ -104,14 +104,24 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 
 void NonePlayerCharacter::movement(Character* tempchar)
 {
-	if(/*move x -1*/0)
+	if(/*move left*/0)
 	{
 		tempchar->move('X', -1 ,0, 51, 15, 15);
-		
 	}
-	else /*stop movement*/
+	
+	else if(/*right*/0)
 	{
-		tempchar->move('X',0 ,0, 51, 15, 15);
+		tempchar->move('X', 1 , 0, 17, 15, 15);
+	}
+	
+	else if(/*up*/0)
+	{
+		tempchar->move('Y', -1 , 0, 0, 15, 15);	
+	}
+	
+	else if(/*down*/0)
+	{
+		tempchar->move('Y', 1 , 0, 34, 15, 15);
 	}
 
 

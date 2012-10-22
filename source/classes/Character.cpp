@@ -12,7 +12,7 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
-	controllerType = 1;
+	controllerType = 0;
 };
 
 /**

@@ -75,10 +75,10 @@ int main(int argc, char **argv)
 		sf::Event event;
 
 		/// @todo add escape as exit button
-
+		player1->updatePosition(event, player1);
 		while (screen.pollEvent(event))
 		{
-			player1->updatePosition(event, player1);
+			
 			//player1->characterInput(event);
 
 			// Close window : exit
