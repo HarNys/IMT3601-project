@@ -16,8 +16,8 @@ World::World()
 	map = NULL;
 
 	border = 1;
-	currentX = 1;
-	currentY = 1;
+/*	currentX = 1;
+	currentY = 1; */
 };
 
 /**
@@ -95,7 +95,7 @@ bool World::initMap(char *mapFile)
 		file.ignore(1, '\n');
 	}
 	file.close();
-	map[currentX][currentY]->setVisited();
+//	map[currentX][currentY]->setVisited();
 	return true;
 };
 
@@ -107,9 +107,8 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate()
 {
-	std::map<Tile*,sf::vector2i> *frontier;
+	std::map<Tile*,sf::vector2i*> *frontier;
 	std::list<Tile*> visited;
-	int direction = 0;
 	int startX = 0;
 	int startY = 0;
 
@@ -120,22 +119,18 @@ void World::randomGenerate()
 	startY = (rand() % (area-2) + border);
 	printf("World::randomGenerate(): startx:%4d, starty:%4d\n", startX, startY);
 
-	recursiveRandomGenerate(&startX, &startY, frontier, visited);
+	recursiveRandomGenerate();
 };
 
 /**
  * Make maze-ish map by doing a recursive depth first search. We only check every
  * other Tile, this way we skip the problems of diagonals and so such.
  *
- * @param currentX The x coordinate we are currently on.
- * @param currentY The y coordinate we are currently on.
- * @param directionX The x direction of the Tile we are trying to visit.
- * @param directionY The y direction of the Tile we are trying to visit.
- * @param frontier The current frontier list.
+ * @param frontier The TROLOLO
  *
  * @return true on success.
  */
-bool World::recursiveRandomGenerate(int *currentX, int *currentY, int directionX, int directionY, std::list<Tile*> *frontier)
+bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Tile*,sf::vector2i> *frontier, std::list *visited)
 {
 	/// Should do the calculations before loop.
 	while(visited->size() != ((area * area) - 64))
