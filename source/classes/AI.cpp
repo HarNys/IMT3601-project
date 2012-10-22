@@ -38,32 +38,22 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			thisTile = map[xCount] [yCount];
 			//needs to be expanded upon so that it can find one set character.
 			//should not be needed if the character could know position as well.
-			if ((thisTile->getHasCharacter())) {
+			if (thisTile->getHasCharacter()) {
 				startNode = new Node(xCount, yCount, 0, goalNode->getXPos(), goalNode->getYPos(), NULL);
-
-
 			}
 
-			if ((thisTile->getIsGoal())) {
+			if (thisTile->getIsGoal()) {
 				goalNode = new Node(xCount, yCount, 0, xCount, yCount, NULL);
 			}
 		}
 	}
 
-	visitNode = startNode;
 	//until a complete queue has flagged
 	while (!queueFlag)
 	{
-		if (startNode->findCheapestUnusedRecursively() != NULL)
-		{
-			visitNode = startNode->findCheapestUnusedRecursively();
-		}
 		
-		else 
-		{
-			visitNode = startNode;
-		}
-
+		visitNode = startNode->findCheapestUnusedRecursively();
+			
 		visitNode->setVisit();
 		
 		//when the goal has been reached, meaning they can create a queue
@@ -78,14 +68,12 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			queueFlag = true;
 			tempNode = queueNode->getParent();
 			
-			xDir = (queueNode->getXPos() - tempNode->getXPos());
+			xDir = (tempNode->getXPos() - queueNode->getXPos());
 					
-			yDir = (queueNode->getYPos() - tempNode->getYPos());
-
+			yDir = (tempNode->getYPos() - queueNode->getYPos());
 			//movement(xDir, yDir);
 		}
-		
-		//when goal is not reached
+			//when goal is not reached
 		else
 		{			
 			//checking for wall above

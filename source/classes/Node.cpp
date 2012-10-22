@@ -118,7 +118,8 @@ Node* Node::findCheapestUnusedRecursively()
 		}
 		
 	}
-	if (smallestNode){
+	if (smallestNode)
+	{
 		if (!smallestNode->checkVisited())
 		{
 			return smallestNode;
@@ -133,8 +134,6 @@ Node* Node::findCheapestUnusedRecursively()
 	{
 		return this; 
 	}
-
-
 };
 
 bool Node::checkVisited()
