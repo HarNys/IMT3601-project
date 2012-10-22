@@ -216,19 +216,19 @@ void Tile::initImage()
  *
  * @param [in] floorType: 0 for floor, 1 for mine and 2 for goal.
  */
-void Tile::setFloor(int static floorType)
+void Tile::setFloor(int floorType)
 {
 
 	if(0 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	}
-	
+
 	if (1 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(17, 0, 16, 16));
 	}
-	
+
 	if (2 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(0, 17, 16, 16));

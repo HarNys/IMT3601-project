@@ -27,14 +27,17 @@ public:
 	bool initCharacter();
 	bool getMinePlaced();
 	void setMinePlaced(bool minePlace);
-	float getCharacterDirectionX();
-	float getCharacterDirectionY();
+	int getCharacterDirectionX();
+	int getCharacterDirectionY();
+	bool setCharacterDirectionX(int newXDirection);
+	bool setCharacterDirectionY(int newYDirection);
 	void draw(sf::RenderWindow* window);
 	void updatePosition(sf::Event e, Character* thischaracter);
 	void resetDirection();
 	void updateCharacterHealt(int health);
 	void move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight);
 	sf::Sprite *getSprite();
+	bool updateSprite(float xPosition, float yPosition);
 };
 
 #endif //__CHARACTER__HEADER__GUARD__
