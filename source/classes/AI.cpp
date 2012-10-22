@@ -97,22 +97,31 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 
 }
 
-///movement-functions
-///checks if the key is pressed and then released
-///to reset characterDirectionX/Y
-/// @param [in] pointer to character to move
+/**	movement-functions
+*	checks if the key is pressed and then released
+*	to reset characterDirectionX/Y
+*	@param [in] pointer to character to move
+*/
 
 void NonePlayerCharacter::movement(Character* tempchar)
 {
-	if(/*move x -1*/0)
+	if(0)
 	{
 		tempchar->move('X', -1 ,0, 51, 15, 15);
 		
 	}
-	else /*stop movement*/
+	if(0)
 	{
-		tempchar->move('X',0 ,0, 51, 15, 15);
+		tempchar->move('X',1 ,0, 51, 15, 15);
 	}
 
+	if(0)
+	{
+		tempchar->move('Y', -1 , 0, 0, 15, 15);
+	}
 
+	if(0)
+	{
+		tempchar->move('Y', 1 , 0, 34, 15, 15);
+	}
 };

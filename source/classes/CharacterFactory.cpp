@@ -73,6 +73,17 @@ Character* CharacterFactory::getCharacter(int type)
  */
 bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
-	printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
+	readyCharacters.push_back(characterReleased);
+	std::vector<Character *>::iterator umIter;
+	for (umIter=usedCharacters.begin(); umIter < usedCharacters.end(); umIter++ )
+	{
+		if ((*umIter) == characterReleased)
+		{
+			usedCharacters.erase(umIter);
+		}
+	}
+	
+	
+	//printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
 	return true;
 }

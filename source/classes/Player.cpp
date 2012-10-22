@@ -38,7 +38,7 @@ void LocalPlayer::characterInput(sf::Event e, Character* tempchar)
 	{
 		if(e.KeyReleased && e.key.code == sf::Keyboard::E)
 		{
-			//minePlaced = true;
+			//tempchar->minePlaced = true;
 //			std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
 		}
 	}

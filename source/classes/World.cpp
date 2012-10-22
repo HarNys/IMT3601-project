@@ -104,7 +104,7 @@ bool World::initMap(char *mapFile)
  */
 bool World::placeCharacter(Character *character)
 {
-	static int xSpace = 1;
+	int xSpace = 1;
 	map[xSpace++][1]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15);
 	return true;
@@ -330,4 +330,30 @@ Tile ***World::getMap()
 
 int World::getArea(){
 	return area;
+}
+
+bool World::reset()
+{
+	Tile *thisTile;
+	CharacterFactory* characterFetcher;
+	Character* tempCharacter;
+
+	int yCount;
+	int xCount;
+	
+	for (yCount = 0; yCount < area; yCount++)
+	{
+		for (xCount = 0; xCount < area; xCount++)
+		{
+			thisTile = map[xCount][yCount];
+			thisTile->reset();
+		}
+
+	}
+
+	characterFetcher = characterFetcher->getCharacterFactory();
+	tempCharacter = characterFetcher->getCharacter(1);
+	placeCharacter(tempCharacter);
+
+	return true;
 }

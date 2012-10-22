@@ -92,6 +92,13 @@ int main(int argc, char **argv)
 
 				screen.close();
 			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::P)
+				{
+					world->reset();
+				}
+			}
 		}
 	}
 	return EXIT_SUCCESS;
