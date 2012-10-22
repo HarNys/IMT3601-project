@@ -105,70 +105,83 @@ bool World::initMap(char *mapFile)
 * @return true on success
 * @todo make this shit work
 */
-void World::randomGenerate(bool start)
+void World::randomGenerate()
 {
-	int StartX = 0;
-	int StartY = 0;
-	static std::list<Tile*> *unVisited;
-	static std::list<Tile*> *visited;
-	std::list<Tile*>::iterator temp_list; //this will be used to access elements in unVisited
-	Tile *temp; //holds 
-	int list_position = 0;
-	int seed = time(NULL);
-	srand(seed);
-	int Direction = rand() % 4;
-	printf("%d", seed);
-	
-	if(start)
-	{
-		unVisited = new std::list<Tile*>;
-		visited = new std::list<Tile*>;
-		StartX = (rand() % (area-2) + border);
-		StartY = (rand() % (area-2) + border);
-		printf("%d:%d", StartX, StartY);
-		
-		currentX = StartX;
-		currentY = StartY;
-		map[currentX][currentY]->setVisited();
-		map[currentX][currentY]->setWall(false);
-		map[currentX][currentY]->initSprite(currentX, currentY);
+	std::map<Tile*,sf::vector2i> *frontier;
+	std::list<Tile*> visited;
+	int direction = 0;
+	int startX = 0;
+	int startY = 0;
 
-		unVisited->push_front(map[currentX - 2][currentY]);
-		unVisited->push_front(map[currentX][currentY + 2]);
-		unVisited->push_front(map[currentX + 2][currentY]);
-		unVisited->push_front(map[currentX][currentY - 2]);
-	}
-	
+	direction = (rand() % 4);
+	frontier = new std::map<Tile*,sf::vector2i>;
+	visited = new std::list<Tile*>;
+	startX = (rand() % (area-2) + border);
+	startY = (rand() % (area-2) + border);
+	printf("World::randomGenerate(): startx:%4d, starty:%4d\n", startX, startY);
+
+	recursiveRandomGenerate(&startX, &startY, frontier, visited);
+};
+
+/**
+ * Make maze-ish map by doing a recursive depth first search. We only check every
+ * other Tile, this way we skip the problems of diagonals and so such.
+ *
+ * @param currentX The x coordinate we are currently on.
+ * @param currentY The y coordinate we are currently on.
+ * @param directionX The x direction of the Tile we are trying to visit.
+ * @param directionY The y direction of the Tile we are trying to visit.
+ * @param frontier The current frontier list.
+ *
+ * @return true on success.
+ */
+bool World::recursiveRandomGenerate(int *currentX, int *currentY, int directionX, int directionY, std::list<Tile*> *frontier)
+{
+	/// Should do the calculations before loop.
 	while(visited->size() != ((area * area) - 64))
 	{
-		if(Direction == 0)	//Direction equals up
-		{	
+		if(direction == 0)	//Direction equals up
+		{
 			if(currentY - 2 > 0)	//as long as I'm not at the border
 			{
 				currentY = currentY - 2;
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				for(iterator = frontier->begin(); iterator != frontier->end(); iterator++, list_position++)
 				{
-					if(list_position == Direction)	//when I'm at the corresponding Direction
+					if(list_position == direction)	//when I'm at the corresponding Direction
 					{
-						temp = *temp_list;	//get the current tile
-						
-						if(!temp->getVisited())	//if it's not visited
+						tempTile = *temp_list;	//get the current tile
+
+						if(!tempTile->getVisited())	//if it's not visited
 						{
-							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
-							map[currentX][currentY]->setWall(false);
-							map[currentX][currentY]->initSprite(currentX, currentY);
+							randomGenerateVisit(map[currentX][currentY], currentX, currentY);
+
 							unVisited->remove(temp);
 							visited->push_front(map[currentX][currentY]);
+
+							randomGenerateVisit(map[currentX + direction][currentY], currentX, currentY);
 
 							map[currentX][currentY+1]->setVisited();	//change the tile between current and previous tile to a floor
 							map[currentX][currentY+1]->setWall(false);
 							map[currentX][currentY+1]->initSprite(currentX, currentY+1);
 							visited->push_front(map[currentX][currentY+1]);
 
-							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							unVisited->push_front(map[currentX][currentY + 2]);
-							unVisited->push_front(map[currentX + 2][currentY]);
-							unVisited->push_front(map[currentX][currentY - 2]);	
+							if ((currentX - 2) > 0)
+							{
+								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							}
+							if ((currentY + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX][currentY + 2]);
+							}
+							if ((currentX + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX + 2][currentY]);
+							}
+							if ((currentY - 2) > 0)
+							{
+								unVisited->push_front(map[currentX][currentY - 2]);
+							}
+
 						}
 						else
 						{
@@ -197,7 +210,7 @@ void World::randomGenerate(bool start)
 					if(list_position == Direction)	//when I'm at the corresponding Direction
 					{
 						temp = *temp_list;	//get the current tile
-						
+
 						if(!temp->getVisited())	//if it's not visited
 						{
 							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
@@ -211,10 +224,23 @@ void World::randomGenerate(bool start)
 							map[currentX-1][currentY]->initSprite(currentX-1, currentY);
 							visited->push_front(map[currentX-1][currentY]);
 
-							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							unVisited->push_front(map[currentX][currentY + 2]);
-							unVisited->push_front(map[currentX + 2][currentY]);
-							unVisited->push_front(map[currentX][currentY - 2]);	
+							if ((currentX - 2) > 0)
+							{
+								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							}
+							if ((currentY + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX][currentY + 2]);
+							}
+							if ((currentX + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX + 2][currentY]);
+							}
+							if ((currentY - 2) > 0)
+							{
+								unVisited->push_front(map[currentX][currentY - 2]);
+							}
+
 						}
 						else
 						{
@@ -243,7 +269,7 @@ void World::randomGenerate(bool start)
 					if(list_position == Direction)	//when I'm at the corresponding Direction
 					{
 						temp = *temp_list;	//get the current tile
-						
+
 						if(!temp->getVisited())	//if it's not visited
 						{
 							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
@@ -257,10 +283,23 @@ void World::randomGenerate(bool start)
 							map[currentX][currentY-1]->initSprite(currentX, currentY-1);
 							visited->push_front(map[currentX][currentY-1]);
 
-							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							unVisited->push_front(map[currentX][currentY + 2]);
-							unVisited->push_front(map[currentX + 2][currentY]);
-							unVisited->push_front(map[currentX][currentY - 2]);	
+							if ((currentX - 2) > 0)
+							{
+								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							}
+							if ((currentY + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX][currentY + 2]);
+							}
+							if ((currentX + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX + 2][currentY]);
+							}
+							if ((currentY - 2) > 0)
+							{
+								unVisited->push_front(map[currentX][currentY - 2]);
+							}
+
 						}
 						else
 						{
@@ -288,7 +327,7 @@ void World::randomGenerate(bool start)
 					if(list_position == Direction)	//when I'm at the corresponding Direction
 					{
 						temp = *temp_list;	//get the current tile
-						
+
 						if(!temp->getVisited())	//if it's not visited
 						{
 							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
@@ -302,10 +341,29 @@ void World::randomGenerate(bool start)
 							map[currentX+1][currentY]->initSprite(currentX+1, currentY);
 							visited->push_front(map[currentX+1][currentY]);
 
-							unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							unVisited->push_front(map[currentX][currentY + 2]);
-							unVisited->push_front(map[currentX + 2][currentY]);
-							unVisited->push_front(map[currentX][currentY - 2]);	
+							printf("World::randomGenerate(bool): cx(%d), cy(%d)\n"
+								,currentX,currentY);
+							if (currentX - 2 > 0)
+							{
+								printf(	"World::randomGenerate(bool): cx-2(%d)",(currentX-2));
+							}
+
+							if ((currentX - 2) > 0)
+							{
+								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							}
+							if ((currentY + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX][currentY + 2]);
+							}
+							if ((currentX + 2) < (area - 2))
+							{
+								unVisited->push_front(map[currentX + 2][currentY]);
+							}
+							if ((currentY - 2) > 0)
+							{
+								unVisited->push_front(map[currentX][currentY - 2]);
+							}
 						}
 						else
 						{
@@ -325,6 +383,19 @@ void World::randomGenerate(bool start)
 			}
 		}
 	}
+};
+
+/**
+ * Visit sent Tile, used in the recursiveRandomGenerate method.
+ *
+ * @param visitTile pointer to the Tile to be visited.
+ *
+ * @return true on success.
+ */
+bool randomGenerateVisit(Tile *visitTile, int xPosition, int yPosition)
+{
+	visitTile->setWall(false);
+	visitTile->initSprite(xPosition, yPosition);
 };
 
 /**
@@ -452,7 +523,7 @@ bool World::update()
 	Tile *thisTile = NULL;
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
-	
+
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)

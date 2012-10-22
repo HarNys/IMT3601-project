@@ -44,6 +44,7 @@ Tile::Tile(char quality)
  * 	or floor
  *
  * @return true on success
+ * @todo make it have a bool toTrue or something similar.
  */
 
 void Tile::setVisited()
