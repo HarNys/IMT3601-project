@@ -77,8 +77,9 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			}
 			queueFlag = true;
 			tempNode = queueNode->getParent();
-			xDir = (queueNode->getXPos() - tempNode->getXPos());
 			
+			xDir = (queueNode->getXPos() - tempNode->getXPos());
+					
 			yDir = (queueNode->getYPos() - tempNode->getYPos());
 
 			//movement(xDir, yDir);
@@ -118,24 +119,25 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 
 void NonePlayerCharacter::movement(Character* tempchar)
 {
-	if(xDir && (-1) == xDir)
+	if((-1) == xDir)
 	{
-		tempchar->move('X', -1 ,0, 51, 15, 15);
+		tempchar->move('X', xDir ,0, 51, 15, 15);
 	}
 	
-	else if(xDir && 1 == xDir)
+	if(1 == xDir)
 	{
-		tempchar->move('X', 1 , 0, 17, 15, 15);
+		tempchar->move('X', xDir , 0, 17, 15, 15);
 	}
 	
-	else if(yDir && (-1) == yDir)
+	if((-1) == yDir)
 	{
 		tempchar->move('Y', -1 , 0, 0, 15, 15);	
 	}
 	
-	else if(yDir && 1 == yDir)
+	if(1 == yDir)
 	{
 		tempchar->move('Y', 1 , 0, 34, 15, 15);
+		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
 	}
 
 
