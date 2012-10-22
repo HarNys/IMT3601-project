@@ -9,7 +9,9 @@
 class NonePlayerCharacter
 {
 private:
-
+Node* queueNode;
+int xDir;
+int yDir;
 
 protected:
 public:

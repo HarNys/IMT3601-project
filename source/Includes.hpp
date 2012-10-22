@@ -38,8 +38,8 @@
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-#include "classes/AI.hpp"
 #include "classes/Node.hpp"
+#include "classes/AI.hpp" // requires Node
 #include "classes/Player.hpp"
 
 //// Controllers ////
