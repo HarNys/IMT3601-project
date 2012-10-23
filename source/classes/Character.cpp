@@ -161,11 +161,21 @@ sf::Sprite *Character::getSprite()
 };
 
 /**
+ * Updates and sets a Characters sprite. The formula for arrowdirection
+ * calculates for the img/player.png which square to use. A more easily
+ * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
+ * or \f$(((x+2)*17*(x*X))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
+ * and characterDirectionY respectively
  *
+ * @param xPosition current x coordinate of the Character.
+ * @param yPosition current y coordinate of the Character.
+ *
+ * @return True on success.
  */
 bool Character::updateSprite(float xPosition, float yPosition)
 {
-	int arrowDirection = (((characterDirectionX + 2) * 17) + ((characterDirectionY + 1) * 17));
+	int arrowDirection = (17 * (pow(characterDirectionX, 3) + (2 * pow(characterDirectionX, 2))
+		+ pow(characterDirectionY, 3) + pow(characterDirectionY, 2)));
 	sprite.setPosition((15 * xPosition), (15 * yPosition));
 	sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
 	return true;
@@ -191,7 +201,7 @@ void Character::move(char CharacterDirection, int moveDirection, int drawTopCorn
 
 }
 
-/*
+
 void Character::updatePosition(sf::Event e, Character* thischaracter)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};

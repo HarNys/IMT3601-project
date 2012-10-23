@@ -1,7 +1,7 @@
 #include "../Includes.hpp"
 
 
-Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* par)	
+Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* par)
 {
 	xValue=posx;
 	yValue=posy;
@@ -11,19 +11,19 @@ Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* p
 	double yCube=yValue-goalYValue;
 	estimate = sqrt((pow(xCube, 2)+pow(yCube, 2)));
 	priority = estimate + level;
-	
+
 	leftChild =NULL;
 	rightChild =NULL;
 	upChild =NULL;
 	downChild =NULL;
 	visited = false;
 };
-	
+
 int Node::getXPos()
 {
 	return xValue;
 };
-	
+
 int Node::getYPos ()
 {
 	return yValue;
@@ -58,77 +58,82 @@ Node* Node::findCheapestUnusedRecursively()
 	if (upChild)
 	{
 		tempNode = upChild->findCheapestUnusedRecursively();
+
+		if (smallestNode==NULL)
+		{
+			smallestNode = tempNode;
+		}
+
+		if (tempNode->getPriority() < smallestNode->getPriority())
+		{
+			smallestNode = tempNode;
+		}
+
 	}
-	if (tempNode->getPriority() < smallestNode->getPriority())
-	{
-		smallestNode = tempNode;
-	}
-	if (smallestNode==NULL)
-	{
-		smallestNode = tempNode;
-	}
-	
 	if (rightChild)
 	{
 		tempNode = rightChild->findCheapestUnusedRecursively();
+
+		if (smallestNode==NULL)
+		{
+			smallestNode = tempNode;
+		}
+
+		if (tempNode->getPriority() < smallestNode->getPriority())
+		{
+			smallestNode = tempNode;
+		}
+
 	}
-	if (tempNode->getPriority() < smallestNode->getPriority())
-	{
-		smallestNode = tempNode;
-	}
-	if (smallestNode==NULL)
-	{
-		smallestNode = tempNode;
-	}
-	
-	
+
 	if (downChild)
 	{
 		tempNode = downChild->findCheapestUnusedRecursively();
+
+		if (smallestNode==NULL)
+		{
+			smallestNode = tempNode;
+		}
+
+		if (tempNode->getPriority() < smallestNode->getPriority())
+		{
+			smallestNode = tempNode;
+		}
+
+
 	}
-	if (tempNode->getPriority() < smallestNode->getPriority())
-	{
-		smallestNode = tempNode;
-	}
-	if (smallestNode==NULL)
-	{
-		smallestNode = tempNode;
-	}
-	
-	
 
 	if (leftChild)
 	{
 		tempNode = leftChild->findCheapestUnusedRecursively();
+
+		if (smallestNode==NULL)
+		{
+			smallestNode = tempNode;
+		}
+
+		if (tempNode->getPriority() < smallestNode->getPriority())
+		{
+			smallestNode = tempNode;
+		}
+
 	}
-	if (tempNode->getPriority() < smallestNode->getPriority())
+	if (smallestNode)
 	{
-		smallestNode = tempNode;
+		if (!smallestNode->checkVisited())
+		{
+			return smallestNode;
+		}
+
 	}
-	if (smallestNode==NULL)
-	{
-		smallestNode = tempNode;
-	}
-	
-	if (!smallestNode->checkVisited())
-	{
-		return smallestNode;
-	}
-	
 	else if (visited)
 	{
 		return NULL;
 	}
-	else 
-	{
-		return this; 
-	}
-
-
+	return this;
 };
 
 bool Node::checkVisited()
 {
-	return visited;		
+	return visited;
 };
-	

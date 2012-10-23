@@ -1,6 +1,6 @@
 # template makefile
 BINARY = ../main.bin
-OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o
+OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o ../Debug/AI.o ../Debug/Player.o ../Debug/Node.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
 GCC = g++ -Wall -O0 #-fopenmp
@@ -44,3 +44,12 @@ $(BINARY) : $(OBJECTS)
 
 ../Debug/CharacterFactory.o : classes/CharacterFactory.cpp classes/CharacterFactory.hpp Includes.hpp
 	$(GCC) $(COMPILEFLAGS) classes/CharacterFactory.cpp -o ../Debug/CharacterFactory.o
+
+../Debug/AI.o : classes/AI.cpp classes/AI.hpp Includes.hpp
+	$(GCC) $(COMPILEFLAGS) classes/AI.cpp -o ../Debug/AI.o
+
+../Debug/Player.o : classes/Player.cpp classes/Player.hpp Includes.hpp
+	$(GCC) $(COMPILEFLAGS) classes/Player.cpp -o ../Debug/Player.o
+
+../Debug/Node.o : classes/Node.cpp classes/Node.hpp Includes.hpp
+	$(GCC) $(COMPILEFLAGS) classes/Node.cpp -o ../Debug/Node.o
