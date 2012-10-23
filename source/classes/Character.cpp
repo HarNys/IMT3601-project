@@ -90,7 +90,7 @@ void Character::setMinePlaced(bool minePlace)
  *
  * @return characterDirectionX
  */
-float Character::getCharacterDirectionX()
+int Character::getCharacterDirectionX()
 {
 	return characterDirectionX;
 };
@@ -100,9 +100,35 @@ float Character::getCharacterDirectionX()
  *
  * @return characterDirectionY
  */
-float Character::getCharacterDirectionY()
+int Character::getCharacterDirectionY()
 {
 	return characterDirectionY;
+};
+
+/**
+ * returns the value of this Character's characterDirectionY.
+ *
+ * @param newYDirection the new y direction.
+ *
+ * @return true on success.
+ */
+bool Character::setCharacterDirectionY(int newYDirection)
+{
+	characterDirectionY = newYDirection;
+	return true;
+};
+
+/**
+ * returns the value of this Character's characterDirectionX.
+ *
+ * @param newXDirection the new x direction.
+ *
+ * @return true on success.
+ */
+bool Character::setCharacterDirectionX(int newXDirection)
+{
+	characterDirectionX = newXDirection;
+	return true;
 };
 
 /**
@@ -135,6 +161,27 @@ sf::Sprite *Character::getSprite()
 };
 
 /**
+ * Updates and sets a Characters sprite. The formula for arrowdirection
+ * calculates for the img/player.png which square to use. A more easily
+ * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
+ * or \f$(((x+2)*17*(x*X))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
+ * and characterDirectionY respectively
+ *
+ * @param xPosition current x coordinate of the Character.
+ * @param yPosition current y coordinate of the Character.
+ *
+ * @return True on success.
+ */
+bool Character::updateSprite(float xPosition, float yPosition)
+{
+	int arrowDirection = (17 * (pow(characterDirectionX, 3) + (2 * pow(characterDirectionX, 2))
+		+ pow(characterDirectionY, 3) + pow(characterDirectionY, 2)));
+	sprite.setPosition((15 * xPosition), (15 * yPosition));
+	sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
+	return true;
+};
+
+/**
 *	@param [in]	CharacterDirection(x or y dir), The direction the character is moving(+ - dir), top left corner xand y of the sprite
 *			and with and hight of the sprite you want do draw
 */
@@ -150,7 +197,7 @@ void Character::move(char CharacterDirection, int moveDirection, int drawTopCorn
 	{
 		characterDirectionY = moveDirection;
 	}
-	
+
 
 }
 
@@ -172,3 +219,4 @@ void Character::updatePosition(sf::Event e, Character* thischaracter)
 
 	}
 }
+//*/
