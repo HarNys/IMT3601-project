@@ -216,7 +216,7 @@ void Tile::initImage()
  *
  * @param [in] floorType: 0 for floor, 1 for mine and 2 for goal.
  */
-void Tile::setFloor(int static floorType)
+void Tile::setFloor(int const floorType)
 {
 
 	if(0 == floorType)
