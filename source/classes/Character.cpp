@@ -12,14 +12,14 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
-	controllerType = 1;
+	mController = NULL;
 };
 
 /**
-*	@brif: Updates characters healt if it taks demages og health is refreshed etc.
-*	@parameter: The amount of healt to add/subtract.
-*	@todo: when dead give signal to pop up manu or something like that.
-*/
+ *	@brief Updates characters healt if it taks demages og health is refreshed etc.
+ *	@param The amount of healt to add/subtract.
+ *	@todo when dead give signal to pop up manu or something like that.
+ */
 void Character::updateCharacterHealt(int health)
 {
 	characterHealth += health;
@@ -199,24 +199,4 @@ void Character::move(char CharacterDirection, int moveDirection, int drawTopCorn
 	}
 
 
-}
-
-
-void Character::updatePosition(sf::Event e, Character* thischaracter)
-{
-	enum controller{PlayerControl, AiControl, NetworkControl};
-
-	if (controllerType == PlayerControl)
-	{
-		localPlayerController.characterInput(e,thischaracter);
-	}
-	else if(controllerType == AiControl)
-	{
-		npcController.movement(thischaracter);
-	}
-	else if(controllerType == NetworkControl)
-	{
-
-	}
-}
-//*/
+};

@@ -32,6 +32,7 @@
 //#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
+#include "classes/CharacterController.hpp"
 #include "classes/Character.hpp"
 #include "classes/CharacterFactory.hpp" // requires 'Character.hpp'
 #include "classes/Mine.hpp" // requires character
@@ -39,13 +40,7 @@
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
 #include "classes/Node.hpp"
-#include "classes/AI.hpp" // requires Node
-#include "classes/Player.hpp"
-
-/*
-//// Controllers ////
-	static LocalPlayer localPlayerController;
-	static NonePlayerCharacter npcController;
-//*/
+#include "classes/NonPlayerCharacter.hpp" // requires Node
+#include "classes/LocalPlayerCharacter.hpp"
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

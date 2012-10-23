@@ -37,15 +37,15 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  * gets one charecter for you to do some nasty things with if an event is
  * triggered.
  *
- *@param [in] 0 for player character, 1 for NonePlayerCharacter, 3 for network character.
+ *@param [in] 0 for LocalPlayerCharacter, 1 for NonPlayerCharacter, 3 for NetworkCharacter.
  *
  * @return on succes: pointer to a new(read: reinitialized) Character
  * 	\n on failure: NULL
+ *
+ * @todo fix controllers, should probably not do new every got damn time?
  */
-Character* CharacterFactory::getCharacter(int type)
+Character* CharacterFactory::getCharacter(int controller)
 {
-//	characterType typeOfplayer;
-
 	Character* tempCharacter;
 
 	if (readyCharacters.size() >= 0)
@@ -60,6 +60,18 @@ Character* CharacterFactory::getCharacter(int type)
 		printf("CharacterFactory::getCharacter(): Something went wrong,"
 			"can not return a Character.");
 		return NULL;
+	}
+	if (controller == 0)
+	{
+		tempCharacter->mController = new LocalPlayerCharacter;
+	}
+	if (controller == 1)
+	{
+		tempCharacter->mController = new NonPlayerCharacter;
+	}
+	if (controller == 2)
+	{
+		printf("CharacterFactory::getCharacter(int): Network controllers are not implemented.\n");
 	}
 	return tempCharacter;
 };

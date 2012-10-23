@@ -17,11 +17,13 @@ private:
 	int characterHealth;	///< How much healt the player have left
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
-	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	sf::Texture texture;
 	sf::Sprite sprite;
 
 public:
+	/// @todo This should really not be here!
+	CharacterController* mController;
+	// methods
 	Character();
 	bool initImage();
 	bool initCharacter();

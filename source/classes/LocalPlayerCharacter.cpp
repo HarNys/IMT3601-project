@@ -1,11 +1,17 @@
 #include "../Includes.hpp"
 
-///movement-functions
-///checks if the key is pressed and then released
-///to reset characterDirectionX/Y
-/// @param [in] (keyboard event, pointer to character to move) 
-
-void LocalPlayer::characterInput(sf::Event e, Character* tempchar)
+/**
+ * movement-functions
+ * checks if the key is pressed and then released
+ * to reset characterDirectionX/Y
+ *
+ * @param [in] e keyboard event.
+ * @param tempchar pointer to character to move.
+ *
+ * @todo This function does <strong>not</strong> follow convention,
+ * 	it needs some nursing
+ */
+void LocalPlayerCharacter::characterInput(sf::Event e, Character* tempchar)
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -16,21 +22,18 @@ void LocalPlayer::characterInput(sf::Event e, Character* tempchar)
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		tempchar->move('X', 1 , 0, 17, 15, 15);
-
 		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
 			tempchar->move('X', 0 , 0, 17, 15, 15);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		tempchar->move('Y', -1 , 0, 0, 15, 15);
-		
 		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
 			tempchar->move('Y', 0 , 0, 0, 15, 15);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		tempchar->move('Y', 1 , 0, 34, 15, 15);
-
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 			tempchar->move('Y', 0 , 0, 34, 15, 15);
 	}

@@ -56,10 +56,10 @@ int main(int argc, char **argv)
 	characterFactory = characterFactory->getCharacterFactory();
 
 	printf("main(int,char**): has got CharacterFactory, getting player1\n");
-	Character *player1 = characterFactory->getCharacter(0);				// 0 for local-player character
+	Character *player1 = characterFactory->getCharacter(0);
 	world->placeCharacter(player1);
 
-	//Character *player5 = characterFactory->getCharacter(1);				// 1 none-playercharacter.
+	//Character *player5 = characterFactory->getCharacter(1); // 1 none-playercharacter.
 	//world->placeCharacter(player5);
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 		sf::Event event;
 
 		/// @todo add escape as exit button
-		player1->updatePosition(event, player1);
+//		player1->updatePosition(event, player1);
 		while (screen.pollEvent(event))
 		{
 

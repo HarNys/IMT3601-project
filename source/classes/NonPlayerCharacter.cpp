@@ -1,9 +1,9 @@
 #include "../Includes.hpp"
 
-void NonePlayerCharacter::aStar(Tile*** const map)
+void NonPlayerCharacter::aStar(Tile*** const map)
 {
 	//Find character
-	
+
 	//if path not defined && path > 3 seconds old
 
 	//Find goal
@@ -12,14 +12,14 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 
 	//jump to the square and explore neighbors not already in there, if not visited can readjust values
 
-	
-	
+
+
 	//end while
 
 	//end if
 
 	//find set of visited to goal and determine what the next step is
-	
+
 	Tile * thisTile = NULL;
 	Node * startNode;
 	Node * goalNode;
@@ -51,13 +51,13 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	//until a complete queue has flagged
 	while (!queueFlag)
 	{
-		
+
 		visitNode = startNode->findCheapestUnusedRecursively();
-			
+
 		visitNode->setVisit();
-		
+
 		//when the goal has been reached, meaning they can create a queue
-		if( visitNode->getXPos() == goalNode->getXPos() 
+		if( visitNode->getXPos() == goalNode->getXPos()
 			&& visitNode->getYPos() == goalNode->getYPos())
 		{
 			queueNode = visitNode;
@@ -67,15 +67,15 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			}
 			queueFlag = true;
 			tempNode = queueNode->getParent();
-			
+
 			xDir = (queueNode->getXPos() - tempNode->getXPos());
-					
+
 			yDir = (queueNode->getYPos() - tempNode->getYPos());
 			//movement(xDir, yDir);
 		}
 			//when goal is not reached
 		else
-		{			
+		{
 			//checking for wall above
 			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
 			if  (!thisTile->getIsWall()){
@@ -84,7 +84,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 
 			thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
 			if  (!thisTile->getIsWall()){
-				visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
+				visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
 			}
 			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
 			if  (!thisTile->getIsWall()){
@@ -94,7 +94,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			if  (!thisTile->getIsWall()){
 				visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
 			}
-			
+
 		}
 	}
 
@@ -105,23 +105,23 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 ///to reset characterDirectionX/Y
 /// @param [in] pointer to character to move
 
-void NonePlayerCharacter::movement(Character* tempchar)
+void NonPlayerCharacter::movement(Character* tempchar)
 {
 	if((-1) == xDir)
 	{
 		tempchar->move('X', xDir ,0, 51, 15, 15);
 	}
-	
+
 	if(1 == xDir)
 	{
 		tempchar->move('X', xDir , 0, 17, 15, 15);
 	}
-	
+
 	if((-1) == yDir)
 	{
-		tempchar->move('Y', -1 , 0, 0, 15, 15);	
+		tempchar->move('Y', -1 , 0, 0, 15, 15);
 	}
-	
+
 	if(1 == yDir)
 	{
 		tempchar->move('Y', 1 , 0, 34, 15, 15);
