@@ -15,9 +15,13 @@ World::World()
 	area = 0;
 	map = NULL;
 
+
 	border = 1;
-/*	currentX = 1;
-	currentY = 1; */
+
+
+	currentX = 1;
+	currentY = 1;
+
 };
 
 /**
@@ -107,103 +111,56 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate()
 {
-	std::map<Tile*,sf::Vector2i*> frontier;
+
 	std::list<Tile*> visited;
 	int startX = 0;
 	int startY = 0;
 	int directionX = 0;
 	int directionY = 0;
-	sf::Vector2i *startVector = new sf::Vector2i((rand() % (area-2) + border),(rand() % (area-2) + border));
+
 
 	directionX = ((rand() % 2) -1);
 	directionY = ((rand() % 2) -1);
 	frontier = new std::map<Tile*,sf::Vector2i*>;
-//	visited = new std::list<Tile*>;
+	visited = new std::list<Tile*>;
 	startX = (rand() % (area-2) + border);
 	startY = (rand() % (area-2) + border);
-	printf("World::randomGenerate(): startx:%4d, starty:%4d\n", startX, startY);
-//	startVector->x = startX;
-//	startVector->y = startY;
-	frontier->insert((*map[startX][startY]), startVector);
 
-	recursiveRandomGenerate(directionX, directionY, frontier, visited);
-};
-
-/**
- * Make maze-ish map by doing a recursive depth first search. We only check every
- * other Tile, this way we skip the problems of diagonals and so such.
- *
- * @param frontier The TROLOLO
- *
- * @return true on success.
- */
-bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Tile*,sf::Vector2i*> *frontier, std::list *visited)
-{
-	/// Should do the calculations before loop.
-	while(visited->size() != ((area * area) - 64))
+	static std::list<Tile*> *unVisited;
+	static std::list<Tile*> *visited;
+	Tile *temp;
+	
+	int seed = time(NULL);
+	srand(seed);
+	int Direction = rand() % 4;
+	printf("%d", seed);
+	
+	if(start)
 	{
-		if(direction == 0)	//Direction equals up
+		int StartX = rand() % (area-2) + 1; //add border late
+		int StartY = rand() % (area-2) + 1;
+		visited->push_front(map[StartX][StartY]);
+		currentX = StartX;
+		currentY = StartY;
+		map[currentX][currentY]->setVisited();
+
+		unVisited->push_front(map[currentX][currentY - 2]);
+		unVisited->push_front(map[currentX + 2][currentY]);
+		unVisited->push_front(map[currentX][currentY + 2]);
+		unVisited->push_front(map[currentX - 2][currentY]);
+	}
+
+	//make an enumerator containing the orders then select one at random
+	
+	while(!unVisited->empty())
+	{
+		if(Direction == 1)
 		{
-			if(currentY - 2 > 0)	//as long as I'm not at the border
-			{
-				currentY = currentY - 2;
-				for(iterator = frontier->begin(); iterator != frontier->end(); iterator++, list_position++)
-				{
-					if(list_position == direction)	//when I'm at the corresponding Direction
-					{
-						tempTile = *temp_list;	//get the current tile
-
-						if(!tempTile->getVisited())	//if it's not visited
-						{
-							randomGenerateVisit(map[currentX][currentY], currentX, currentY);
-
-							unVisited->remove(temp);
-							visited->push_front(map[currentX][currentY]);
-
-							randomGenerateVisit(map[currentX + direction][currentY], currentX, currentY);
-
-							map[currentX][currentY+1]->setVisited();	//change the tile between current and previous tile to a floor
-							map[currentX][currentY+1]->setWall(false);
-							map[currentX][currentY+1]->initSprite(currentX, currentY+1);
-							visited->push_front(map[currentX][currentY+1]);
-
-							if ((currentX - 2) > 0)
-							{
-								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							}
-							if ((currentY + 2) < (area - 2))
-							{
-								unVisited->push_front(map[currentX][currentY + 2]);
-							}
-							if ((currentX + 2) < (area - 2))
-							{
-								unVisited->push_front(map[currentX + 2][currentY]);
-							}
-							if ((currentY - 2) > 0)
-							{
-								unVisited->push_front(map[currentX][currentY - 2]);
-							}
-
-						}
-						else
-						{
-							unVisited->remove(temp);
-							currentY = currentY + 2;
-						}
-						break;
-					}
-				}
-
-				randomGenerate();
-			}
-			else
-			{
-				unVisited->pop_front(); //pops the top since this is the up dircetion (?)
-				randomGenerate();
-			}
+									
 		}
-		else if(Direction == 1)	//Direction equals right
+		else if(Direction == 2)
 		{
+
 			if(currentX + 2 < (area - border))	//as long as I'm not at the border
 			{
 				currentX = currentX + 2;
@@ -261,8 +218,9 @@ bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Til
 				randomGenerate();
 			}
 		}
-		else if(Direction == 2) //Direction equals down
+		else if(Direction == 3)
 		{
+
 			if(currentY + 2 < area - border)	//as long as I'm not at the border
 			{
 				currentY = currentY + 2;
@@ -319,7 +277,7 @@ bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Til
 				randomGenerate();
 			}
 		}
-		else if(Direction == 3) //Direction equals left
+		else if(Direction == 4)
 		{
 			if(currentX - 2 > 0)	//as long as I'm not at the border
 			{
@@ -383,22 +341,6 @@ bool World::recursiveRandomGenerate(int directionX, int directionY, std::map<Til
 				unVisited->pop_front(); //pops the top since this is the up direction (?)
 				randomGenerate();
 			}
-		}
-	}
-};
-
-/**
- * Visit sent Tile, used in the recursiveRandomGenerate method.
- *
- * @param visitTile pointer to the Tile to be visited.
- *
- * @return true on success.
- */
-bool randomGenerateVisit(Tile *visitTile, int xPosition, int yPosition)
-{
-	visitTile->setWall(false);
-	visitTile->initSprite(xPosition, yPosition);
-};
 
 /**
  * places a character in the world
