@@ -105,7 +105,12 @@ bool World::initMap(char *mapFile)
 bool World::placeCharacter(Character *character)
 {
 	int xSpace = 1;
+	while (map[xSpace][1]->getIsWall())
+	{
+		xSpace++;
+	}
 	map[xSpace++][1]->setCharacter(character);
+	
 	character->getSprite()->setPosition(15 * xSpace, 15);
 	return true;
 };

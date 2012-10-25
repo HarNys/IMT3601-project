@@ -108,6 +108,10 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 				
 			}
 		}
+		else
+		{
+			queueFlag = true;
+		}
 	}
 
 }
