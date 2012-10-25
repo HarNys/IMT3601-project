@@ -131,7 +131,7 @@ void World::randomGenerate(bool start)
 	int seed = time(NULL);
 	srand(seed);
 	int Direction = rand() % 4;
-	printf("%d", seed);
+
 	
 	if(start)
 	{
@@ -155,11 +155,66 @@ void World::randomGenerate(bool start)
 	
 	while(!unVisited->empty())
 	{
-		if(Direction == 1)
+		if(Direction == 0)	//if direction equals up
 		{
+			if(currentY - 2 > 0)	//as long as I'm not at the border
+			{
+				currentY = currentY - 2;
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				{
+					if(list_position == Direction)	//when I'm at the corresponding Direction
+					{
+						temp = *temp_list;	//get the current tile
+
+						if(!temp->getVisited())	//if it's not visited
+						{
+							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
+							map[currentX][currentY]->setWall(false);
+							map[currentX][currentY]->initSprite(currentX, currentY);
+							unVisited->remove(temp);
+							visited->push_front(map[currentX][currentY]);
+
+							map[currentX][currentY+1]->setVisited();	//change the tile between current and previous tile to a floor
+							map[currentX][currentY+1]->setWall(false);
+							map[currentX][currentY+1]->initSprite(currentX, currentY+1);
+							visited->push_front(map[currentX][currentY+1]);
+
+							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
+								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
+								unVisited->push_front(map[currentX][currentY + 2]);
+							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
+								unVisited->push_front(map[currentX + 2][currentY]);
+							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
+								unVisited->push_front(map[currentX][currentY - 2]);
+						}
+						else
+						{
+							unVisited->remove(temp);
+							currentY = currentY + 2;
+						}
+						break;
+					}
+				}
+
+				randomGenerate();
+			}
+			else
+			{
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
+				{
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])
+					{
+						unVisited->remove(temp);
+						break;
+					}
+				}
+				randomGenerate();
+			}
 									
 		}
-		else if(Direction == 2)
+		else if(Direction == 1)	//if direction equals right
 		{
 
 			if(currentX + 2 < (area - border))	//as long as I'm not at the border
@@ -184,22 +239,14 @@ void World::randomGenerate(bool start)
 							map[currentX-1][currentY]->initSprite(currentX-1, currentY);
 							visited->push_front(map[currentX-1][currentY]);
 
-							if ((currentX - 2) > 0)
-							{
+							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
 								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							}
-							if ((currentY + 2) < (area - 2))
-							{
+							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY + 2]);
-							}
-							if ((currentX + 2) < (area - 2))
-							{
+							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
 								unVisited->push_front(map[currentX + 2][currentY]);
-							}
-							if ((currentY - 2) > 0)
-							{
+							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY - 2]);
-							}
 
 						}
 						else
@@ -215,11 +262,19 @@ void World::randomGenerate(bool start)
 			}
 			else
 			{
-				unVisited->pop_front(); //pops the top since this is the up dircetion (?)
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
+				{
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])
+					{
+						unVisited->remove(temp);
+						break;
+					}
+				}
 				randomGenerate();
 			}
 		}
-		else if(Direction == 3)
+		else if(Direction == 2)	//if direction equals down
 		{
 
 			if(currentY + 2 < area - border)	//as long as I'm not at the border
@@ -244,22 +299,14 @@ void World::randomGenerate(bool start)
 							map[currentX][currentY-1]->initSprite(currentX, currentY-1);
 							visited->push_front(map[currentX][currentY-1]);
 
-							if ((currentX - 2) > 0)
-							{
+							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
 								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							}
-							if ((currentY + 2) < (area - 2))
-							{
+							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY + 2]);
-							}
-							if ((currentX + 2) < (area - 2))
-							{
+							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
 								unVisited->push_front(map[currentX + 2][currentY]);
-							}
-							if ((currentY - 2) > 0)
-							{
+							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY - 2]);
-							}
 
 						}
 						else
@@ -274,11 +321,19 @@ void World::randomGenerate(bool start)
 			}
 			else
 			{
-				unVisited->pop_front(); //pops the top since this is the up dircetion (?)
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
+				{
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])
+					{
+						unVisited->remove(temp);
+						break;
+					}
+				}
 				randomGenerate();
 			}
 		}
-		else if(Direction == 4)
+		else if(Direction == 3)	//if direction equals left
 		{
 			if(currentX - 2 > 0)	//as long as I'm not at the border
 			{
@@ -302,29 +357,14 @@ void World::randomGenerate(bool start)
 							map[currentX+1][currentY]->initSprite(currentX+1, currentY);
 							visited->push_front(map[currentX+1][currentY]);
 
-							printf("World::randomGenerate(bool): cx(%d), cy(%d)\n"
-								,currentX,currentY);
-							if (currentX - 2 > 0)
-							{
-								printf(	"World::randomGenerate(bool): cx-2(%d)",(currentX-2));
-							}
-
-							if ((currentX - 2) > 0)
-							{
+							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
 								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							}
-							if ((currentY + 2) < (area - 2))
-							{
+							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY + 2]);
-							}
-							if ((currentX + 2) < (area - 2))
-							{
+							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
 								unVisited->push_front(map[currentX + 2][currentY]);
-							}
-							if ((currentY - 2) > 0)
-							{
+							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY - 2]);
-							}
 						}
 						else
 						{
@@ -339,7 +379,15 @@ void World::randomGenerate(bool start)
 			}
 			else
 			{
-				unVisited->pop_front(); //pops the top since this is the up direction (?)
+				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
+				{
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])
+					{
+						unVisited->remove(temp);
+						break;
+					}
+				}
 				randomGenerate();
 			}
 		}
