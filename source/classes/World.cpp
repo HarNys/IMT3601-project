@@ -222,7 +222,8 @@ bool World::update()
 	Character *thisCharacter = NULL;
 
 	//
-	 static bool goalExists;
+	static bool goalExists;
+	 
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)
@@ -255,10 +256,10 @@ bool World::update()
 					}
 					thisCharacter->resetDirection();
 					
-					//if (goalExists)
-					//{
-					//	
-					//}
+					if (goalExists)
+					{
+						npcController.aStar(map, thisCharacter);
+					}
 				}
 
 				if (thisTile->getIsGoal())
@@ -274,9 +275,6 @@ bool World::update()
 					}
 				}
 
-
-
-				
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -284,10 +282,7 @@ bool World::update()
 	if (!goalExists)		//if the is no goal then make one;
 	{
 		setGoal();
-		npcController.aStar(map, thisCharacter);
 	}
-
-
 
 	return true;
 };
