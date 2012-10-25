@@ -1,7 +1,7 @@
 openal for audio
 box2d for 2d physics
 
-IED bomber - sell it to americas army
+IED bomber - sell it to the American army
 PM - peer
 
 has gantt
@@ -31,3 +31,16 @@ set goals Thursday.
 
 Q request git/branching?
 A may be done, learn ourselves if not.
+
+## meeting 5
+
+DEADLINE: AI pathfinding through a random generated map.
+
+Q AI, where?
+A separate class, strategy pattern.
+
+Q Factory pattern,
+A 1. each character has a pointer to a controller
+  2. each character is inherited from either playercharacter or noneplayingcharacter.
+
+We need to talk about/clarify map: maze?

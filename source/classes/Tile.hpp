@@ -34,6 +34,7 @@ public:
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
 	bool setGoal();
+	bool removeGoal();
 	bool getIsWall();
 	bool getIsGoal();
 	bool reset();

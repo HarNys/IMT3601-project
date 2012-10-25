@@ -20,18 +20,18 @@ Character::Character()
 };
 
 /**
-*	@brif: Updates characters healt if it taks demages og health is refreshed etc.
-*	@parameter: The amount of healt to add/subtract.
-*	@todo: when dead give signal to pop up manu or something like that.
+*	@brief Updates characters healt if it taks demages og health is refreshed etc.
+*	@param health The amount of healt to add/subtract.
+*	@todo when dead give signal to pop up menu or something like that.
 */
-void Character::updateCharacterHealt(int health)
+void Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
-	printf("player health is %d \n",characterHealth);
+	printf("\nCharacter::updateCharacterHealth(int): player health is %d \r",characterHealth);
 	if(characterHealth < 1)
 	{
 		printf("\n\n---You are dead---\n\n");
-		updateCharacterHealt(10);		///< resets characters healt if dead
+		updateCharacterHealth(10);		///< resets characters health if dead
 
 	}
 }

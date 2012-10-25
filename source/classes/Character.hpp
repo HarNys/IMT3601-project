@@ -14,7 +14,7 @@ private:
 	bool minePlaced; ///< whether or not we want to place a Mine.
 	int characterDirectionX; ///< Changed from float to int
 	int characterDirectionY; ///< Changed from float to int
-	int characterHealth;	///< How much healt the player have left
+	int characterHealth;	///< How much health the player have left
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
@@ -36,7 +36,8 @@ public:
 	void draw(sf::RenderWindow* window);
 	void useController(sf::Event e, Character* thischaracter);
 	void resetDirection();
-	void updateCharacterHealt(int health);
+	void characterInput(sf::Event e);
+	void updateCharacterHealth(int health);
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
 	void setCurrentNode(Node *newCurrentNode);
