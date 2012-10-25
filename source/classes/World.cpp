@@ -152,6 +152,9 @@ void World::randomGenerate(bool start)
 	}
 	//make an enumerator containing the orders then select one at random
 	while(!unVisited->empty())
+/*	int size = visited->size();
+	while(size != ((area * area) - 64))
+//*/
 	{
 		directionX = 0;
 		directionY = 0;
