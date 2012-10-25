@@ -111,33 +111,21 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate(bool start)
 {
-	int startX = 0;
-	int startY = 0;
 	int directionX = 0;
 	int directionY = 0;
 	int list_position = 0;
-
-	directionX = ((rand() % 2) -1);
-	directionY = ((rand() % 2) -1);
-
-	startX = (rand() % (area-2) + border);
-	startY = (rand() % (area-2) + border);
-
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
 	Tile *temp;
 	std::list<Tile*>::iterator temp_list;
-
 	int seed = time(NULL);
 	srand(seed);
 	int Direction = rand() % 4;
-
 
 	if(start)
 	{
 		unVisited = new std::list<Tile*>;
 		visited = new std::list<Tile*>;
-
 		int StartX = rand() % (area-2) + 1; //add border late
 		int StartY = rand() % (area-2) + 1;
 		visited->push_front(map[StartX][StartY]);
@@ -145,278 +133,151 @@ void World::randomGenerate(bool start)
 		currentY = StartY;
 		map[currentX][currentY]->setVisited();
 
-		Tile *tmptile = map[currentX][currentY - 2];
-
-		if (tmptile)
+		if (map[currentX][currentY - 2] != NULL)
 		{
-			unVisited->push_front(tmptile);
+			unVisited->push_front(map[currentX][currentY - 2]);
 		}
-		tmptile = map[currentX + 2][currentY];
-		if (tmptile)
+		if (map[currentX + 2][currentY] != NULL)
 		{
-			unVisited->push_front(tmptile);
+			unVisited->push_front(map[currentX + 2][currentY]);
 		}
-		tmptile = map[currentX][currentY+2];
-		if (tmptile)
+		if (map[currentX][currentY+2] != NULL)
 		{
 			unVisited->push_front(map[currentX][currentY + 2]);
 		}
-		tmptile = map[currentX - 2][currentY];
-		if (tmptile)
+		if (map[currentX - 2][currentY] != NULL)
 		{
-			unVisited->push_front(tmptile);
+			unVisited->push_front(map[currentX - 2][currentY]);
 		}
-		printf("tmptile");
 	}
-
 	//make an enumerator containing the orders then select one at random
-
 	while(!unVisited->empty())
 	{
+		directionX = 0;
+		directionY = 0;
 		if(Direction == 0)	//if direction equals up
 		{
-			if(currentY - 2 > 0)	//as long as I'm not at the border
+			directionY = (-2);
+		}
+		if(Direction == 1)	//if direction equals right
+		{
+			directionX = (+2);
+		}
+		if(Direction == 2)	//if direction equals down
+		{
+			directionY = (-2);
+		}
+		if(Direction == 3)	//if direction equals left
+		{
+			directionX = (-2);
+		}
+		printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
+			"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
+			"World::randomGenerate(bool): frontier size: %4lu\n",
+			currentX, currentY, directionX, directionY, unVisited->size());
+		if(currentY + directionY > border) //as long as I'm not at the y coordinate border
+		{
+			if (currentX +directionX > border) //as long as I'm not at the x coordinate border
 			{
-				currentY = currentY - 2;
+				currentY = currentY + directionY;
 				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
 				{
 					temp = *temp_list;
-					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
+					if(temp == map[currentX][currentY])//list_position == Direction) // when I'm at the corresponding Direction
 					{
 //						temp = *temp_list;	//get the current tile
-
 						if(!temp->getVisited())	//if it's not visited
 						{
-							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
+							map[currentX][currentY]->setVisited(); // set it to visited and change tile and texture
 							map[currentX][currentY]->setWall(false);
 							map[currentX][currentY]->initSprite(currentX, currentY);
 							unVisited->remove(temp);
 							visited->push_front(map[currentX][currentY]);
 
-							map[currentX][currentY+1]->setVisited();	//change the tile between current and previous tile to a floor
+							//change the tile between current and previous tile to a floor
+							map[currentX][currentY+1]->setVisited();
 							map[currentX][currentY+1]->setWall(false);
 							map[currentX][currentY+1]->initSprite(currentX, currentY+1);
 							visited->push_front(map[currentX][currentY+1]);
 
+							// push the next 4 on
 							if (map[currentX - 2][currentY])
 							{
-								if((currentX - 2 > border) && (!map[currentX - 2][currentY]->getVisited()))
+								if (currentX - 2 > border)
 								{
-									unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+									if (!map[currentX - 2][currentY]->getVisited())
+									{
+										unVisited->push_front(map[currentX - 2][currentY]);
+									}
 								}
 							}
-							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY + 2]);
-							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX + 2][currentY]);
-							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY - 2]);
+							if (map[currentX][currentY + 2])
+							{
+								if(currentY + 2 < area)
+								{
+									if (!map[currentX][currentY + 2]->getVisited())
+									{
+										unVisited->push_front(map[currentX][currentY + 2]);
+									}
+								}
+							}
+							if (map[currentX + 2][currentY])
+							{
+								if(currentX + 2 < area)
+								{
+									if (!map[currentX + 2][currentY]->getVisited())
+									{
+										unVisited->push_front(map[currentX + 2][currentY]);
+									}
+								}
+							}
+							if (map[currentX][currentY - 2])
+							{
+								if(currentY - 2 > border)
+								{
+									if (!map[currentX][currentY - 2]->getVisited())
+									{
+										unVisited->push_front(map[currentX][currentY - 2]);
+									}
+								}
+							}
+/*							printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
+								"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
+								"World::randomGenerate(bool): frontier size: %4lu\n",
+								currentX, currentY, directionX, directionY, unVisited->size());
+								//*/
 						}
 						else
 						{
 							unVisited->remove(temp);
 							currentY = currentY + 2;
 						}
+						printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
+							"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
+							"World::randomGenerate(bool): frontier size: %4lu\n",
+							currentX, currentY, directionX, directionY, unVisited->size());
 						break;
 					}
 				}
-
-				randomGenerate();
 			}
-			else
-			{
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
-				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])
-					{
-						unVisited->remove(temp);
-						break;
-					}
-				}
-				randomGenerate();
-			}
-
+			randomGenerate();
 		}
-		else if(Direction == 1)	//if direction equals right
+		else
 		{
-
-			if(currentX + 2 < (area - border))	//as long as I'm not at the border
+			for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
 			{
-				currentX = currentX + 2;
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
+				temp = *temp_list;
+				if(temp == map[currentX][currentY])
 				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
-					{
-//						temp = *temp_list;	//get the current tile
-
-						if(!temp->getVisited())	//if it's not visited
-						{
-							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
-							map[currentX][currentY]->setWall(false);
-							map[currentX][currentY]->initSprite(currentX, currentY);
-							unVisited->remove(temp);
-							visited->push_front(map[currentX][currentY]);
-
-							map[currentX-1][currentY]->setVisited();	//change the tile between current and previous tile to a floor
-							map[currentX-1][currentY]->setWall(false);
-							map[currentX-1][currentY]->initSprite(currentX-1, currentY);
-							visited->push_front(map[currentX-1][currentY]);
-
-							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY + 2]);
-							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX + 2][currentY]);
-							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY - 2]);
-
-						}
-						else
-						{
-							unVisited->remove(temp);
-							currentX = currentX + 2;
-						}
-						break;
-					}
+					printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
+						"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
+						"World::randomGenerate(bool): frontier size: %4lu\n",
+						currentX, currentY, directionX, directionY, unVisited->size());
+					unVisited->remove(temp);
+					break;
 				}
-
-				randomGenerate();
 			}
-			else
-			{
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
-				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])
-					{
-						unVisited->remove(temp);
-						break;
-					}
-				}
-				randomGenerate();
-			}
-		}
-		else if(Direction == 2)	//if direction equals down
-		{
-
-			if(currentY + 2 < area - border)	//as long as I'm not at the border
-			{
-				currentY = currentY + 2;
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
-				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
-					{
-//						temp = *temp_list;	//get the current tile
-
-						if(!temp->getVisited())	//if it's not visited
-						{
-							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
-							map[currentX][currentY]->setWall(false);
-							map[currentX][currentY]->initSprite(currentX, currentY);
-							unVisited->remove(temp);
-							visited->push_front(map[currentX][currentY]);
-
-							map[currentX][currentY-1]->setVisited();	//change the tile between current and previous tile to a floor
-							map[currentX][currentY-1]->setWall(false);
-							map[currentX][currentY-1]->initSprite(currentX, currentY-1);
-							visited->push_front(map[currentX][currentY-1]);
-
-							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY + 2]);
-							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX + 2][currentY]);
-							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY - 2]);
-
-						}
-						else
-						{
-							unVisited->remove(temp);
-							currentY = currentY - 2;	//go back to previous tile
-						}
-						break;
-					}
-				}
-				randomGenerate();
-			}
-			else
-			{
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
-				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])
-					{
-						unVisited->remove(temp);
-						break;
-					}
-				}
-				randomGenerate();
-			}
-		}
-		else if(Direction == 3)	//if direction equals left
-		{
-			if(currentX - 2 > 0)	//as long as I'm not at the border
-			{
-				currentX = currentX - 2;
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
-				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
-					{
-//						temp = *temp_list;	//get the current tile
-
-						if(!temp->getVisited())	//if it's not visited
-						{
-							map[currentX][currentY]->setVisited();	//set it to visited and change tile and texture
-							map[currentX][currentY]->setWall(false);
-							map[currentX][currentY]->initSprite(currentX, currentY);
-							unVisited->remove(temp);
-							visited->push_front(map[currentX][currentY]);
-
-							map[currentX+1][currentY]->setVisited();	//change the tile between current and previous tile to a floor
-							map[currentX+1][currentY]->setWall(false);
-							map[currentX+1][currentY]->initSprite(currentX+1, currentY);
-							visited->push_front(map[currentX+1][currentY]);
-
-							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
-							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY + 2]);
-							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX + 2][currentY]);
-							if(currentY - 2 > border && !map[currentX][currentY - 2]->getVisited())
-								unVisited->push_front(map[currentX][currentY - 2]);
-						}
-						else
-						{
-							unVisited->remove(temp);
-							currentX = currentX + 2;
-						}
-						break;
-					}
-				}
-
-				randomGenerate();
-			}
-			else
-			{
-				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
-				{
-					temp = *temp_list;
-					if(temp == map[currentX][currentY])
-					{
-						unVisited->remove(temp);
-						break;
-					}
-				}
-				randomGenerate();
-			}
+			randomGenerate();
 		}
 	}
 }

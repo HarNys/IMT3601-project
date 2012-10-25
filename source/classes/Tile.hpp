@@ -19,7 +19,6 @@ private:
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
-	CharacterFactory *characterFactory;
 	static sf::Image *wallImg;
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;

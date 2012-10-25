@@ -12,7 +12,6 @@ Tile::Tile()
 	visited = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
-	characterFactory = characterFactory->getCharacterFactory();
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(): done standard Tile constructor\n");
 };
@@ -34,7 +33,6 @@ Tile::Tile(char quality)
 	}
 	hasMine = NULL;
 	hasCharacter = NULL;
-	characterFactory = characterFactory->getCharacterFactory();
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(char): done overloaded Tile constructor\n");
 };
@@ -254,7 +252,6 @@ Tile::~Tile()
 	}
 	if (hasCharacter)
 	{
-		characterFactory->releaseCharacter(hasCharacter);
-		hasCharacter = NULL;
+			hasCharacter = NULL;
 	}
 };
