@@ -270,7 +270,7 @@ bool World::update()
 		setGoal();
 	}
 
-//	npcController.aStar(map);
+	npcController.aStar(map);
 
 	return true;
 };
