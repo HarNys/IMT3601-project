@@ -109,26 +109,24 @@ bool World::initMap(char *mapFile)
 * @return true on success
 * @todo make this shit work
 */
-void World::randomGenerate()
-{
-
-	std::list<Tile*> visited;
+void World::randomGenerate(bool start)
+{	
 	int startX = 0;
 	int startY = 0;
 	int directionX = 0;
 	int directionY = 0;
-
+	int list_position = 0;
 
 	directionX = ((rand() % 2) -1);
 	directionY = ((rand() % 2) -1);
-	frontier = new std::map<Tile*,sf::Vector2i*>;
-	visited = new std::list<Tile*>;
+	
 	startX = (rand() % (area-2) + border);
 	startY = (rand() % (area-2) + border);
 
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
 	Tile *temp;
+	std::list<Tile*>::iterator temp_list;
 	
 	int seed = time(NULL);
 	srand(seed);
@@ -137,6 +135,9 @@ void World::randomGenerate()
 	
 	if(start)
 	{
+		unVisited = new std::list<Tile*>;
+		visited = new std::list<Tile*>;
+
 		int StartX = rand() % (area-2) + 1; //add border late
 		int StartY = rand() % (area-2) + 1;
 		visited->push_front(map[StartX][StartY]);
@@ -341,6 +342,9 @@ void World::randomGenerate()
 				unVisited->pop_front(); //pops the top since this is the up direction (?)
 				randomGenerate();
 			}
+		}
+	}
+}
 
 /**
  * places a character in the world
