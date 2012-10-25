@@ -38,6 +38,7 @@ public:
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
 	bool Character::updateSprite();
+	bool placeMine();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

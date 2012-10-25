@@ -219,4 +219,11 @@ void Character::useController(sf::Event e, Character* thischaracter)
 
 	}
 }
+
+bool Character::placeMine()
+{
+	minePlaced = true;
+	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
+	return true;
+}
 //*/
