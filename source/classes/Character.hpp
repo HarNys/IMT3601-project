@@ -20,6 +20,8 @@ private:
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	sf::Texture texture;
 	sf::Sprite sprite;
+	Node *currentNode;
+	Node *nextNode;
 
 public:
 	Character();
@@ -38,6 +40,9 @@ public:
 	void move(char CharacterDirection, int moveDirection);
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
+	void setCurrentNode(Node *newCurrentNode);
+	void setNextNode(Node *newNextNode);
+
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

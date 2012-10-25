@@ -1,6 +1,6 @@
 #include "../Includes.hpp"
 
-void NonePlayerCharacter::aStar(Tile*** const map)
+void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 {
 	//Find character
 	
@@ -11,9 +11,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	//Open for non walls within reach, assign values as well
 
 	//jump to the square and explore neighbors not already in there, if not visited can readjust values
-
-	
-	
+		
 	//end while
 
 	//end if
@@ -21,11 +19,9 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	//find set of visited to goal and determine what the next step is
 	
 	Tile * thisTile = NULL;
-	Node * startNode;
-	Node * goalNode;
 	Node * visitNode;
 	Node * tempNode;
-	bool queueFlag = 0;
+	bool queueFlag = false;
 	int area;
 
 	World * check =  World::getWorld();
@@ -38,63 +34,79 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			thisTile = map[xCount] [yCount];
 			//needs to be expanded upon so that it can find one set character.
 			//should not be needed if the character could know position as well.
-			if (thisTile->getHasCharacter()) {
+			if (thisCharacter == thisTile->getHasCharacter()) {
 				startNode = new Node(xCount, yCount, 0, 0, 0, NULL);
+				startNode->unVisit();
 			}
 
 			if (thisTile->getIsGoal()) {
 				goalNode = new Node(xCount, yCount, 0, xCount, yCount, NULL);
+				goalNode->unVisit();
 			}
 		}
 	}
 
 	//until a complete queue has flagged
-	while (!queueFlag)
+	while (!queueFlag && goalNode)
 	{
 		
 		visitNode = startNode->findCheapestUnusedRecursively();
-			
+		
+		if (visitNode)
+		{
 		visitNode->setVisit();
 		
-		//when the goal has been reached, meaning they can create a queue
-		if( visitNode->getXPos() == goalNode->getXPos() 
-			&& visitNode->getYPos() == goalNode->getYPos())
-		{
-			queueNode = visitNode;
-			while (startNode != queueNode->getParent() )
+		
+			//when the goal has been reached, meaning they can create a queue
+			if( visitNode->getXPos() == goalNode->getXPos() 
+				&& visitNode->getYPos() == goalNode->getYPos())
 			{
-				queueNode = queueNode->getParent();
-			}
-			queueFlag = true;
-			tempNode = queueNode->getParent();
+				queueNode = visitNode;
 			
-			xDir = (queueNode->getXPos() - tempNode->getXPos());
-					
-			yDir = (queueNode->getYPos() - tempNode->getYPos());
-			//movement(xDir, yDir);
-		}
-			//when goal is not reached
-		else
-		{			
-			//checking for wall above
-			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
-			if  (!thisTile->getIsWall()){
-				visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
-			}
+				if (startNode != queueNode)
+				{
+					while (startNode != queueNode->getParent() )
+					{
+						queueNode = queueNode->getParent();
+					}
+			
+					queueFlag = true;
 
-			thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
-			if  (!thisTile->getIsWall()){
-				visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
+					tempNode = queueNode->getParent();
+				}
+
+				else 
+				{
+					tempNode = startNode;
+				}
+				thisCharacter->setCurrentNode(tempNode);		
+				thisCharacter->setNextNode(queueNode);
+				//movement(xDirection, yDirection);
 			}
-			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
-			if  (!thisTile->getIsWall()){
-				visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				//when goal is not reached
+			else
+			{	
+				
+				//checking for wall above
+				thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
+				if  (!thisTile->getIsWall()){
+					visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				}
+
+				thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
+				if  (!thisTile->getIsWall()){
+					visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
+				}
+				thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
+				if  (!thisTile->getIsWall()){
+					visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				}
+				thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
+				if  (!thisTile->getIsWall()){
+					visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				}
+				
 			}
-			thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
-			if  (!thisTile->getIsWall()){
-				visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
-			}
-			
 		}
 	}
 
@@ -106,29 +118,28 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 /// @param [in] Character pointer to the character that is going to move
 
 void NonePlayerCharacter::movement(Character* thisCharacter)
-{
-	if((-1) == xDir)
+{	if((-1) == xDirection)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('X', xDir);
+		thisCharacter->updateSprite(xDirection,yDirection);
+		thisCharacter->move('X', xDirection);
 	}
 	
-	if(1 == xDir)
+	if(1 == xDirection)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('X', xDir);
+		thisCharacter->updateSprite(xDirection,yDirection);
+		thisCharacter->move('X', xDirection);
 	}
 	
-	if((-1) == yDir)
+	if((-1) == yDirection)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('Y', yDir);	
+		thisCharacter->updateSprite(xDirection,yDirection);
+		thisCharacter->move('Y', yDirection);	
 	}
 	
-	if(1 == yDir)
+	if(1 == yDirection)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('Y', yDir);
+		thisCharacter->updateSprite(xDirection,yDirection);
+		thisCharacter->move('Y', yDirection);
 		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
 	}
 

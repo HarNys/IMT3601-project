@@ -254,6 +254,11 @@ bool World::update()
 						thisTile->setCharacter(NULL);
 					}
 					thisCharacter->resetDirection();
+					
+					if (goalExists)
+					{
+						npcController.aStar(map, thisCharacter);
+					}
 				}
 
 				if(thisTile->getIsGoal())
@@ -270,7 +275,8 @@ bool World::update()
 		setGoal();
 	}
 
-//	npcController.aStar(map);
+
+	
 
 	return true;
 };

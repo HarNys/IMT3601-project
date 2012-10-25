@@ -24,6 +24,7 @@ public:
 	float getPriority();
 	int getLevel(); 
 	void setVisit();
+	void unVisit();
 	bool checkVisited();
 	Node* getParent();
 	Node* leftChild;

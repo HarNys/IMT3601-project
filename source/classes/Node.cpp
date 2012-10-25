@@ -43,6 +43,10 @@ void Node::setVisit()
 {
 	visited = true;
 };
+void Node::unVisit()
+{
+	visited = false;
+};
 
 Node* Node::getParent()
 {

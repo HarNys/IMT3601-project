@@ -9,13 +9,15 @@
 class NonePlayerCharacter
 {
 private:
-Node* queueNode;
-int xDir;
-int yDir;
+Node * startNode;
+Node * queueNode;
+Node * goalNode;
+int xDirection;
+int yDirection;
 
 protected:
 public:
-	void aStar(Tile*** const map);
+	void aStar(Tile*** const map, Character* thisCharacter);
 	void movement(Character* thisCharacter);
 
 };

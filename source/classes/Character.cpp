@@ -12,7 +12,9 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
-	controllerType = 0;
+	controllerType = 1;
+	currentNode=NULL;
+	nextNode=NULL;
 };
 
 /**
@@ -198,7 +200,7 @@ void Character::move(char CharacterDirection, int moveDirection)
 	}
 
 
-}
+};
 
 
 void Character::updatePosition(sf::Event e, Character* thischaracter)
@@ -211,11 +213,23 @@ void Character::updatePosition(sf::Event e, Character* thischaracter)
 	}
 	else if(controllerType == AiControl)
 	{
-		npcController.movement(thischaracter);
+		//npcController.movement(thischaracter);
+		if (nextNode && currentNode)
+		{
+			characterDirectionX = (nextNode->getXPos() - currentNode->getXPos());
+			characterDirectionY = (nextNode->getYPos() - currentNode->getYPos());
+		}
 	}
 	else if(controllerType == NetworkControl)
 	{
 
 	}
-}
+};
+
+void Character::setCurrentNode(Node *newCurrentNode){
+	currentNode=newCurrentNode;
+};
+void Character::setNextNode(Node *newNextNode){
+	nextNode=newNextNode;
+};
 //*/
