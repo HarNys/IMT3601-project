@@ -20,6 +20,7 @@ private:
 	Character *hasCharacter;
 	MineFactory *mineFactory;
 	CharacterFactory *characterFactory;
+
 	static sf::Image *wallImg;
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;
@@ -35,6 +36,7 @@ public:
 	bool setGoal();
 	bool getIsWall();
 	bool getIsGoal();
+	bool reset();
 	Mine *getHasMine();
 	Character *getHasCharacter();
 	bool initSprite(int xPos, int yPos);
@@ -43,6 +45,7 @@ public:
 	void setFloor(int floorType);
 	~Tile();
 	sf::Sprite getSprite();
+	
 };
 
 #endif // __TILE__HEADER__GUARD__
