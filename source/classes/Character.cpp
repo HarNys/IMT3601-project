@@ -174,7 +174,7 @@ sf::Sprite *Character::getSprite()
  */
 bool Character::updateSprite(float xPosition, float yPosition)
 {
-	int arrowDirection = (17 * (std::pow((float)characterDirectionX, 3) + (2 * pow((float)characterDirectionX, 2))
+	int arrowDirection = (17 * (pow((float)characterDirectionX, 3) + (2 * pow((float)characterDirectionX, 2))
 		+ pow((float)characterDirectionY, 3) + pow((float)characterDirectionY, 2)));
 	sprite.setPosition((15 * xPosition), (15 * yPosition));
 	sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
