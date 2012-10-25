@@ -268,7 +268,7 @@ bool Tile::reset()
 	}
 	removeGoal();
 	return true;
-	
+
 };
 bool Tile::removeGoal()
 {
