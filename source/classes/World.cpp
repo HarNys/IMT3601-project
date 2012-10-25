@@ -144,34 +144,34 @@ void World::randomGenerate(bool start)
 		currentX = StartX;
 		currentY = StartY;
 		map[currentX][currentY]->setVisited();
-
+		
 		Tile *tmptile = map[currentX][currentY - 2];
 
-		if (tmptile)
-		{
-			unVisited->push_front(tmptile);
-		}
-		tmptile = map[currentX + 2][currentY];
-		if (tmptile)
-		{
-			unVisited->push_front(tmptile);
-		}
-		tmptile = map[currentX][currentY+2];
-		if (tmptile)
-		{
-			unVisited->push_front(map[currentX][currentY + 2]);
-		}
-		tmptile = map[currentX - 2][currentY];
-		if (tmptile)
-		{
-			unVisited->push_front(tmptile);
-		}
-		printf("tmptile");
+		  if (tmptile)
+		  {
+		   unVisited->push_front(tmptile);
+		  }
+		  tmptile = map[currentX + 2][currentY];
+		  if (tmptile)
+		  {
+		   unVisited->push_front(tmptile);
+		  }
+		  tmptile = map[currentX][currentY+2];
+		  if (tmptile)
+		  {
+		   unVisited->push_front(map[currentX][currentY + 2]);
+		  }
+		  tmptile = map[currentX - 2][currentY];
+		  if (tmptile)
+		  {
+		   unVisited->push_front(tmptile);
+		  }
+
 	}
 
 	//make an enumerator containing the orders then select one at random
-
-	while(!unVisited->empty())
+	int size = visited->size();
+	while(size != ((area * area) - 64))
 	{
 		if(Direction == 0)	//if direction equals up
 		{
