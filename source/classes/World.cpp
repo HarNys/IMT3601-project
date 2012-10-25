@@ -252,7 +252,7 @@ void World::randomGenerate(bool start)
 						}
 						else
 						{
-							unVisited->remove(temp);
+							unVisited->remove(temp); // remove may be deleting the Tile pointed to, CHECK THIS!
 							currentY = currentY + 2;
 						}
 						printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
@@ -276,7 +276,7 @@ void World::randomGenerate(bool start)
 						"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
 						"World::randomGenerate(bool): frontier size: %4lu\n",
 						currentX, currentY, directionX, directionY, unVisited->size());
-					unVisited->remove(temp);
+					unVisited->remove(temp); // remove may be deleting the Tile pointed to, CHECK THIS!
 					break;
 				}
 			}
