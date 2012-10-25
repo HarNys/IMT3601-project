@@ -226,7 +226,8 @@ bool World::update()
 	Character *thisCharacter = NULL;
 
 	//
-	 static bool goalExists;
+	static bool goalExists;
+
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)
@@ -277,10 +278,6 @@ bool World::update()
 						goalExists = false;
 					}
 				}
-
-
-
-
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -289,8 +286,6 @@ bool World::update()
 	{
 		setGoal();
 	}
-
-
 
 	return true;
 };
