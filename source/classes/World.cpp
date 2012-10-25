@@ -263,18 +263,20 @@ bool World::update()
 
 				if (thisTile->getIsGoal())
 				{
+					thisTile->setFloor(2);
+					goalExists = true;
+
 					if (thisTile->getHasCharacter())
 					{
 						///<@Todo: give character points
-						thisTile->removeGoal();
+						thisTile->setGoal(false);
+						goalExists = false;
 					}
 				}
 
-				if(thisTile->getIsGoal())
-				{
-					thisTile->setFloor(2);
-					goalExists = true;
-				}
+
+
+				
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -340,7 +342,7 @@ void World::setGoal()
 
 	}while(thisTile->getIsWall());
 
-	thisTile->setGoal();
+	thisTile->setGoal(true);
 }
 
 Tile ***World::getMap()

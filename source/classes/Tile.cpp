@@ -147,9 +147,15 @@ bool Tile::setCharacter(Character *character)
 	return true;
 };
 
-bool Tile::setGoal()
+bool Tile::setGoal(bool goal)
 {
-	isGoal= true;
+	isGoal= goal;
+
+	if (!goal)
+	{
+		setFloor(0);
+	}
+
 	return isGoal;
 }
 
@@ -266,12 +272,8 @@ bool Tile::reset()
 		characterFactory->releaseCharacter(hasCharacter);
 		hasCharacter = NULL;
 	}
-	removeGoal();
+	setGoal(false);
 	return true;
 
 };
-bool Tile::removeGoal()
-{
-	isGoal = false;
-	return true;
-}
+
