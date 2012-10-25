@@ -253,3 +253,20 @@ Tile::~Tile()
 		hasCharacter = NULL;
 	}
 };
+
+bool Tile::reset()
+{
+	if (hasMine)
+	{
+		mineFactory->releaseMine(hasMine);
+		hasMine = NULL;
+	}
+	if (hasCharacter)
+	{
+		characterFactory->releaseCharacter(hasCharacter);
+		hasCharacter = NULL;
+	}
+	isGoal = false;
+	return true;
+	
+};

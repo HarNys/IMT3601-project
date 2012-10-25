@@ -112,36 +112,42 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 
 }
 
-///movement-functions
-///checks if the key is pressed and then released
-///to reset characterDirectionX/Y
-/// @param [in] Character pointer to the character that is going to move
+
+/**	movement-functions
+*	checks if the key is pressed and then released
+*	to reset characterDirectionX/Y
+*	@param [in] pointer to character to move
+*/
+
 
 void NonePlayerCharacter::movement(Character* thisCharacter)
-{	if((-1) == xDirection)
+{
+	if((-1) == xDirection)
+
 	{
-		thisCharacter->updateSprite(xDirection,yDirection);
-		thisCharacter->move('X', xDirection);
+		thisCharacter->setCharacterDirectionX(xDirection);
+		thisCharacter->updateSprite();
 	}
 	
 	if(1 == xDirection)
 	{
-		thisCharacter->updateSprite(xDirection,yDirection);
-		thisCharacter->move('X', xDirection);
+		thisCharacter->setCharacterDirectionX(xDirection);
+		thisCharacter->updateSprite();
+
 	}
 	
 	if((-1) == yDirection)
 	{
-		thisCharacter->updateSprite(xDirection,yDirection);
-		thisCharacter->move('Y', yDirection);	
+		thisCharacter->setCharacterDirectionY(yDirection);
+		thisCharacter->updateSprite();
 	}
+
 	
 	if(1 == yDirection)
 	{
-		thisCharacter->updateSprite(xDirection,yDirection);
-		thisCharacter->move('Y', yDirection);
+
+		thisCharacter->setCharacterDirectionY(yDirection);
+		thisCharacter->updateSprite();
 		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
 	}
-
-
 };

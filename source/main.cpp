@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 		sf::Event event;
 
 		/// @todo add escape as exit button
-		player1->updatePosition(event, player1);
+		player1->useController(event, player1);
 		while (screen.pollEvent(event))
 		{
 
@@ -91,6 +91,13 @@ int main(int argc, char **argv)
 				//mineFactory->~MineFactory();
 
 				screen.close();
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::P)
+				{
+					world->reset();
+				}
 			}
 		}
 	}

@@ -29,6 +29,7 @@ public:
 	Tile ***getMap();
 	int getArea();
 	void setGoal();
+	bool reset();
 };
 
 #endif // __WORLD__HEADER__GUARD__
