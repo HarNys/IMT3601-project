@@ -35,7 +35,7 @@ public:
 	void updatePosition(sf::Event e, Character* thischaracter);
 	void resetDirection();
 	void updateCharacterHealt(int health);
-	void move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight);
+	void move(char CharacterDirection, int moveDirection);
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
 };

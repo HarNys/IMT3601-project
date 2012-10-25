@@ -103,28 +103,32 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 ///movement-functions
 ///checks if the key is pressed and then released
 ///to reset characterDirectionX/Y
-/// @param [in] pointer to character to move
+/// @param [in] Character pointer to the character that is going to move
 
-void NonePlayerCharacter::movement(Character* tempchar)
+void NonePlayerCharacter::movement(Character* thisCharacter)
 {
 	if((-1) == xDir)
 	{
-		tempchar->move('X', xDir ,0, 51, 15, 15);
+		thisCharacter->updateSprite(xDir,yDir);
+		thisCharacter->move('X', xDir);
 	}
 	
 	if(1 == xDir)
 	{
-		tempchar->move('X', xDir , 0, 17, 15, 15);
+		thisCharacter->updateSprite(xDir,yDir);
+		thisCharacter->move('X', xDir);
 	}
 	
 	if((-1) == yDir)
 	{
-		tempchar->move('Y', -1 , 0, 0, 15, 15);	
+		thisCharacter->updateSprite(xDir,yDir);
+		thisCharacter->move('Y', yDir);	
 	}
 	
 	if(1 == yDir)
 	{
-		tempchar->move('Y', 1 , 0, 34, 15, 15);
+		thisCharacter->updateSprite(xDir,yDir);
+		thisCharacter->move('Y', yDir);
 		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
 	}
 

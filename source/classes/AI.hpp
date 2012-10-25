@@ -16,7 +16,7 @@ int yDir;
 protected:
 public:
 	void aStar(Tile*** const map);
-	void movement(Character* tempchar);
+	void movement(Character* thisCharacter);
 
 };
 

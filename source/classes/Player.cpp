@@ -5,34 +5,38 @@
 ///to reset characterDirectionX/Y
 /// @param [in] (keyboard event, pointer to character to move) 
 
-void LocalPlayer::characterInput(sf::Event e, Character* tempchar)
+void LocalPlayer::characterInput(sf::Event e, Character* thisCharacter)
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		tempchar->move('X', -1 ,0, 51, 15, 15);
+		thisCharacter->updateSprite(-1, 0);
+		thisCharacter->move('X', -1);
 		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
-			tempchar->move('X',0 ,0, 51, 15, 15);
+			thisCharacter->move('X', 0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		tempchar->move('X', 1 , 0, 17, 15, 15);
+		thisCharacter->updateSprite(1, 0);
+		thisCharacter->move('X', 1);
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
-			tempchar->move('X', 0 , 0, 17, 15, 15);
+			thisCharacter->move('X', 0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		tempchar->move('Y', -1 , 0, 0, 15, 15);
+		thisCharacter->updateSprite(0, -1);
+		thisCharacter->move('Y', -1);
 		
 		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
-			tempchar->move('Y', 0 , 0, 0, 15, 15);
+			thisCharacter->move('Y', 0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		tempchar->move('Y', 1 , 0, 34, 15, 15);
+		thisCharacter->updateSprite(0, 1);
+		thisCharacter->move('Y', 1);
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
-			tempchar->move('Y', 0 , 0, 34, 15, 15);
+			thisCharacter->move('Y', 0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{

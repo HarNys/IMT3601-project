@@ -26,7 +26,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <cmath>
+#include <math.h>
 
 //// OpenMP ////
 //#pragma omp
@@ -42,7 +42,7 @@
 #include "classes/AI.hpp" // requires Node
 #include "classes/Player.hpp"
 
-/*
+
 //// Controllers ////
 	static LocalPlayer localPlayerController;
 	static NonePlayerCharacter npcController;

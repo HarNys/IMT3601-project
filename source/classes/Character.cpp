@@ -12,7 +12,7 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
-	controllerType = 1;
+	controllerType = 0;
 };
 
 /**
@@ -174,8 +174,8 @@ sf::Sprite *Character::getSprite()
  */
 bool Character::updateSprite(float xPosition, float yPosition)
 {
-	int arrowDirection = (17 * (pow(characterDirectionX, 3) + (2 * pow(characterDirectionX, 2))
-		+ pow(characterDirectionY, 3) + pow(characterDirectionY, 2)));
+	int arrowDirection = (17 * (std::pow((float)characterDirectionX, 3) + (2 * pow((float)characterDirectionX, 2))
+		+ pow((float)characterDirectionY, 3) + pow((float)characterDirectionY, 2)));
 	sprite.setPosition((15 * xPosition), (15 * yPosition));
 	sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
 	return true;
@@ -185,9 +185,8 @@ bool Character::updateSprite(float xPosition, float yPosition)
 *	@param [in]	CharacterDirection(x or y dir), The direction the character is moving(+ - dir), top left corner xand y of the sprite
 *			and with and hight of the sprite you want do draw
 */
-void Character::move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight)
+void Character::move(char CharacterDirection, int moveDirection)
 {
-	sprite.setTextureRect(sf::IntRect(drawTopCornerX, drawTopCornerY, drawWith, drawHight));
 
 	if ('X'== CharacterDirection)
 	{
