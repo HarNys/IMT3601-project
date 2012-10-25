@@ -255,10 +255,10 @@ bool World::update()
 					}
 					thisCharacter->resetDirection();
 					
-					if (goalExists)
-					{
-						npcController.aStar(map, thisCharacter);
-					}
+					//if (goalExists)
+					//{
+					//	
+					//}
 				}
 
 				if (thisTile->getIsGoal())
@@ -284,6 +284,7 @@ bool World::update()
 	if (!goalExists)		//if the is no goal then make one;
 	{
 		setGoal();
+		npcController.aStar(map, thisCharacter);
 	}
 
 
