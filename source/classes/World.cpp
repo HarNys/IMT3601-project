@@ -261,6 +261,15 @@ bool World::update()
 					}
 				}
 
+				if (thisTile->getIsGoal())
+				{
+					if (thisTile->getHasCharacter())
+					{
+						///<@Todo: give character points
+						thisTile->removeGoal();
+					}
+				}
+
 				if(thisTile->getIsGoal())
 				{
 					thisTile->setFloor(2);

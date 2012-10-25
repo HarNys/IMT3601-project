@@ -266,7 +266,12 @@ bool Tile::reset()
 		characterFactory->releaseCharacter(hasCharacter);
 		hasCharacter = NULL;
 	}
-	isGoal = false;
+	removeGoal();
 	return true;
 	
 };
+bool Tile::removeGoal()
+{
+	isGoal = false;
+	return true;
+}
