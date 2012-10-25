@@ -32,12 +32,12 @@ public:
 	bool setCharacterDirectionX(int newXDirection);
 	bool setCharacterDirectionY(int newYDirection);
 	void draw(sf::RenderWindow* window);
-	void updatePosition(sf::Event e, Character* thischaracter);
+	void useController(sf::Event e, Character* thischaracter);
 	void resetDirection();
 	void updateCharacterHealt(int health);
-	void move(char CharacterDirection, int moveDirection);
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
+	bool Character::updateSprite();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

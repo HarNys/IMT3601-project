@@ -13,6 +13,9 @@ Character::Character()
 	characterDirectionY = 0;
 	characterHealth = 10;
 	controllerType = 0;
+	sprite.setPosition((15 * 1), (15 * 1));
+	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+
 };
 
 /**
@@ -161,11 +164,7 @@ sf::Sprite *Character::getSprite()
 };
 
 /**
- * Updates and sets a Characters sprite. The formula for arrowdirection
- * calculates for the img/player.png which square to use. A more easily
- * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
- * or \f$(((x+2)*17*(x*X))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
- * and characterDirectionY respectively
+ * Updates and sets a Characters sprite position.
  *
  * @param xPosition current x coordinate of the Character.
  * @param yPosition current y coordinate of the Character.
@@ -174,34 +173,36 @@ sf::Sprite *Character::getSprite()
  */
 bool Character::updateSprite(float xPosition, float yPosition)
 {
-	int arrowDirection = (17 * (pow((float)characterDirectionX, 3) + (2 * pow((float)characterDirectionX, 2))
-		+ pow((float)characterDirectionY, 3) + pow((float)characterDirectionY, 2)));
+
 	sprite.setPosition((15 * xPosition), (15 * yPosition));
-	sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
+	
 	return true;
 };
 
 /**
-*	@param [in]	CharacterDirection(x or y dir), The direction the character is moving(+ - dir), top left corner xand y of the sprite
-*			and with and hight of the sprite you want do draw
-*/
-void Character::move(char CharacterDirection, int moveDirection)
+ * Updates and sets a Characters sprite. The formula for arrowdirection
+ * calculates for the img/player.png which square to use. A more easily
+ * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
+ * or \f$(((x+2)*17*(x*x))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
+ * and characterDirectionY respectively
+ * @return True on success.
+ */
+
+bool Character::updateSprite()
 {
-
-	if ('X'== CharacterDirection)
-	{
-		characterDirectionX = moveDirection;
-	}
-	else
-	{
-		characterDirectionY = moveDirection;
-	}
-
-
+		int arrowDirection = (17 * (pow((float)characterDirectionX, 3) + (2 * pow((float)characterDirectionX, 2))
+		+ pow((float)characterDirectionY, 3) + pow((float)characterDirectionY, 2)));
+		sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
+		return true;
 }
 
 
-void Character::updatePosition(sf::Event e, Character* thischaracter)
+/**
+*	@param 	sf::Event e keybordevent,
+*	@param 	Character* thischaracter Character pointer to the character worked on
+*/
+
+void Character::useController(sf::Event e, Character* thischaracter)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};
 

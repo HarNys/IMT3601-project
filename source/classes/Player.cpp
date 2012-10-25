@@ -10,7 +10,7 @@ void LocalPlayer::characterInput(sf::Event e, Character* thisCharacter)
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		thisCharacter->setCharacterDirectionX(-1);
-		
+		thisCharacter->updateSprite();
 		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
 		{
 			thisCharacter->setCharacterDirectionX(0);
@@ -20,7 +20,7 @@ void LocalPlayer::characterInput(sf::Event e, Character* thisCharacter)
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		thisCharacter->setCharacterDirectionX(1);
-		
+		thisCharacter->updateSprite();
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
 		{
@@ -31,7 +31,7 @@ void LocalPlayer::characterInput(sf::Event e, Character* thisCharacter)
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		thisCharacter->setCharacterDirectionY(-1);
-		
+		thisCharacter->updateSprite();
 		
 		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
 		{
@@ -41,7 +41,7 @@ void LocalPlayer::characterInput(sf::Event e, Character* thisCharacter)
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		thisCharacter->setCharacterDirectionY(1);
-	
+		thisCharacter->updateSprite();
 
 		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 		{

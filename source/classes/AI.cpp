@@ -109,26 +109,26 @@ void NonePlayerCharacter::movement(Character* thisCharacter)
 {
 	if((-1) == xDir)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('X', xDir);
+		thisCharacter->setCharacterDirectionX(xDir);
+		thisCharacter->updateSprite();
 	}
 	
 	if(1 == xDir)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('X', xDir);
+		thisCharacter->setCharacterDirectionX(xDir);
+		thisCharacter->updateSprite();
 	}
 	
 	if((-1) == yDir)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('Y', yDir);	
+		thisCharacter->setCharacterDirectionY(yDir);
+		thisCharacter->updateSprite();
 	}
 	
 	if(1 == yDir)
 	{
-		thisCharacter->updateSprite(xDir,yDir);
-		thisCharacter->move('Y', yDir);
+		thisCharacter->setCharacterDirectionY(yDir);
+		thisCharacter->updateSprite();
 		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
 	}
 
