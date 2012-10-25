@@ -105,6 +105,10 @@ bool World::initMap(char *mapFile)
 bool World::placeCharacter(Character *character)
 {
 	int xSpace = 1;
+	while (map[xSpace][1]->getIsWall())
+	{
+		xSpace++;
+	}
 	map[xSpace++][1]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15);
 	return true;
@@ -254,7 +258,7 @@ bool World::update()
 						thisTile->setCharacter(NULL);
 					}
 					thisCharacter->resetDirection();
-					
+
 					if (goalExists)
 					{
 						npcController.aStar(map, thisCharacter);
@@ -276,7 +280,7 @@ bool World::update()
 
 
 
-				
+
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -363,7 +367,7 @@ bool World::reset()
 
 	int yCount;
 	int xCount;
-	
+
 	for (yCount = 0; yCount < area; yCount++)
 	{
 		for (xCount = 0; xCount < area; xCount++)
@@ -380,4 +384,3 @@ bool World::reset()
 
 	return true;
 }
-
