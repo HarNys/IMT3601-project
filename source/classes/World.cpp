@@ -110,7 +110,7 @@ bool World::initMap(char *mapFile)
 * @todo make this shit work
 */
 void World::randomGenerate(bool start)
-{	
+{
 	int startX = 0;
 	int startY = 0;
 	int directionX = 0;
@@ -119,7 +119,7 @@ void World::randomGenerate(bool start)
 
 	directionX = ((rand() % 2) -1);
 	directionY = ((rand() % 2) -1);
-	
+
 	startX = (rand() % (area-2) + border);
 	startY = (rand() % (area-2) + border);
 
@@ -127,12 +127,12 @@ void World::randomGenerate(bool start)
 	static std::list<Tile*> *visited;
 	Tile *temp;
 	std::list<Tile*>::iterator temp_list;
-	
+
 	int seed = time(NULL);
 	srand(seed);
 	int Direction = rand() % 4;
 
-	
+
 	if(start)
 	{
 		unVisited = new std::list<Tile*>;
@@ -145,14 +145,32 @@ void World::randomGenerate(bool start)
 		currentY = StartY;
 		map[currentX][currentY]->setVisited();
 
-		unVisited->push_front(map[currentX][currentY - 2]);
-		unVisited->push_front(map[currentX + 2][currentY]);
-		unVisited->push_front(map[currentX][currentY + 2]);
-		unVisited->push_front(map[currentX - 2][currentY]);
+		Tile *tmptile = map[currentX][currentY - 2];
+
+		if (tmptile)
+		{
+			unVisited->push_front(tmptile);
+		}
+		tmptile = map[currentX + 2][currentY];
+		if (tmptile)
+		{
+			unVisited->push_front(tmptile);
+		}
+		tmptile = map[currentX][currentY+2];
+		if (tmptile)
+		{
+			unVisited->push_front(map[currentX][currentY + 2]);
+		}
+		tmptile = map[currentX - 2][currentY];
+		if (tmptile)
+		{
+			unVisited->push_front(tmptile);
+		}
+		printf("tmptile");
 	}
 
 	//make an enumerator containing the orders then select one at random
-	
+
 	while(!unVisited->empty())
 	{
 		if(Direction == 0)	//if direction equals up
@@ -162,9 +180,10 @@ void World::randomGenerate(bool start)
 				currentY = currentY - 2;
 				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
 				{
-					if(list_position == Direction)	//when I'm at the corresponding Direction
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
 					{
-						temp = *temp_list;	//get the current tile
+//						temp = *temp_list;	//get the current tile
 
 						if(!temp->getVisited())	//if it's not visited
 						{
@@ -179,8 +198,13 @@ void World::randomGenerate(bool start)
 							map[currentX][currentY+1]->initSprite(currentX, currentY+1);
 							visited->push_front(map[currentX][currentY+1]);
 
-							if(currentX - 2 > border && !map[currentX - 2][currentY]->getVisited())
-								unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+							if (map[currentX - 2][currentY])
+							{
+								if((currentX - 2 > border) && (!map[currentX - 2][currentY]->getVisited()))
+								{
+									unVisited->push_front(map[currentX - 2][currentY]);	//push the next 4 on
+								}
+							}
 							if(currentY + 2 < area && !map[currentX][currentY + 2]->getVisited())
 								unVisited->push_front(map[currentX][currentY + 2]);
 							if(currentX + 2 < area && !map[currentX + 2][currentY]->getVisited())
@@ -212,7 +236,7 @@ void World::randomGenerate(bool start)
 				}
 				randomGenerate();
 			}
-									
+
 		}
 		else if(Direction == 1)	//if direction equals right
 		{
@@ -222,9 +246,10 @@ void World::randomGenerate(bool start)
 				currentX = currentX + 2;
 				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
 				{
-					if(list_position == Direction)	//when I'm at the corresponding Direction
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
 					{
-						temp = *temp_list;	//get the current tile
+//						temp = *temp_list;	//get the current tile
 
 						if(!temp->getVisited())	//if it's not visited
 						{
@@ -282,9 +307,10 @@ void World::randomGenerate(bool start)
 				currentY = currentY + 2;
 				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
 				{
-					if(list_position == Direction)	//when I'm at the corresponding Direction
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
 					{
-						temp = *temp_list;	//get the current tile
+//						temp = *temp_list;	//get the current tile
 
 						if(!temp->getVisited())	//if it's not visited
 						{
@@ -340,9 +366,10 @@ void World::randomGenerate(bool start)
 				currentX = currentX - 2;
 				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++, list_position++)
 				{
-					if(list_position == Direction)	//when I'm at the corresponding Direction
+					temp = *temp_list;
+					if(temp == map[currentX][currentY])//list_position == Direction)	//when I'm at the corresponding Direction
 					{
-						temp = *temp_list;	//get the current tile
+//						temp = *temp_list;	//get the current tile
 
 						if(!temp->getVisited())	//if it's not visited
 						{
