@@ -65,6 +65,11 @@ bool Tile::setWall(bool wall)
 	return true;
 };
 
+/**
+ * Returns wether or not a Tile is visited
+ *
+ * @return true if visited.
+ */
 bool Tile::getVisited()
 {
 	if(visited)
