@@ -1,81 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="source\classes\Character.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\World.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Includes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Mine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Tile.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\MineFactory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\CharacterFactory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\AI.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Player.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Node.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="source\classes\AI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
     <ClCompile Include="source\classes\World.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\MineFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Mine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\CharacterFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\AI.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\Player.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\classes\Mine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\MineFactory.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\Node.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\classes\Player.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Tile.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\classes\AI.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Character.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\CharacterFactory.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Includes.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Mine.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\MineFactory.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Node.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Player.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Tile.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\World.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{604bf352-ace2-4cea-8db0-334d4cd34e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{1cbbf255-ce51-4bfc-aee2-8b0a6077f5d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
