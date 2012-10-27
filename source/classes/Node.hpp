@@ -32,6 +32,7 @@ public:
 	Node* upChild;
 	Node* downChild;
 	Node* findCheapestUnusedRecursively();
+	bool checkTreeRecursivelyForNode(int xCoordinates, int yCoordinates);
 
 };
 #endif // __NODE__HEADER__GUARD__

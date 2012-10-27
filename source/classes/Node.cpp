@@ -141,3 +141,36 @@ bool Node::checkVisited()
 {
 	return visited;
 };
+
+bool Node::checkTreeRecursivelyForNode(int xCoordinates, int yCoordinates){
+	// returns the node with the lowest value on priority
+	if (xValue == xCoordinates && yValue == yCoordinates){
+		return true;
+	}
+	if (upChild){
+		if (upChild->checkTreeRecursivelyForNode(xCoordinates, yCoordinates))
+		{
+			return true;
+		}
+	}
+	if (rightChild){
+		if (rightChild->checkTreeRecursivelyForNode(xCoordinates, yCoordinates))
+		{
+			return true;
+		}
+	}
+	if(downChild){
+		if (downChild->checkTreeRecursivelyForNode(xCoordinates, yCoordinates))
+		{
+			return true;
+		}
+	}
+	if (leftChild){
+		if (leftChild->checkTreeRecursivelyForNode(xCoordinates, yCoordinates))
+		{
+			return true;
+		}
+	}
+	return false;
+};
+

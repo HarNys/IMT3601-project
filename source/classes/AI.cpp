@@ -34,7 +34,6 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 		for (int xCount =0; xCount < area; xCount++)
 		{
 			thisTile = map[xCount] [yCount];
-			//needs to be expanded upon so that it can find one set character.
 			//should not be needed if the character could know position as well.
 			if (thisCharacter == thisTile->getHasCharacter()) {
 				startNode = new Node(xCount, yCount, 0, 0, 0, NULL);
@@ -95,25 +94,34 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 			else
 			{
 
+				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()-1)){
 				//checking for wall above
-				thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
-				if  (!thisTile->getIsWall()){
-					visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
+					if  (!thisTile->getIsWall()){
+						visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					}
 				}
-
-				thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
-				if  (!thisTile->getIsWall()){
-					visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()+1, visitNode->getYPos())){
+				//checking for wall right
+					thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
+					if  (!thisTile->getIsWall()){
+						visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					}
 				}
-				thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
-				if  (!thisTile->getIsWall()){
-					visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()+1)){
+				//checking for wall below
+					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
+					if  (!thisTile->getIsWall()){
+						visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					}
 				}
-				thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
-				if  (!thisTile->getIsWall()){
-					visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()-1, visitNode->getYPos())){
+					//checking for wall left
+					thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
+					if  (!thisTile->getIsWall()){
+						visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					}
 				}
-
 			}
 		}
 		else

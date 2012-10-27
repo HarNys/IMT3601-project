@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
 	}
 //*/
-//	screen.setFramerateLimit(20);
+	screen.setFramerateLimit(20);
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	World *world;
 	world = world->getWorld();
@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		world->initMap((char *)"map/maptwo.txt");
+		world->initMap((char *)"map/mega.txt");
 	}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");

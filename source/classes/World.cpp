@@ -276,6 +276,8 @@ bool World::update()
 						///<@Todo: give character points
 						thisTile->setGoal(false);
 						goalExists = false;
+						printf("World::Update(): character hit flag\n");
+	
 					}
 				}
 			} // end if (!thisTile->getIsWall())
