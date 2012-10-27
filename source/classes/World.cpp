@@ -129,10 +129,21 @@ void World::randomGenerate(bool start)
 		int StartX = rand() % (area-2) + 1; //add border late
 		int StartY = rand() % (area-2) + 1;
 		visited->push_front(map[StartX][StartY]);
+		
+		if(StartX - 2 <= border)	//if we could be in danger of going outside the border
+			StartX = StartX + 2;
+		if(StartX + 2 >= area)
+			StartX = StartX - 2;
+		if(StartY - 2 <= border)
+			StartY = StartY + 2;
+		if(StartY >= area)
+			StartY = StartY - 2;
+
 		currentX = StartX;
 		currentY = StartY;
 		map[currentX][currentY]->setVisited();
 
+		
 		if (map[currentX][currentY - 2] != NULL)
 		{
 			unVisited->push_front(map[currentX][currentY - 2]);
@@ -150,11 +161,9 @@ void World::randomGenerate(bool start)
 			unVisited->push_front(map[currentX - 2][currentY]);
 		}
 	}
-	//make an enumerator containing the orders then select one at random
+	/*	int size = visited->size();
+	while(size != ((area * area) - 64))//*/
 	while(!unVisited->empty())
-/*	int size = visited->size();
-	while(size != ((area * area) - 64))
-//*/
 	{
 		directionX = 0;
 		directionY = 0;
@@ -194,8 +203,9 @@ void World::randomGenerate(bool start)
 							map[currentX][currentY]->setVisited(); // set it to visited and change tile and texture
 							map[currentX][currentY]->setWall(false);
 							map[currentX][currentY]->initSprite(currentX, currentY);
-							unVisited->remove(temp);
-							visited->push_front(map[currentX][currentY]);
+							visited->splice(temp_list, *unVisited, temp_list);
+							//unVisited->remove(temp);
+							//visited->push_front(map[currentX][currentY]);
 
 							//change the tile between current and previous tile to a floor
 							map[currentX][currentY+1]->setVisited();
@@ -250,7 +260,7 @@ void World::randomGenerate(bool start)
 								currentX, currentY, directionX, directionY, unVisited->size());
 								//*/
 						}
-						else
+						else	//right now this won't trigger since we are only adding unvisited tiles to unVisited
 						{
 							unVisited->remove(temp); // remove may be deleting the Tile pointed to, CHECK THIS!
 							currentY = currentY + 2;
