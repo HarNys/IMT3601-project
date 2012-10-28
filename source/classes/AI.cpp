@@ -26,6 +26,7 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 	bool queueFlag = false;
 	int area;
 
+
 	World * check =  World::getWorld();
 	area = check->getArea();
 
@@ -98,28 +99,28 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 				//checking for wall above
 					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
 					if  (!thisTile->getIsWall()){
-						visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()+1, visitNode->getYPos())){
 				//checking for wall right
 					thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
 					if  (!thisTile->getIsWall()){
-						visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()+1)){
 				//checking for wall below
 					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
 					if  (!thisTile->getIsWall()){
-						visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()-1, visitNode->getYPos())){
 					//checking for wall left
 					thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
 					if  (!thisTile->getIsWall()){
-						visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
 			}
