@@ -153,6 +153,8 @@ bool Tile::setCharacter(Character *character)
  * @param [in] yPos: the y position of the tile
  *
  * @return true on success
+ *
+ * @todo proper parameter names.
  */
 bool Tile::initSprite(int xPos, int yPos)
 {
@@ -169,6 +171,7 @@ bool Tile::initSprite(int xPos, int yPos)
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
+//	tileSprite.setScale(); /// @todo we need to make these two work, halfway there?
 	return true;
 };
 

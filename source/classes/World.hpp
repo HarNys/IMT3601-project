@@ -10,22 +10,24 @@
 class World
 {
 private:
-        // constructor
-        World();
+	// constructor
+	World();
 
-        // member variables
-        static World *world;
-        Tile ***map;
-        int area; //size from origin to one side of the map
-        MineFactory *mineFactory;
+	// member variables
+	static World *world;
+	Tile ***map;
+	int area; //size from origin to one side of the map
+	MineFactory *mineFactory;
+	int mTileSizeX;
+	int mTileSizeY;
 public:
-        static World *getWorld();
-        bool initMap(char *mapFile);
-        bool placeCharacter(Character *character);
-        bool moveCharacter(Character *character, int xPosition, int yPosition);
-        bool placeMine(Character *character, Tile *tile);
-        bool update();
-        void draw(sf::RenderWindow *window);
+	static World *getWorld();
+	bool initMap(char *mapFile, int screenWidth, int screenHeight);
+	bool placeCharacter(Character *character);
+	bool moveCharacter(Character *character, int xPosition, int yPosition);
+	bool placeMine(Character *character, Tile *tile);
+	bool update();
+	void draw(sf::RenderWindow *window);
 };
 
 #endif // __WORLD__HEADER__GUARD__

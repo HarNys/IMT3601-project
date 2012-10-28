@@ -12,39 +12,35 @@ int main(int argc, char **argv)
 	 * 	should be(this depends of course on that the rest of
 	 * 	the system is ready).
 	 */
+	int screenWidth = 800;
+	int screenHeight = 600;
 	sf::RenderWindow screen;
-	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
 /*
 	char fullscreenoption;
 	std::cout << "play in fullscreen? (Y/n)";
 	std::cin >> fullscreenoption;
 
-	if (fullscreenoption == 'n' || fullscreenoption == 'N')
+	/// @todo make the values read in safely with scanf
+	if ((toupper(fullscreenoption) == 'Y')
 	{
-		screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
-	}
-	else
-	{
-		int screenWith;
-		int ScreenHight;
 		std::cout << "what resolution do you like to have? example: 800 600 \n";
-		std::cin >> screenWith;
-		std::cin >> ScreenHight;
-
-		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
+		std::cin >> screenWidth;
+		std::cin >> screenHeight;
 	}
 //*/
+	screen.create(sf::VideoMode(screenWidth, screenHeight,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 	screen.setFramerateLimit(20);
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	World *world;
 	world = world->getWorld();
-	if (argv[1]) {
-		world->initMap(argv[1]);
+	if (argv[1])
+	{
+		world->initMap(argv[1], screenWidth, screenHeight);
 	}
 	else
 	{
-		world->initMap((char *)"map/maptwo.txt");
+		world->initMap((char *)"map/maptwo.txt", screenWidth, screenHeight);
 	}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");

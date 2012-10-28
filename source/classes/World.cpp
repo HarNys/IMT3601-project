@@ -46,7 +46,7 @@ World *World::getWorld()
  *
  * @bug It seems this function draws or reads x's and y's swapped.
  */
-bool World::initMap(char *mapFile)
+bool World::initMap(char *mapFile, int screenWidth, int  screenHeight)
 {
 	if (!map[0][0])
 	{
@@ -61,24 +61,31 @@ bool World::initMap(char *mapFile)
 	while (file.get() != '\n'){
 		area++;
 	}
+	mTileSizeX = (screenWidth / area);
+	mTileSizeY = (screenHeight / area);
 	file.seekg(0);
 	map = new Tile**[area];
 	Tile *tempTile = new Tile();
 	tempTile->initImage();
+	int sentXPosition = 0;
+	int sentYPosition = 0;
 	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
+		sentYPosition = (yPosition * mTileSizeY);
 		///@note creates tile pointer for each row
 		map[yPosition] = new Tile*[area];
 
 		///@note the x value of the map
 		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
+			sentXPosition = (xPosition * mTileSizeX);
+
 			///@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
 				map[yPosition][xPosition] = new Tile(*tempTile);
 				map[yPosition][xPosition]->initTile(file.get());
-				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
+				if (map[yPosition][xPosition]->initSprite(sentYPosition, sentXPosition)) /// @todo Find out why yPosition is sent in before xPosition
 //					, (windowSize.x/area), (windowSize.y/area)))
 				{
 					static int count = 0;
