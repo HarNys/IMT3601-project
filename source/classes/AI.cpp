@@ -1,23 +1,13 @@
 #include "../Includes.hpp"
 
-void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
+/**
+*	@brief finds shortest bath and gives node pointers to player to calculate velocity
+*	@param the map in question, not really needed. the character that is to be moved
+*	@todo, give a list of coordinates to visit, so search can be done more rarely.
+*/
+
+void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 {
-	//Find character
-
-	//if path not defined && path > 3 seconds old
-
-	//Find goal
-	//while not goal
-	//Open for non walls within reach, assign values as well
-
-	//jump to the square and explore neighbors not already in there, if not visited can readjust values
-
-	//end while
-
-	//end if
-
-	//find set of visited to goal and determine what the next step is
-
 	Tile * thisTile = NULL;
 	Node * visitNode;
 	Node * tempNode;
@@ -57,6 +47,7 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 
 
 			//when the goal has been reached, meaning they can create a queue
+			// @todo add actual queue instead of two node pointers
 			if( visitNode->getXPos() == goalNode->getXPos()
 				&& visitNode->getYPos() == goalNode->getYPos())
 			{
@@ -80,33 +71,36 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 				}
 				thisCharacter->setCurrentNode(tempNode);
 				thisCharacter->setNextNode(queueNode);
-				//movement(xDirection, yDirection);
 			}
+				
 				//when goal is not reached
 			else
 			{
-
+				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()-1)){
-				//checking for wall above
+					//checking for wall above
 					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
 					if  (!thisTile->getIsWall()){
 						visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
+				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()+1, visitNode->getYPos())){
-				//checking for wall right
+					//checking for wall right
 					thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
 					if  (!thisTile->getIsWall()){
 						visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
+				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()+1)){
-				//checking for wall below
+					//checking for wall below
 					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
 					if  (!thisTile->getIsWall()){
 						visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
 					}
 				}
+				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()-1, visitNode->getYPos())){
 					//checking for wall left
 					thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
@@ -125,41 +119,3 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 }
 
 
-/**	movement-functions
-*	checks if the key is pressed and then released
-*	to reset characterDirectionX/Y
-*	@param [in] pointer to character to move
-*/
-
-
-void NonePlayerCharacter::movement(Character* thisCharacter)
-{
-	if((-1) == xDirection)
-
-	{
-		thisCharacter->setCharacterDirectionX(xDirection);
-		thisCharacter->updateSprite();
-	}
-
-	if(1 == xDirection)
-	{
-		thisCharacter->setCharacterDirectionX(xDirection);
-		thisCharacter->updateSprite();
-
-	}
-
-	if((-1) == yDirection)
-	{
-		thisCharacter->setCharacterDirectionY(yDirection);
-		thisCharacter->updateSprite();
-	}
-
-
-	if(1 == yDirection)
-	{
-
-		thisCharacter->setCharacterDirectionY(yDirection);
-		thisCharacter->updateSprite();
-		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
-	}
-};

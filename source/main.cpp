@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		world->initMap((char *)"map/mapthree.txt");
+		world->initMap((char *)"map/mega.txt");
 	}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");
