@@ -121,7 +121,7 @@ bool World::placeCharacter(Character *character)
  */
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
-	
+
 	int characterDirectionX = 0;
 	int characterDirectionY = 0;
 	characterDirectionX = character->getCharacterDirectionX();
@@ -175,6 +175,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
 		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
+
 };
 
 /**
@@ -220,8 +221,9 @@ bool World::update()
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
 
-	// 
-	 static bool goalExists;
+	//
+	static bool goalExists;
+	 
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)
@@ -253,13 +255,26 @@ bool World::update()
 						thisTile->setCharacter(NULL);
 					}
 					thisCharacter->resetDirection();
+					
+					if (goalExists)
+					{
+						npcController.aStar(map, thisCharacter);
+					}
 				}
-				
-				if(thisTile->getIsGoal())
+
+				if (thisTile->getIsGoal())
 				{
 					thisTile->setFloor(2);
 					goalExists = true;
+
+					if (thisTile->getHasCharacter())
+					{
+						///<@Todo: give character points
+						thisTile->setGoal(false);
+						goalExists = false;
+					}
 				}
+
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -294,7 +309,10 @@ void World::draw(sf::RenderWindow *window)
 			if (thisCharacter)
 			{
 //				printf("World::draw(sf::RenderWindow*): should draw a character at this very moment\n");
-				thisCharacter->getSprite()->setPosition(((float)(15 * xCount)), ((float)(15 * yCount)));
+/*				thisCharacter->getSprite()->setPosition(((float)(15 * xCount)), ((float)(15 * yCount)));
+				thisCharacter->setSprite().setTextureRect(sf::IntRect(0, 51, 15, 15));
+//*/
+				thisCharacter->updateSprite((float) xCount, (float) yCount);
 				window->draw(*thisCharacter->getSprite());
 			}
 		}
@@ -308,19 +326,19 @@ void World::setGoal()
 	int x;
 	int y;
 	srand(time(NULL));
-	do				//Do while tile (x,y) is a wall	
+	do				//Do while tile (x,y) is a wall
 	{
 		do			//DO while tile (x,y) is on the border
 		{
 			x = (rand()%(area-2))+1;
 			y = (rand()%(area-2))+1;
 		}while((x == area) || (0 == x) || (y == area) || (0 == y));
-		
+
 		thisTile = map[x][y];
 
 	}while(thisTile->getIsWall());
 
-	thisTile->setGoal();
+	thisTile->setGoal(true);
 }
 
 Tile ***World::getMap()
@@ -331,6 +349,7 @@ Tile ***World::getMap()
 int World::getArea(){
 	return area;
 }
+
 
 bool World::reset()
 {
@@ -357,3 +376,4 @@ bool World::reset()
 
 	return true;
 }
+

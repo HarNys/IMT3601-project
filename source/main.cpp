@@ -39,15 +39,12 @@ int main(int argc, char **argv)
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	
 	
-	Menu* mainMenu = new Menu("./img/Menu.png",0,0);
-	
-	char input;
+	Menu* mainMenu = new Menu("img/Menu.gif",0,0);
 
-	//while('L'!=input || 'l'!=input)
-	//{
-	//	mainMenu->draw(&screen);
-	//	std::cin >> input;		//scanf(input) is wants char* but i only want one char
-	//}
+	while(!(sf::Keyboard::isKeyPressed(sf::Keyboard::L)))
+	{
+		mainMenu->draw(&screen);
+	}
 	
 	
 	World *world;
@@ -91,7 +88,7 @@ int main(int argc, char **argv)
 
 		while (screen.pollEvent(event))
 		{
-			player1->updatePosition(event, player1);
+			player1->useController(event, player1);
 			//player1->characterInput(event);
 
 			// Close window : exit

@@ -26,25 +26,27 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <cmath>
+#include <math.h>
 
 //// OpenMP ////
 //#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
+#include "classes/Node.hpp"
 #include "classes/Character.hpp"
 #include "classes/CharacterFactory.hpp" // requires 'Character.hpp'
 #include "classes/Mine.hpp" // requires character
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-#include "classes/AI.hpp"
-#include "classes/Node.hpp"
+#include "classes/AI.hpp" // requires Node
 #include "classes/Player.hpp"
 #include "classes/Menu.hpp"
 
+
 //// Controllers ////
-static LocalPlayer localPlayerController;
-static NonePlayerCharacter npcController;
+	static LocalPlayer localPlayerController;
+	static NonePlayerCharacter npcController;
+//*/
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__

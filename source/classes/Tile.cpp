@@ -147,9 +147,15 @@ bool Tile::setCharacter(Character *character)
 	return true;
 };
 
-bool Tile::setGoal()
+bool Tile::setGoal(bool goal)
 {
-	isGoal= true;
+	isGoal= goal;
+
+	if (!goal)
+	{
+		setFloor(0);
+	}
+
 	return isGoal;
 }
 
@@ -216,19 +222,20 @@ void Tile::initImage()
  *
  * @param [in] floorType: 0 for floor, 1 for mine and 2 for goal.
  */
-void Tile::setFloor(int static floorType)
+
+void Tile::setFloor(int floorType)
 {
 
 	if(0 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	}
-	
+
 	if (1 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(17, 0, 16, 16));
 	}
-	
+
 	if (2 == floorType)
 	{
 		tileSprite.setTextureRect(sf::IntRect(0, 17, 16, 16));
@@ -265,7 +272,8 @@ bool Tile::reset()
 		characterFactory->releaseCharacter(hasCharacter);
 		hasCharacter = NULL;
 	}
-	isGoal = false;
+	setGoal(false);
 	return true;
 	
 };
+

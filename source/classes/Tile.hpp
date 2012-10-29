@@ -33,7 +33,7 @@ public:
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
-	bool setGoal();
+	bool setGoal(bool goal);
 	bool getIsWall();
 	bool getIsGoal();
 	bool reset();

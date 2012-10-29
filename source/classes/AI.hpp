@@ -9,14 +9,19 @@
 class NonePlayerCharacter
 {
 private:
-
+Node * startNode;
+Node * queueNode;
+Node * goalNode;
+int xDirection;
+int yDirection;
 
 protected:
 public:
-	void aStar(Tile*** const map);
-	void movement(Character* tempchar);
+	void aStar(Tile*** const map, Character* thisCharacter);
+	void movement(Character* thisCharacter);
 
 };
 
 
 #endif  //__AI__HEADER__GUARD__
+	

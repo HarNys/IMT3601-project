@@ -11,21 +11,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\classes\AI.hpp" />
     <ClInclude Include="source\classes\Character.hpp" />
     <ClInclude Include="source\classes\CharacterFactory.hpp" />
     <ClInclude Include="source\classes\menu.hpp" />
     <ClInclude Include="source\classes\Mine.hpp" />
     <ClInclude Include="source\classes\MineFactory.hpp" />
+    <ClInclude Include="source\classes\Node.hpp" />
+    <ClInclude Include="source\classes\Player.hpp" />
     <ClInclude Include="source\classes\Tile.hpp" />
     <ClInclude Include="source\classes\World.hpp" />
     <ClInclude Include="source\Includes.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\classes\AI.cpp" />
     <ClCompile Include="source\classes\Character.cpp" />
     <ClCompile Include="source\classes\CharacterFactory.cpp" />
     <ClCompile Include="source\classes\menu.cpp" />
     <ClCompile Include="source\classes\Mine.cpp" />
     <ClCompile Include="source\classes\MineFactory.cpp" />
+    <ClCompile Include="source\classes\Node.cpp" />
+    <ClCompile Include="source\classes\Player.cpp" />
     <ClCompile Include="source\classes\Tile.cpp" />
     <ClCompile Include="source\classes\World.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -73,7 +79,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
@@ -81,7 +87,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>sfml-window.lib;sfml-graphics.lib;sfml-graphics-s-d.lib;sfml-audio-s-d.lib;sfml-system-s-d.lib;sfml-window-s-d.lib;sfml-network-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib;sfml-network-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

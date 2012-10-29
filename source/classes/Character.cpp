@@ -12,22 +12,26 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
-	controllerType = 0;
+	controllerType = 1;
+	currentNode=NULL;
+	nextNode=NULL;
+	sprite.setPosition((15 * 1), (15 * 1));
+	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 };
 
 /**
-*	@brif: Updates characters healt if it taks demages og health is refreshed etc.
-*	@parameter: The amount of healt to add/subtract.
-*	@todo: when dead give signal to pop up manu or something like that.
+*	@brief Updates characters healt if it taks demages og health is refreshed etc.
+*	@param health The amount of healt to add/subtract.
+*	@todo when dead give signal to pop up menu or something like that.
 */
-void Character::updateCharacterHealt(int health)
+void Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
-	printf("player health is %d \n",characterHealth);
+	printf("\nCharacter::updateCharacterHealth(int): player health is %d \r",characterHealth);
 	if(characterHealth < 1)
 	{
 		printf("\n\n---You are dead---\n\n");
-		updateCharacterHealt(10);		///< resets characters healt if dead
+		updateCharacterHealth(10);		///< resets characters health if dead
 
 	}
 }
@@ -90,7 +94,7 @@ void Character::setMinePlaced(bool minePlace)
  *
  * @return characterDirectionX
  */
-float Character::getCharacterDirectionX()
+int Character::getCharacterDirectionX()
 {
 	return characterDirectionX;
 };
@@ -100,9 +104,35 @@ float Character::getCharacterDirectionX()
  *
  * @return characterDirectionY
  */
-float Character::getCharacterDirectionY()
+int Character::getCharacterDirectionY()
 {
 	return characterDirectionY;
+};
+
+/**
+ * returns the value of this Character's characterDirectionY.
+ *
+ * @param newYDirection the new y direction.
+ *
+ * @return true on success.
+ */
+bool Character::setCharacterDirectionY(int newYDirection)
+{
+	characterDirectionY = newYDirection;
+	return true;
+};
+
+/**
+ * returns the value of this Character's characterDirectionX.
+ *
+ * @param newXDirection the new x direction.
+ *
+ * @return true on success.
+ */
+bool Character::setCharacterDirectionX(int newXDirection)
+{
+	characterDirectionX = newXDirection;
+	return true;
 };
 
 /**
@@ -135,27 +165,45 @@ sf::Sprite *Character::getSprite()
 };
 
 /**
-*	@param [in]	CharacterDirection(x or y dir), The direction the character is moving(+ - dir), top left corner xand y of the sprite
-*			and with and hight of the sprite you want do draw
-*/
-void Character::move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight)
+ * Updates and sets a Characters sprite position.
+ *
+ * @param xPosition current x coordinate of the Character.
+ * @param yPosition current y coordinate of the Character.
+ *
+ * @return True on success.
+ */
+bool Character::updateSprite(float xPosition, float yPosition)
 {
-	sprite.setTextureRect(sf::IntRect(drawTopCornerX, drawTopCornerY, drawWith, drawHight));
 
-	if ('X'== CharacterDirection)
-	{
-		characterDirectionX = moveDirection;
-	}
-	else
-	{
-		characterDirectionY = moveDirection;
-	}
+	sprite.setPosition((15 * xPosition), (15 * yPosition));
 	
+	return true;
+};
 
+/**
+ * Updates and sets a Characters sprite. The formula for arrowdirection
+ * calculates for the img/player.png which square to use. A more easily
+ * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
+ * or \f$(((x+2)*17*(x*x))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
+ * and characterDirectionY respectively
+ * @return True on success.
+ */
+
+
+bool Character::updateSprite()
+{
+		int arrowDirection = (17 * (pow((float)characterDirectionX, 3) + (2 * pow((float)characterDirectionX, 2))
+		+ pow((float)characterDirectionY, 3) + pow((float)characterDirectionY, 2)));
+		sprite.setTextureRect(sf::IntRect(0, arrowDirection, 15, 15));
+		return true;
 }
 
+/**
+*	@param 	sf::Event e keybordevent,
+*	@param 	Character* thischaracter Character pointer to the character worked on
+*/
 
-void Character::updatePosition(sf::Event e, Character* thischaracter)
+void Character::useController(sf::Event e, Character* thischaracter)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};
 
@@ -165,10 +213,31 @@ void Character::updatePosition(sf::Event e, Character* thischaracter)
 	}
 	else if(controllerType == AiControl)
 	{
-		npcController.movement(thischaracter);
+		//npcController.movement(thischaracter);
+		if (nextNode && currentNode)
+		{
+			characterDirectionX = (nextNode->getXPos() - currentNode->getXPos());
+			characterDirectionY = (nextNode->getYPos() - currentNode->getYPos());
+		}
 	}
 	else if(controllerType == NetworkControl)
 	{
 
 	}
-}
+
+};
+
+void Character::setCurrentNode(Node *newCurrentNode){
+	currentNode=newCurrentNode;
+};
+void Character::setNextNode(Node *newNextNode){
+	nextNode=newNextNode;
+};
+
+bool Character::placeMine()
+{
+	minePlaced = true;
+	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
+	return true;
+};
+

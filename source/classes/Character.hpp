@@ -14,12 +14,14 @@ private:
 	bool minePlaced; ///< whether or not we want to place a Mine.
 	int characterDirectionX; ///< Changed from float to int
 	int characterDirectionY; ///< Changed from float to int
-	int characterHealth;	///< How much healt the player have left
+	int characterHealth;	///< How much health the player have left
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
-	int controllerType;		///< 1 for localplayer, 2 for NPC, 3 for networkPlayer.
+	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	sf::Texture texture;
 	sf::Sprite sprite;
+	Node *currentNode;
+	Node *nextNode;
 
 public:
 	Character();
@@ -27,14 +29,21 @@ public:
 	bool initCharacter();
 	bool getMinePlaced();
 	void setMinePlaced(bool minePlace);
-	float getCharacterDirectionX();
-	float getCharacterDirectionY();
+	int getCharacterDirectionX();
+	int getCharacterDirectionY();
+	bool setCharacterDirectionX(int newXDirection);
+	bool setCharacterDirectionY(int newYDirection);
 	void draw(sf::RenderWindow* window);
-	void updatePosition(sf::Event e, Character* thischaracter);
+	void useController(sf::Event e, Character* thischaracter);
 	void resetDirection();
-	void updateCharacterHealt(int health);
-	void move(char CharacterDirection, int moveDirection, int drawTopCornerX, int drawTopCornerY, int drawWith, int drawHight);
+	void characterInput(sf::Event e);
+	void updateCharacterHealth(int health);
 	sf::Sprite *getSprite();
+	bool updateSprite(float xPosition, float yPosition);
+	void setCurrentNode(Node *newCurrentNode);
+	void setNextNode(Node *newNextNode);
+	bool Character::updateSprite();
+	bool placeMine();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

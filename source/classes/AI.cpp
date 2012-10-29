@@ -1,6 +1,6 @@
 #include "../Includes.hpp"
 
-void NonePlayerCharacter::aStar(Tile*** const map)
+void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 {
 	//Find character
 	
@@ -11,9 +11,7 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	//Open for non walls within reach, assign values as well
 
 	//jump to the square and explore neighbors not already in there, if not visited can readjust values
-
-	
-	
+		
 	//end while
 
 	//end if
@@ -21,10 +19,9 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 	//find set of visited to goal and determine what the next step is
 	
 	Tile * thisTile = NULL;
-	Node * startNode;
-	Node * goalNode;
 	Node * visitNode;
-	bool queueFlag = 0;
+	Node * tempNode;
+	bool queueFlag = false;
 	int area;
 
 	World * check =  World::getWorld();
@@ -37,65 +34,88 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 			thisTile = map[xCount] [yCount];
 			//needs to be expanded upon so that it can find one set character.
 			//should not be needed if the character could know position as well.
-			if ((thisTile->getHasCharacter())) {
-				startNode = new Node(xCount, yCount, 0, goalNode->getXPos(), goalNode->getYPos(), NULL);
-
-
+			if (thisCharacter == thisTile->getHasCharacter()) {
+				startNode = new Node(xCount, yCount, 0, 0, 0, NULL);
+				startNode->unVisit();
 			}
 
-			if ((thisTile->getIsGoal())) {
+			if (thisTile->getIsGoal()) {
 				goalNode = new Node(xCount, yCount, 0, xCount, yCount, NULL);
+				goalNode->unVisit();
 			}
 		}
 	}
 
-	visitNode = startNode;
 	//until a complete queue has flagged
-	while (!queueFlag)
+	while (!queueFlag && goalNode)
 	{
+		
 		visitNode = startNode->findCheapestUnusedRecursively();
-		visitNode->visit();
-		//when the goal has been reached, meaning they can create a queue
-		if( visitNode->getXPos() != goalNode->getXPos() 
-			|| visitNode->getYPos() != goalNode->getYPos())
+		
+		if (visitNode)
 		{
+		visitNode->setVisit();
+		
+		
+			//when the goal has been reached, meaning they can create a queue
+			if( visitNode->getXPos() == goalNode->getXPos() 
+				&& visitNode->getYPos() == goalNode->getYPos())
+			{
+				queueNode = visitNode;
+			
+				if (startNode != queueNode)
+				{
+					while (startNode != queueNode->getParent() )
+					{
+						queueNode = queueNode->getParent();
+					}
+			
+					queueFlag = true;
 
+					tempNode = queueNode->getParent();
+				}
 
+				else 
+				{
+					tempNode = startNode;
+				}
+				thisCharacter->setCurrentNode(tempNode);		
+				thisCharacter->setNextNode(queueNode);
+				//movement(xDirection, yDirection);
+			}
+				//when goal is not reached
+			else
+			{	
+				
+				//checking for wall above
+				thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
+				if  (!thisTile->getIsWall()){
+					visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				}
 
-
-
-
-			queueFlag=1;
+				thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
+				if  (!thisTile->getIsWall()){
+					visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
+				}
+				thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
+				if  (!thisTile->getIsWall()){
+					visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				}
+				thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
+				if  (!thisTile->getIsWall()){
+					visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
+				}
+				
+			}
 		}
-		//when goal is not reached
 		else
-		{			
-			
-			//checking for wall above
-			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
-			if  (!thisTile->getIsWall()){
-				visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
-			}
-
-			thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
-			if  (!thisTile->getIsWall()){
-				visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);	
-			}
-			thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
-			if  (!thisTile->getIsWall()){
-				visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
-			}
-			thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
-			if  (!thisTile->getIsWall()){
-				visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel(), goalNode->getXPos(), goalNode->getYPos(), visitNode);
-			}
-			
-
-
+		{
+			queueFlag = true;
 		}
 	}
 
 }
+
 
 /**	movement-functions
 *	checks if the key is pressed and then released
@@ -103,25 +123,35 @@ void NonePlayerCharacter::aStar(Tile*** const map)
 *	@param [in] pointer to character to move
 */
 
-void NonePlayerCharacter::movement(Character* tempchar)
+
+void NonePlayerCharacter::movement(Character* thisCharacter)
 {
-	if(0)
+	if((-1) == xDirection)
+
 	{
-		tempchar->move('X', -1 ,0, 51, 15, 15);
-		
+		thisCharacter->setCharacterDirectionX(xDirection);
+		thisCharacter->updateSprite();
 	}
-	if(0)
+	
+	if(1 == xDirection)
 	{
-		tempchar->move('X',1 ,0, 51, 15, 15);
+		thisCharacter->setCharacterDirectionX(xDirection);
+		thisCharacter->updateSprite();
+
+	}
+	
+	if((-1) == yDirection)
+	{
+		thisCharacter->setCharacterDirectionY(yDirection);
+		thisCharacter->updateSprite();
 	}
 
-	if(0)
+	
+	if(1 == yDirection)
 	{
-		tempchar->move('Y', -1 , 0, 0, 15, 15);
-	}
 
-	if(0)
-	{
-		tempchar->move('Y', 1 , 0, 34, 15, 15);
+		thisCharacter->setCharacterDirectionY(yDirection);
+		thisCharacter->updateSprite();
+		printf("NonePlayerCharacter::movement(Character*):inside move down if statment \n");
 	}
 };
