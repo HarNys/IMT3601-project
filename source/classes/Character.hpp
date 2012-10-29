@@ -34,7 +34,7 @@ public:
 	bool setCharacterDirectionX(int newXDirection);
 	bool setCharacterDirectionY(int newYDirection);
 	void draw(sf::RenderWindow* window);
-	void useController(sf::Event e, Character* thischaracter);
+	void useController(Character* thischaracter);
 	void resetDirection();
 	void characterInput(sf::Event e);
 	void updateCharacterHealth(int health);
@@ -44,6 +44,7 @@ public:
 	void setNextNode(Node *newNextNode);
 	bool updateSprite();
 	bool placeMine();
+	bool setCharacterType(int type);
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

@@ -10,7 +10,7 @@ CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
-	int maxChar=2;
+	int maxChar=9;
 	Character* tempChar = new Character;
 	tempChar->initImage();
 

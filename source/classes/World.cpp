@@ -14,6 +14,7 @@ World::World()
 	mineFactory = mineFactory->getMineFactory();
 	area = 0;
 	map = NULL;
+	xSpace = 1;
 };
 
 /**
@@ -104,7 +105,6 @@ bool World::initMap(char *mapFile)
  */
 bool World::placeCharacter(Character *character)
 {
-	int xSpace = 1;
 	map[xSpace++][1]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15);
 	return true;
@@ -246,6 +246,7 @@ bool World::update()
 				}
 				if ((thisCharacter = thisTile->getHasCharacter()))
 				{
+					thisCharacter->useController(thisCharacter);
 					if (thisCharacter->getMinePlaced())
 					{
 						placeMine(thisCharacter, thisTile);
@@ -356,6 +357,8 @@ bool World::reset()
 	Tile *thisTile;
 	CharacterFactory* characterFetcher;
 	Character* tempCharacter;
+
+	xSpace = 1;
 
 	int yCount;
 	int xCount;

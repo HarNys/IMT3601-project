@@ -8,10 +8,22 @@ class Menu
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
-	sf::Image *meunImage;
+	sf::Image *menuImage;
+	sf::Font font;
+	sf::Text title;
+	sf::Text text;
+	sf::RenderWindow* window;
+	int numOfPlayers;
+	bool menuOpen;
+	
 public:
-	Menu(std::string fileLocation, int xPosTopLeftCorner, int yPosTopLeftCorner);
-	void draw(sf::RenderWindow *window);
+	Menu(sf::RenderWindow* renderWindow);
+	void draw();
+	bool changeText(std::string text);
+	void runMenu();
+	int  SelectNumberOfCharacters();
+	bool initplayers();
+
 };
 
 
