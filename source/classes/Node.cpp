@@ -67,7 +67,7 @@ Node* Node::findCheapestUnusedRecursively()
 		{
 			smallestNode = tempNode;
 		}
-		else if (tempNode==NULL){
+		else if (tempNode!=NULL){
 				if (tempNode->getPriority() < smallestNode->getPriority())
 				{
 					smallestNode = tempNode;
@@ -84,7 +84,7 @@ Node* Node::findCheapestUnusedRecursively()
 			smallestNode = tempNode;
 		}
 
-		else if (tempNode==NULL){
+		else if (tempNode!=NULL){
 				if (tempNode->getPriority() < smallestNode->getPriority())
 				{
 					smallestNode = tempNode;
@@ -102,7 +102,7 @@ Node* Node::findCheapestUnusedRecursively()
 			smallestNode = tempNode;
 		}
 
-		else if (tempNode==NULL){
+		else if (tempNode!=NULL){
 				if (tempNode->getPriority() < smallestNode->getPriority())
 				{
 					smallestNode = tempNode;
@@ -121,7 +121,7 @@ Node* Node::findCheapestUnusedRecursively()
 			smallestNode = tempNode;
 		}
 
-		else if (tempNode==NULL){
+		else if (tempNode!=NULL){
 				if (tempNode->getPriority() < smallestNode->getPriority())
 				{
 					smallestNode = tempNode;
