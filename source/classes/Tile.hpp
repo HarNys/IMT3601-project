@@ -32,7 +32,7 @@ public:
 	bool getIsWall();
 	Mine *getHasMine();
 	Character *getHasCharacter();
-	bool initSprite(int xPos, int yPos);
+	bool initSprite(int xPos, int yPos, int factorX, int factorY);
 	void initImage();
 	bool initTile(char quality);
 	void setFloor(bool mineVisible);

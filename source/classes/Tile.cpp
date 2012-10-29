@@ -156,7 +156,7 @@ bool Tile::setCharacter(Character *character)
  *
  * @todo proper parameter names.
  */
-bool Tile::initSprite(int xPos, int yPos)
+bool Tile::initSprite(int xPos, int yPos, int factorX, int factorY)
 {
 	if (isWall)
 	{
@@ -170,11 +170,10 @@ bool Tile::initSprite(int xPos, int yPos)
 	tileSprite.setTexture(tileTexture);
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
-	tileSprite.setPosition(15*xPos, 15*yPos);
-//	tileSprite.setScale(); /// @todo we need to make these two work, halfway there?
+	tileSprite.setPosition((15 * xPos + factorX), (15 * yPos + factorY));
+	tileSprite.setScale(factorX, factorY); /// @todo we need to make these two work, halfway there?
 	return true;
 };
-
 
 /**
  * Gets the sf::Sprite for this Tile.
