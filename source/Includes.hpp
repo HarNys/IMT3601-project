@@ -39,7 +39,7 @@
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-#include "classes/AI.hpp" // requires Node
+#include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
 
 
