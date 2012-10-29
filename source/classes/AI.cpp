@@ -72,40 +72,56 @@ void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 				thisCharacter->setCurrentNode(tempNode);
 				thisCharacter->setNextNode(queueNode);
 			}
-				
+
 				//when goal is not reached
 			else
 			{
 				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()-1)){
 					//checking for wall above
-					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
-					if  (!thisTile->getIsWall()){
-						visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					if ((visitNode->getYPos() - 1) < area)//map [visitNode->getXPos()] [visitNode->getYPos()-1])
+					{
+						thisTile = map [visitNode->getXPos()] [visitNode->getYPos()-1];
+						if  (!thisTile->getIsWall())
+						{
+							visitNode->upChild = new Node(visitNode->getXPos(), visitNode->getYPos()-1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						}
 					}
 				}
 				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()+1, visitNode->getYPos())){
 					//checking for wall right
-					thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
-					if  (!thisTile->getIsWall()){
-						visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					if ((visitNode->getXPos() + 1) < area)//map [visitNode->getXPos()+1] [visitNode->getYPos()])
+					{
+						thisTile = map [visitNode->getXPos()+1] [visitNode->getYPos()];
+						if  (!thisTile->getIsWall())
+						{
+							visitNode->rightChild = new Node(visitNode->getXPos()+1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						}
 					}
 				}
 				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos(), visitNode->getYPos()+1)){
 					//checking for wall below
-					thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
-					if  (!thisTile->getIsWall()){
-						visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					if ((visitNode->getYPos() - 1) < area)//map [visitNode->getXPos()] [visitNode->getYPos()+1])
+					{
+						thisTile = map [visitNode->getXPos()] [visitNode->getYPos()+1];
+						if  (!thisTile->getIsWall())
+						{
+							visitNode->downChild = new Node(visitNode->getXPos(), visitNode->getYPos()+1, visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						}
 					}
 				}
 				//checks whether node has been created there before
 				if (!startNode->checkTreeRecursivelyForNode(visitNode->getXPos()-1, visitNode->getYPos())){
 					//checking for wall left
-					thisTile = map [visitNode->getXPos()-1] [visitNode->getYPos()];
-					if  (!thisTile->getIsWall()){
-						visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+					if ((visitNode->getXPos() - 1) < area)//map[visitNode->getXPos()-1][visitNode->getYPos()])
+					{
+						thisTile = map[visitNode->getXPos()-1][visitNode->getYPos()];
+						if  (!thisTile->getIsWall())
+						{
+							visitNode->leftChild = new Node(visitNode->getXPos()-1, visitNode->getYPos(), visitNode->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), visitNode);
+						}
 					}
 				}
 			}
