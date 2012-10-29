@@ -37,16 +37,17 @@ int main(int argc, char **argv)
 //*/
 	screen.setFramerateLimit(20);
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
-	
-	
+
+
 	Menu* mainMenu = new Menu("./img/Menu.gif",0,0);
 
 	while(!(sf::Keyboard::isKeyPressed(sf::Keyboard::L)))
 	{
 		mainMenu->draw(&screen);
+		screen.display();
 	}
-	
-	
+
+
 	World *world;
 	world = world->getWorld();
 	if (argv[1]) {
@@ -85,7 +86,7 @@ int main(int argc, char **argv)
 		sf::Event event;
 
 		/// @todo add escape as exit button
-		
+
 		player1->useController(event, player1);
 		while (screen.pollEvent(event))
 		{

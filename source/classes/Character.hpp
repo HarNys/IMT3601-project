@@ -42,7 +42,7 @@ public:
 	bool updateSprite(float xPosition, float yPosition);
 	void setCurrentNode(Node *newCurrentNode);
 	void setNextNode(Node *newNextNode);
-	bool Character::updateSprite();
+	bool updateSprite();
 	bool placeMine();
 };
 

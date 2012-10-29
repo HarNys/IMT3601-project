@@ -8,7 +8,7 @@ class Menu
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
-	sf::Image *meunImage;
+	sf::Image *menuImage;
 public:
 	Menu(std::string fileLocation, int xPosTopLeftCorner, int yPosTopLeftCorner);
 	void draw(sf::RenderWindow *window);

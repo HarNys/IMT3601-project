@@ -3,21 +3,20 @@
 
 Menu::Menu(std::string fileLocation, int xPosTopLeftCorner, int yPosTopLeftCorner)
 {
-	meunImage = new sf::Image;
-	if ((*meunImage).loadFromFile(fileLocation))
+	menuImage = new sf::Image;
+	if ((*menuImage).loadFromFile(fileLocation))
 	{
-		printf("Character::initImage(): loaded img/playertrans.gif\n");
+		printf("Menu::Menu(std::string,int,int): loaded 'img/Menu.gif'\n");
 	}
 	else
 	{
-
-		printf("Character::initImage(): could not load image "
-			"'img/playertrans.png'\n");
+		printf("Menu::Menu(std::string,int,int): could not load image "
+			"'img/Menu.gif'\n");
 	}
 
-	texture.loadFromImage(*meunImage);
+	texture.loadFromImage(*menuImage);
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));
 	sprite.setPosition(xPosTopLeftCorner,yPosTopLeftCorner);
 
 };

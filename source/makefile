@@ -1,6 +1,6 @@
 # template makefile
 BINARY = ../main.bin
-OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o ../Debug/AI.o ../Debug/Player.o ../Debug/Node.o
+OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o ../Debug/AI.o ../Debug/Player.o ../Debug/Node.o ../Debug/Menu.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
 GCC = g++ -Wall -O0 #-fopenmp
@@ -53,3 +53,6 @@ $(BINARY) : $(OBJECTS)
 
 ../Debug/Node.o : classes/Node.cpp classes/Node.hpp Includes.hpp
 	$(GCC) $(COMPILEFLAGS) classes/Node.cpp -o ../Debug/Node.o
+
+../Debug/Menu.o : classes/Menu.cpp classes/Menu.hpp Includes.hpp
+	$(GCC) $(COMPILEFLAGS) classes/Menu.cpp -o ../Debug/Menu.o
