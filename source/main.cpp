@@ -39,11 +39,12 @@ int main(int argc, char **argv)
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	
 	
-	Menu* mainMenu = new Menu("./img/Menu.gif",0,0);
+	Menu* mainMenu = new Menu("img/Menu.gif",0,0);
 
 	while(!(sf::Keyboard::isKeyPressed(sf::Keyboard::L)))
 	{
 		mainMenu->draw(&screen);
+		screen.display();
 	}
 	
 	

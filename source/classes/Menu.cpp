@@ -6,18 +6,18 @@ Menu::Menu(std::string fileLocation, int xPosTopLeftCorner, int yPosTopLeftCorne
 	meunImage = new sf::Image;
 	if ((*meunImage).loadFromFile(fileLocation))
 	{
-		printf("Character::initImage(): loaded img/playertrans.gif\n");
+		printf("Character::initImage(): loaded img/Menu.gif\n");
 	}
 	else
 	{
 
 		printf("Character::initImage(): could not load image "
-			"'img/playertrans.png'\n");
+			"'img/menu.png'\n");
 	}
 
 	texture.loadFromImage(*meunImage);
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));
 	sprite.setPosition(xPosTopLeftCorner,yPosTopLeftCorner);
 
 };
