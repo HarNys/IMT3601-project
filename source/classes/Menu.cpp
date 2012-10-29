@@ -1,0 +1,27 @@
+#include "../Includes.hpp"
+
+
+Menu::Menu(std::string fileLocation, int xPosTopLeftCorner, int yPosTopLeftCorner)
+{
+	meunImage = new sf::Image;
+	if ((*meunImage).loadFromFile(fileLocation))
+	{
+		printf("Character::initImage(): loaded img/playertrans.gif\n");
+	}
+	else
+	{
+
+		printf("Character::initImage(): could not load image "
+			"'img/playertrans.png'\n");
+	}
+
+	texture.loadFromImage(*meunImage);
+	sprite.setTexture(texture);
+	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	sprite.setPosition(xPosTopLeftCorner,yPosTopLeftCorner);
+
+};
+void Menu::draw(sf::RenderWindow *window)
+{
+	window->draw(sprite);
+};
