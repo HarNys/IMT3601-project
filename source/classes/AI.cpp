@@ -1,7 +1,5 @@
 #include "../Includes.hpp"
 
-#define __DEBUG__
-
 void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 {
 	//Find character
@@ -51,13 +49,6 @@ void NonePlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 	//until a complete queue has flagged
 	while (!queueFlag && goalNode)
 	{
-		#ifdef __DEBUG__
-			static unsigned long int lol = 0;
-			if ((++lol % 50) == 0)
-			{
-				printf("NonePlayerCharacter::aStar(Tile***,Character): Node number total: %6lu\r",lol);
-			}
-		#endif //__DEBUG__
 		visitNode = startNode->findCheapestUnusedRecursively();
 
 		if (visitNode)

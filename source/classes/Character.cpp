@@ -241,3 +241,12 @@ bool Character::placeMine()
 	return true;
 };
 
+bool Character::getIsNpc(){
+if (1 == controllerType)
+{
+	return true;
+}
+
+return false;
+
+};

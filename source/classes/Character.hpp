@@ -44,6 +44,7 @@ public:
 	void setNextNode(Node *newNextNode);
 	bool updateSprite();
 	bool placeMine();
+	bool getIsNpc();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

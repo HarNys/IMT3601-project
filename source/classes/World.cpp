@@ -105,9 +105,9 @@ bool World::initMap(char *mapFile)
 bool World::placeCharacter(Character *character)
 {
 	int xSpace = 1;
-	while (map[xSpace][1]->getIsWall())
+	while (map[xSpace][1]->getIsWall() || map[xSpace] [1]->getHasCharacter())
 	{
-		xSpace++;
+		xSpace+=3;
 	}
 	map[xSpace++][1]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15);
@@ -262,7 +262,10 @@ bool World::update()
 
 					if (goalExists)
 					{
-						npcController.aStar(map, thisCharacter);
+						if (thisCharacter->getIsNpc())
+						{
+							npcController.aStar(map, thisCharacter);
+						}
 					}
 				}
 
@@ -276,7 +279,7 @@ bool World::update()
 						///<@Todo: give character points
 						thisTile->setGoal(false);
 						goalExists = false;
-						printf("World::Update(): character hit flag\n");
+						printf("World::Update(): Character hit flag\n");
 	
 					}
 				}
@@ -328,7 +331,7 @@ void World::draw(sf::RenderWindow *window)
 void World::setGoal()
 {
 	Tile* thisTile;
-	int x;
+	int x; ///< @todo variable name @#@!
 	int y;
 	srand(time(NULL));
 	do				//Do while tile (x,y) is a wall
@@ -341,7 +344,7 @@ void World::setGoal()
 
 		thisTile = map[x][y];
 
-	}while(thisTile->getIsWall());
+	}while(thisTile->getIsWall() || thisTile->getHasCharacter());
 
 	thisTile->setGoal(true);
 }
