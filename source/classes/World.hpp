@@ -19,8 +19,6 @@ private:
 		int area; //size from origin to one side of the map
 		MineFactory *mineFactory;
 		//enumerator for the procedural generation of the maze
-		int currentX;
-		int currentY;
 		int border;
 		
 public:
@@ -29,7 +27,7 @@ public:
 public:
 		static World *getWorld();
 		bool initMap(char *mapFile);
-		void randomGenerate(bool start = false);
+		void randomGenerate(bool start = false, Tile *previouseTile = NULL);
 		bool placeCharacter(Character *character);
 		bool moveCharacter(Character *character, int xPosition, int yPosition);
 		bool placeMine(Character *character, Tile *tile);

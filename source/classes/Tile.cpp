@@ -45,9 +45,31 @@ Tile::Tile(char quality)
  * @todo make it have a bool toTrue or something similar.
  */
 
-void Tile::setVisited()
+void Tile::setVisited(bool wall, int xPos, int yPos)
 {
 	visited = true;
+
+	if(wall)
+	{
+		isWall = true;
+	}
+	else
+	{
+		isWall = false;
+	}
+
+	if (isWall)
+	{
+		tileTexture.loadFromImage(*wallImg);
+	}
+	else
+	{
+		tileTexture.loadFromImage(*floorImg);
+	}
+	tileSprite.setTexture(tileTexture);
+	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+	tileSprite.setColor(sf::Color(255, 255, 255, 200));
+	tileSprite.setPosition(15*xPos, 15*yPos);
 }
 
 bool Tile::setWall(bool wall)

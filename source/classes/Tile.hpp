@@ -26,7 +26,7 @@ private:
 public:
 	Tile();
 	Tile(char quality);
-	void setVisited();
+	void setVisited(bool wall, int xPos, int yPos);
 	bool getVisited();
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
