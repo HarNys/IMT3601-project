@@ -41,6 +41,7 @@
 #include "classes/AI.hpp"
 #include "classes/Node.hpp"
 #include "classes/Player.hpp"
+#include "classes/Menu.hpp"
 
 //// Controllers ////
 static LocalPlayer localPlayerController;

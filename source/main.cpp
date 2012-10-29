@@ -37,6 +37,19 @@ int main(int argc, char **argv)
 //*/
 	screen.setFramerateLimit(20);
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
+	
+	
+	Menu* mainMenu = new Menu("./img/Menu.png",0,0);
+	
+	char input;
+
+	//while('L'!=input || 'l'!=input)
+	//{
+	//	mainMenu->draw(&screen);
+	//	std::cin >> input;		//scanf(input) is wants char* but i only want one char
+	//}
+	
+	
 	World *world;
 	world = world->getWorld();
 	if (argv[1]) {
