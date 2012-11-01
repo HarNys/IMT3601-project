@@ -43,9 +43,9 @@ Tile::Tile(char quality)
  *
  * @return true on success
  * @todo make it have a bool toTrue or something similar.
+ * 	"I do not understand what this todo item is asking for" -thomas
  */
-
-void Tile::setVisited(bool wall, int xPos, int yPos)
+bool Tile::setVisited(bool wall, int xPos, int yPos)
 {
 	visited = true;
 
@@ -70,6 +70,7 @@ void Tile::setVisited(bool wall, int xPos, int yPos)
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
+	return true;
 }
 
 bool Tile::setWall(bool wall)
