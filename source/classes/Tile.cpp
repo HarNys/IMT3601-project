@@ -14,7 +14,7 @@ Tile::Tile()
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(): done standard Tile constructor\n");
-};
+}
 
 /**
  * Constructor for Tile, this is the one that should be used.
@@ -35,7 +35,7 @@ Tile::Tile(char quality)
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(char): done overloaded Tile constructor\n");
-};
+}
 
 /**
  * @param[in] wall: the new state of this tile, whether it is a wall
@@ -83,7 +83,7 @@ bool Tile::setWall(bool wall)
 		isWall = false;
 	}
 	return true;
-};
+}
 
 /**
  * Returns wether or not a Tile is visited
@@ -110,7 +110,7 @@ bool Tile::getVisited()
 bool Tile::getIsWall()
 {
 	return isWall;
-};
+}
 
 /**
  * returns a pointer to the Mine on this tile. This Mine pointer is NULL if
@@ -121,7 +121,7 @@ bool Tile::getIsWall()
 Mine *Tile::getHasMine()
 {
 	return hasMine;
-};
+}
 
 /**
  * returns a pointer to the Character on this tile. This Character pointer is
@@ -133,7 +133,7 @@ Mine *Tile::getHasMine()
 Character *Tile::getHasCharacter()
 {
 	return hasCharacter;
-};
+}
 
 /**
  * sets all of a Tile's variables to sent values.
@@ -157,7 +157,7 @@ bool Tile::initTile(char quality)
 	hasMine = NULL;
 	hasCharacter = NULL;
 	return true;
-};
+}
 
 /**
  * Sets hasMine if it is empty.
@@ -177,7 +177,7 @@ bool Tile::setMine(Mine *mine)
 		hasMine = mine;
 	}
 	return true;
-};
+}
 
 /**
  * @param [in] character: the new character, either a NULL pointer or a
@@ -189,7 +189,7 @@ bool Tile::setCharacter(Character *character)
 {
 	hasCharacter = character;
 	return true;
-};
+}
 
 /**
  * Initializes the sprites used in Tiles
@@ -215,7 +215,7 @@ bool Tile::initSprite(int xPos, int yPos)
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
 	return true;
-};
+}
 
 
 /**
@@ -226,7 +226,7 @@ bool Tile::initSprite(int xPos, int yPos)
 sf::Sprite Tile::getSprite()
 {
 	return tileSprite;
-};
+}
 
 /**
  * loads the static images for floor and wall. should be done only once
@@ -243,7 +243,7 @@ void Tile::initImage()
 	{
 		printf("Tile::initImage(): loaded img/floor.gif\n");
 	}
-};
+}
 
 /**
  * sets visibility of the floor
@@ -260,7 +260,7 @@ void Tile::setFloor(bool mineVisible)
 	{
 		tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	}
-};
+}
 
 /**
  * Releases and sets to NULL the hasMine and hasCharacter pointer in this Tile.
@@ -276,4 +276,4 @@ Tile::~Tile()
 	{
 			hasCharacter = NULL;
 	}
-};
+}

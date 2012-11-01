@@ -10,7 +10,7 @@
 Mine::Mine()
 {
 	visibilityTimer = 0;
-};
+}
 
 /**
  * called when a mine is placed, initializes variables as needed.
@@ -24,7 +24,7 @@ bool Mine::initMine(int timeShown)
 {
 	visibilityTimer = timeShown;
 	return true;
-};
+}
 
 /**
  * this is run every for every mine on the map.
@@ -42,7 +42,7 @@ bool Mine::update(Character *character)
 		character->updateCharacterHealt((-1));
 	}
 	return true;
-};
+}
 
 /**
  * decrements the invisibility timer.
@@ -57,4 +57,4 @@ bool Mine::visibilityCountDown()
 		return false;
 	}
 	return true;
-};
+}

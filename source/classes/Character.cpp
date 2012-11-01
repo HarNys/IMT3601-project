@@ -12,7 +12,7 @@ Character::Character()
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 	characterHealth = 10;
-};
+}
 
 /**
 *	@brif: Updates characters healt if it taks demages og health is refreshed etc.
@@ -50,7 +50,7 @@ bool Character::initImage()
 	sf::Color alpha(151,251,151);		//Alpha color that is not to be drawn
 	characterImage->createMaskFromColor(alpha,0);	//Alpha out the alpha color
 	return true;
-};
+}
 
 /**
  * initializes the character to the values/states we need it in. should be done
@@ -65,7 +65,7 @@ bool Character::initCharacter()
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	return true;
-};
+}
 
 /**
  * @return minePlaced
@@ -73,7 +73,7 @@ bool Character::initCharacter()
 bool Character::getMinePlaced()
 {
 	return minePlaced;
-};
+}
 
 /**
  * @param [in] minePlace: the new value of minePlace.
@@ -81,7 +81,7 @@ bool Character::getMinePlaced()
 void Character::setMinePlaced(bool minePlace)
 {
 	minePlaced = minePlace;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionX.
@@ -91,7 +91,7 @@ void Character::setMinePlaced(bool minePlace)
 float Character::getCharacterDirectionX()
 {
 	return characterDirectionX;
-};
+}
 
 /**
  *returns the value of this Character's characterDirectionY.
@@ -101,7 +101,7 @@ float Character::getCharacterDirectionX()
 float Character::getCharacterDirectionY()
 {
 	return characterDirectionY;
-};
+}
 
 /**
  * @todo document this function
@@ -109,7 +109,7 @@ float Character::getCharacterDirectionY()
 void Character::draw(sf::RenderWindow *window)
 {
 	window->draw(sprite);
-};
+}
 
 /**
  * resets Character's direction, is a dirty way of doing it.
@@ -118,7 +118,7 @@ void Character::resetDirection()
 {
 	characterDirectionX = 0;
 	characterDirectionY = 0;
-};
+}
 
 ///movement-functions
 ///checks if the key is pressed and then released
@@ -168,7 +168,7 @@ void Character::characterInput(sf::Event e)
 		}
 	}
 
-};
+}
 
 /**
  * returns the current sprite.
@@ -178,4 +178,4 @@ void Character::characterInput(sf::Event e)
 sf::Sprite *Character::getSprite()
 {
 	return &sprite;
-};
+}

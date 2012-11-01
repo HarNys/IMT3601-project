@@ -18,7 +18,7 @@ World::World()
 
 	border = 0;
 
-};
+}
 
 /**
  * The singleton handler, returns a working World object.
@@ -38,7 +38,7 @@ World *World::getWorld()
 	{
 		return world;
 	}
-};
+}
 
 /**
  * Initializes the map using 'mapFile'
@@ -97,7 +97,7 @@ bool World::initMap(char *mapFile)
 	file.close();
 //	map[currentX][currentY]->setVisited();
 	return true;
-};
+}
 
 /**
 * generates a random map
@@ -107,14 +107,14 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate(bool start, Tile *previouseTile)
 {
-	
+
 	int directionX = 0;
 	int directionY = 0;
 
 	static int currentX;
 	static int currentY;
 
-	int list_position = 0;
+//	int list_position = 0;
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
 	Tile *temp;
@@ -125,7 +125,7 @@ void World::randomGenerate(bool start, Tile *previouseTile)
 
 	Direction = rand() % 4;
 
-	
+
 	if(start)
 	{
 		unVisited = new std::list<Tile*>;
@@ -133,7 +133,7 @@ void World::randomGenerate(bool start, Tile *previouseTile)
 		int StartX = rand() % (area-2) + 1; //add border late
 		int StartY = rand() % (area-2) + 1;
 		visited->push_front(map[StartX][StartY]);
-		
+
 		if(StartX - 2 <= border)	//if we could be in danger of going outside the border
 			StartX = StartX + 2;
 		if(StartX + 2 >= area - 1)
@@ -147,7 +147,7 @@ void World::randomGenerate(bool start, Tile *previouseTile)
 		currentY = StartY;
 		map[currentX][currentY]->setVisited(false, currentX, currentY);
 
-		
+
 		if (map[currentX][currentY - 2] != NULL)
 		{
 			unVisited->push_front(map[currentX][currentY - 2]);
@@ -199,9 +199,9 @@ void World::randomGenerate(bool start, Tile *previouseTile)
 		{
 			if(currentY + directionY > border && currentX + directionX > border && currentX + directionX < area - 1 && currentY + directionY < area - 1) //as long as I'm not at the y coordinate border
 			{
-				currentY = currentY + directionY;			
+				currentY = currentY + directionY;
 				currentX = currentX + directionX;
-				list_position = 0;	
+//				list_position = 0;
 				for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
 				{
 					temp = *temp_list;
@@ -294,7 +294,7 @@ bool World::placeCharacter(Character *character)
 	map[xSpace++][1]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15);
 	return true;
-};
+}
 
 /**
  * Moves Character if possible.
@@ -360,7 +360,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
 		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
-};
+}
 
 /**
  * Puts a Mine on the Tile parameter.
@@ -382,7 +382,7 @@ bool World::placeMine(Character *character, Tile *characterPosition)
 	}
 	character->setMinePlaced(false);
 	return true;
-};
+}
 
 /**
  * runs through all active tiles(tiles within 'area'), and updates them
@@ -441,7 +441,7 @@ bool World::update()
 		} // end xCount
 	} // end yCount
 	return true;
-};
+}
 
 /**
  * Draws this World Tile's and Character's.
@@ -470,4 +470,4 @@ void World::draw(sf::RenderWindow *window)
 			}
 		}
 	}
-};
+}

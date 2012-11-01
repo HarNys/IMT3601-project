@@ -16,7 +16,7 @@ CharacterFactory::CharacterFactory()
 
 	usedCharacters.reserve(maxChar);
 	readyCharacters.assign(maxChar, new Character(*tempChar));
-};
+}
 
 ///Singleton that gets the Character Factory for you when asked for
 CharacterFactory *CharacterFactory::getCharacterFactory()
@@ -30,11 +30,11 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 	{
 		return characterFactory;
 	}
-};
+}
 
 
 /**
- * gets one charecter for you to do some nasty things with if an event is
+ * gets one Character for you to do some nasty things with if an event is
  * triggered.
  *
  * @return on succes: pointer to a new(read: reinitialized) Character
@@ -43,7 +43,7 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 Character* CharacterFactory::getCharacter()
 {
 	Character *tempCharacter = NULL;
-	if (readyCharacters.size() >= 0)
+	if (readyCharacters.size() > 0)
 	{
 		tempCharacter = readyCharacters.at(readyCharacters.size() - 1);
 		usedCharacters.push_back(tempCharacter);
@@ -57,7 +57,7 @@ Character* CharacterFactory::getCharacter()
 		return NULL;
 	}
 	return tempCharacter;
-};
+}
 
 /**
  * releases a Character from World.
@@ -68,6 +68,8 @@ Character* CharacterFactory::getCharacter()
  */
 bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
-	printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
+	/// This may or may not explode, it is an attempt at printing the address.
+	printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING(!)"
+		" with %s\n", (char*)characterReleased);
 	return true;
 }
