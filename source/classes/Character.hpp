@@ -20,8 +20,8 @@ private:
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	sf::Texture texture;
 	sf::Sprite sprite;
-	Node *currentNode;
-	Node *nextNode;
+	StackNode *startStack;
+	StackNode *endStack;
 
 public:
 	Character();
@@ -40,8 +40,8 @@ public:
 	void updateCharacterHealth(int health);
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
-	void setCurrentNode(Node *newCurrentNode);
-	void setNextNode(Node *newNextNode);
+	void newStack(int xPos, int yPos);
+	void addStack(int xPos, int yPos);
 	bool updateSprite();
 	bool placeMine();
 	bool getIsNpc();

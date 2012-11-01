@@ -59,7 +59,7 @@ Node* Node::findCheapestUnusedRecursively()
 	Node * tempNode = NULL;
 	Node * smallestNode = NULL;
 
-	if (upChild)
+	if (upChild != NULL)
 	{
 		tempNode = upChild->findCheapestUnusedRecursively();
 
@@ -75,7 +75,7 @@ Node* Node::findCheapestUnusedRecursively()
 		}
 
 	}
-	if (rightChild)
+	if (rightChild != NULL)
 	{
 		tempNode = rightChild->findCheapestUnusedRecursively();
 
@@ -93,7 +93,7 @@ Node* Node::findCheapestUnusedRecursively()
 
 	}
 
-	if (downChild)
+	if (downChild != NULL)
 	{
 		tempNode = downChild->findCheapestUnusedRecursively();
 
@@ -112,7 +112,7 @@ Node* Node::findCheapestUnusedRecursively()
 
 	}
 
-	if (leftChild)
+	if (leftChild != NULL)
 	{
 		tempNode = leftChild->findCheapestUnusedRecursively();
 
@@ -129,7 +129,7 @@ Node* Node::findCheapestUnusedRecursively()
 		}
 
 	}
-	if (smallestNode)
+	if (smallestNode != NULL)
 	{
 			if (!smallestNode->checkVisited())
 			{
@@ -181,3 +181,67 @@ bool Node::checkTreeRecursivelyForNode(int xCoordinates, int yCoordinates){
 	return false;
 };
 
+Node::~Node()
+{
+	if (upChild)
+	{
+		delete upChild;
+	}
+	
+	if (rightChild)
+	{
+		delete rightChild;
+	}
+	
+	if (downChild) 
+	{
+		delete downChild;
+	}
+	
+	if (leftChild)
+	{
+		delete leftChild;
+	}
+	
+};
+
+Node* Node::getUpChild()
+{
+	return upChild;	
+};
+
+Node* Node::getRightChild()
+{
+	return rightChild;	
+};
+
+Node* Node::getDownChild()
+{
+	return downChild;
+};
+	
+Node* Node::getLeftChild()
+{
+	return leftChild;
+};
+
+bool Node::setUpChild(Node* newChild)
+{
+	upChild = newChild;
+	return true;
+};
+bool Node::setRightChild(Node* newChild)
+{
+	rightChild = newChild;
+	return true;
+};
+bool Node::setDownChild(Node* newChild)
+{
+	downChild = newChild;
+	return true;
+};
+bool Node::setLeftChild(Node* newChild)
+{
+	leftChild = newChild;
+	return true;
+};

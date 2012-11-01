@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="source\classes\AI.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="source\classes\World.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -31,11 +28,14 @@
     <ClCompile Include="source\classes\Tile.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\classes\NonPlayerCharacter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\StackNode.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\classes\AI.hpp">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="source\classes\Character.hpp">
       <Filter>Header</Filter>
     </ClInclude>
@@ -61,6 +61,12 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\World.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\NonPlayerCharacter.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\StackNode.hpp">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

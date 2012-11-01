@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		world->initMap((char *)"map/mega.txt");
+		world->initMap((char *)"map/maptwo.txt");
 	}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");
@@ -59,8 +59,8 @@ int main(int argc, char **argv)
 	Character *player1 = characterFactory->getCharacter(0);				// 0 for local-player character
 	world->placeCharacter(player1);
 
-	//Character *player5 = characterFactory->getCharacter(1);				// 1 none-playercharacter.
-	//world->placeCharacter(player5);
+//	Character *player5 = characterFactory->getCharacter(0);				// 1 none-playercharacter.
+//	world->placeCharacter(player5);
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
@@ -76,6 +76,7 @@ int main(int argc, char **argv)
 
 		/// @todo add escape as exit button
 		player1->useController(event, player1);
+//		player5->useController(event, player5);
 		while (screen.pollEvent(event))
 		{
 
