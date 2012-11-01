@@ -20,14 +20,16 @@ private:
 		MineFactory *mineFactory;
 		//enumerator for the procedural generation of the maze
 		int border;
-		
+
 public:
 
 
 public:
 		static World *getWorld();
 		bool initMap(char *mapFile);
-		void randomGenerate(bool start = false, Tile *previouseTile = NULL);
+		void startRandomGenerate();
+		bool randomGenerate(int currentX, int currentY, std::list<Tile*> *frontierList);
+		bool randomGenerateVisit(int xCoordinate, int yCoordinate, int hasMovedDirectionX, int hasMovedDirectionY);
 		bool placeCharacter(Character *character);
 		bool moveCharacter(Character *character, int xPosition, int yPosition);
 		bool placeMine(Character *character, Tile *tile);
