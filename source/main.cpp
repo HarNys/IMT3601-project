@@ -43,8 +43,9 @@ int main(int argc, char **argv)
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
 	World *world;
 	world = world->getWorld();
-	if (argc > 0)
+	if (argc > 1)
 	{
+		printf("main(int,char**): argc: %2d\n", argc);
 		world->initMap(argv[1]);
 	}
 	else
