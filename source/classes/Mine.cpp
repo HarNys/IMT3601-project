@@ -39,7 +39,7 @@ bool Mine::update(Character *character)
 	if (character)
 	{
 		printf("Mine::update(Character*): BANG! someone triggered a mine %d\n",++count);
-		character->updateCharacterHealt((-1));
+		character->updateCharacterHealth((-1));
 	}
 	return true;
 }

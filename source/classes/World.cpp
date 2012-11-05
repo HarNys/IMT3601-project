@@ -39,7 +39,6 @@ World *World::getWorld()
  *
  * @param[in] mapFile the relative path to the text file containing the map to
  * 	be loaded.
- * @param[out] windowSize the size of the window we draw to.
  *
  * @return true on success.
  *
@@ -494,7 +493,6 @@ bool World::update()
 	Tile *thisTile = NULL;
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
-
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)
