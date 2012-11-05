@@ -5,8 +5,10 @@
 ///to reset characterDirectionX/Y
 /// @param [in] (keyboard event, pointer to character to move) 
 
-void LocalPlayer::characterInput(sf::Event e, Character* thisCharacter)
+void LocalPlayer::characterInput(Character* thisCharacter)
 {
+	sf::Event e;
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		thisCharacter->setCharacterDirectionX(-1);

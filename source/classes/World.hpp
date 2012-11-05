@@ -10,6 +10,7 @@
 class World
 {
 private:
+	int xSpace;
         // constructor
         World();
 

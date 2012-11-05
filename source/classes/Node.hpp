@@ -13,6 +13,10 @@ private:
 	float priority;
 	Node* parent;
 	bool visited;
+	Node* leftChild;
+	Node* rightChild;
+	Node* upChild;
+	Node* downChild;
 	
 protected:
 
@@ -27,12 +31,18 @@ public:
 	void unVisit();
 	bool checkVisited();
 	Node* getParent();
-	Node* leftChild;
-	Node* rightChild;
-	Node* upChild;
-	Node* downChild;
+	Node* getUpChild();
+	Node* getRightChild();
+	Node* getDownChild();
+	Node* getLeftChild();
+	bool setUpChild(Node* newChild);
+	bool setRightChild(Node* newChild);
+	bool setDownChild(Node* newChild);
+	bool setLeftChild(Node* newChild);
+	
 	Node* findCheapestUnusedRecursively();
 	bool checkTreeRecursivelyForNode(int xCoordinates, int yCoordinates);
+	~Node();
 
 };
 #endif // __NODE__HEADER__GUARD__

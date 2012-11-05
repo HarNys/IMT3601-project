@@ -18,10 +18,11 @@ private:
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
+	int characterID;
 	sf::Texture texture;
 	sf::Sprite sprite;
-	Node *currentNode;
-	Node *nextNode;
+	StackNode *startStack;
+	StackNode *endStack;
 
 public:
 	Character();
@@ -34,7 +35,7 @@ public:
 	bool setCharacterDirectionX(int newXDirection);
 	bool setCharacterDirectionY(int newYDirection);
 	void draw(sf::RenderWindow* window);
-	void useController(sf::Event e, Character* thischaracter);
+	void useController(Character* thischaracter);
 	void resetDirection();
 	void characterInput(sf::Event e);
 	void updateCharacterHealth(int health);
@@ -44,7 +45,12 @@ public:
 	void setNextNode(Node *newNextNode);
 	bool updateSprite();
 	bool placeMine();
+	bool setCharacterType(int type);
+	bool setID(int ID);
+	void newStack(int xPos, int yPos);
+	void addStack(int xPos, int yPos);
 	bool getIsNpc();
+
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

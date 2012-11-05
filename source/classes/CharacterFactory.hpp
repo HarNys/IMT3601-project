@@ -18,7 +18,7 @@ private:
 	std::vector<Character *> readyCharacters;
 	std::vector<Character *> usedCharacters;
 public:
-	Character* getCharacter(int type); ///< Gets one character for when an event is trigerd
+	Character* getCharacter(); ///< Gets one character for when an event is trigerd
 	static CharacterFactory *getCharacterFactory(); ///< Singleton that makes sure only one character factory exists
 	bool releaseCharacter(Character *characterReleased);
 };

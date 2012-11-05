@@ -33,14 +33,16 @@
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/Node.hpp"
-#include "classes/Character.hpp"
+#include "classes/StackNode.hpp"
+#include "classes/Character.hpp" //requires 'Node.hpp' and 'StackNode.hpp'
 #include "classes/CharacterFactory.hpp" // requires 'Character.hpp'
 #include "classes/Mine.hpp" // requires character
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
 #include "classes/World.hpp"
-#include "classes/AI.hpp" // requires Node
+#include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
+#include "classes/Menu.hpp"
 
 
 //// Controllers ////
