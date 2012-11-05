@@ -50,7 +50,8 @@ int main(int argc, char **argv)
 	else
 	{
 		world->initMap((char *)"map/mapone.txt");
-		world->randomGenerate(true);
+		printf("main(int,char**): generating random map\n");
+		world->startRandomGenerate(&screen);
 	}
 	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;

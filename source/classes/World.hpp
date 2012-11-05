@@ -22,14 +22,13 @@ private:
 		int border;
 
 public:
-
-
-public:
 		static World *getWorld();
 		bool initMap(char *mapFile);
-		void startRandomGenerate();
-		bool randomGenerate(int currentX, int currentY, std::list<Tile*> *frontierList);
+		void startRandomGenerate(sf::RenderWindow *screen);
+		bool randomGenerate(int currentX, int currentY, std::list<Tile*> *frontierList, sf::RenderWindow *screen);
 		bool randomGenerateVisit(int xCoordinate, int yCoordinate, int hasMovedDirectionX, int hasMovedDirectionY);
+		bool populateFrontier(int currentX, int currentY, std::list<Tile*> *frontier);
+		sf::Vector2i* getTilePosition(Tile *sentTile);
 		bool placeCharacter(Character *character);
 		bool moveCharacter(Character *character, int xPosition, int yPosition);
 		bool placeMine(Character *character, Tile *tile);

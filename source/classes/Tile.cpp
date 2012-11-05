@@ -44,6 +44,7 @@ Tile::Tile(char quality)
  * @return true on success
  * @todo make it have a bool toTrue or something similar.
  * 	"I do not understand what this todo item is asking for" -thomas
+ * @todo fix variable names
  */
 bool Tile::setVisited(bool wall, int xPos, int yPos)
 {
@@ -52,18 +53,11 @@ bool Tile::setVisited(bool wall, int xPos, int yPos)
 	if(wall)
 	{
 		isWall = true;
-	}
-	else
-	{
-		isWall = false;
-	}
-
-	if (isWall)
-	{
 		tileTexture.loadFromImage(*wallImg);
 	}
 	else
 	{
+		isWall = false;
 		tileTexture.loadFromImage(*floorImg);
 	}
 	tileSprite.setTexture(tileTexture);
@@ -93,14 +87,7 @@ bool Tile::setWall(bool wall)
  */
 bool Tile::getVisited()
 {
-	if(visited)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return visited;
 }
 
 /**
@@ -141,7 +128,7 @@ Character *Tile::getHasCharacter()
  * This is for reading in a new map, therefore hasMine and hasCharacter should
  * be NULL, as this is initialized by the world at a later time.
  *
- * @param[in] quality: the character read from the map, x is wall anything else is floor
+ * @param[in] quality the character read from the map, x is wall anything else is floor
  *
  * @return true on success
  */
@@ -163,7 +150,7 @@ bool Tile::initTile(char quality)
 /**
  * Sets hasMine if it is empty.
  *
- * @param[in] mine: the new mine, either a NULL pointer or a 'Mine'
+ * @param[in] mine the new mine, either a NULL pointer or a 'Mine'
  *
  * @return true on success
  */
@@ -185,6 +172,8 @@ bool Tile::setMine(Mine *mine)
  * 	'character'
  *
  * @return true on success
+ *
+ * @todo error checking, e.g. is there a Character here already?
  */
 bool Tile::setCharacter(Character *character)
 {

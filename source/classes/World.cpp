@@ -15,9 +15,7 @@ World::World()
 	area = 0;
 	map = NULL;
 
-
 	border = 0;
-
 }
 
 /**
@@ -32,12 +30,8 @@ World *World::getWorld()
 	if (world == NULL)
 	{
 		world = new World();
-		return world;
 	}
-	else
-	{
-		return world;
-	}
+	return world;
 }
 
 /**
@@ -107,19 +101,30 @@ bool World::initMap(char *mapFile)
  * @return true on success
  * @todo make this shit work
  */
-void World::startRandomGenerate()
+void World::startRandomGenerate(sf::RenderWindow *screen)
 {
 	std::list<Tile*> *unVisited;
 	unVisited = new std::list<Tile*>;
-	std::list<Tile*>::iterator tileListIterator;
 	srand(time(NULL));
 
+//	std::list<Tile*>::iterator tileListIterator;
 // previous if (start) check from here.
-	int startX = (rand() % (area-2) + 1); //add border late
+	int startX = (rand() % (area-2) + 1); // add border late
 	int startY = (rand() % (area-2) + 1);
 
+	if (startX % 2 == 0)
+	{
+		startX++;
+	}
+	if (startY % 2 == 0)
+	{
+		startY++;
+	}
+	startX = 2;
+	startY = 2;
+
 	map[startX][startY]->setVisited(false, startX, startY);
-	populateFrontier(startX, startY);
+	populateFrontier(startX, startY, unVisited);
 
 /*	if(startX - 2 <= border)	//if we could be in danger of going outside the border
 		startX = startX + 2;
@@ -131,7 +136,7 @@ void World::startRandomGenerate()
 		startY = startY - 2;
 //*/
 //	map[currentX][currentY]->setVisited(false, currentX, currentY);
-
+/*
 	if (map[currentX][currentY - 2] != NULL)
 	{
 		unVisited->push_front(map[currentX][currentY - 2]);
@@ -148,23 +153,29 @@ void World::startRandomGenerate()
 	{
 		unVisited->push_front(map[currentX - 2][currentY]);
 	}
+//*/
+	draw(screen);
+	screen->display();
+	randomGenerate(startX, startY, unVisited, screen);
 }
 
 /**
  * Goes through and generates a map from nothing.
  *
  * @return True on success.
+ *
+ * @todo fix documentation.
  */
-bool World::randomGenerate(int currentX, int currentY, 	std::list<Tile*> *frontierList)
+bool World::randomGenerate(int currentX, int currentY, 	std::list<Tile*> *frontierList, sf::RenderWindow *screen)
 {
-	/*	int size = visited->size();
+	/*int size = visited->size();
 	while(size != ((area * area) - 64))//*/
 	int direction = rand() % 4;
 
 	int directionX = 0;
 	int directionY = 0;
 	if(direction == 0) //if direction equals up
-	{ //make a check if this means going back to a visited tile
+	{ /// @todo Make a check if this means going back to a visited tile
 		directionY = (-2);
 	}
 	if(direction == 1)	//if direction equals right
@@ -179,14 +190,45 @@ bool World::randomGenerate(int currentX, int currentY, 	std::list<Tile*> *fronti
 	{
 		directionX = (-2);
 	}
-	printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
-		"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
-		"World::randomGenerate(bool): frontier size: %4lu\n",
+	printf("World::randomGenerate(): currX, currY: %2d, %2d\n"
+		"World::randomGenerate(): dirX, dirY:  %2d, %2d\n"
+		"World::randomGenerate(): frontier size:   %4lu\n",
 		currentX, currentY, directionX, directionY, frontierList->size());
-
-	while(!frontierList->empty())
+	if (((currentX + directionX) < 0)
+		|| ((currentX + directionX) > area))
 	{
-		if(currentY + directionY > border && currentX + directionX > border && currentX + directionX < area - 1 && currentY + directionY < area - 1) //as long as I'm not at the y coordinate border
+		printf("World::randomGenerate(): next X out of bounds: %d\n",
+			(currentX + directionX));
+		return false;
+	}
+	if (((currentY + directionY) < 0)
+		|| ((currentY + directionY) > area))
+	{
+		printf("World::randomGenerate(): next Y out of bounds: %d\n",
+			(currentY + directionY));
+		return false;
+	}
+	randomGenerateVisit(currentX, currentY, directionX, directionY);
+	populateFrontier((currentX + directionX), (currentY + directionY), frontierList);
+	draw(screen);
+	screen->display();
+	if (!frontierList->empty())
+	{
+		Tile *nextTile = frontierList->back();
+		sf::Vector2i *nextTilePosition = NULL;
+		frontierList->pop_back();
+		nextTilePosition = getTilePosition(nextTile);
+		randomGenerate(nextTilePosition->x, nextTilePosition->y, frontierList, screen);
+	}
+
+/*
+//	while(!frontierList->empty())
+//	{
+		// If I am inside the border.
+		if((currentY + directionY > border)
+			&& (currentX + directionX > border)
+			&& (currentX + directionX < area - 1)
+			&& (currentY + directionY < area - 1))
 		{
 			currentY = currentY + directionY;
 			currentX = currentX + directionX;
@@ -196,8 +238,8 @@ bool World::randomGenerate(int currentX, int currentY, 	std::list<Tile*> *fronti
 				temp = *temp_list;
 				if(temp == map[currentX][currentY] || previouseTile == map[currentX][currentY])
 				{
-					if(!temp->getVisited())	//if it's not visited
-					{
+					if(temp->getVisited() == false)
+					{ // if it's not visited
 						map[currentX][currentY]->setVisited(false, currentX, currentY); // set it to visited and change tile and texture
 						visited->splice(visited->begin(), *frontierList, temp_list);
 
@@ -245,33 +287,34 @@ bool World::randomGenerate(int currentX, int currentY, 	std::list<Tile*> *fronti
 									frontierList->push_front(map[currentX][currentY - 2]);
 								}
 							}
-						}
+						} //*/
 /*							printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
 							"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
 							"World::randomGenerate(bool): frontier size: %4lu\n",
 							currentX, currentY, directionX, directionY, frontierList->size());
 							//*/
-					}
+/*					}
 					else	//right now this won't trigger since we are only adding unvisited tiles to frontierList
 					{
 						frontierList->remove(temp); // remove may be deleting the Tile pointed to, CHECK THIS!
 					}
-					printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
-						"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
-						"World::randomGenerate(bool): frontier size: %4lu\n",
-						currentX, currentY, directionX, directionY, frontierList->size());
 					break;
 				}
 			}
 //			randomGenerate();
 		}
-	}
+//	} //*/
 	return true; /// @todo correct? check it
 }
 
 /**
  * Visits a Tile and the one before it according to recursive random generating
  * map algorithm.
+ *
+ * @param xCoordinate the x coordinate we are visiting.
+ * @param yCoordinate the y coordinate we are visiting.
+ * @param hasMovedDirectionX whether we have moved in the x direction.
+ * @param hasMovedDirectionY whether we have moved in the y direction.
  *
  * @return True on success
  */
@@ -292,6 +335,68 @@ bool World::randomGenerateVisit(int xCoordinate, int yCoordinate, int hasMovedDi
 		return false;
 	}
 	return true;
+}
+
+/**
+ * From this point add the four visible Tiles. Will error check for size of area
+ * and whether it is already in frontier(not done, see todo)
+ *
+ * @param currentX The x coordinate of the Tile we are working from
+ * @param currentY The y coordinate of the Tile we are working from
+ * @param frontier The frontier list we are going to fill/populate.
+ *
+ * @return True on success.
+ *
+ * @todo Uniqueness if it is needed? make it so it checks for element in frontier,
+ * 	else we could just do the error checking of this in the callee.
+ */
+bool World::populateFrontier(int currentX, int currentY, std::list<Tile*> *frontier)
+{
+	if ((currentX - 2) > 0)
+	{
+		frontier->push_front(map[currentX - 2][currentY]);
+	}
+	if ((currentX + 2) < area)
+	{
+		frontier->push_front(map[currentX + 2][currentY]);
+	}
+	if ((currentY - 2) > 0)
+	{
+		frontier->push_front(map[currentX][currentY - 2]);
+	}
+	if ((currentY + 2) < area)
+	{
+		frontier->push_front(map[currentX][currentY + 2]);
+	}
+	return true;
+}
+
+/**
+ * This is a barbaric way of solving the problem of lost coordinates,
+ * should not be used outside of randomGeneration.
+ *
+ * On second thought, should not be used at all, maybe?
+ * Function is most probably a performance hit.
+ *
+ * @param sentTile the Tile we are trying to find the coordinates of.
+ *
+ * @return The coordinates as a vector, NULL on failure.
+ */
+sf::Vector2i* World::getTilePosition(Tile *sentTile)
+{
+	sf::Vector2i *results = NULL;
+	for (int xVar = 0; xVar < area; xVar++)
+	{
+		for (int yVar = 0; yVar < area; yVar++)
+		{
+			if (map[xVar][yVar] == sentTile)
+			{
+				results = new sf::Vector2i(xVar, yVar);
+				return results;
+			}
+		}
+	}
+	return NULL;
 }
 
 /**
