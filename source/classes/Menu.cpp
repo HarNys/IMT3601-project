@@ -59,6 +59,17 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	title.setColor(sf::Color::Green);
 	title.setPosition(200,0);
 
+	// Open it from an audio file
+	if (!music.openFromFile("music/Circuit_Soldiers-The_Night_before_Battle.ogg"))
+	{
+		printf("Menu::Menu(sf::RenderWindow* renderWindow): can't load music");
+	}
+	else
+	{
+		music.setVolume(50);         // reduce the volume
+		music.setLoop(true);         // make it loop
+	}
+
 };
 
 /**
@@ -77,6 +88,7 @@ bool Menu::changeText(std::string text)
 */
 void Menu::runMenu()
 {
+	music.play();
 	localPlay.setString("Singelplayer");
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
@@ -262,6 +274,7 @@ bool Menu::initplayers()
 		world->placeCharacter(npc);
 	}
 	window->setKeyRepeatEnabled(true);
+	music.stop();
 	return true;
 };
 

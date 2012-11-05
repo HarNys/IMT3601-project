@@ -7,12 +7,14 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio/Music.hpp>
 
 #elif defined __linux__
 //we are on linux
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio/Music.hpp>
 
 #elif defined __APPLE__&__MACH__
 // we are on mac
@@ -27,6 +29,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+
 
 //// OpenMP ////
 //#pragma omp

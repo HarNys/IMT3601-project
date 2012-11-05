@@ -13,6 +13,7 @@ int main(int argc, char **argv)
 	 * 	the system is ready).
 	 */
 	sf::RenderWindow screen;
+	sf::Music music;
 	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
 /*
@@ -53,6 +54,19 @@ int main(int argc, char **argv)
 	//	world->initMap((char *)"map/maptwo.txt");
 	//}
 
+		// Open it from an audio file
+	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
+	{
+		printf("main(int argc, char **argv): can't load music");
+	}
+	else
+	{
+		music.setVolume(50);         // reduce the volume
+		
+		music.setLoop(true);         // make it loop
+		music.play();
+	}
+	
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
@@ -97,6 +111,7 @@ int main(int argc, char **argv)
 				if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
 				{
 					world->reset();
+					music.stop();
 					mainMenu->runMenu();
 				}
 			}

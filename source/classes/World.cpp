@@ -273,6 +273,21 @@ bool World::update()
 						thisTile->setFloor(0);
 					}
 				}
+				
+				if (thisTile->getIsGoal())
+				{
+					thisTile->setFloor(2);
+					goalExists = true;
+
+					if (thisTile->getHasCharacter())
+					{
+						///<@Todo: give character points
+						thisTile->setGoal(false);
+						goalExists = false;
+						printf("World::Update(): Character hit flag\n");
+	
+					}
+				}
 				if ((thisCharacter = thisTile->getHasCharacter()))
 				{
 					if(thisCharacter->getLastUpdate() != updatetime)
@@ -299,20 +314,7 @@ bool World::update()
 					}
 				}
 
-				if (thisTile->getIsGoal())
-				{
-					thisTile->setFloor(2);
-					goalExists = true;
 
-					if (thisTile->getHasCharacter())
-					{
-						///<@Todo: give character points
-						thisTile->setGoal(false);
-						goalExists = false;
-						printf("World::Update(): Character hit flag\n");
-	
-					}
-				}
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
