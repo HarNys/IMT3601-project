@@ -17,6 +17,7 @@ public:
 	StackNode (int xPositon, int yPosition, StackNode * nextNode = NULL);
 	StackNode ();
 	~StackNode();
+	void removeStack();
 	StackNode* getNext();
 	int getXPos();
 	int getYPos();

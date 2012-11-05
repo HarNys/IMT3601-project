@@ -15,17 +15,32 @@ positionY = NULL;
 next = NULL;
 }
 
-StackNode::~StackNode(){
-				
+StackNode::~StackNode()
+{
+
 };
 
-int StackNode::getXPos(){
+
+int StackNode::getXPos()
+{
 	return positionX;
 };
-int StackNode::getYPos(){
+int StackNode::getYPos()
+{
 	return positionY;
 };
 
-StackNode * StackNode::getNext(){
+StackNode * StackNode::getNext()
+{
 	return next;
 };
+
+void StackNode::removeStack()
+{
+	if (next)
+	{
+		next->removeStack();
+	}
+	delete this;
+};
+	

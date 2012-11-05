@@ -221,7 +221,12 @@ void Character::useController(sf::Event e, Character* thischaracter)
 			characterDirectionY = (startStack->getNext()->getYPos() - startStack->getYPos());
 			StackNode *tempStackNode;
 			tempStackNode = startStack->getNext();
-			delete startStack;
+		
+			if (startStack)
+			{
+				delete startStack;
+			}
+		
 			startStack = tempStackNode;
 			}
 		}
@@ -234,7 +239,10 @@ void Character::useController(sf::Event e, Character* thischaracter)
 };
 
 void Character::newStack(int xPos, int yPos){
-	delete startStack;
+	if (startStack)
+	{
+		startStack->removeStack();
+	}
 	StackNode *tempStackNode;
 	tempStackNode = new StackNode (xPos, yPos);
 	
