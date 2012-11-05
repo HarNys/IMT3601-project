@@ -23,13 +23,13 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, menuImage->getSize().x, menuImage->getSize().y));
 	sprite.setPosition(0,0);
-	
-	
+
+
 	if(font.loadFromFile("font/arial.ttf"))
 	{
 		printf("Success on loading font \n");
 	}
- 
+
 	// Create a text
 	localPlay.setString("Singelplayer");
 	localPlay.setFont(font);
@@ -73,7 +73,7 @@ bool Menu::changeText(std::string text)
 };
 
 /**
-* @brif: Menu Loop 
+* @brif: Menu Loop
 */
 void Menu::runMenu()
 {
@@ -123,7 +123,7 @@ void Menu::runMenu()
 					menuOpen = false;
 					break;
 				}
-			}	
+			}
 		}
 
 		switch(menuItem)
@@ -150,7 +150,7 @@ void Menu::runMenu()
 				break;
 			}
 		}
-		
+
 	}
 };
 
@@ -171,7 +171,7 @@ int  Menu::SelectNumberOfCharacters()
 		numOfPlayersText=(char)(numOfPlayers+48);
 		menutext = "Number of AI: ";
 		menutext.insert((menutext.size()),numOfPlayersText);
-		
+
 		changeText(menutext);
 		localDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
@@ -224,18 +224,18 @@ bool Menu::initplayers()
 	characterFactory = characterFactory->getCharacterFactory();
 
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
-	Character *player = characterFactory->getCharacter();				
-	player->setCharacterType(0);			// 0 for local-player character
-	player ->setID(0);			
+	Character *player = characterFactory->getCharacter();
+	player->setCharacterType(1); // 0 for local-player character
+	player ->setID(0);
 	world->placeCharacter(player);
-	
+
 	Character *npc;
 
 	for (i=0; i<numOfPlayers; i++)
 	{
 		printf("main(int,char**): has got CharacterFactory, getting NPC %d\n",i);
-		npc = characterFactory->getCharacter();	
-		npc->setCharacterType(1);	
+		npc = characterFactory->getCharacter();
+		npc->setCharacterType(1);
 		npc ->setID(1337);
 		world->placeCharacter(npc);
 	}

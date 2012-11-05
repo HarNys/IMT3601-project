@@ -108,9 +108,30 @@ bool World::placeCharacter(Character *character)
 {
 
 	int xSpace = 1;
-	while (map[xSpace][1]->getIsWall() || map[xSpace] [1]->getHasCharacter())
+	int ySpace = 1;
+	int increment = 1;
+	while (map[xSpace][ySpace]->getIsWall() || map[xSpace] [ySpace]->getHasCharacter())
 	{
-		xSpace+=3;
+		if (xSpace+increment < area-1)
+		{
+			xSpace+=increment;
+		}
+		/*else if (ySpace+increment < area-1)
+		{
+			ySpace+=increment;
+		}
+		else if (xSpace-area-3 >0)
+		{
+			xSpace-=increment;
+		}
+		else if (ySpace-area-3 >0)
+		{
+			ySpace-=increment;
+		}
+		else if (increment > 1) 
+		{
+			increment/=2;
+		}*/
 	}
 
 	map[xSpace++][1]->setCharacter(character);

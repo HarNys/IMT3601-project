@@ -175,11 +175,9 @@ sf::Sprite *Character::getSprite()
  */
 bool Character::updateSprite(float xPosition, float yPosition)
 {
-
 	sprite.setPosition((15 * xPosition), (15 * yPosition));
-	
 	return true;
-};
+}
 
 /**
  * Updates and sets a Characters sprite. The formula for arrowdirection
@@ -223,7 +221,12 @@ void Character::useController(Character* thischaracter)
 			characterDirectionY = (startStack->getNext()->getYPos() - startStack->getYPos());
 			StackNode *tempStackNode;
 			tempStackNode = startStack->getNext();
-			delete startStack;
+
+			if (startStack)
+			{
+				delete startStack;
+			}
+
 			startStack = tempStackNode;
 			}
 		}
@@ -233,30 +236,41 @@ void Character::useController(Character* thischaracter)
 
 	}
 
-};
+}
 
-void Character::newStack(int xPos, int yPos){
-	delete startStack;
-	StackNode *tempStackNode;
-	tempStackNode = new StackNode (xPos, yPos);
-	
+/**
+ * @todo Documentation.
+ */
+void Character::newStack(int xPos, int yPos)
+{
+	if (startStack)
+	{
+		startStack->removeStack();
+	}
 	startStack = new StackNode (xPos, yPos);
 	endStack = new StackNode (xPos, yPos);
 
-};
+}
+
+/**
+ * @todo Documentation.
+ */
 void Character::addStack(int xPos, int yPos){
 	StackNode *tempStackNode;
 	tempStackNode = startStack;
 	startStack = new StackNode(xPos, yPos, tempStackNode);
 
-};
+}
 
+/**
+ * @todo Documentation.
+ */
 bool Character::placeMine()
 {
 	minePlaced = true;
 	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
 	return true;
-};
+}
 
 
 /**
@@ -269,28 +283,29 @@ bool Character::setCharacterType(int type)
 {
 	controllerType = type;
 	return true;
-};
+}
 
 /**
 *	@brif Give the character an ID
-*	@param ID: the ID he character is geting 
+*	@param ID: the ID he character is geting
 *	@return true on succses
 */
 bool Character::setID(int ID)
 {
 	characterID = ID;
 	return true;
-};
-
-bool Character::getIsNpc(){
-if (1 == controllerType)
-{
-	return true;
 }
 
-return false;
-
-};
+/**
+ * @todo Documentation.
+ */
+bool Character::getIsNpc(){
+	if (1 == controllerType)
+	{
+		return true;
+	}
+	return false;
+}
 
 bool Character::setLastUpdate(int time)
 {
@@ -302,4 +317,3 @@ int Character::getLastUpdate()
 {
 	return lastUpdate;
 }
-
