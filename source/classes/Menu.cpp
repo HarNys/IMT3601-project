@@ -88,7 +88,7 @@ void Menu::runMenu()
 		mainDraw();
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			menuItem --;
 			if (menuItem < 0)
@@ -96,7 +96,7 @@ void Menu::runMenu()
 				menuItem = 0;
 			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
 			menuItem ++;
 			if (menuItem > 2)
@@ -176,7 +176,7 @@ int  Menu::SelectNumberOfCharacters()
 			initplayers();
 			menuOpen = false;
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			numOfPlayers++;
 			if (10 == numOfPlayers)
@@ -184,7 +184,7 @@ int  Menu::SelectNumberOfCharacters()
 				numOfPlayers = 9;
 			}
 		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
 			numOfPlayers--;
 			if ((-1) == numOfPlayers)
@@ -209,23 +209,28 @@ bool Menu::initplayers()
 
 		world->initMap((char *)"map/maptwo.txt");
 
-	printf("main(int,char**): has got World, getting MineFactory\n");
+	printf("Menu::initplayers(): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
 
-	printf("main(int,char**): has got MineFactory, getting CharacterFactory\n");
+	printf("Menu::initplayers(): has got MineFactory, getting CharacterFactory\n");
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
-	printf("main(int,char**): has got CharacterFactory, getting player \n");
-	Character *player = characterFactory->getCharacter();				// 0 for local-player character
-	player->setCharacterType(0);
+	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
+	Character *player = characterFactory->getCharacter();				
+	player->setCharacterType(0);			// 0 for local-player character
+	player ->setID(0);			
 	world->placeCharacter(player);
 	
+	Character *npc;
+
 	for (i=0; i<numOfPlayers; i++)
 	{
 		printf("main(int,char**): has got CharacterFactory, getting NPC %d\n",i);
-		player = characterFactory->getCharacter();				// 0 for local-player character
+		npc = characterFactory->getCharacter();	
+		npc->setCharacterType(1);	
+		npc ->setID(1337);
 		world->placeCharacter(player);
 	}
 	return true;

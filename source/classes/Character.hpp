@@ -46,6 +46,7 @@ public:
 	bool updateSprite();
 	bool placeMine();
 	bool setCharacterType(int type);
+	bool setID(int ID);
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

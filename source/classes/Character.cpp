@@ -254,3 +254,8 @@ bool Character::setCharacterType(int type)
 	return true;
 }
 
+bool Character::setID(int ID)
+{
+	characterID = ID;
+	return true;
+}

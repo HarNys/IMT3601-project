@@ -16,7 +16,7 @@ CharacterFactory::CharacterFactory()
 	tempChar->initImage();
 
 	usedCharacters.reserve(maxChar);
-	readyCharacters.assign(maxChar, new Character(*tempChar));
+	readyCharacters.assign(maxChar, new Character);
 };
 
 ///Singleton that gets the Character Factory for you when asked for
