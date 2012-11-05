@@ -15,6 +15,7 @@ World::World()
 	area = 0;
 	map = NULL;
 	xSpace = 1;
+	updatetime = 0;
 };
 
 /**
@@ -227,7 +228,7 @@ bool World::update()
 	Tile *thisTile = NULL;
 	Mine *thisMine = NULL;
 	Character *thisCharacter = NULL;
-
+	updatetime++;
 	//
 	static bool goalExists;
 
@@ -253,23 +254,27 @@ bool World::update()
 				}
 				if ((thisCharacter = thisTile->getHasCharacter()))
 				{
-					thisCharacter->useController(thisCharacter);
-					if (thisCharacter->getMinePlaced())
+					if(thisCharacter->getLastUpdate() != updatetime)
 					{
-						placeMine(thisCharacter, thisTile);
-					}
-					if (moveCharacter(thisCharacter, xCount, yCount))
-					{
-						thisTile->setCharacter(NULL);
-					}
-					thisCharacter->resetDirection();
-
-					if (goalExists)
-					{
-						if (thisCharacter->getIsNpc())
+						thisCharacter->useController(thisCharacter);
+						if (thisCharacter->getMinePlaced())
 						{
-							npcController.aStar(map, thisCharacter);
+							placeMine(thisCharacter, thisTile);
 						}
+						if (moveCharacter(thisCharacter, xCount, yCount))
+						{
+							thisTile->setCharacter(NULL);
+						}
+						thisCharacter->resetDirection();
+
+						if (goalExists)
+						{
+							if (thisCharacter->getIsNpc())
+							{
+								npcController.aStar(map, thisCharacter);
+							}
+						}
+						thisCharacter->setLastUpdate(updatetime);
 					}
 				}
 

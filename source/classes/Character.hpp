@@ -19,6 +19,7 @@ private:
 	enum type{mine,rifle};
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	int characterID;
+	int lastUpdate;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	StackNode *startStack;
@@ -50,6 +51,8 @@ public:
 	void newStack(int xPos, int yPos);
 	void addStack(int xPos, int yPos);
 	bool getIsNpc();
+	bool setLastUpdate(int time);
+	int getLastUpdate();
 
 };
 

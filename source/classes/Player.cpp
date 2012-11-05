@@ -13,10 +13,11 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	{
 		thisCharacter->setCharacterDirectionX(-1);
 		thisCharacter->updateSprite();
-		if(e.KeyReleased && e.key.code == sf::Keyboard::A)
-		{
-			thisCharacter->setCharacterDirectionX(0);
-		}
+		
+		//if(e.KeyReleased && e.key.code == sf::Keyboard::A)
+		//{
+		//	thisCharacter->setCharacterDirectionX(0);
+		//}
 			
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -24,10 +25,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		thisCharacter->setCharacterDirectionX(1);
 		thisCharacter->updateSprite();
 
-		if(e.KeyReleased && e.key.code == sf::Keyboard::D)
-		{
-			thisCharacter->setCharacterDirectionX(0);
-		}
+		//if(e.KeyReleased && e.key.code == sf::Keyboard::D)
+		//{
+		//	thisCharacter->setCharacterDirectionX(0);
+		//}
 
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -35,27 +36,27 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		thisCharacter->setCharacterDirectionY(-1);
 		thisCharacter->updateSprite();
 		
-		if(e.KeyReleased && e.key.code == sf::Keyboard::W)
-		{
-			thisCharacter->setCharacterDirectionY(0);
-		}
+		//if(e.KeyReleased && e.key.code == sf::Keyboard::W)
+		//{
+		//	thisCharacter->setCharacterDirectionY(0);
+		//}
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		thisCharacter->setCharacterDirectionY(1);
 		thisCharacter->updateSprite();
 
-		if(e.KeyReleased && e.key.code == sf::Keyboard::S)
-		{
-			thisCharacter->setCharacterDirectionY(0);
-		}
+		//if(e.KeyReleased && e.key.code == sf::Keyboard::S)
+		//{
+		//	thisCharacter->setCharacterDirectionY(0);
+		//}
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
-		if(e.KeyReleased && e.key.code == sf::Keyboard::E)
-		{
-			thisCharacter->placeMine();
-		}
+		//if(e.KeyReleased && e.key.code == sf::Keyboard::E)
+		//{
+		//	thisCharacter->placeMine();
+		//}
 	}
 
 };

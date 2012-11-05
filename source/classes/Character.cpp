@@ -15,6 +15,7 @@ Character::Character()
 	controllerType = 1;
 	startStack = NULL;
 	endStack = NULL;
+	lastUpdate = 0;
 	sprite.setPosition((15 * 1), (15 * 1));
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 };
@@ -290,4 +291,15 @@ if (1 == controllerType)
 return false;
 
 };
+
+bool Character::setLastUpdate(int time)
+{
+	lastUpdate = time;
+	return true;
+}
+
+int Character::getLastUpdate()
+{
+	return lastUpdate;
+}
 

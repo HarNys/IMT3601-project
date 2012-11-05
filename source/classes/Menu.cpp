@@ -157,12 +157,15 @@ void Menu::runMenu()
 /**
 * @brif: Select number of players in the game
 * @return The number of players
+* @todo: Stop keys from repeating. 
 */
 int  Menu::SelectNumberOfCharacters()
 {
 	numOfPlayers = 0;
 	std::string numOfPlayersText;
 	std::string menutext;
+	sf::Event event;
+	
 	while(menuOpen)
 	{
 		numOfPlayersText=(char)(numOfPlayers+48);
@@ -173,16 +176,19 @@ int  Menu::SelectNumberOfCharacters()
 		localDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
-			initplayers();
-			menuOpen = false;
+			
+				initplayers();
+				menuOpen = false;
+			
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
+			
 			numOfPlayers++;
 			if (10 == numOfPlayers)
 			{
 				numOfPlayers = 9;
-			}
+			}	
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
@@ -231,7 +237,7 @@ bool Menu::initplayers()
 		npc = characterFactory->getCharacter();	
 		npc->setCharacterType(1);	
 		npc ->setID(1337);
-		world->placeCharacter(player);
+		world->placeCharacter(npc);
 	}
 	return true;
 };
