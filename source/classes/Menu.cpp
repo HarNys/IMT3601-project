@@ -25,7 +25,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	sprite.setPosition(0,0);
 
 
-	if(font.loadFromFile("font/arial.ttf"))
+	if(font.loadFromFile("font/promethean.ttf"))
 	{
 		printf("Success on loading font \n");
 	}
@@ -247,7 +247,7 @@ bool Menu::initplayers()
 
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
-	player->setCharacterType(1); // 0 for local-player character
+	player->setCharacterType(0); // 0 for local-player character
 	player ->setID(0);
 	world->placeCharacter(player);
 
