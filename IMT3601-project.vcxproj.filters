@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="source\classes\World.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Tile.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\AI.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="source\classes\Character.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -31,15 +22,27 @@
     <ClCompile Include="source\classes\Node.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\classes\NonPlayerCharacter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
     <ClCompile Include="source\classes\Player.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\StackNode.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Tile.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\World.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\classes\AI.hpp">
+    <ClInclude Include="source\classes\Character.hpp">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Character.hpp">
+    <ClInclude Include="source\classes\World.hpp">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\CharacterFactory.hpp">
@@ -60,22 +63,25 @@
     <ClInclude Include="source\classes\Node.hpp">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="source\classes\NonPlayerCharacter.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
     <ClInclude Include="source\classes\Player.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\StackNode.hpp">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\Tile.hpp">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\World.hpp">
-      <Filter>Header</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
-      <UniqueIdentifier>{b5a4a33b-52ec-43d9-bc18-65285cc22ab9}</UniqueIdentifier>
+      <UniqueIdentifier>{c88debf8-200a-48c7-b0f9-b28983fd1cac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source">
-      <UniqueIdentifier>{fad09080-cd46-4c29-966c-0da8dce44f6e}</UniqueIdentifier>
+      <UniqueIdentifier>{63ec5b47-999d-4812-9898-aad031548ff0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

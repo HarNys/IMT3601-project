@@ -105,6 +105,13 @@ bool World::initMap(char *mapFile)
  */
 bool World::placeCharacter(Character *character)
 {
+
+	int xSpace = 1;
+	while (map[xSpace][1]->getIsWall() || map[xSpace] [1]->getHasCharacter())
+	{
+		xSpace+=3;
+	}
+
 	map[xSpace++][1]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15);
 	return true;
@@ -223,7 +230,7 @@ bool World::update()
 
 	//
 	static bool goalExists;
-	 
+
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)
@@ -256,10 +263,13 @@ bool World::update()
 						thisTile->setCharacter(NULL);
 					}
 					thisCharacter->resetDirection();
-					
+
 					if (goalExists)
 					{
-						npcController.aStar(map, thisCharacter);
+						if (thisCharacter->getIsNpc())
+						{
+							npcController.aStar(map, thisCharacter);
+						}
 					}
 				}
 
@@ -273,9 +283,10 @@ bool World::update()
 						///<@Todo: give character points
 						thisTile->setGoal(false);
 						goalExists = false;
+						printf("World::Update(): Character hit flag\n");
+	
 					}
 				}
-
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -324,7 +335,7 @@ void World::draw(sf::RenderWindow *window)
 void World::setGoal()
 {
 	Tile* thisTile;
-	int x;
+	int x; ///< @todo variable name @#@!
 	int y;
 	srand(time(NULL));
 	do				//Do while tile (x,y) is a wall
@@ -337,7 +348,7 @@ void World::setGoal()
 
 		thisTile = map[x][y];
 
-	}while(thisTile->getIsWall());
+	}while(thisTile->getIsWall() || thisTile->getHasCharacter());
 
 	thisTile->setGoal(true);
 }
@@ -362,7 +373,7 @@ bool World::reset()
 
 	int yCount;
 	int xCount;
-	
+
 	for (yCount = 0; yCount < area; yCount++)
 	{
 		for (xCount = 0; xCount < area; xCount++)
@@ -379,4 +390,3 @@ bool World::reset()
 
 	return true;
 }
-

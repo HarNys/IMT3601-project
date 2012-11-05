@@ -274,6 +274,6 @@ bool Tile::reset()
 	}
 	setGoal(false);
 	return true;
-	
+
 };
 

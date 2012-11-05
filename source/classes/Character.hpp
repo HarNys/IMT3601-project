@@ -21,8 +21,8 @@ private:
 	int characterID;
 	sf::Texture texture;
 	sf::Sprite sprite;
-	Node *currentNode;
-	Node *nextNode;
+	StackNode *startStack;
+	StackNode *endStack;
 
 public:
 	Character();
@@ -47,6 +47,10 @@ public:
 	bool placeMine();
 	bool setCharacterType(int type);
 	bool setID(int ID);
+	void newStack(int xPos, int yPos);
+	void addStack(int xPos, int yPos);
+	bool getIsNpc();
+
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

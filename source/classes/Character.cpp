@@ -13,8 +13,8 @@ Character::Character()
 	characterDirectionY = 0;
 	characterHealth = 10;
 	controllerType = 1;
-	currentNode=NULL;
-	nextNode=NULL;
+	startStack = NULL;
+	endStack = NULL;
 	sprite.setPosition((15 * 1), (15 * 1));
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 };
@@ -215,10 +215,16 @@ void Character::useController(Character* thischaracter)
 	{
 
 		//npcController.movement(thischaracter);
-		if (nextNode && currentNode)
+		if (startStack && endStack)
 		{
-			characterDirectionX = (nextNode->getXPos() - currentNode->getXPos());
-			characterDirectionY = (nextNode->getYPos() - currentNode->getYPos());
+			if (NULL != startStack->getNext()){
+			characterDirectionX = (startStack->getNext()->getXPos() - startStack->getXPos());
+			characterDirectionY = (startStack->getNext()->getYPos() - startStack->getYPos());
+			StackNode *tempStackNode;
+			tempStackNode = startStack->getNext();
+			delete startStack;
+			startStack = tempStackNode;
+			}
 		}
 	}
 	else if(controllerType == NetworkControl)
@@ -228,11 +234,20 @@ void Character::useController(Character* thischaracter)
 
 };
 
-void Character::setCurrentNode(Node *newCurrentNode){
-	currentNode=newCurrentNode;
+void Character::newStack(int xPos, int yPos){
+	delete startStack;
+	StackNode *tempStackNode;
+	tempStackNode = new StackNode (xPos, yPos);
+	
+	startStack = new StackNode (xPos, yPos);
+	endStack = new StackNode (xPos, yPos);
+
 };
-void Character::setNextNode(Node *newNextNode){
-	nextNode=newNextNode;
+void Character::addStack(int xPos, int yPos){
+	StackNode *tempStackNode;
+	tempStackNode = startStack;
+	startStack = new StackNode(xPos, yPos, tempStackNode);
+
 };
 
 bool Character::placeMine()
@@ -241,6 +256,7 @@ bool Character::placeMine()
 	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
 	return true;
 };
+
 
 /**
 *	@brif sets the typ of character this is
@@ -252,10 +268,26 @@ bool Character::setCharacterType(int type)
 {
 	controllerType = type;
 	return true;
-}
+};
 
+/**
+*	@brif Give the character an ID
+*	@param ID: the ID he character is geting 
+*	@return true on succses
+*/
 bool Character::setID(int ID)
 {
 	characterID = ID;
 	return true;
+};
+
+bool Character::getIsNpc(){
+if (1 == controllerType)
+{
+	return true;
 }
+
+return false;
+
+};
+

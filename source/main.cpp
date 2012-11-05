@@ -53,6 +53,7 @@ int main(int argc, char **argv)
 	//	world->initMap((char *)"map/maptwo.txt");
 	//}
 
+
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
 	{

@@ -6,20 +6,17 @@
 /** this class is going to have the AI
 
 */
-class NonePlayerCharacter
+class NonPlayerCharacter
 {
 private:
 Node * startNode;
-Node * queueNode;
 Node * goalNode;
-int xDirection;
-int yDirection;
 
 protected:
 public:
 	void aStar(Tile*** const map, Character* thisCharacter);
-	void movement(Character* thisCharacter);
-
+	Node *addFrontier(int xCoord,int yCoord,int xDir,int yDir, Node *nodeParent);
+	
 };
 
 

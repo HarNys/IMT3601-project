@@ -38,7 +38,7 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  * gets one charecter for you to do some nasty things with if an event is
  * triggered.
  *
- *@param [in] 0 for player character, 1 for NonePlayerCharacter, 3 for network character.
+ *@param [in] 0 for player character, 1 for NonPlayerCharacter, 3 for network character.
  *
  * @return on succes: pointer to a new(read: reinitialized) Character
  * 	\n on failure: NULL

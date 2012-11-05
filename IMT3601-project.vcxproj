@@ -11,27 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\classes\AI.hpp" />
     <ClInclude Include="source\classes\Character.hpp" />
     <ClInclude Include="source\classes\CharacterFactory.hpp" />
     <ClInclude Include="source\classes\menu.hpp" />
     <ClInclude Include="source\classes\Mine.hpp" />
     <ClInclude Include="source\classes\MineFactory.hpp" />
     <ClInclude Include="source\classes\Node.hpp" />
+    <ClInclude Include="source\classes\NonPlayerCharacter.hpp" />
     <ClInclude Include="source\classes\Player.hpp" />
+    <ClInclude Include="source\classes\StackNode.hpp" />
     <ClInclude Include="source\classes\Tile.hpp" />
     <ClInclude Include="source\classes\World.hpp" />
     <ClInclude Include="source\Includes.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\classes\AI.cpp" />
     <ClCompile Include="source\classes\Character.cpp" />
     <ClCompile Include="source\classes\CharacterFactory.cpp" />
     <ClCompile Include="source\classes\menu.cpp" />
     <ClCompile Include="source\classes\Mine.cpp" />
     <ClCompile Include="source\classes\MineFactory.cpp" />
     <ClCompile Include="source\classes\Node.cpp" />
+    <ClCompile Include="source\classes\NonPlayerCharacter.cpp" />
     <ClCompile Include="source\classes\Player.cpp" />
+    <ClCompile Include="source\classes\StackNode.cpp" />
     <ClCompile Include="source\classes\Tile.cpp" />
     <ClCompile Include="source\classes\World.cpp" />
     <ClCompile Include="source\main.cpp" />
