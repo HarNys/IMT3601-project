@@ -11,14 +11,18 @@ private:
 	sf::Image *menuImage;
 	sf::Font font;
 	sf::Text title;
-	sf::Text text;
+	sf::Text localPlay;
+	sf::Text networkPlay;
+	sf::Text exit;
 	sf::RenderWindow* window;
 	int numOfPlayers;
 	bool menuOpen;
 	
 public:
 	Menu(sf::RenderWindow* renderWindow);
-	void draw();
+	void mainDraw();
+	void localDraw();
+	void networkDraw();
 	bool changeText(std::string text);
 	void runMenu();
 	int  SelectNumberOfCharacters();

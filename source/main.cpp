@@ -90,9 +90,9 @@ int main(int argc, char **argv)
 					world->reset();
 				}
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
-				if(event.KeyReleased && event.key.code == sf::Keyboard::F1)
+				if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
 				{
 					world->reset();
 					mainMenu->runMenu();

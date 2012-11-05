@@ -374,7 +374,7 @@ bool World::reset()
 	}
 
 	characterFetcher = characterFetcher->getCharacterFactory();
-	tempCharacter = characterFetcher->getCharacter(1);
+	tempCharacter = characterFetcher->getCharacter();
 	placeCharacter(tempCharacter);
 
 	return true;

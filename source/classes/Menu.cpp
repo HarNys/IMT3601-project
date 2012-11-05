@@ -31,18 +31,32 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	}
  
 	// Create a text
-	text.setString("Press 'L' for Local Play \nPress 'N' for networkplay");
-	text.setFont(font);
-	text.setCharacterSize(30);
-	text.setStyle(sf::Text::Bold);
-	text.setColor(sf::Color::Blue);
-	text.setPosition(10,200);
+	localPlay.setString("Singelplayer");
+	localPlay.setFont(font);
+	localPlay.setCharacterSize(30);
+	localPlay.setStyle(sf::Text::Bold);
+	localPlay.setColor(sf::Color::Black);
+	localPlay.setPosition(250,200);
+
+	networkPlay.setString("Multiplayer");
+	networkPlay.setFont(font);
+	networkPlay.setCharacterSize(30);
+	networkPlay.setStyle(sf::Text::Bold);
+	networkPlay.setColor(sf::Color::Black);
+	networkPlay.setPosition(250,240);
+
+	exit.setString("Exit");
+	exit.setFont(font);
+	exit.setCharacterSize(30);
+	exit.setStyle(sf::Text::Bold);
+	exit.setColor(sf::Color::Black);
+	exit.setPosition(250,280);
 
 	title.setString("Frank Darkhawk's MAZE!!!");
 	title.setFont(font);
 	title.setCharacterSize(30);
 	title.setStyle(sf::Text::Bold);
-	title.setColor(sf::Color::Blue);
+	title.setColor(sf::Color::Black);
 	title.setPosition(200,0);
 
 };
@@ -54,7 +68,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 */
 bool Menu::changeText(std::string text)
 {
-	Menu::text.setString(text);
+	Menu::localPlay.setString(text);
 	return true;
 };
 
@@ -63,21 +77,78 @@ bool Menu::changeText(std::string text)
 */
 void Menu::runMenu()
 {
+	localPlay.setString("Singelplayer");
+	networkPlay.setString("Multiplayer");
+	exit.setString("Exit");
 	menuOpen = true;
-	changeText("Press 'L' for Local Play \nPress 'N' for networkplay");
+	//changeText("Press 'L' for Local Play \nPress 'N' for networkplay");
+	int menuItem = 0;
 	while(menuOpen)
 	{
-		draw();
+		mainDraw();
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
-			SelectNumberOfCharacters();
+			menuItem --;
+			if (menuItem < 0)
+			{
+				menuItem = 0;
+			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
-			window->close();
-			menuOpen = false;
+			menuItem ++;
+			if (menuItem > 2)
+			{
+				menuItem = 2;
+			}
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		{
+			switch(menuItem)
+			{
+			case 0:
+				{
+					SelectNumberOfCharacters();
+					break;
+				}
+			case 1:
+				{
+					break;
+				}
+			case 2:
+				{
+					window->close();
+					menuOpen = false;
+					break;
+				}
+			}	
+		}
+
+		switch(menuItem)
+		{
+		case 0:
+			{
+				localPlay.setColor(sf::Color::White);
+				networkPlay.setColor(sf::Color::Black);
+				exit.setColor(sf::Color::Black);
+				break;
+			}
+		case 1:
+			{
+				localPlay.setColor(sf::Color::Black);
+				networkPlay.setColor(sf::Color::White);
+				exit.setColor(sf::Color::Black);
+				break;
+			}
+		case 2:
+			{
+				localPlay.setColor(sf::Color::Black);
+				networkPlay.setColor(sf::Color::Black);
+				exit.setColor(sf::Color::White);
+				break;
+			}
 		}
 		
 	}
@@ -95,11 +166,11 @@ int  Menu::SelectNumberOfCharacters()
 	while(menuOpen)
 	{
 		numOfPlayersText=(char)(numOfPlayers+48);
-		menutext = "Number of characters: ";
+		menutext = "Number of AI: ";
 		menutext.insert((menutext.size()),numOfPlayersText);
-		draw();
+		
 		changeText(menutext);
-		draw();
+		localDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
 			initplayers();
@@ -123,8 +194,7 @@ int  Menu::SelectNumberOfCharacters()
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			window->close();
-			menuOpen = false;
+			runMenu();
 		}
 	}
 	return numOfPlayers;
@@ -136,13 +206,8 @@ bool Menu::initplayers()
 
 	World *world;
 	world = world->getWorld();
-	//if (argv[1]) {
-	//	world->initMap(argv[1]);
-	//}
-	//else
-	//{
+
 		world->initMap((char *)"map/maptwo.txt");
-	//}
 
 	printf("main(int,char**): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
@@ -152,25 +217,49 @@ bool Menu::initplayers()
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
-	
+	printf("main(int,char**): has got CharacterFactory, getting player \n");
+	Character *player = characterFactory->getCharacter();				// 0 for local-player character
+	player->setCharacterType(0);
+	world->placeCharacter(player);
 	
 	for (i=0; i<numOfPlayers; i++)
 	{
-		printf("main(int,char**): has got CharacterFactory, getting player%d\n",i);
-		Character *player1 = characterFactory->getCharacter(0);				// 0 for local-player character
-		world->placeCharacter(player1);
+		printf("main(int,char**): has got CharacterFactory, getting NPC %d\n",i);
+		player = characterFactory->getCharacter();				// 0 for local-player character
+		world->placeCharacter(player);
 	}
 	return true;
 };
 
 
 /**
-* @brif: Draw menu to screen.
+* @brif: Draw main menu to screen.
 */
-void Menu::draw()
+void Menu::mainDraw()
 {
 	window->draw(sprite);
 	window->draw(title);
-	window->draw(text);
+	window->draw(localPlay);
+	window->draw(networkPlay);
+	window->draw(exit);
 	window->display();
+};
+
+/**
+* @brif: Draw singelplayer part of menu to screen.
+*/
+void Menu::localDraw()
+{
+	window->draw(sprite);
+	window->draw(title);
+	window->draw(localPlay);
+	window->display();
+};
+
+/**
+* @brif: Draw netowk part of menu to screen.
+*/
+void Menu::networkDraw()
+{
+
 };

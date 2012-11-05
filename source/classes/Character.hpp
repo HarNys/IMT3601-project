@@ -18,6 +18,7 @@ private:
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
+	int characterID;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	Node *currentNode;
