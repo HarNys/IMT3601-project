@@ -37,30 +37,22 @@ int main(int argc, char **argv)
 //*/
 	screen.setFramerateLimit(20);
 	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
+
+	Menu* mainMenu = new Menu(&screen);
+	mainMenu->runMenu();
+
+
+
 	World *world;
 	world = world->getWorld();
-	if (argv[1]) {
-		world->initMap(argv[1]);
-	}
-	else
-	{
-		world->initMap((char *)"map/maptwo.txt");
-	}
+	//if (argv[1]) {
+	//	world->initMap(argv[1]);
+	//}
+	//else
+	//{
+	//	world->initMap((char *)"map/maptwo.txt");
+	//}
 
-	printf("main(int,char**): has got World, getting MineFactory\n");
-	MineFactory *mineFactory;
-	mineFactory = mineFactory->getMineFactory();
-
-	printf("main(int,char**): has got MineFactory, getting CharacterFactory\n");
-	CharacterFactory* characterFactory;
-	characterFactory = characterFactory->getCharacterFactory();
-
-	printf("main(int,char**): has got CharacterFactory, getting player1\n");
-	Character *player1 = characterFactory->getCharacter(0);				// 0 for local-player character
-	world->placeCharacter(player1);
-
-//	Character *player5 = characterFactory->getCharacter(0);				// 1 none-playercharacter.
-//	world->placeCharacter(player5);
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
@@ -75,8 +67,7 @@ int main(int argc, char **argv)
 		sf::Event event;
 
 		/// @todo add escape as exit button
-		player1->useController(event, player1);
-//		player5->useController(event, player5);
+
 		while (screen.pollEvent(event))
 		{
 
@@ -98,6 +89,14 @@ int main(int argc, char **argv)
 				if(event.KeyReleased && event.key.code == sf::Keyboard::P)
 				{
 					world->reset();
+				}
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
+				{
+					world->reset();
+					mainMenu->runMenu();
 				}
 			}
 		}

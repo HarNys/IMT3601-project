@@ -203,16 +203,17 @@ bool Character::updateSprite()
 *	@param 	Character* thischaracter Character pointer to the character worked on
 */
 
-void Character::useController(sf::Event e, Character* thischaracter)
+void Character::useController(Character* thischaracter)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};
 
 	if (controllerType == PlayerControl)
 	{
-		localPlayerController.characterInput(e,thischaracter);
+		localPlayerController.characterInput(thischaracter);
 	}
 	else if(controllerType == AiControl)
 	{
+
 		//npcController.movement(thischaracter);
 		if (startStack && endStack)
 		{
@@ -264,6 +265,30 @@ bool Character::placeMine()
 	return true;
 };
 
+
+/**
+*	@brif sets the typ of character this is
+*	@param type: the type of controller 0=local, 1=npc, 2=network
+*	@return true on succses
+*/
+
+bool Character::setCharacterType(int type)
+{
+	controllerType = type;
+	return true;
+};
+
+/**
+*	@brif Give the character an ID
+*	@param ID: the ID he character is geting 
+*	@return true on succses
+*/
+bool Character::setID(int ID)
+{
+	characterID = ID;
+	return true;
+};
+
 bool Character::getIsNpc(){
 if (1 == controllerType)
 {
@@ -273,3 +298,4 @@ if (1 == controllerType)
 return false;
 
 };
+

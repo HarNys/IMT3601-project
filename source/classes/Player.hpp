@@ -5,7 +5,7 @@
 class LocalPlayer
 {
 public:
-	void characterInput(sf::Event e, Character* thisCharacter);
+	void characterInput(Character* thisCharacter);
 };
 
 #endif // __LOCALPLAYER__HEADER__GUARD__

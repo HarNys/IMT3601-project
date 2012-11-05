@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="source\classes\World.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="source\classes\Character.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -11,6 +8,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\menu.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\Mine.cpp">
@@ -22,16 +22,19 @@
     <ClCompile Include="source\classes\Node.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="source\classes\NonPlayerCharacter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
     <ClCompile Include="source\classes\Player.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\StackNode.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="source\classes\Tile.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\NonPlayerCharacter.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\StackNode.cpp">
+    <ClCompile Include="source\classes\World.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,10 +42,16 @@
     <ClInclude Include="source\classes\Character.hpp">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="source\classes\World.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
     <ClInclude Include="source\classes\CharacterFactory.hpp">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\Includes.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\menu.hpp">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\Mine.hpp">
@@ -54,28 +63,25 @@
     <ClInclude Include="source\classes\Node.hpp">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Player.hpp">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Tile.hpp">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\World.hpp">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="source\classes\NonPlayerCharacter.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Player.hpp">
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\StackNode.hpp">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="source\classes\Tile.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source">
-      <UniqueIdentifier>{604bf352-ace2-4cea-8db0-334d4cd34e1b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header">
-      <UniqueIdentifier>{1cbbf255-ce51-4bfc-aee2-8b0a6077f5d1}</UniqueIdentifier>
+      <UniqueIdentifier>{c88debf8-200a-48c7-b0f9-b28983fd1cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{63ec5b47-999d-4812-9898-aad031548ff0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -10,12 +10,13 @@ CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
-	int maxChar=2;
-	Character* tempChar = new Character;
+	
+	int maxChar=10;
+	Character* tempChar = new Character();
 	tempChar->initImage();
 
 	usedCharacters.reserve(maxChar);
-	readyCharacters.assign(maxChar, new Character(*tempChar));
+	readyCharacters.assign(maxChar, new Character);
 };
 
 ///Singleton that gets the Character Factory for you when asked for
@@ -42,7 +43,7 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  * @return on succes: pointer to a new(read: reinitialized) Character
  * 	\n on failure: NULL
  */
-Character* CharacterFactory::getCharacter(int type)
+Character* CharacterFactory::getCharacter()
 {
 //	characterType typeOfplayer;
 
