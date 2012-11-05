@@ -251,8 +251,8 @@ bool World::update()
 	Character *thisCharacter = NULL;
 	updatetime++;
 	//
-	static bool goalExists;
-
+	
+	
 
 	// start of operations
 	for (yCount = 0; yCount < area; yCount++)
@@ -285,36 +285,9 @@ bool World::update()
 						thisTile->setGoal(false);
 						goalExists = false;
 						printf("World::Update(): Character hit flag\n");
-	
 					}
 				}
-				if ((thisCharacter = thisTile->getHasCharacter()))
-				{
-					if(thisCharacter->getLastUpdate() != updatetime)
-					{
-						thisCharacter->useController(thisCharacter);
-						if (thisCharacter->getMinePlaced())
-						{
-							placeMine(thisCharacter, thisTile);
-						}
-						if (moveCharacter(thisCharacter, xCount, yCount))
-						{
-							thisTile->setCharacter(NULL);
-						}
-						thisCharacter->resetDirection();
-
-						if (goalExists)
-						{
-							if (thisCharacter->getIsNpc())
-							{
-								npcController.aStar(map, thisCharacter);
-							}
-						}
-						thisCharacter->setLastUpdate(updatetime);
-					}
-				}
-
-
+				characterUpdate(thisCharacter, thisTile, xCount, yCount);
 			} // end if (!thisTile->getIsWall())
 		} // end xCount
 	} // end yCount
@@ -418,3 +391,41 @@ bool World::reset()
 
 	return true;
 }
+
+/**
+*	@brif updates everything for a character.
+*	@parm Character* thisCharacter: pointer to the character this fuction is going to update for.
+*	@parm Tile *thisTile: the tile the character is standing on.
+*	@parm xCount: x position in the world.
+*	@parm yCount: y position in the world.
+*	@return true on success.
+*/
+bool World::characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount)
+{
+	if ((thisCharacter = thisTile->getHasCharacter()))
+	{
+		if(thisCharacter->getLastUpdate() != updatetime)
+		{
+			thisCharacter->useController(thisCharacter);
+			if (thisCharacter->getMinePlaced())
+			{
+				placeMine(thisCharacter, thisTile);
+			}
+			if (moveCharacter(thisCharacter, xCount, yCount))
+			{
+				thisTile->setCharacter(NULL);
+			}
+			thisCharacter->resetDirection();
+
+			if (goalExists)
+			{
+				if (thisCharacter->getIsNpc())
+				{
+					npcController.aStar(map, thisCharacter);
+				}
+			}
+			thisCharacter->setLastUpdate(updatetime);
+		}
+	}
+	return true;
+};

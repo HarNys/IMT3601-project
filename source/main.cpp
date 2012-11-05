@@ -62,7 +62,6 @@ int main(int argc, char **argv)
 	else
 	{
 		music.setVolume(50);         // reduce the volume
-		
 		music.setLoop(true);         // make it loop
 		music.play();
 	}
@@ -71,7 +70,7 @@ int main(int argc, char **argv)
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
 	{
-
+		
 		world->update();
 		screen.clear();
 		world->draw(&screen);

@@ -20,6 +20,7 @@ private:
         int area; //size from origin to one side of the map
         MineFactory *mineFactory;
 	int updatetime;
+	bool goalExists;
 public:
         static World *getWorld();
         bool initMap(char *mapFile);
@@ -32,6 +33,7 @@ public:
 	int getArea();
 	void setGoal();
 	bool reset();
+	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
 };
 
 #endif // __WORLD__HEADER__GUARD__

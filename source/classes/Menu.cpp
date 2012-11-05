@@ -95,8 +95,14 @@ void Menu::runMenu()
 	menuOpen = true;
 	//changeText("Press 'L' for Local Play \nPress 'N' for networkplay");
 	int menuItem = 0;
+
+	sf::Clock timer;
+	timer.restart();
+
 	while(menuOpen)
 	{
+		printf("timer is: %d \r",timer.getElapsedTime().asSeconds());
+
 		mainDraw();
 		sf::Event event;
 		window->setKeyRepeatEnabled(false);
