@@ -67,51 +67,57 @@ int main(int argc, char **argv)
 	}
 	
 
+
+
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
 	{
-		
-		world->update();
-		screen.clear();
-		world->draw(&screen);
-//		player1->draw(&screen);
-		screen.display();
 
-		// Process events
-		sf::Event event;
-
-		/// @todo add escape as exit button
-
-		while (screen.pollEvent(event))
 		{
+		
+			
+			world->update();
+			screen.clear();
+			world->draw(&screen);
+	//		player1->draw(&screen);
+			screen.display();
 
-			//player1->characterInput(event);
+			// Process events
+			sf::Event event;
 
-			// Close window : exit
-			if (event.type == sf::Event::Closed)
+			/// @todo add escape as exit button
+
+			while (screen.pollEvent(event))
 			{
-				world->~World();
 
-				/// @bug program segfaults in here, commented
-				///	out temporarily
-				//mineFactory->~MineFactory();
+				//player1->characterInput(event);
 
-				screen.close();
-			}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-			{
-				if(event.KeyReleased && event.key.code == sf::Keyboard::P)
+				// Close window : exit
+				if (event.type == sf::Event::Closed)
 				{
-					world->reset();
+					world->~World();
+
+					/// @bug program segfaults in here, commented
+					///	out temporarily
+					//mineFactory->~MineFactory();
+
+					screen.close();
 				}
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			{
-				if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 				{
-					world->reset();
-					music.stop();
-					mainMenu->runMenu();
+					if(event.KeyReleased && event.key.code == sf::Keyboard::P)
+					{
+						world->reset();
+					}
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+				{
+					if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
+					{
+						world->reset();
+						music.stop();
+						mainMenu->runMenu();
+					}
 				}
 			}
 		}

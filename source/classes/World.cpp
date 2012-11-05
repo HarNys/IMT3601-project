@@ -251,51 +251,91 @@ bool World::update()
 	Character *thisCharacter = NULL;
 	updatetime++;
 	//
-	
-	
+	static bool goalExists;
+	static sf::Clock timer;
 
-	// start of operations
-	for (yCount = 0; yCount < area; yCount++)
+	int curentTime = timer.getElapsedTime().asMilliseconds();
+	printf("timer is: %d \r",curentTime);
+	curentTime = timer.getElapsedTime().asMilliseconds();
+	
+	if(curentTime > 100)
 	{
-		for (xCount = 0; xCount < area; xCount++)
+		timer.restart();
+		curentTime = timer.getElapsedTime().asSeconds();
+
+
+		// start of operations
+		for (yCount = 0; yCount < area; yCount++)
 		{
-			thisTile = map[xCount][yCount];
-			if (!thisTile->getIsWall())
+			for (xCount = 0; xCount < area; xCount++)
 			{
-				if ((thisMine = thisTile->getHasMine()))
+				thisTile = map[xCount][yCount];
+				if (!thisTile->getIsWall())
 				{
-					if (!thisMine->visibilityCountDown())
+					if ((thisMine = thisTile->getHasMine()))
 					{
-						thisTile->setFloor(1);
+						if (!thisMine->visibilityCountDown())
+						{
+							thisTile->setFloor(1);
+						}
+						else
+						{
+							thisTile->setFloor(0);
+						}
 					}
-					else
-					{
-						thisTile->setFloor(0);
-					}
-				}
-				
-				if (thisTile->getIsGoal())
-				{
-					thisTile->setFloor(2);
-					goalExists = true;
 
-					if (thisTile->getHasCharacter())
+					if (thisTile->getIsGoal())
 					{
-						///<@Todo: give character points
-						thisTile->setGoal(false);
-						goalExists = false;
-						printf("World::Update(): Character hit flag\n");
-					}
-				}
-				characterUpdate(thisCharacter, thisTile, xCount, yCount);
-			} // end if (!thisTile->getIsWall())
-		} // end xCount
-	} // end yCount
+						thisTile->setFloor(2);
+						goalExists = true;
 
-	if (!goalExists)		//if the is no goal then make one;
-	{
-		setGoal();
+						if (thisTile->getHasCharacter())
+						{
+							///<@Todo: give character points
+							thisTile->setGoal(false);
+							goalExists = false;
+							printf("World::Update(): Character hit flag\n");
+
+						}
+					}
+					if ((thisCharacter = thisTile->getHasCharacter()))
+					{
+						if(thisCharacter->getLastUpdate() != updatetime)
+						{
+							thisCharacter->useController(thisCharacter);
+							if (thisCharacter->getMinePlaced())
+							{
+								placeMine(thisCharacter, thisTile);
+							}
+							if (moveCharacter(thisCharacter, xCount, yCount))
+							{
+								thisTile->setCharacter(NULL);
+							}
+							thisCharacter->resetDirection();
+
+							if (goalExists)
+							{
+								if (thisCharacter->getIsNpc())
+								{
+									npcController.aStar(map, thisCharacter);
+								}
+							}
+							thisCharacter->setLastUpdate(updatetime);
+						}
+					}
+
+
+				} // end if (!thisTile->getIsWall())
+			} // end xCount
+		} // end yCount
+		if (!goalExists)		//if the is no goal then make one;
+		{
+			setGoal();
+		}
+
 	}
+
+
 
 	return true;
 };
@@ -400,32 +440,3 @@ bool World::reset()
 *	@parm yCount: y position in the world.
 *	@return true on success.
 */
-bool World::characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount)
-{
-	if ((thisCharacter = thisTile->getHasCharacter()))
-	{
-		if(thisCharacter->getLastUpdate() != updatetime)
-		{
-			thisCharacter->useController(thisCharacter);
-			if (thisCharacter->getMinePlaced())
-			{
-				placeMine(thisCharacter, thisTile);
-			}
-			if (moveCharacter(thisCharacter, xCount, yCount))
-			{
-				thisTile->setCharacter(NULL);
-			}
-			thisCharacter->resetDirection();
-
-			if (goalExists)
-			{
-				if (thisCharacter->getIsNpc())
-				{
-					npcController.aStar(map, thisCharacter);
-				}
-			}
-			thisCharacter->setLastUpdate(updatetime);
-		}
-	}
-	return true;
-};
