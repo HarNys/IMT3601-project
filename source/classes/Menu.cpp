@@ -35,28 +35,28 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	localPlay.setFont(font);
 	localPlay.setCharacterSize(30);
 	localPlay.setStyle(sf::Text::Bold);
-	localPlay.setColor(sf::Color::Black);
+	localPlay.setColor(sf::Color::Green);
 	localPlay.setPosition(250,200);
 
 	networkPlay.setString("Multiplayer");
 	networkPlay.setFont(font);
 	networkPlay.setCharacterSize(30);
 	networkPlay.setStyle(sf::Text::Bold);
-	networkPlay.setColor(sf::Color::Black);
+	networkPlay.setColor(sf::Color::Green);
 	networkPlay.setPosition(250,240);
 
 	exit.setString("Exit");
 	exit.setFont(font);
 	exit.setCharacterSize(30);
 	exit.setStyle(sf::Text::Bold);
-	exit.setColor(sf::Color::Black);
+	exit.setColor(sf::Color::Green);
 	exit.setPosition(250,280);
 
 	title.setString("Frank Darkhawk's MAZE!!!");
 	title.setFont(font);
 	title.setCharacterSize(30);
 	title.setStyle(sf::Text::Bold);
-	title.setColor(sf::Color::Black);
+	title.setColor(sf::Color::Green);
 	title.setPosition(200,0);
 
 };
@@ -86,42 +86,53 @@ void Menu::runMenu()
 	while(menuOpen)
 	{
 		mainDraw();
-
+		sf::Event event;
+		window->setKeyRepeatEnabled(false);
+		window->pollEvent(event);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
-			menuItem --;
-			if (menuItem < 0)
+			if(event.KeyReleased && event.key.code == sf::Keyboard::W)
 			{
-				menuItem = 0;
+				menuItem --;
+				if (menuItem < 0)
+				{
+					menuItem = 0;
+				}
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			menuItem ++;
-			if (menuItem > 2)
+			if(event.KeyReleased && event.key.code == sf::Keyboard::S)
 			{
-				menuItem = 2;
+				menuItem ++;
+				if (menuItem > 2)
+				{
+					menuItem = 2;
+				}
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
-			switch(menuItem)
+			if(event.KeyReleased && event.key.code == sf::Keyboard::E)
 			{
-			case 0:
+				switch(menuItem)
 				{
-					SelectNumberOfCharacters();
-					break;
-				}
-			case 1:
-				{
-					break;
-				}
-			case 2:
-				{
-					window->close();
-					menuOpen = false;
-					break;
+				case 0:
+					{
+						SelectNumberOfCharacters();
+						break;
+					}
+				case 1:
+					{
+						break;
+					}
+				case 2:
+					{
+						window->close();
+						menuOpen = false;
+						break;
+					}
 				}
 			}
 		}
@@ -130,23 +141,23 @@ void Menu::runMenu()
 		{
 		case 0:
 			{
-				localPlay.setColor(sf::Color::White);
-				networkPlay.setColor(sf::Color::Black);
-				exit.setColor(sf::Color::Black);
+				localPlay.setColor(sf::Color::Yellow);
+				networkPlay.setColor(sf::Color::Green);
+				exit.setColor(sf::Color::Green);
 				break;
 			}
 		case 1:
 			{
-				localPlay.setColor(sf::Color::Black);
-				networkPlay.setColor(sf::Color::White);
-				exit.setColor(sf::Color::Black);
+				localPlay.setColor(sf::Color::Green);
+				networkPlay.setColor(sf::Color::Yellow);
+				exit.setColor(sf::Color::Green);
 				break;
 			}
 		case 2:
 			{
-				localPlay.setColor(sf::Color::Black);
-				networkPlay.setColor(sf::Color::Black);
-				exit.setColor(sf::Color::White);
+				localPlay.setColor(sf::Color::Green);
+				networkPlay.setColor(sf::Color::Green);
+				exit.setColor(sf::Color::Yellow);
 				break;
 			}
 		}
@@ -166,8 +177,12 @@ int  Menu::SelectNumberOfCharacters()
 	std::string menutext;
 	sf::Event event;
 	
+
 	while(menuOpen)
 	{
+		window->setKeyRepeatEnabled(false);
+		window->pollEvent(event);
+
 		numOfPlayersText=(char)(numOfPlayers+48);
 		menutext = "Number of AI: ";
 		menutext.insert((menutext.size()),numOfPlayersText);
@@ -176,26 +191,33 @@ int  Menu::SelectNumberOfCharacters()
 		localDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
-			
+			if(event.KeyReleased && event.key.code == sf::Keyboard::E)
+			{
 				initplayers();
 				menuOpen = false;
+			}
 			
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
-			
-			numOfPlayers++;
-			if (10 == numOfPlayers)
+			if(event.KeyReleased && event.key.code == sf::Keyboard::W)
 			{
-				numOfPlayers = 9;
-			}	
+				numOfPlayers++;
+				if (10 == numOfPlayers)
+				{
+					numOfPlayers = 9;
+				}
+			}
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			numOfPlayers--;
-			if ((-1) == numOfPlayers)
+			if(event.KeyReleased && event.key.code == sf::Keyboard::S)
 			{
-				numOfPlayers = 0;
+				numOfPlayers--;
+				if ((-1) == numOfPlayers)
+				{
+					numOfPlayers = 0;
+				}
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -239,6 +261,7 @@ bool Menu::initplayers()
 		npc ->setID(i+1);
 		world->placeCharacter(npc);
 	}
+	window->setKeyRepeatEnabled(true);
 	return true;
 };
 
