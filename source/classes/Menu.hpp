@@ -15,6 +15,7 @@ private:
 	sf::Text networkPlay;
 	sf::Text exit;
 	sf::RenderWindow* window;
+	sf::Music music;
 	int numOfPlayers;
 	bool menuOpen;
 	
