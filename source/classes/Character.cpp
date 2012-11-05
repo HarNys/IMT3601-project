@@ -28,10 +28,10 @@ Character::Character()
 void Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
-	printf("\nCharacter::updateCharacterHealth(int): player health is %d \r",characterHealth);
+	printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \r",characterID, characterHealth);
 	if(characterHealth < 1)
 	{
-		printf("\n\n---You are dead---\n\n");
+		printf("\n\n---player %d is dead---\n\n",characterID);
 		updateCharacterHealth(10);		///< resets characters health if dead
 
 	}
