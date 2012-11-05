@@ -10,6 +10,7 @@ Tile::Tile()
 {
 	isWall = false;
 	visited = false;
+	partOfFrontier = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
@@ -70,7 +71,20 @@ void Tile::setVisited(bool wall, int xPos, int yPos)
 	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
-}
+};
+
+void Tile::setFrontier()
+{
+	partOfFrontier = true;
+};
+
+bool Tile::getFrontier()
+{
+	if(partOfFrontier)
+		return true;
+	else
+		return false;
+};
 
 bool Tile::setWall(bool wall)
 {

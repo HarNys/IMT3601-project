@@ -22,7 +22,8 @@ private:
 		int border;
 		
 public:
-
+		int StartX;
+		int StartY;
 
 public:
 		static World *getWorld();
