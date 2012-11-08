@@ -201,7 +201,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
 		}
 	}
-	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
+	printf("World::moveCharacter(): can't move: %s at: %d, %d \r",
 		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
 
@@ -255,7 +255,7 @@ bool World::update()
 	static sf::Clock timer;
 
 	int curentTime = timer.getElapsedTime().asMilliseconds();
-	printf("timer is: %d \r",curentTime);
+	//printf("timer is: %d \r ",curentTime);
 	curentTime = timer.getElapsedTime().asMilliseconds();
 	
 	if(curentTime > 100)
