@@ -128,7 +128,7 @@ bool World::placeCharacter(Character *character)
 		{
 			ySpace-=increment;
 		}
-		else if (increment > 1) 
+		else if (increment > 1)
 		{
 			increment/=2;
 		}*/
@@ -155,7 +155,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	int characterDirectionY = 0;
 	characterDirectionX = character->getCharacterDirectionX();
 	characterDirectionY = character->getCharacterDirectionY();
-	char *whatIsThere = NULL;
+//	char *whatIsThere = NULL;
 	if ((characterDirectionX + characterDirectionY) == 0)
 	{
 		return false;
@@ -183,26 +183,26 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 					}
 					else
 					{
-						whatIsThere = (char *) "there is a Character";
+//						whatIsThere = (char *) "there is a Character";
 					}
 				}
 				else
 				{
-					whatIsThere = (char *) "there is a Wall";
+//					whatIsThere = (char *) "there is a Wall";
 				}
 			}
 			else
 			{
-				whatIsThere = (char *) "nextTile is out of bounds, bigger.";
+//				whatIsThere = (char *) "nextTile is out of bounds, bigger.";
 			}
 		}
 		else
 		{
-			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
+//			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
 		}
 	}
-	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
-		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
+//	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
+//		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
 
 };
@@ -257,7 +257,7 @@ bool World::update()
 	int curentTime = timer.getElapsedTime().asMilliseconds();
 	printf("timer is: %d \r",curentTime);
 	curentTime = timer.getElapsedTime().asMilliseconds();
-	
+
 	if(curentTime > 100)
 	{
 		timer.restart();
