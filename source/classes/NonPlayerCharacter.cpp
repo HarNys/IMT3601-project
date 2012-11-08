@@ -121,9 +121,19 @@ Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir
 			Tile* thisTile = map [xCoord+xDir] [yCoord+yDir];
 
 			if  (!thisTile->getIsWall()){ //checks if tile has a wall
-				Node* tempNode;
-				tempNode = new Node(xCoord+xDir, yCoord+yDir, nodeParent->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), nodeParent);
-				return tempNode;
+				if (!thisTile->getHasCharacter())
+				{
+					Node* tempNode;
+					tempNode = new Node(xCoord+xDir, yCoord+yDir, nodeParent->getLevel()+1, goalNode->getXPos(), goalNode->getYPos(), nodeParent);
+					return tempNode;
+				}
+				else {
+
+					Node* tempNode;
+					tempNode = new Node(xCoord+xDir, yCoord+yDir, nodeParent->getLevel()-1, goalNode->getXPos(), goalNode->getYPos(), nodeParent);
+					return tempNode;
+
+				}
 			}
 			
 		}

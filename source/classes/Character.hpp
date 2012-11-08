@@ -20,10 +20,12 @@ private:
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	int characterID;
 	int lastUpdate;
+	int pointsValue;
 	sf::Texture texture;
 	sf::Sprite sprite;
 	StackNode *startStack;
 	StackNode *endStack;
+	int agressivenes;
 
 public:
 	Character();
@@ -39,7 +41,7 @@ public:
 	void useController(Character* thischaracter);
 	void resetDirection();
 	void characterInput(sf::Event e);
-	void updateCharacterHealth(int health);
+	bool updateCharacterHealth(int health);
 	sf::Sprite *getSprite();
 	bool updateSprite(float xPosition, float yPosition);
 	void setCurrentNode(Node *newCurrentNode);
@@ -53,6 +55,8 @@ public:
 	bool getIsNpc();
 	bool setLastUpdate(int time);
 	int getLastUpdate();
+	int updatePoints(int adjustment);
+	
 
 };
 

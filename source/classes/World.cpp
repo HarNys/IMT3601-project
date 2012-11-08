@@ -183,7 +183,17 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 					}
 					else
 					{
-						whatIsThere = (char *) "there is a Character";
+						// @todo Change constant damage to something from the original character.
+					
+						
+						if (!nextTile->getHasCharacter()->updateCharacterHealth(-5))
+						{
+							Character * tempcharacter;
+							tempcharacter = nextTile->getHasCharacter();
+							nextTile->setCharacter(NULL);
+							placeCharacter(tempcharacter);
+						}
+						whatIsThere = (char *) "there is a Character, stab!";
 					}
 				}
 				else
@@ -292,9 +302,10 @@ bool World::update()
 						if (thisTile->getHasCharacter())
 						{
 							///<@Todo: give character points
+							
 							thisTile->setGoal(false);
 							goalExists = false;
-							printf("World::Update(): Character hit flag\n");
+							printf("World::Update(): Character hit flag Points:%d\n", thisTile->getHasCharacter()->updatePoints(2));
 
 						}
 					}
