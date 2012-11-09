@@ -28,7 +28,7 @@ public:
 public:
 		static World *getWorld();
 		bool initMap(char *mapFile);
-		void randomGenerate(bool start = false, Tile *previouseTile = NULL);
+		void randomGenerate(bool start = false);
 		bool placeCharacter(Character *character);
 		bool moveCharacter(Character *character, int xPosition, int yPosition);
 		bool placeMine(Character *character, Tile *tile);

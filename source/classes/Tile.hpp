@@ -24,11 +24,15 @@ private:
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
+	int positionX;
+	int positionY;
+
 public:
 	Tile();
 	Tile(char quality);
 	void setVisited(bool wall, int xPos, int yPos);
 	void setFrontier();
+	bool checkXY(int currentX, int currentY);
 	bool getVisited();
 	bool getFrontier();
 	bool setWall(bool wall);
@@ -40,7 +44,10 @@ public:
 	bool initSprite(int xPos, int yPos);
 	void initImage();
 	bool initTile(char quality);
+	void setPosition(int xPos, int yPos);
 	void setFloor(bool mineVisible);
+	int returnXpos();
+	int returnYpos();
 	~Tile();
 	sf::Sprite getSprite();
 };

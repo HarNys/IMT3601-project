@@ -24,6 +24,7 @@ Tile::Tile()
  */
 Tile::Tile(char quality)
 {
+
 	if(quality=='x')
 	{
 		isWall = true;
@@ -49,28 +50,20 @@ Tile::Tile(char quality)
 void Tile::setVisited(bool wall, int xPos, int yPos)
 {
 	visited = true;
-
+	printf("Setvisited Wall = %2d, xPos = %2d, yPos = %2d\n\n", wall, xPos, yPos);
 	if(wall)
 	{
-		isWall = true;
+		this->isWall = true;
+		this->initSprite(xPos, yPos);
 	}
 	else
 	{
-		isWall = false;
+		this->isWall = false;
+		this->initSprite(xPos, yPos);
 	}
 
-	if (isWall)
-	{
-		tileTexture.loadFromImage(*wallImg);
-	}
-	else
-	{
-		tileTexture.loadFromImage(*floorImg);
-	}
-	tileSprite.setTexture(tileTexture);
-	tileSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
-	tileSprite.setColor(sf::Color(255, 255, 255, 200));
-	tileSprite.setPosition(15*xPos, 15*yPos);
+
+	
 };
 
 void Tile::setFrontier()
@@ -78,6 +71,16 @@ void Tile::setFrontier()
 	partOfFrontier = true;
 };
 
+void Tile::setPosition(int xPos, int yPos)
+{
+	positionX = xPos;
+	positionY = yPos;
+};
+
+bool Tile::checkXY(int currentX, int currentY)
+{
+	
+}
 bool Tile::getFrontier()
 {
 	if(partOfFrontier)
@@ -98,6 +101,8 @@ bool Tile::setWall(bool wall)
 	}
 	return true;
 };
+
+
 
 /**
  * Returns wether or not a Tile is visited
@@ -291,3 +296,13 @@ Tile::~Tile()
 			hasCharacter = NULL;
 	}
 };
+
+int Tile::returnXpos()
+{
+	return positionX;
+}
+
+int Tile::returnYpos()
+{
+	return positionY;
+}
