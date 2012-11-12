@@ -1,46 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="source\classes\Character.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\CharacterFactory.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\menu.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Mine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\MineFactory.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Node.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\NonPlayerCharacter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Player.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\StackNode.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Tile.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\World.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\classes\Character.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\World.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Includes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Mine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\Tile.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\classes\MineFactory.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\CharacterFactory.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Includes.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\menu.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Mine.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\MineFactory.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Node.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\NonPlayerCharacter.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Player.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\StackNode.hpp">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="source\classes\Tile.hpp">
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="source\classes\RandomGenerate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="source\classes\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -65,5 +105,13 @@
     <ClCompile Include="source\RandomGenerate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+=======
+    <Filter Include="Header">
+      <UniqueIdentifier>{c88debf8-200a-48c7-b0f9-b28983fd1cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{63ec5b47-999d-4812-9898-aad031548ff0}</UniqueIdentifier>
+    </Filter>
+>>>>>>> 8a18adb41deb23958127bccb1dde7d8d7a39780f
   </ItemGroup>
 </Project>
