@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	 */
 	sf::RenderWindow screen;
 	sf::Music music;
-	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+//	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
 	/**
 	 * Boost program_options.
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	 * If you are going to use it, look at examples, tutorial and
 	 * sources.
 	 */
-	std::string configFile = NULL;
+	std::string configFile;
 	progopt::options_description generic("Generic options");
 	generic.add_options()
 		("config,c", progopt::value<std::string>(&configFile)->default_value("game.ini"), "name/path of configuration file.")
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 		options(generic).run(), varMap);
 	notify(varMap);
 	std::ifstream configFileHandle(configFile.c_str());
-	if (configFileHandle == NULL)
+	if (!configFileHandle)
 	{
 		printf("main(int,char**): could not open config file\n");
 		return 0;
@@ -58,17 +58,29 @@ int main(int argc, char **argv)
 		notify(varMap);
 	}
 
-	if ((varMap.count("fullscreen") == true)
+	if ((varMap.count("fullscreen"))
+		&& (varMap.count("fullscreen") == true)
 		&& (varMap.count("screenWidth"))
 		&& (varMap.count("screenHeight")))
 	{
-		screen.create(sf::VideoMode(varMap.count("screenWidth"),varMap.count("screenHeight"),32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
+		screen.create(sf::VideoMode(varMap.count("screenWidth"),
+			varMap.count("screenHeight"),32),"Neuton"
+			" presents: Frank Darkhawks Maze RPG!",
+			sf::Style::Fullscreen);
+		printf("screenwidth, screenheight: %lud, %lud",
+			varMap.count("screenWidth"),
+			varMap.count("screenHeight"));
 	}
 
 	if ((varMap.count("screenWidth"))
 		&& (varMap.count("screenHeight")))
 	{
-		screen.create(sf::VideoMode(varMap.count("screenWidth"),varMap.count("screenHeight"),32),"Neuton presents: Frank Darkhawks Maze RPG!");
+		screen.create(sf::VideoMode(varMap.count("screenWidth"),
+			varMap.count("screenHeight"),32),
+			"Neuton presents: Frank Darkhawks Maze RPG!");
+		printf("screenwidth, screenheight: %lud, %lud",
+			varMap.count("screenWidth"),
+			varMap.count("screenHeight"));
 	}
 /*
 	char fullscreenoption;
