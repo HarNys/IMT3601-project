@@ -15,6 +15,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Audio/Music.hpp>
+#include <boost/program_options.hpp>
 
 #elif defined __APPLE__&__MACH__
 // we are on mac

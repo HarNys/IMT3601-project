@@ -3,6 +3,9 @@
  */
 #include "Includes.hpp"
 
+// Alias the program_options namespace into progopt:
+namespace progopt = boost::program_options;
+
 int main(int argc, char **argv)
 {
 	/**
@@ -16,6 +19,57 @@ int main(int argc, char **argv)
 	sf::Music music;
 	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
+	/**
+	 * Boost program_options.
+	 * The program_options library does some overly complex stuff
+	 * with operators, don't spend time understanding how it works
+	 * (if you really want to know see the design document or ask
+	 *  jayson).
+	 *
+	 * If you are going to use it, look at examples, tutorial and
+	 * sources.
+	 */
+	std::string configFile = NULL;
+	progopt::options_description generic("Generic options");
+	generic.add_options()
+		("config,c", progopt::value<std::string>(&configFile)->default_value("game.ini"), "name/path of configuration file.")
+		;
+	// Add options to commandline
+	progopt::options_description cmdline_options;
+	cmdline_options.add(generic);
+	// Add options to configuration file
+	progopt::options_description config_file_options;
+	config_file_options.add(generic);
+
+	progopt::variables_map varMap;
+	store(progopt::command_line_parser(argc, argv).
+		options(generic).run(), varMap);
+	notify(varMap);
+	std::ifstream configFileHandle(configFile.c_str());
+	if (configFileHandle == NULL)
+	{
+		printf("main(int,char**): could not open config file\n");
+		return 0;
+	}
+	else
+	{
+		store(parse_config_file(configFileHandle,
+			config_file_options), varMap);
+		notify(varMap);
+	}
+
+	if ((varMap.count("fullscreen") == true)
+		&& (varMap.count("screenWidth"))
+		&& (varMap.count("screenHeight")))
+	{
+		screen.create(sf::VideoMode(varMap.count("screenWidth"),varMap.count("screenHeight"),32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
+	}
+
+	if ((varMap.count("screenWidth"))
+		&& (varMap.count("screenHeight")))
+	{
+		screen.create(sf::VideoMode(varMap.count("screenWidth"),varMap.count("screenHeight"),32),"Neuton presents: Frank Darkhawks Maze RPG!");
+	}
 /*
 	char fullscreenoption;
 	std::cout << "play in fullscreen? (Y/n)";
@@ -65,7 +119,7 @@ int main(int argc, char **argv)
 		music.setLoop(true);         // make it loop
 		music.play();
 	}
-	
+
 
 
 
@@ -74,8 +128,8 @@ int main(int argc, char **argv)
 	{
 
 		{
-		
-			
+
+
 			world->update();
 			screen.clear();
 			world->draw(&screen);
