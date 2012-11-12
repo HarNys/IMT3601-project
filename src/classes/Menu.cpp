@@ -34,7 +34,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	}
 
 	// Create a text
-	localPlay.setString("Singelplayer");
+	localPlay.setString("Singleplayer");
 	localPlay.setFont(font);
 	localPlay.setCharacterSize(30);
 	localPlay.setStyle(sf::Text::Bold);
@@ -92,7 +92,7 @@ bool Menu::changeText(std::string text)
 void Menu::runMenu()
 {
 	music.play();
-	localPlay.setString("Singelplayer");
+	localPlay.setString("Singleplayer");
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
 	menuOpen = true;
@@ -331,7 +331,7 @@ void Menu::mainDraw()
 };
 
 /**
-* @brif: Draw singelplayer part of menu to screen.
+* @brif: Draw singleplayer part of menu to screen.
 */
 void Menu::localDraw()
 {
