@@ -10,7 +10,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	//imageCountY = 1;
 
 	menuImage = new sf::Image;
-	if ((*menuImage).loadFromFile("img/menu.gif"))
+	if ((*menuImage).loadFromFile("img/Menu.gif"))
 	{
 
 		printf("Menu::Menu(std::string,int,int): loaded 'img/menu.gif'\n");
@@ -182,13 +182,13 @@ void Menu::runMenu()
 		int curentTime = timer.getElapsedTime().asMilliseconds();
 		printf("timer is: %d \r",curentTime);
 		curentTime = timer.getElapsedTime().asMilliseconds();
-	
+
 		if(curentTime > 50)
 		{
 			timer.restart();
 			curentTime = timer.getElapsedTime().asSeconds();
 			imageCount ++;
-		
+
 			if(imageCount >12)
 			{
 				imageCount = 0;
@@ -201,7 +201,7 @@ void Menu::runMenu()
 /**
 * @brif: Select number of players in the game
 * @return The number of players
-* @todo: Stop keys from repeating. 
+* @todo: Stop keys from repeating.
 */
 int  Menu::SelectNumberOfCharacters()
 {
@@ -209,7 +209,7 @@ int  Menu::SelectNumberOfCharacters()
 	std::string numOfPlayersText;
 	std::string menutext;
 	sf::Event event;
-	
+
 
 	while(menuOpen)
 	{
@@ -231,7 +231,7 @@ int  Menu::SelectNumberOfCharacters()
 				initplayers();
 				menuOpen = false;
 			}
-			
+
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
@@ -262,13 +262,13 @@ int  Menu::SelectNumberOfCharacters()
 		int curentTime = timer.getElapsedTime().asMilliseconds();
 		printf("timer is: %d \r",curentTime);
 		curentTime = timer.getElapsedTime().asMilliseconds();
-	
+
 		if(curentTime > 50)
 		{
 			timer.restart();
 			curentTime = timer.getElapsedTime().asSeconds();
 			imageCount ++;
-		
+
 			if(imageCount >12)
 			{
 				imageCount = 0;
