@@ -96,7 +96,6 @@ void Menu::runMenu()
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
 	menuOpen = true;
-	//changeText("Press 'L' for Local Play \nPress 'N' for networkplay");
 	int menuItem = 0;
 
 
