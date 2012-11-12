@@ -18,6 +18,9 @@ private:
 	sf::Music music;
 	int numOfPlayers;
 	bool menuOpen;
+	int imageCount;
+	int imageCountY;
+	sf::Clock timer;
 	
 public:
 	Menu(sf::RenderWindow* renderWindow);

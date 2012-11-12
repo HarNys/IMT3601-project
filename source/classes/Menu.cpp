@@ -6,9 +6,11 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	window = renderWindow;
 	menuOpen = true;
 	numOfPlayers = 0;
+	imageCount = 0;
+	//imageCountY = 1;
 
 	menuImage = new sf::Image;
-	if ((*menuImage).loadFromFile("img/menu.gif"))
+	if ((*menuImage).loadFromFile("img/Menu.gif"))
 	{
 
 		printf("Menu::Menu(std::string,int,int): loaded 'img/menu.gif'\n");
@@ -21,7 +23,8 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 
 	texture.loadFromImage(*menuImage);
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, menuImage->getSize().x, menuImage->getSize().y));
+	sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
+	sprite.scale(11.59,8.57);
 	sprite.setPosition(0,0);
 
 
@@ -93,13 +96,12 @@ void Menu::runMenu()
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
 	menuOpen = true;
-	//changeText("Press 'L' for Local Play \nPress 'N' for networkplay");
 	int menuItem = 0;
 
 
 	while(menuOpen)
 	{
-
+		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
 		mainDraw();
 		sf::Event event;
 		window->setKeyRepeatEnabled(false);
@@ -177,13 +179,29 @@ void Menu::runMenu()
 			}
 		}
 
+		int curentTime = timer.getElapsedTime().asMilliseconds();
+		printf("timer is: %d \r",curentTime);
+		curentTime = timer.getElapsedTime().asMilliseconds();
+
+		if(curentTime > 50)
+		{
+			timer.restart();
+			curentTime = timer.getElapsedTime().asSeconds();
+			imageCount ++;
+
+			if(imageCount >12)
+			{
+				imageCount = 0;
+			}
+		}
 	}
+
 };
 
 /**
 * @brif: Select number of players in the game
 * @return The number of players
-* @todo: Stop keys from repeating. 
+* @todo: Stop keys from repeating.
 */
 int  Menu::SelectNumberOfCharacters()
 {
@@ -191,7 +209,7 @@ int  Menu::SelectNumberOfCharacters()
 	std::string numOfPlayersText;
 	std::string menutext;
 	sf::Event event;
-	
+
 
 	while(menuOpen)
 	{
@@ -203,7 +221,9 @@ int  Menu::SelectNumberOfCharacters()
 		menutext.insert((menutext.size()),numOfPlayersText);
 
 		changeText(menutext);
+		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
 		localDraw();
+
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
 			if(event.KeyReleased && event.key.code == sf::Keyboard::E)
@@ -211,7 +231,7 @@ int  Menu::SelectNumberOfCharacters()
 				initplayers();
 				menuOpen = false;
 			}
-			
+
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
@@ -238,6 +258,21 @@ int  Menu::SelectNumberOfCharacters()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			runMenu();
+		}
+		int curentTime = timer.getElapsedTime().asMilliseconds();
+		printf("timer is: %d \r",curentTime);
+		curentTime = timer.getElapsedTime().asMilliseconds();
+
+		if(curentTime > 50)
+		{
+			timer.restart();
+			curentTime = timer.getElapsedTime().asSeconds();
+			imageCount ++;
+
+			if(imageCount >12)
+			{
+				imageCount = 0;
+			}
 		}
 	}
 	return numOfPlayers;
