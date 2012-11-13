@@ -19,7 +19,7 @@ World::World()
 	StartY = 0;
 
 	border = 0;
-	
+
 	xSpace = 1;
 	updatetime = 0;
 
@@ -113,7 +113,7 @@ bool World::initMap(char *mapFile)
 */
 void World::randomGenerate(bool start)
 {
-	
+
 	int directionX = 0;
 	int directionY = 0;
 
@@ -121,7 +121,7 @@ void World::randomGenerate(bool start)
 	static int currentX;
 	static int currentY;
 
-	int list_position = 1;
+	int list_position = 1; // This is apparently not used, remove it?
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
 	Tile *temp;
@@ -132,7 +132,7 @@ void World::randomGenerate(bool start)
 
 	Direction = rand() % 4;
 
-	
+
 	if(start)
 	{
 		unVisited = new std::list<Tile*>;
@@ -140,7 +140,7 @@ void World::randomGenerate(bool start)
 		StartX = rand() % (area-2) + 1;
 		StartY = rand() % (area-2) + 1;
 		visited->push_front(map[StartX][StartY]);
-		
+
 		if(StartX - 2 <= border)	//if we could be in danger of going outside the border
 			StartX = StartX + 2;
 		if(StartX + 2 >= area - 1)
@@ -154,7 +154,7 @@ void World::randomGenerate(bool start)
 		currentY = StartY;
 		map[currentX][currentY]->setVisited(false, currentX, currentY);
 
-		
+
 		if (currentY - 2 > border)
 		{
 			map[currentX][currentY - 2]->setFrontier(); //setFrontier sets a variabel to true if it's part of the Frontier
@@ -184,14 +184,14 @@ void World::randomGenerate(bool start)
 	while(!unVisited->empty())
 	{
 		count++;
-	
 
-		printf("1 Unvisited size: %2d\n", unVisited->size());
 
-	
+		printf("1 Unvisited size: %2lud\n", unVisited->size());
+
+
 		Direction = rand() % 4;
 		if(Direction == 0)	//if direction equals up
-		{   
+		{
 			directionX = 0;
 			directionY = (-2);
 		}
@@ -210,13 +210,13 @@ void World::randomGenerate(bool start)
 			directionX = (-2);
 			directionY = 0;
 		}
-		
-				
+
+
 			printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
 			"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
 			"World::randomGenerate(bool): frontier size: %4lu\n\n",
 			currentX, currentY, directionX, directionY, unVisited->size());
-				
+
 				if(((currentX + directionX) < (area - 1)) &&  ((currentX + directionX) > border) &&
 					((currentY + directionY) < (area - 1)) && ((currentY + directionY) > border))
 				{
@@ -231,15 +231,15 @@ void World::randomGenerate(bool start)
 						{
 							map[currentX][currentY]->setVisited(false, currentX, currentY); // set it to visited and change tile and texture
 							visited->splice(visited->begin(), *unVisited, temp_list);
-							
-					
+
+
 							if(((currentX - (directionX/2)) < area - 1) && ((currentX - (directionX/2)) > border) &&
 								((currentY - (directionY/2)) < area - 1) && ((currentY - (directionY/2)) > border))
 							{
 								map[currentX - (directionX/2)][currentY - (directionY/2)]->setVisited(false, currentX - (directionX/2), currentY - (directionY/2));
 								visited->push_front(map[currentX - (directionX/2)][currentY - (directionY/2)]);
 							}
-							printf("Visited size: %2d Unvisited size: %2d", visited->size(), unVisited->size());
+							printf("Visited size: %2lud Unvisited size: %2lud", visited->size(), unVisited->size());
 							// push the next 4 on
 							if (currentX - 2 > border)
 							{
@@ -290,7 +290,7 @@ void World::randomGenerate(bool start)
 								}
 							}
 
-							printf("2 Unvisited size: %2d\n", unVisited->size());
+							printf("2 Unvisited size: %2lud\n", unVisited->size());
 							printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
 							"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
 							"World::randomGenerate(bool): frontier size: %4lu\n",
@@ -321,23 +321,23 @@ void World::randomGenerate(bool start)
 							}
 						break;
 						}
-							
-					}				
-					
+
+					}
+
 			}
 			else
-			{			
+			{
 				printf("!!  unVisited->remove\n");
 			}
-		
+
 		if(unVisited->empty())
 		{
 			printf("!!  unVisited->empty()\n");
 		}
 		else
 		{
-			printf("3 Unvisited size: %2d\n", unVisited->size());
-		}	
+			printf("3 Unvisited size: %2lud\n", unVisited->size());
+		}
 	}
 	printf("!!  finished !!\n");
 }
@@ -581,11 +581,20 @@ bool World::placeCharacter(Character *character)
 	int xSpace = 1;
 	int ySpace = 1;
 	int increment = 1;
-	while (map[xSpace][ySpace]->getIsWall() || map[xSpace] [ySpace]->getHasCharacter())
+	while ((map[xSpace][ySpace]->getIsWall() == true)
+		|| (map[xSpace][ySpace]->getHasCharacter() != NULL))
 	{
 		if (xSpace+increment < area-1)
 		{
 			xSpace+=increment;
+		}
+		else
+		{
+			if (xSpace == area - 1)
+			{
+				xSpace = 1;
+				ySpace++;
+			}
 		}
 		/*else if (ySpace+increment < area-1)
 		{
@@ -605,8 +614,8 @@ bool World::placeCharacter(Character *character)
 		}*/
 	}
 
-	map[xSpace++][1]->setCharacter(character);
-	character->getSprite()->setPosition(15 * xSpace, 15);
+	map[xSpace][ySpace]->setCharacter(character);
+	character->getSprite()->setPosition(15 * xSpace, 15 * ySpace);
 	return true;
 };
 

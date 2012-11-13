@@ -285,7 +285,8 @@ bool Menu::initplayers()
 	World *world;
 	world = world->getWorld();
 
-		world->initMap((char *)"map/maptwo.txt");
+	world->initMap((char *)"map/maptwo.txt");
+	world->randomGenerate(true);
 
 	printf("Menu::initplayers(): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
@@ -298,7 +299,7 @@ bool Menu::initplayers()
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
-	player ->setID(0);
+	player->setID(0);
 	world->placeCharacter(player);
 
 	Character *npc;

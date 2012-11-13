@@ -10,8 +10,10 @@
 class World
 {
 private:
-
-		int xSpace;
+	int StartX;
+	int StartY;
+	int border;
+	int xSpace;
         // constructor
         World();
 
@@ -28,12 +30,13 @@ public:
         bool moveCharacter(Character *character, int xPosition, int yPosition);
         bool placeMine(Character *character, Tile *tile);
         bool update();
+	void randomGenerate(bool start);
         void draw(sf::RenderWindow *window);
-		Tile ***getMap();
-		int getArea();
-		void setGoal();
-		bool reset();
-		bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
+	Tile ***getMap();
+	int getArea();
+	void setGoal();
+	bool reset();
+	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
 };
 
 #endif // __WORLD__HEADER__GUARD__

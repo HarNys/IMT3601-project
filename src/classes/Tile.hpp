@@ -29,10 +29,6 @@ private:
 	int positionX;
 	int positionY;
 
-=======
-
-	
-
 public:
 	Tile();
 	Tile(char quality);
@@ -59,7 +55,7 @@ public:
 	void setFloor(int floorType);
 	~Tile();
 	sf::Sprite getSprite();
-	
+
 };
 
 #endif // __TILE__HEADER__GUARD__
