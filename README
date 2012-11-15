@@ -11,8 +11,11 @@ throughout the project.
 Dependencies
 ============
 
-The game is built using SFML 2.0 <http://www.sfml-dev.org/> and either visual
-studio or make and gcc.
+The game is built using either visual studio or make and gcc.
+
+The libraries used are:
+SFML >= 2.0 <http://www.sfml-dev.org/>
+BOOST >= 1.50.0 <http://www.boost.org/>
 
 Installing and Running
 ======================
