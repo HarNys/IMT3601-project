@@ -3,4 +3,4 @@
 *.gif binary
 *.jpg binary
 *.sln binary
-*.vcxproj.* binary
+*.vcxproj* binary
