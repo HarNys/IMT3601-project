@@ -13,7 +13,7 @@ LIBRARIES = -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio -lboost_pro
 
 # productions
 all : $(BINARY)
-	# no commands here
+	# probable compilation success
 
 clean :
 	rm $(OBJECTS) $(BINARY)

@@ -10,6 +10,9 @@
 class World
 {
 private:
+	int StartX;
+	int StartY;
+	int border;
 	int xSpace;
         // constructor
         World();
@@ -19,7 +22,7 @@ private:
         Tile ***map;
         int area; //size from origin to one side of the map
         MineFactory *mineFactory;
-	int updatetime;
+		int updatetime;
 public:
         static World *getWorld();
         bool initMap(char *mapFile);
@@ -27,6 +30,7 @@ public:
         bool moveCharacter(Character *character, int xPosition, int yPosition);
         bool placeMine(Character *character, Tile *tile);
         bool update();
+	void randomGenerate(bool start);
         void draw(sf::RenderWindow *window);
 	Tile ***getMap();
 	int getArea();
