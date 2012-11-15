@@ -70,3 +70,7 @@ Thumbs.db
 ######################
 ./Debug/
 ./ipch/
+
+# Game ini/configuration file #
+###############################
+game.ini
