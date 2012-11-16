@@ -30,8 +30,8 @@ int main(int argc, char **argv)
 	 * sources.
 	 */
 	std::string configFile;
-	progopt::options_description generic("Generic options");
-	generic.add_options()
+	progopt::options_description gameIni("game.ini options");
+	gameIni.add_options()
 		("config,c", progopt::value<std::string>(&configFile)->default_value("game.ini"), "name/path of configuration file.")
 		;
 	// Add options to commandline
@@ -41,47 +41,6 @@ int main(int argc, char **argv)
 	progopt::options_description config_file_options;
 	config_file_options.add(generic);
 
-	progopt::variables_map varMap;
-	store(progopt::command_line_parser(argc, argv).
-		options(generic).run(), varMap);
-	notify(varMap);
-	std::ifstream configFileHandle(configFile.c_str());
-	if (!configFileHandle)
-	{
-		printf("main(int,char**): could not open config file\n");
-		return 0;
-	}
-	else
-	{
-		store(parse_config_file(configFileHandle,
-			config_file_options), varMap);
-		notify(varMap);
-	}
-
-	if ((varMap.count("fullscreen"))
-		&& (varMap.count("fullscreen") == true)
-		&& (varMap.count("screenWidth"))
-		&& (varMap.count("screenHeight")))
-	{
-		screen.create(sf::VideoMode(varMap.count("screenWidth"),
-			varMap.count("screenHeight"),32),"Neuton"
-			" presents: Frank Darkhawks Maze RPG!",
-			sf::Style::Fullscreen);
-		printf("screenwidth, screenheight: %lud, %lud",
-			varMap.count("screenWidth"),
-			varMap.count("screenHeight"));
-	}
-
-	if ((varMap.count("screenWidth"))
-		&& (varMap.count("screenHeight")))
-	{
-		screen.create(sf::VideoMode(varMap.count("screenWidth"),
-			varMap.count("screenHeight"),32),
-			"Neuton presents: Frank Darkhawks Maze RPG!");
-		printf("screenwidth, screenheight: %lud, %lud",
-			varMap.count("screenWidth"),
-			varMap.count("screenHeight"));
-	}
 /*
 	char fullscreenoption;
 	std::cout << "play in fullscreen? (Y/n)";
@@ -146,7 +105,7 @@ int main(int argc, char **argv)
 			screen.display();
 
 			// Process events
-			sf::Event event;
+			sf::Event event; // why is this in the game loop?
 
 			/// @todo add escape as exit button
 
