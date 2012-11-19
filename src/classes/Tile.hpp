@@ -15,21 +15,28 @@ class Tile
 {
 private:
 	bool isWall; ///< @note isWall is true when 'Tile' is a wall.
+	bool visited; ///< @note visited is used for procedural generation'
+	bool partOfFrontier;
 	bool isGoal;
 	Mine *hasMine;
 	Character *hasCharacter;
 	MineFactory *mineFactory;
 	CharacterFactory *characterFactory;
-
 	static sf::Image *wallImg;
 	static sf::Image *floorImg;
 	sf::Texture tileTexture;
 	sf::Sprite tileSprite;
+	int positionX;
+	int positionY;
 
-	
 public:
 	Tile();
 	Tile(char quality);
+	void setVisited(bool wall, int xPos, int yPos);
+	void setFrontier();
+	bool checkXY(int currentX, int currentY);
+	bool getVisited();
+	bool getFrontier();
 	bool setWall(bool wall);
 	bool setMine(Mine *mine);
 	bool setCharacter(Character *character);
@@ -42,10 +49,13 @@ public:
 	bool initSprite(int xPos, int yPos);
 	void initImage();
 	bool initTile(char quality);
+	void setPosition(int xPos, int yPos);
+	int returnXpos();
+	int returnYpos();
 	void setFloor(int floorType);
 	~Tile();
 	sf::Sprite getSprite();
-	
+
 };
 
 #endif // __TILE__HEADER__GUARD__

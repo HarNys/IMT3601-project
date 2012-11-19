@@ -27,13 +27,11 @@
 #include <typeinfo>
 #include <string.h>
 #include <vector>
+#include <list>
 #include <iostream>
 #include <fstream>
 #include <math.h>
 
-
-//// OpenMP ////
-//#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/Node.hpp"
