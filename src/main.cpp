@@ -12,9 +12,10 @@ int main(int argc, char **argv)
 	 * 	should be(this depends of course on that the rest of
 	 * 	the system is ready).
 	 */
+
 	sf::RenderWindow screen;
 	sf::Music music;
-	screen.create(sf::VideoMode(1366,768,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
 
 /*
 	char fullscreenoption;
