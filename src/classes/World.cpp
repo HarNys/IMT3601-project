@@ -355,58 +355,61 @@ void World::randomGenerate(bool start)
  */
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
-	int characterDirectionX = 0;
-	int characterDirectionY = 0;
-	characterDirectionX = character->getCharacterDirectionX();
-	characterDirectionY = character->getCharacterDirectionY();
-	char *whatIsThere = NULL;
-	if ((characterDirectionX + characterDirectionY) == 0)
+	#pragma omp critical [move]
 	{
-		return false;
-	}
-	else
-	{
-		if (((xPosition + characterDirectionX) >= 0)
-			&& ((yPosition + characterDirectionY) >= 0))
+		int characterDirectionX = 0;
+		int characterDirectionY = 0;
+		characterDirectionX = character->getCharacterDirectionX();
+		characterDirectionY = character->getCharacterDirectionY();
+		char *whatIsThere = NULL;
+		if ((characterDirectionX + characterDirectionY) == 0)
 		{
-			if (((xPosition + characterDirectionX) < area)
-				&& ((yPosition + characterDirectionY) < area))
+			return false;
+		}
+		else
+		{
+			if (((xPosition + characterDirectionX) >= 0)
+				&& ((yPosition + characterDirectionY) >= 0))
 			{
-				Tile *nextTile = NULL;
-				nextTile = map[xPosition + characterDirectionX][yPosition + characterDirectionY];
-				if (!nextTile->getIsWall())
+				if (((xPosition + characterDirectionX) < area)
+					&& ((yPosition + characterDirectionY) < area))
 				{
-					if (!nextTile->getHasCharacter())
+					Tile *nextTile = NULL;
+					nextTile = map[xPosition + characterDirectionX][yPosition + characterDirectionY];
+					if (!nextTile->getIsWall())
 					{
-						nextTile->setCharacter(character);
-						if (nextTile->getHasMine())
+						if (!nextTile->getHasCharacter())
 						{
-							nextTile->getHasMine()->update(character);
+							nextTile->setCharacter(character);
+							if (nextTile->getHasMine())
+							{
+								nextTile->getHasMine()->update(character);
+							}
+							return true;
 						}
-						return true;
+						else
+						{
+							whatIsThere = (char *) "there is a Character";
+						}
 					}
 					else
 					{
-						whatIsThere = (char *) "there is a Character";
+						whatIsThere = (char *) "there is a Wall";
 					}
 				}
 				else
 				{
-					whatIsThere = (char *) "there is a Wall";
+					whatIsThere = (char *) "nextTile is out of bounds, bigger.";
 				}
 			}
 			else
 			{
-				whatIsThere = (char *) "nextTile is out of bounds, bigger.";
+				whatIsThere = (char *) "nextTile is out of bounds, smaller.";
 			}
 		}
-		else
-		{
-			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
-		}
+		printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
+			whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	}
-	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
-		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
 	return false;
 };
 
@@ -444,6 +447,11 @@ bool World::placeMine(Character *character, Tile *characterPosition)
  */
 bool World::update()
 {
+	int num_threads = omp_get_num_threads();
+	printf("Number of threads: %d \n",num_threads);
+	num_threads = num_threads/2;
+	omp_set_num_threads(num_threads);
+
 //	printf("World::update(): in World::update()\n");
 	// variables to be used
 	int xCount = 0;
@@ -468,6 +476,8 @@ bool World::update()
 
 
 		// start of operations
+		#pragma omp for schedule dynamic
+		//#pragma omp parallel for
 		for (yCount = 0; yCount < area; yCount++)
 		{
 			for (xCount = 0; xCount < area; xCount++)
@@ -520,7 +530,10 @@ bool World::update()
 							{
 								if (thisCharacter->getIsNpc())
 								{
-									npcController.aStar(map, thisCharacter);
+									#pragma omp critical [a-star]
+									{
+										npcController.aStar(map, thisCharacter);
+									}
 								}
 							}
 							thisCharacter->setLastUpdate(updatetime);
@@ -530,6 +543,8 @@ bool World::update()
 
 				} // end if (!thisTile->getIsWall())
 			} // end xCount
+			int th_id = omp_get_thread_num();
+			printf ("%d",th_id);
 		} // end yCount
 		if (!goalExists)		//if the is no goal then make one;
 		{

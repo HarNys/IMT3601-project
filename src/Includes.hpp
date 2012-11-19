@@ -31,6 +31,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <omp.h>
 
 
 ///////// LOCAL PROJECT FILES //////////

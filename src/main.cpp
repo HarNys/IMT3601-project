@@ -5,6 +5,7 @@
 
 int main(int argc, char **argv)
 {
+
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
