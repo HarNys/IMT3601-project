@@ -5,7 +5,10 @@
 
 int main(int argc, char **argv)
 {
-
+	int num_threads = omp_get_num_threads();
+	printf("Number of threads: %d \n",num_threads);
+	num_threads = num_threads/2;
+	omp_set_num_threads(num_threads);
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
