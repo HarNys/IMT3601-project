@@ -34,7 +34,6 @@ public:
 	Tile(char quality);
 	void setVisited(bool wall, int xPos, int yPos);
 	void setFrontier();
-	bool checkXY(int currentX, int currentY);
 	bool getVisited();
 	bool getFrontier();
 	bool setWall(bool wall);
