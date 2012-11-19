@@ -1,117 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="source\classes\Character.cpp">
-      <Filter>Source</Filter>
+    <Filter Include="header">
+      <UniqueIdentifier>{f459fe33-0848-49ba-8dfd-3cf3bf5a4d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{858eda8b-34f1-4897-b84b-ffa75596fab5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\CharacterFactory.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\Tile.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\World.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\menu.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\Character.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\Mine.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\CharacterFactory.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\MineFactory.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\Menu.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\Node.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\Mine.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\NonPlayerCharacter.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\MineFactory.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\Player.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\Node.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\StackNode.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\NonPlayerCharacter.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\Tile.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\Player.cpp">
+      <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="source\classes\World.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\classes\StackNode.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\classes\Character.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\Includes.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\World.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\Character.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\CharacterFactory.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\CharacterFactory.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\Includes.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\Menu.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\menu.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\Mine.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Mine.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\MineFactory.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\MineFactory.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\Node.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Node.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\NonPlayerCharacter.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\NonPlayerCharacter.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\Player.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Player.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\StackNode.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\StackNode.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\Tile.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\Tile.hpp">
-      <Filter>Header</Filter>
+    <ClInclude Include="src\classes\World.hpp">
+      <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="source\classes\RandomGenerate.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-<<<<<<< HEAD
-    <ClCompile Include="source\classes\World.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\MineFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\Mine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\classes\CharacterFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\RandomGenerate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-=======
-    <Filter Include="Header">
-      <UniqueIdentifier>{c88debf8-200a-48c7-b0f9-b28983fd1cac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{63ec5b47-999d-4812-9898-aad031548ff0}</UniqueIdentifier>
-    </Filter>
->>>>>>> 8a18adb41deb23958127bccb1dde7d8d7a39780f
   </ItemGroup>
 </Project>

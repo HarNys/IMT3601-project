@@ -577,7 +577,7 @@ void World::draw(sf::RenderWindow *window)
 
 bool World::placeCharacter(Character *character)
 {
-
+	printf("World::placeCharacter(Character *character): Start \n");
 	int xSpace = 1;
 	int ySpace = 1;
 	int increment = 1;
@@ -590,32 +590,14 @@ bool World::placeCharacter(Character *character)
 		}
 		else
 		{
-			if (xSpace == area - 1)
-			{
 				xSpace = 1;
 				ySpace++;
-			}
 		}
-		/*else if (ySpace+increment < area-1)
-		{
-			ySpace+=increment;
-		}
-		else if (xSpace-area-3 >0)
-		{
-			xSpace-=increment;
-		}
-		else if (ySpace-area-3 >0)
-		{
-			ySpace-=increment;
-		}
-		else if (increment > 1)
-		{
-			increment/=2;
-		}*/
 	}
 
 	map[xSpace][ySpace]->setCharacter(character);
 	character->getSprite()->setPosition(15 * xSpace, 15 * ySpace);
+	printf("World::placeCharacter(Character *character): End \n");
 	return true;
 };
 

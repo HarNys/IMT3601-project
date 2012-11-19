@@ -78,10 +78,6 @@ void Tile::setPosition(int xPos, int yPos)
 	positionY = yPos;
 };
 
-bool Tile::checkXY(int currentX, int currentY)
-{
-	
-}
 bool Tile::getFrontier()
 {
 	if(partOfFrontier)

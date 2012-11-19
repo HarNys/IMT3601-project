@@ -8,6 +8,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	numOfPlayers = 0;
 	imageCount = 0;
 	//imageCountY = 1;
+	gameRuning = false;
 
 	menuImage = new sf::Image;
 	if ((*menuImage).loadFromFile("img/Menu.gif"))
@@ -128,6 +129,17 @@ void Menu::runMenu()
 					menuItem = 2;
 				}
 			}
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
+			{
+				if(gameRuning)
+				{
+					menuOpen = false;
+				}
+			}
+
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
@@ -280,10 +292,19 @@ int  Menu::SelectNumberOfCharacters()
 
 bool Menu::initplayers()
 {
+	
+
+	
+	
 	int i;
 
 	World *world;
 	world = world->getWorld();
+
+	if(gameRuning)
+	{
+		world->reset();
+	}
 
 	world->initMap((char *)"map/maptwo.txt");
 	world->randomGenerate(true);
@@ -312,7 +333,9 @@ bool Menu::initplayers()
 		npc ->setID(i+1);
 		world->placeCharacter(npc);
 	}
+	printf("Menu::initplayers(): Menu all done \n");
 	window->setKeyRepeatEnabled(true);
+	gameRuning = true;
 	music.stop();
 	return true;
 };

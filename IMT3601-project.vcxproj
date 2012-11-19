@@ -11,33 +11,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\classes\Character.hpp" />
-    <ClInclude Include="source\classes\CharacterFactory.hpp" />
-    <ClInclude Include="source\classes\menu.hpp" />
-    <ClInclude Include="source\classes\Mine.hpp" />
-    <ClInclude Include="source\classes\MineFactory.hpp" />
-    <ClInclude Include="source\classes\Node.hpp" />
-    <ClInclude Include="source\classes\NonPlayerCharacter.hpp" />
-    <ClInclude Include="source\classes\Player.hpp" />
-    <ClInclude Include="source\classes\StackNode.hpp" />
-    <ClInclude Include="source\classes\Tile.hpp" />
-    <ClInclude Include="source\classes\World.hpp" />
-    <ClInclude Include="source\Includes.hpp" />
+    <ClCompile Include="src\classes\Character.cpp" />
+    <ClCompile Include="src\classes\CharacterFactory.cpp" />
+    <ClCompile Include="src\classes\Menu.cpp" />
+    <ClCompile Include="src\classes\Mine.cpp" />
+    <ClCompile Include="src\classes\MineFactory.cpp" />
+    <ClCompile Include="src\classes\Node.cpp" />
+    <ClCompile Include="src\classes\NonPlayerCharacter.cpp" />
+    <ClCompile Include="src\classes\Player.cpp" />
+    <ClCompile Include="src\classes\StackNode.cpp" />
+    <ClCompile Include="src\classes\Tile.cpp" />
+    <ClCompile Include="src\classes\World.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\classes\Character.cpp" />
-    <ClCompile Include="source\classes\CharacterFactory.cpp" />
-    <ClCompile Include="source\classes\menu.cpp" />
-    <ClCompile Include="source\classes\Mine.cpp" />
-    <ClCompile Include="source\classes\MineFactory.cpp" />
-    <ClCompile Include="source\classes\Node.cpp" />
-    <ClCompile Include="source\classes\NonPlayerCharacter.cpp" />
-    <ClCompile Include="source\classes\Player.cpp" />
-    <ClCompile Include="source\classes\StackNode.cpp" />
-    <ClCompile Include="source\classes\Tile.cpp" />
-    <ClCompile Include="source\classes\World.cpp" />
-    <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\RandomGenerate.cpp" />
+    <ClInclude Include="src\classes\Character.hpp" />
+    <ClInclude Include="src\classes\CharacterFactory.hpp" />
+    <ClInclude Include="src\classes\Menu.hpp" />
+    <ClInclude Include="src\classes\Mine.hpp" />
+    <ClInclude Include="src\classes\MineFactory.hpp" />
+    <ClInclude Include="src\classes\Node.hpp" />
+    <ClInclude Include="src\classes\NonPlayerCharacter.hpp" />
+    <ClInclude Include="src\classes\Player.hpp" />
+    <ClInclude Include="src\classes\StackNode.hpp" />
+    <ClInclude Include="src\classes\Tile.hpp" />
+    <ClInclude Include="src\classes\World.hpp" />
+    <ClInclude Include="src\Includes.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65763C3B-BEE6-4750-8E59-A6C0D03B3B2E}</ProjectGuid>

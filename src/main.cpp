@@ -112,7 +112,6 @@ int main(int argc, char **argv)
 				{
 					if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
 					{
-						world->reset();
 						music.stop();
 						mainMenu->runMenu();
 					}
