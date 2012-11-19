@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Audio/Music.hpp>
+#include <SFML/System/Thread.hpp>
 
 #elif defined __linux__
 //we are on linux
@@ -26,13 +27,11 @@
 #include <typeinfo>
 #include <string.h>
 #include <vector>
+#include <list>
 #include <iostream>
 #include <fstream>
 #include <math.h>
 
-
-//// OpenMP ////
-//#pragma omp
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/Node.hpp"

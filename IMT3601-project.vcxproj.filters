@@ -75,13 +75,43 @@
     <ClInclude Include="source\classes\Tile.hpp">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="source\classes\RandomGenerate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <ClCompile Include="source\classes\World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\MineFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\Mine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\classes\CharacterFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RandomGenerate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+=======
     <Filter Include="Header">
       <UniqueIdentifier>{c88debf8-200a-48c7-b0f9-b28983fd1cac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{63ec5b47-999d-4812-9898-aad031548ff0}</UniqueIdentifier>
     </Filter>
+>>>>>>> 8a18adb41deb23958127bccb1dde7d8d7a39780f
   </ItemGroup>
 </Project>

@@ -16,10 +16,14 @@
     <ClInclude Include="source\classes\menu.hpp" />
     <ClInclude Include="source\classes\Mine.hpp" />
     <ClInclude Include="source\classes\MineFactory.hpp" />
+<<<<<<< HEAD
+    <ClInclude Include="source\classes\RandomGenerate.hpp" />
+=======
     <ClInclude Include="source\classes\Node.hpp" />
     <ClInclude Include="source\classes\NonPlayerCharacter.hpp" />
     <ClInclude Include="source\classes\Player.hpp" />
     <ClInclude Include="source\classes\StackNode.hpp" />
+>>>>>>> 8a18adb41deb23958127bccb1dde7d8d7a39780f
     <ClInclude Include="source\classes\Tile.hpp" />
     <ClInclude Include="source\classes\World.hpp" />
     <ClInclude Include="source\Includes.hpp" />
@@ -37,6 +41,7 @@
     <ClCompile Include="source\classes\Tile.cpp" />
     <ClCompile Include="source\classes\World.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\RandomGenerate.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65763C3B-BEE6-4750-8E59-A6C0D03B3B2E}</ProjectGuid>

@@ -34,7 +34,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	}
 
 	// Create a text
-	localPlay.setString("Singelplayer");
+	localPlay.setString("Singleplayer");
 	localPlay.setFont(font);
 	localPlay.setCharacterSize(30);
 	localPlay.setStyle(sf::Text::Bold);
@@ -92,7 +92,7 @@ bool Menu::changeText(std::string text)
 void Menu::runMenu()
 {
 	music.play();
-	localPlay.setString("Singelplayer");
+	localPlay.setString("Singleplayer");
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
 	menuOpen = true;
@@ -285,7 +285,8 @@ bool Menu::initplayers()
 	World *world;
 	world = world->getWorld();
 
-		world->initMap((char *)"map/maptwo.txt");
+	world->initMap((char *)"map/maptwo.txt");
+	world->randomGenerate(true);
 
 	printf("Menu::initplayers(): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
@@ -298,7 +299,7 @@ bool Menu::initplayers()
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
-	player ->setID(0);
+	player->setID(0);
 	world->placeCharacter(player);
 
 	Character *npc;
@@ -331,7 +332,7 @@ void Menu::mainDraw()
 };
 
 /**
-* @brif: Draw singelplayer part of menu to screen.
+* @brif: Draw singleplayer part of menu to screen.
 */
 void Menu::localDraw()
 {
