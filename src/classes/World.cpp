@@ -447,10 +447,7 @@ bool World::placeMine(Character *character, Tile *characterPosition)
  */
 bool World::update()
 {
-	int num_threads = omp_get_num_threads();
-	printf("Number of threads: %d \n",num_threads);
-	num_threads = num_threads/2;
-	omp_set_num_threads(num_threads);
+
 
 //	printf("World::update(): in World::update()\n");
 	// variables to be used
