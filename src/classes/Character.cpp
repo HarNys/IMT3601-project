@@ -229,6 +229,7 @@ void Character::useController(Character* thischaracter)
 
 			startStack = tempStackNode;
 			}
+			thischaracter->updateSprite();
 		}
 	}
 	else if(controllerType == NetworkControl)
