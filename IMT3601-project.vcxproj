@@ -16,14 +16,10 @@
     <ClInclude Include="source\classes\menu.hpp" />
     <ClInclude Include="source\classes\Mine.hpp" />
     <ClInclude Include="source\classes\MineFactory.hpp" />
-<<<<<<< HEAD
-    <ClInclude Include="source\classes\RandomGenerate.hpp" />
-=======
     <ClInclude Include="source\classes\Node.hpp" />
     <ClInclude Include="source\classes\NonPlayerCharacter.hpp" />
     <ClInclude Include="source\classes\Player.hpp" />
     <ClInclude Include="source\classes\StackNode.hpp" />
->>>>>>> 8a18adb41deb23958127bccb1dde7d8d7a39780f
     <ClInclude Include="source\classes\Tile.hpp" />
     <ClInclude Include="source\classes\World.hpp" />
     <ClInclude Include="source\Includes.hpp" />

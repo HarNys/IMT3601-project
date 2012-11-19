@@ -59,6 +59,7 @@ Thumbs.db
 
 *.suo
 *.sdf
+*.opensdf
 
 # emacs generated backup files #
 ################################
@@ -70,3 +71,6 @@ Thumbs.db
 ######################
 ./Debug/
 ./ipch/
+Debug/
+ipch/
+Release/
