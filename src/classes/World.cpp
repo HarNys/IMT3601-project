@@ -354,8 +354,8 @@ void World::randomGenerate(bool start)
  */
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
-	#pragma omp critical [move]
-	{
+//	#pragma omp critical(move)
+//	{
 		int characterDirectionX = 0;
 		int characterDirectionY = 0;
 		characterDirectionX = character->getCharacterDirectionX();
@@ -408,7 +408,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 		}
 		printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
 			whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
-	}
+//	}
 	return false;
 };
 
@@ -446,8 +446,6 @@ bool World::placeMine(Character *character, Tile *characterPosition)
  */
 bool World::update()
 {
-
-
 //	printf("World::update(): in World::update()\n");
 	// variables to be used
 	int xCount = 0;
@@ -472,8 +470,8 @@ bool World::update()
 
 
 		// start of operations
-		#pragma omp for schedule dynamic
-		//#pragma omp parallel for
+		//#pragma omp for schedule(dynamic)
+		#pragma omp parallel for
 		for (yCount = 0; yCount < area; yCount++)
 		{
 			for (xCount = 0; xCount < area; xCount++)
@@ -511,22 +509,24 @@ bool World::update()
 					{
 						if(thisCharacter->getLastUpdate() != updatetime)
 						{
-							thisCharacter->useController(thisCharacter);
-							if (thisCharacter->getMinePlaced())
+							#pragma omp critical(characterMovement)
 							{
-								placeMine(thisCharacter, thisTile);
+								thisCharacter->useController(thisCharacter);
+								if (thisCharacter->getMinePlaced())
+								{
+									placeMine(thisCharacter, thisTile);
+								}
+								if (moveCharacter(thisCharacter, xCount, yCount))
+								{
+									thisTile->setCharacter(NULL);
+								}
+								thisCharacter->resetDirection();
 							}
-							if (moveCharacter(thisCharacter, xCount, yCount))
-							{
-								thisTile->setCharacter(NULL);
-							}
-							thisCharacter->resetDirection();
-
 							if (goalExists)
 							{
 								if (thisCharacter->getIsNpc())
 								{
-									#pragma omp critical [a-star]
+									#pragma omp critical(astar)
 									{
 										npcController.aStar(map, thisCharacter);
 									}
@@ -535,12 +535,11 @@ bool World::update()
 							thisCharacter->setLastUpdate(updatetime);
 						}
 					}
-
-
 				} // end if (!thisTile->getIsWall())
 			} // end xCount
 			int th_id = omp_get_thread_num();
-			printf ("%d",th_id);
+			printf ("World::update: numTh: %d, thId: %d\r",
+				omp_get_num_threads(), th_id);
 		} // end yCount
 		if (!goalExists)		//if the is no goal then make one;
 		{

@@ -5,10 +5,21 @@
 
 int main(int argc, char **argv)
 {
+	#ifdef _OPENMP
+	{
+		omp_set_num_threads(10);
+		int num_threads = 0;
+		num_threads = omp_get_num_threads();
+		printf("Number of threads: %d \n",num_threads);
+	}
+	#endif //_OPENMP 
+//	#pragma omp parallel
+/*
 	int num_threads = omp_get_num_threads();
 	printf("Number of threads: %d \n",num_threads);
 	num_threads = num_threads/2;
 	omp_set_num_threads(num_threads);
+//*/
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
