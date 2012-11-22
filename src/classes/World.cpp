@@ -121,7 +121,6 @@ void World::randomGenerate(bool start)
 	static int currentX;
 	static int currentY;
 
-	int list_position = 1; // This is apparently not used, remove it?
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
 	Tile *temp;
