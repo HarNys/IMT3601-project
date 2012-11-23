@@ -355,7 +355,7 @@ void World::randomGenerate(bool start)
  */
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
-	#pragma omp critical [move]
+	#pragma omp critical (move)
 	{
 		int characterDirectionX = 0;
 		int characterDirectionY = 0;
@@ -409,7 +409,9 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 		}
 		printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
 			whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
+	
 	}
+	#pragma omp critical
 	return false;
 };
 
@@ -473,7 +475,7 @@ bool World::update()
 
 
 		// start of operations
-		#pragma omp for schedule dynamic
+		#pragma omp for schedule (dynamic)
 		//#pragma omp parallel for
 		for (yCount = 0; yCount < area; yCount++)
 		{
@@ -527,7 +529,7 @@ bool World::update()
 							{
 								if (thisCharacter->getIsNpc())
 								{
-									#pragma omp critical [a-star]
+									#pragma omp critical// (a-star)
 									{
 										npcController.aStar(map, thisCharacter);
 									}
@@ -614,22 +616,27 @@ bool World::placeCharacter(Character *character)
 };
 
 
-
+/**
+*
+*	Finds one random tile on the map that is not a wall or a character, and 
+*	sets that as goal
+*
+*/
 void World::setGoal()
 {
 	Tile* thisTile;
-	int x; ///< @todo variable name @#@!
-	int y;
+	int xCoordinate;
+	int yCoordinate;
 	srand(time(NULL));
-	do				//Do while tile (x,y) is a wall
+	do		//Do while tile (x,y) is a wall or character
 	{
-		do			//DO while tile (x,y) is on the border
+		do	//Do while tile (x,y) is on the border
 		{
-			x = (rand()%(area-2))+1;
-			y = (rand()%(area-2))+1;
-		}while((x == area) || (0 == x) || (y == area) || (0 == y));
+			xCoordinate = (rand()%(area-2))+1;
+			yCoordinate = (rand()%(area-2))+1;
+		}while((xCoordinate == area) || (0 == xCoordinate) || (yCoordinate == area) || (0 == yCoordinate));
 
-		thisTile = map[x][y];
+		thisTile = map[xCoordinate][yCoordinate];
 
 	}while(thisTile->getIsWall() || thisTile->getHasCharacter());
 
@@ -646,6 +653,10 @@ int World::getArea(){
 }
 
 
+/**
+*	moves through all tiles and emptyes them 
+*
+*/
 bool World::reset()
 {
 	Tile *thisTile;
@@ -664,9 +675,7 @@ bool World::reset()
 			thisTile = map[xCount][yCount];
 			thisTile->reset();
 		}
-
 	}
-
 	characterFetcher = characterFetcher->getCharacterFactory();
 	tempCharacter = characterFetcher->getCharacter();
 	placeCharacter(tempCharacter);
@@ -682,4 +691,3 @@ bool World::reset()
 *	@parm yCount: y position in the world.
 *	@return true on success.
 */
-
