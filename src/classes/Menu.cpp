@@ -8,9 +8,10 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	numOfPlayers = 0;
 	imageCount = 0;
 	//imageCountY = 1;
+	gameRuning = false;
 
 	menuImage = new sf::Image;
-	if ((*menuImage).loadFromFile("img/menu.gif"))
+	if ((*menuImage).loadFromFile("img/Menu.gif"))
 	{
 
 		printf("Menu::Menu(std::string,int,int): loaded 'img/menu.gif'\n");
@@ -34,7 +35,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	}
 
 	// Create a text
-	localPlay.setString("Singelplayer");
+	localPlay.setString("Singleplayer");
 	localPlay.setFont(font);
 	localPlay.setCharacterSize(30);
 	localPlay.setStyle(sf::Text::Bold);
@@ -92,11 +93,10 @@ bool Menu::changeText(std::string text)
 void Menu::runMenu()
 {
 	music.play();
-	localPlay.setString("Singelplayer");
+	localPlay.setString("Singleplayer");
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
 	menuOpen = true;
-	//changeText("Press 'L' for Local Play \nPress 'N' for networkplay");
 	int menuItem = 0;
 
 
@@ -129,6 +129,17 @@ void Menu::runMenu()
 					menuItem = 2;
 				}
 			}
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
+			{
+				if(gameRuning)
+				{
+					menuOpen = false;
+				}
+			}
+
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 		{
@@ -183,13 +194,13 @@ void Menu::runMenu()
 		int curentTime = timer.getElapsedTime().asMilliseconds();
 		printf("timer is: %d \r",curentTime);
 		curentTime = timer.getElapsedTime().asMilliseconds();
-	
+
 		if(curentTime > 50)
 		{
 			timer.restart();
 			curentTime = timer.getElapsedTime().asSeconds();
 			imageCount ++;
-		
+
 			if(imageCount >12)
 			{
 				imageCount = 0;
@@ -202,7 +213,7 @@ void Menu::runMenu()
 /**
 * @brif: Select number of players in the game
 * @return The number of players
-* @todo: Stop keys from repeating. 
+* @todo: Stop keys from repeating.
 */
 int  Menu::SelectNumberOfCharacters()
 {
@@ -210,7 +221,7 @@ int  Menu::SelectNumberOfCharacters()
 	std::string numOfPlayersText;
 	std::string menutext;
 	sf::Event event;
-	
+
 
 	while(menuOpen)
 	{
@@ -232,7 +243,7 @@ int  Menu::SelectNumberOfCharacters()
 				initplayers();
 				menuOpen = false;
 			}
-			
+
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
@@ -263,13 +274,13 @@ int  Menu::SelectNumberOfCharacters()
 		int curentTime = timer.getElapsedTime().asMilliseconds();
 		printf("timer is: %d \r",curentTime);
 		curentTime = timer.getElapsedTime().asMilliseconds();
-	
+
 		if(curentTime > 50)
 		{
 			timer.restart();
 			curentTime = timer.getElapsedTime().asSeconds();
 			imageCount ++;
-		
+
 			if(imageCount >12)
 			{
 				imageCount = 0;
@@ -281,12 +292,22 @@ int  Menu::SelectNumberOfCharacters()
 
 bool Menu::initplayers()
 {
+	
+
+	
+	
 	int i;
 
 	World *world;
 	world = world->getWorld();
 
-		world->initMap((char *)"map/maptwo.txt");
+	if(gameRuning)
+	{
+		world->reset();
+	}
+
+	world->initMap((char *)"map/maptwo.txt");
+	world->randomGenerate(true);
 
 	printf("Menu::initplayers(): has got World, getting MineFactory\n");
 	MineFactory *mineFactory;
@@ -299,7 +320,7 @@ bool Menu::initplayers()
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
-	player ->setID(0);
+	player->setID(0);
 	world->placeCharacter(player);
 
 	Character *npc;
@@ -312,7 +333,9 @@ bool Menu::initplayers()
 		npc ->setID(i+1);
 		world->placeCharacter(npc);
 	}
+	printf("Menu::initplayers(): Menu all done \n");
 	window->setKeyRepeatEnabled(true);
+	gameRuning = true;
 	music.stop();
 	return true;
 };
@@ -332,7 +355,7 @@ void Menu::mainDraw()
 };
 
 /**
-* @brif: Draw singelplayer part of menu to screen.
+* @brif: Draw singleplayer part of menu to screen.
 */
 void Menu::localDraw()
 {

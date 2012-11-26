@@ -184,6 +184,7 @@ bool Character::updateSprite(float xPosition, float yPosition)
 	return true;
 }
 
+
 /**
  * Updates and sets a Characters sprite. The formula for arrowdirection
  * calculates for the img/player.png which square to use. A more easily
@@ -192,7 +193,6 @@ bool Character::updateSprite(float xPosition, float yPosition)
  * and characterDirectionY respectively
  * @return True on success.
  */
-
 
 bool Character::updateSprite()
 {
@@ -233,6 +233,7 @@ void Character::useController(Character* thischaracter)
 
 			startStack = tempStackNode;
 			}
+			thischaracter->updateSprite();
 		}
 
 		// @todo the const should be changed to reflect dificulty

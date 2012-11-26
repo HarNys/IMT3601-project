@@ -20,6 +20,7 @@ private:
 	bool menuOpen;
 	int imageCount;
 	int imageCountY;
+	bool gameRuning;
 	sf::Clock timer;
 	
 public:

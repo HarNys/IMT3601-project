@@ -76,13 +76,15 @@ Character* CharacterFactory::getCharacter()
  *
  * @todo implement function!
  *
+ *@todo fix bug with reading location!
+ *
  * @return true on success.
  */
 bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
-	readyCharacters.push_back(characterReleased);
+	characterFactory->readyCharacters.push_back(characterReleased);
 	std::vector<Character *>::iterator umIter;
-	for (umIter=usedCharacters.begin(); umIter < usedCharacters.end(); umIter++ )
+	for (umIter=characterFactory->usedCharacters.begin(); umIter < usedCharacters.end(); umIter++ )
 	{
 		if ((*umIter) == characterReleased)
 		{

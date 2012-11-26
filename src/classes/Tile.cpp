@@ -9,9 +9,10 @@ sf::Image *Tile::floorImg = NULL;
 Tile::Tile()
 {
 	isWall = false;
+	visited = false;
+	partOfFrontier = false;
 	hasMine = NULL;
 	hasCharacter = NULL;
-	characterFactory = characterFactory->getCharacterFactory();
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(): done standard Tile constructor\n");
 	isGoal = false;
@@ -24,6 +25,7 @@ Tile::Tile()
  */
 Tile::Tile(char quality)
 {
+
 	if(quality=='x')
 	{
 		isWall = true;
@@ -34,7 +36,6 @@ Tile::Tile(char quality)
 	}
 	hasMine = NULL;
 	hasCharacter = NULL;
-	characterFactory = characterFactory->getCharacterFactory();
 	mineFactory = mineFactory->getMineFactory();
 	printf("Tile::Tile(char): done overloaded Tile constructor\n");
 };
@@ -44,7 +45,47 @@ Tile::Tile(char quality)
  * 	or floor
  *
  * @return true on success
+ * @todo make it have a bool toTrue or something similar.
  */
+
+void Tile::setVisited(bool wall, int xPos, int yPos)
+{
+	visited = true;
+	printf("Setvisited Wall = %2d, xPos = %2d, yPos = %2d\n\n", wall, xPos, yPos);
+	if(wall)
+	{
+		this->isWall = true;
+		this->initSprite(xPos, yPos);
+	}
+	else
+	{
+		this->isWall = false;
+		this->initSprite(xPos, yPos);
+	}
+
+
+	
+};
+
+void Tile::setFrontier()
+{
+	partOfFrontier = true;
+};
+
+void Tile::setPosition(int xPos, int yPos)
+{
+	positionX = xPos;
+	positionY = yPos;
+};
+
+bool Tile::getFrontier()
+{
+	if(partOfFrontier)
+		return true;
+	else
+		return false;
+};
+
 bool Tile::setWall(bool wall)
 {
 	if(wall)
@@ -57,6 +98,25 @@ bool Tile::setWall(bool wall)
 	}
 	return true;
 };
+
+
+
+/**
+ * Returns wether or not a Tile is visited
+ *
+ * @return true if visited.
+ */
+bool Tile::getVisited()
+{
+	if(visited)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 /**
  * returns the true or false based on the isWall bool.
@@ -255,10 +315,20 @@ Tile::~Tile()
 	}
 	if (hasCharacter)
 	{
-		characterFactory->releaseCharacter(hasCharacter);
-		hasCharacter = NULL;
+			hasCharacter = NULL;
 	}
 };
+
+
+int Tile::returnXpos()
+{
+	return positionX;
+}
+
+int Tile::returnYpos()
+{
+	return positionY;
+}
 
 bool Tile::reset()
 {
@@ -276,4 +346,5 @@ bool Tile::reset()
 	return true;
 
 };
+
 

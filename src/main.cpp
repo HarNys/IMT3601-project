@@ -5,6 +5,15 @@
 
 int main(int argc, char **argv)
 {
+	#ifdef _OPENMP
+	{
+		omp_set_num_threads(10);
+		int num_threads = 0;
+		num_threads = omp_get_num_threads();
+		printf("Number of threads: %d \n",num_threads);
+	}
+	#endif //_OPENMP 
+
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
@@ -12,6 +21,7 @@ int main(int argc, char **argv)
 	 * 	should be(this depends of course on that the rest of
 	 * 	the system is ready).
 	 */
+
 	sf::RenderWindow screen;
 	sf::Music music;
 	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
@@ -65,17 +75,14 @@ int main(int argc, char **argv)
 		music.setLoop(true);         // make it loop
 		music.play();
 	}
-	
-
-
 
 	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
 	while (screen.isOpen())
 	{
 
 		{
-		
-			
+
+
 			world->update();
 			screen.clear();
 			world->draw(&screen);
@@ -114,7 +121,6 @@ int main(int argc, char **argv)
 				{
 					if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
 					{
-						world->reset();
 						music.stop();
 						mainMenu->runMenu();
 					}
