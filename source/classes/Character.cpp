@@ -19,6 +19,7 @@ Character::Character()
 	sprite.setPosition((15 * 1), (15 * 1));
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	pointsValue = 0;
+	aggressivenes = 0;
 };
 
 /**
@@ -351,5 +352,25 @@ int Character::getLastUpdate()
 int Character::updatePoints(int adjustment)
 {
 	pointsValue += adjustment;
+	return pointsValue;
+}
+
+bool Character::setAggressivenes(int newaggro)
+{
+	aggressivenes = newaggro;
+	return true;
+}
+	
+int Character::getAggressivenes()
+{
+	return aggressivenes;
+}
+	
+int Character::getHealth()
+{
+	return characterHealth;
+}
+int Character::getPoints()
+{
 	return pointsValue;
 }

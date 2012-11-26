@@ -82,10 +82,10 @@ void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 			else
 			{
 				//adds new nodes to the frontier
-				visitNode->setUpChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), 0, -1, visitNode));
-				visitNode->setRightChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), 1, 0, visitNode));
-				visitNode->setDownChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), 0, 1, visitNode));
-				visitNode->setLeftChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), -1, 0, visitNode));
+				visitNode->setUpChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), 0, -1, visitNode, thisCharacter));
+				visitNode->setRightChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), 1, 0, visitNode, thisCharacter));
+				visitNode->setDownChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), 0, 1, visitNode, thisCharacter));
+				visitNode->setLeftChild(addFrontier(visitNode->getXPos(), visitNode->getYPos(), -1, 0, visitNode, thisCharacter));
 			}
 		}
 		else
@@ -110,7 +110,7 @@ void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 }
 
 
-Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir, Node *nodeParent)
+Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir, Node *nodeParent, Character* movingChar)
 {
 	if (startNode)
 	{
@@ -128,9 +128,17 @@ Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir
 					return tempNode;
 				}
 				else {
+					int nodeCost;
+					Character* onTileCharacter;
+					onTileCharacter = thisTile->getHasCharacter();
+					nodeCost = 5;
+					nodeCost += movingChar->getPoints();
+					nodeCost -= movingChar->getHealth();
+					nodeCost -= onTileCharacter->getPoints();
+					
 
 					Node* tempNode;
-					tempNode = new Node(xCoord+xDir, yCoord+yDir, nodeParent->getLevel()-1, goalNode->getXPos(), goalNode->getYPos(), nodeParent);
+					tempNode = new Node(xCoord+xDir, yCoord+yDir, nodeParent->getLevel()+nodeCost, goalNode->getXPos(), goalNode->getYPos(), nodeParent);
 					return tempNode;
 
 				}

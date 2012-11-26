@@ -25,7 +25,7 @@ private:
 	sf::Sprite sprite;
 	StackNode *startStack;
 	StackNode *endStack;
-	int agressivenes;
+	int aggressivenes;
 
 public:
 	Character();
@@ -56,6 +56,10 @@ public:
 	bool setLastUpdate(int time);
 	int getLastUpdate();
 	int updatePoints(int adjustment);
+	bool setAggressivenes(int newaggro);
+	int getAggressivenes();
+	int getHealth();
+	int getPoints();
 	
 
 };
