@@ -508,12 +508,14 @@ bool World::update()
 
 						}
 					}
-					if ((thisCharacter = thisTile->getHasCharacter()))
+					#pragma omp critical(characterMovement)
 					{
-						if(thisCharacter->getLastUpdate() != updatetime)
+						if ((thisCharacter = thisTile->getHasCharacter()))
 						{
-							#pragma omp critical(characterMovement)
+						
+							if(thisCharacter->getLastUpdate() != updatetime)
 							{
+							
 								thisCharacter->useController(thisCharacter);
 								if (thisCharacter->getMinePlaced())
 								{
@@ -531,7 +533,6 @@ bool World::update()
 								{
 
 									#pragma omp critical(astar)
-
 									{
 										npcController.aStar(map, thisCharacter);
 									}

@@ -32,6 +32,8 @@ public:
 	void runMenu();
 	int  SelectNumberOfCharacters();
 	bool initplayers();
+	void networking();
+	void aniamtion();
 
 };
 

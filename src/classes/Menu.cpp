@@ -73,7 +73,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 		music.setVolume(50);         // reduce the volume
 		music.setLoop(true);         // make it loop
 	}
-
+	music.play();
 };
 
 /**
@@ -92,7 +92,11 @@ bool Menu::changeText(std::string text)
 */
 void Menu::runMenu()
 {
-	music.play();
+	if (sf::Music::Status::Stopped  == music.getStatus())
+	{
+		music.play();
+	}
+
 	localPlay.setString("Singleplayer");
 	networkPlay.setString("Multiplayer");
 	exit.setString("Exit");
@@ -154,10 +158,12 @@ void Menu::runMenu()
 					}
 				case 1:
 					{
+						networking();
 						break;
 					}
 				case 2:
 					{
+						music.stop();
 						window->close();
 						menuOpen = false;
 						break;
@@ -191,21 +197,7 @@ void Menu::runMenu()
 			}
 		}
 
-		int curentTime = timer.getElapsedTime().asMilliseconds();
-		printf("timer is: %d \r",curentTime);
-		curentTime = timer.getElapsedTime().asMilliseconds();
-
-		if(curentTime > 50)
-		{
-			timer.restart();
-			curentTime = timer.getElapsedTime().asSeconds();
-			imageCount ++;
-
-			if(imageCount >12)
-			{
-				imageCount = 0;
-			}
-		}
+		aniamtion();
 	}
 
 };
@@ -221,7 +213,6 @@ int  Menu::SelectNumberOfCharacters()
 	std::string numOfPlayersText;
 	std::string menutext;
 	sf::Event event;
-
 
 	while(menuOpen)
 	{
@@ -243,7 +234,6 @@ int  Menu::SelectNumberOfCharacters()
 				initplayers();
 				menuOpen = false;
 			}
-
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
@@ -271,33 +261,94 @@ int  Menu::SelectNumberOfCharacters()
 		{
 			runMenu();
 		}
-		int curentTime = timer.getElapsedTime().asMilliseconds();
-		printf("timer is: %d \r",curentTime);
-		curentTime = timer.getElapsedTime().asMilliseconds();
-
-		if(curentTime > 50)
-		{
-			timer.restart();
-			curentTime = timer.getElapsedTime().asSeconds();
-			imageCount ++;
-
-			if(imageCount >12)
-			{
-				imageCount = 0;
-			}
-		}
+		aniamtion();
 	}
 	return numOfPlayers;
 };
 
+
+void Menu::networking()
+{
+	sf::Event event;
+	std::string ip;
+	int ipLength = 0;
+	bool running = true;
+
+	window->setKeyRepeatEnabled(false);
+	window->pollEvent(event);
+	ip = "";
+	localPlay.setString("ip address:");
+
+	while(running)
+	{
+		networkDraw();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+		{
+				ip.insert((ip.size()),"1");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+		{
+			ip.insert((ip.size()),"2");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+		{
+			ip.insert((ip.size()),"3");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+		{
+			ip.insert((ip.size()),"4");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+		{
+			ip.insert((ip.size()),"5");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
+		{
+			ip.insert((ip.size()),"6");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
+		{
+			ip.insert((ip.size()),"7");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
+		{
+				ip.insert((ip.size()),"8");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
+		{
+			ip.insert((ip.size()),"9");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+		{
+				ip.insert((ip.size()),"0");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Period))
+		{
+			ip.insert((ip.size()),".");
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Back))
+		{
+			if (ip.size() > 0)
+			{
+				ip.resize(ip.size()-1);
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			runMenu();
+		}
+		if(ip.size() > 15)
+		{
+			ip.resize(15);
+		}
+		networkPlay.setString(ip);
+		aniamtion();
+	};
+};
+
 bool Menu::initplayers()
 {
-	
-
-	
-	
 	int i;
-
 	World *world;
 	world = world->getWorld();
 
@@ -341,6 +392,28 @@ bool Menu::initplayers()
 };
 
 
+void Menu::aniamtion()
+{
+	int curentTime = timer.getElapsedTime().asMilliseconds();
+	printf("timer is: %d \r",curentTime);
+	curentTime = timer.getElapsedTime().asMilliseconds();
+
+	if(curentTime > 50)
+	{
+		timer.restart();
+		curentTime = timer.getElapsedTime().asSeconds();
+		imageCount ++;
+
+		if(imageCount >12)
+		{
+			imageCount = 0;
+		}
+	}
+
+}
+
+
+
 /**
 * @brif: Draw main menu to screen.
 */
@@ -370,5 +443,10 @@ void Menu::localDraw()
 */
 void Menu::networkDraw()
 {
-
+	
+	window->draw(sprite);
+	window->draw(title);
+	window->draw(localPlay);
+	window->draw(networkPlay);
+	window->display();
 };
