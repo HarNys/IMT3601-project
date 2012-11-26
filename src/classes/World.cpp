@@ -481,7 +481,7 @@ bool World::update()
 		// start of operations
 
 		//#pragma omp for schedule(dynamic)
-		#pragma omp parallel for
+		//#pragma omp parallel for
 		for (yCount = 0; yCount < area; yCount++)
 		{
 			for (xCount = 0; xCount < area; xCount++)
@@ -539,10 +539,10 @@ bool World::update()
 								if (thisCharacter->getIsNpc())
 								{
 
-									#pragma omp critical(astar)
-									{
+									//#pragma omp critical(astar)
+									//{
 										npcController.aStar(map, thisCharacter);
-									}
+									//}
 								}
 							}
 							thisCharacter->setLastUpdate(updatetime);
@@ -558,11 +558,7 @@ bool World::update()
 		{
 			setGoal();
 		}
-
 	}
-
-
-
 	return true;
 };
 
