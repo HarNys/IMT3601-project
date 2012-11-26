@@ -387,7 +387,14 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 					}
 					else
 					{
-						whatIsThere = (char *) "there is a Character";
+						if (!nextTile->getHasCharacter()->updateCharacterHealth(-5))
+						{
+							Character * tempcharacter;
+							tempcharacter = nextTile->getHasCharacter();
+							nextTile->setCharacter(NULL);
+							placeCharacter(tempcharacter);
+						}
+						whatIsThere = (char *) "there is a Character, stab!";
 					}
 				}
 				else

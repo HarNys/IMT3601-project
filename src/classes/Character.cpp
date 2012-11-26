@@ -18,23 +18,28 @@ Character::Character()
 	lastUpdate = 0;
 	sprite.setPosition((15 * 1), (15 * 1));
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	pointsValue = 0;
+	aggressivenes = 0;
 };
 
 /**
 *	@brief Updates characters healt if it taks demages og health is refreshed etc.
 *	@param health The amount of healt to add/subtract.
 *	@todo when dead give signal to pop up menu or something like that.
+*	@return true if alive, false if dead
 */
-void Character::updateCharacterHealth(int health)
+bool Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
 	printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \r",characterID, characterHealth);
 	if(characterHealth < 1)
 	{
-		printf("\n\n---player %d is dead---\n\n",characterID);
+		updatePoints(-1);
+		printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
 		updateCharacterHealth(10);		///< resets characters health if dead
-
+		return false;
 	}
+	return true;
 }
 
 /**
@@ -212,7 +217,6 @@ void Character::useController(Character* thischaracter)
 	}
 	else if(controllerType == AiControl)
 	{
-
 		//npcController.movement(thischaracter);
 		if (startStack && endStack)
 		{
@@ -230,6 +234,33 @@ void Character::useController(Character* thischaracter)
 			startStack = tempStackNode;
 			}
 			thischaracter->updateSprite();
+		}
+
+		// @todo the const should be changed to reflect dificulty
+		if (!(rand()%5))
+		{
+			 characterDirectionX =0;
+			 characterDirectionY =0;
+		/*	if (tempdirection = 0)
+			{
+				characterDirectionX = 0;
+				characterDirectionY = -1;
+			}
+			if (tempdirection = 1)
+			{
+				characterDirectionX = 1;
+				characterDirectionY = 0;
+			}
+			if (tempdirection = 2)
+			{
+				characterDirectionX = 0;
+				characterDirectionY = 1;
+			}
+			if (tempdirection = 3)
+			{
+				characterDirectionX = -1;
+				characterDirectionY = 0;
+			}*/
 		}
 	}
 	else if(controllerType == NetworkControl)
@@ -317,4 +348,30 @@ bool Character::setLastUpdate(int time)
 int Character::getLastUpdate()
 {
 	return lastUpdate;
+}
+
+int Character::updatePoints(int adjustment)
+{
+	pointsValue += adjustment;
+	return pointsValue;
+}
+
+bool Character::setAggressivenes(int newaggro)
+{
+	aggressivenes = newaggro;
+	return true;
+}
+	
+int Character::getAggressivenes()
+{
+	return aggressivenes;
+}
+	
+int Character::getHealth()
+{
+	return characterHealth;
+}
+int Character::getPoints()
+{
+	return pointsValue;
 }
