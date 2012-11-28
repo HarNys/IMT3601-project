@@ -7,10 +7,11 @@ int main(int argc, char **argv)
 {
 	#ifdef _OPENMP
 	{
-		omp_set_num_threads(10);
+		//omp_set_num_threads(10);
 		int num_threads = 0;
 		num_threads = omp_get_num_threads();
 		printf("Number of threads: %d \n",num_threads);
+		omp_set_num_threads(num_threads/2);
 	}
 	#endif //_OPENMP 
 

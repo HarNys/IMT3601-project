@@ -379,11 +379,14 @@ bool Menu::initplayers()
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
-	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
+	
+	//This is comented out to just have npc's running around 
+
+	/*printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
 	player->setID(0);
-	world->placeCharacter(player);
+	world->placeCharacter(player);*/
 
 	Character *npc;
 
