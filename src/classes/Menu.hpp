@@ -11,8 +11,8 @@ private:
 	sf::Image *menuImage;
 	sf::Font font;
 	sf::Text title;
-	sf::Text localPlay;
-	sf::Text networkPlay;
+	sf::Text textLineOne;
+	sf::Text textLineTwo;
 	sf::Text exit;
 	sf::RenderWindow* window;
 	sf::Music music;

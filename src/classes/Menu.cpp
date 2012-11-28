@@ -7,6 +7,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	menuOpen = true;
 	numOfPlayers = 0;
 	imageCount = 0;
+	int textHight = 200;
 	//imageCountY = 1;
 	gameRuning = false;
 
@@ -34,34 +35,38 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 		printf("Success on loading font \n");
 	}
 
-	// Create a text
-	localPlay.setString("Singleplayer");
-	localPlay.setFont(font);
-	localPlay.setCharacterSize(30);
-	localPlay.setStyle(sf::Text::Bold);
-	localPlay.setColor(sf::Color::Green);
-	localPlay.setPosition(250,200);
-
-	networkPlay.setString("Multiplayer");
-	networkPlay.setFont(font);
-	networkPlay.setCharacterSize(30);
-	networkPlay.setStyle(sf::Text::Bold);
-	networkPlay.setColor(sf::Color::Green);
-	networkPlay.setPosition(250,240);
-
-	exit.setString("Exit");
-	exit.setFont(font);
-	exit.setCharacterSize(30);
-	exit.setStyle(sf::Text::Bold);
-	exit.setColor(sf::Color::Green);
-	exit.setPosition(250,280);
-
+	// Create a title
 	title.setString("Frank Darkhawk's MAZE!!!");
 	title.setFont(font);
 	title.setCharacterSize(30);
 	title.setStyle(sf::Text::Bold);
 	title.setColor(sf::Color::Green);
 	title.setPosition(200,0);
+
+	// Create a text
+	textLineOne.setString("Singleplayer");
+	textLineOne.setFont(font);
+	textLineOne.setCharacterSize(30);
+	textLineOne.setStyle(sf::Text::Bold);
+	textLineOne.setColor(sf::Color::Green);
+	textLineOne.setPosition(250,200);
+	textHight += 40;
+
+	textLineTwo.setString("Multiplayer");
+	textLineTwo.setFont(font);
+	textLineTwo.setCharacterSize(30);
+	textLineTwo.setStyle(sf::Text::Bold);
+	textLineTwo.setColor(sf::Color::Green);
+	textLineTwo.setPosition(250,textHight);
+	textHight += 40;
+
+	exit.setString("Exit");
+	exit.setFont(font);
+	exit.setCharacterSize(30);
+	exit.setStyle(sf::Text::Bold);
+	exit.setColor(sf::Color::Green);
+	exit.setPosition(250,textHight);
+
 
 	// Open it from an audio file
 	if (!music.openFromFile("music/Circuit_Soldiers-The_Night_before_Battle.ogg"))
@@ -83,7 +88,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 */
 bool Menu::changeText(std::string text)
 {
-	Menu::localPlay.setString(text);
+	Menu::textLineOne.setString(text);
 	return true;
 };
 
@@ -97,8 +102,8 @@ void Menu::runMenu()
 		music.play();
 	}
 
-	localPlay.setString("Singleplayer");
-	networkPlay.setString("Multiplayer");
+	textLineOne.setString("Singleplayer");
+	textLineTwo.setString("Multiplayer");
 	exit.setString("Exit");
 	menuOpen = true;
 	int menuItem = 0;
@@ -176,22 +181,22 @@ void Menu::runMenu()
 		{
 		case 0:
 			{
-				localPlay.setColor(sf::Color::Yellow);
-				networkPlay.setColor(sf::Color::Green);
+				textLineOne.setColor(sf::Color::Yellow);
+				textLineTwo.setColor(sf::Color::Green);
 				exit.setColor(sf::Color::Green);
 				break;
 			}
 		case 1:
 			{
-				localPlay.setColor(sf::Color::Green);
-				networkPlay.setColor(sf::Color::Yellow);
+				textLineOne.setColor(sf::Color::Green);
+				textLineTwo.setColor(sf::Color::Yellow);
 				exit.setColor(sf::Color::Green);
 				break;
 			}
 		case 2:
 			{
-				localPlay.setColor(sf::Color::Green);
-				networkPlay.setColor(sf::Color::Green);
+				textLineOne.setColor(sf::Color::Green);
+				textLineTwo.setColor(sf::Color::Green);
 				exit.setColor(sf::Color::Yellow);
 				break;
 			}
@@ -213,8 +218,10 @@ int  Menu::SelectNumberOfCharacters()
 	std::string numOfPlayersText;
 	std::string menutext;
 	sf::Event event;
+	bool running = true;
 
-	while(menuOpen)
+	//while this part of the menu is running
+	while(running)
 	{
 		window->setKeyRepeatEnabled(false);
 		window->pollEvent(event);
@@ -232,6 +239,7 @@ int  Menu::SelectNumberOfCharacters()
 			if(event.KeyReleased && event.key.code == sf::Keyboard::E)
 			{
 				initplayers();
+				running = false;
 				menuOpen = false;
 			}
 		}
@@ -259,7 +267,7 @@ int  Menu::SelectNumberOfCharacters()
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			runMenu();
+			running = false;
 		}
 		aniamtion();
 	}
@@ -277,8 +285,9 @@ void Menu::networking()
 	window->setKeyRepeatEnabled(false);
 	window->pollEvent(event);
 	ip = "";
-	localPlay.setString("ip address:");
+	textLineOne.setString("ip address:");
 
+	//while this part of the menu is running
 	while(running)
 	{
 		networkDraw();
@@ -335,13 +344,15 @@ void Menu::networking()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			runMenu();
+			running = false;
 		}
+		
+		//check the size of ip address
 		if(ip.size() > 15)
 		{
 			ip.resize(15);
 		}
-		networkPlay.setString(ip);
+		textLineTwo.setString(ip);
 		aniamtion();
 	};
 };
@@ -421,8 +432,8 @@ void Menu::mainDraw()
 {
 	window->draw(sprite);
 	window->draw(title);
-	window->draw(localPlay);
-	window->draw(networkPlay);
+	window->draw(textLineOne);
+	window->draw(textLineTwo);
 	window->draw(exit);
 	window->display();
 };
@@ -434,7 +445,7 @@ void Menu::localDraw()
 {
 	window->draw(sprite);
 	window->draw(title);
-	window->draw(localPlay);
+	window->draw(textLineOne);
 	window->display();
 };
 
@@ -446,7 +457,7 @@ void Menu::networkDraw()
 	
 	window->draw(sprite);
 	window->draw(title);
-	window->draw(localPlay);
-	window->draw(networkPlay);
+	window->draw(textLineOne);
+	window->draw(textLineTwo);
 	window->display();
 };

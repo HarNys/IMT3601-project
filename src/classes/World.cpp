@@ -515,11 +515,11 @@ bool World::update()
 
 						}
 					}
-					#pragma omp critical(characterMovement)
+					
+					if ((thisCharacter = thisTile->getHasCharacter()))
 					{
-						if ((thisCharacter = thisTile->getHasCharacter()))
+						#pragma omp critical(characterMovement)
 						{
-						
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
 							
