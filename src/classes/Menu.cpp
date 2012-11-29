@@ -97,10 +97,7 @@ bool Menu::changeText(std::string text)
 */
 void Menu::runMenu()
 {
-	if (sf::Music::Status::Stopped  == music.getStatus())
-	{
-		music.play();
-	}
+	music.play();
 
 	textLineOne.setString("Singleplayer");
 	textLineTwo.setString("Multiplayer");
@@ -346,7 +343,7 @@ void Menu::networking()
 		{
 			running = false;
 		}
-		
+
 		//check the size of ip address
 		if(ip.size() > 15)
 		{
@@ -379,8 +376,8 @@ bool Menu::initplayers()
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
-	
-	//This is comented out to just have npc's running around 
+
+	//This is comented out to just have npc's running around
 
 	/*printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
@@ -457,7 +454,7 @@ void Menu::localDraw()
 */
 void Menu::networkDraw()
 {
-	
+
 	window->draw(sprite);
 	window->draw(title);
 	window->draw(textLineOne);
