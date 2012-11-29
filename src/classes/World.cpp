@@ -158,25 +158,25 @@ void World::randomGenerate(bool start)
 		{
 			map[currentX][currentY - 2]->setFrontier(); //setFrontier sets a variabel to true if it's part of the Frontier
 			unVisited->push_front(map[currentX][currentY - 2]);
-			printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY - 2);
+	//		printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY - 2);
 		}
 		if (currentX + 2 < area - 1)
 		{
 			map[currentX + 2][currentY]->setFrontier();
 			unVisited->push_front(map[currentX + 2][currentY]);
-			printf("Currentx: %2d CurrentY: %2d\n", currentX + 2, currentY);
+	//		printf("Currentx: %2d CurrentY: %2d\n", currentX + 2, currentY);
 		}
 		if (currentY + 2 < area - 1)
 		{
 			map[currentX][currentY + 2]->setFrontier();
 			unVisited->push_front(map[currentX][currentY + 2]);
-			printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY + 2);
+	//		printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY + 2);
 		}
 		if (currentX - 2 > border)
 		{
 			map[currentX - 2][currentY]->setFrontier();
 			unVisited->push_front(map[currentX - 2][currentY]);
-			printf("Currentx: %2d CurrentY: %2d\n", currentX - 2, currentY);
+	//		printf("Currentx: %2d CurrentY: %2d\n", currentX - 2, currentY);
 		}
 	}
 	int count = 0;
@@ -185,7 +185,7 @@ void World::randomGenerate(bool start)
 		count++;
 
 
-		printf("1 Unvisited size: %2lud\n", unVisited->size());
+	//	printf("1 Unvisited size: %2lud\n", unVisited->size());
 
 
 		Direction = rand() % 4;
@@ -211,10 +211,10 @@ void World::randomGenerate(bool start)
 		}
 
 
-			printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
-			"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
-			"World::randomGenerate(bool): frontier size: %4lu\n\n",
-			currentX, currentY, directionX, directionY, unVisited->size());
+	//		printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
+	//		"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
+	//		"World::randomGenerate(bool): frontier size: %4lu\n\n",
+	//		currentX, currentY, directionX, directionY, unVisited->size());
 
 				if(((currentX + directionX) < (area - 1)) &&  ((currentX + directionX) > border) &&
 					((currentY + directionY) < (area - 1)) && ((currentY + directionY) > border))
@@ -238,7 +238,7 @@ void World::randomGenerate(bool start)
 								map[currentX - (directionX/2)][currentY - (directionY/2)]->setVisited(false, currentX - (directionX/2), currentY - (directionY/2));
 								visited->push_front(map[currentX - (directionX/2)][currentY - (directionY/2)]);
 							}
-							printf("Visited size: %2lud Unvisited size: %2lud", visited->size(), unVisited->size());
+		//					printf("Visited size: %2lud Unvisited size: %2lud", visited->size(), unVisited->size());
 							// push the next 4 on
 							if (currentX - 2 > border)
 							{
@@ -248,7 +248,7 @@ void World::randomGenerate(bool start)
 									{
 										map[currentX - 2][currentY]->setFrontier();
 										unVisited->push_front(map[currentX - 2][currentY]);
-										printf("Currentx: %2d CurrentY: %2d\n", currentX - 2, currentY);
+		//								printf("Currentx: %2d CurrentY: %2d\n", currentX - 2, currentY);
 									}
 								}
 							}
@@ -260,7 +260,7 @@ void World::randomGenerate(bool start)
 									{
 										map[currentX][currentY + 2]->setFrontier();
 										unVisited->push_front(map[currentX][currentY + 2]);
-										printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY + 2);
+			//							printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY + 2);
 									}
 								}
 							}
@@ -272,7 +272,7 @@ void World::randomGenerate(bool start)
 									{
 										map[currentX + 2][currentY]->setFrontier();
 										unVisited->push_front(map[currentX + 2][currentY]);
-										printf("Currentx: %2d CurrentY: %2d\n", currentX + 2, currentY);
+			//							printf("Currentx: %2d CurrentY: %2d\n", currentX + 2, currentY);
 									}
 								}
 							}
@@ -284,16 +284,16 @@ void World::randomGenerate(bool start)
 									{
 										map[currentX][currentY - 2]->setFrontier();
 										unVisited->push_front(map[currentX][currentY - 2]);
-										printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY - 2);
+				//						printf("Currentx: %2d CurrentY: %2d\n", currentX, currentY - 2);
 									}
 								}
 							}
-
-							printf("2 Unvisited size: %2lud\n", unVisited->size());
-							printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
-							"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
-							"World::randomGenerate(bool): frontier size: %4lu\n",
-							currentX, currentY, directionX, directionY, unVisited->size());
+							
+		//					printf("2 Unvisited size: %2lud\n", unVisited->size());
+		//					printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
+		//					"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
+		//					"World::randomGenerate(bool): frontier size: %4lu\n",
+		//					currentX, currentY, directionX, directionY, unVisited->size());
 
 							if(count % 5 == 0)	//this adds a random tile every 5 step so we create an imperfect maze
 							{
@@ -326,19 +326,19 @@ void World::randomGenerate(bool start)
 			}
 			else
 			{
-				printf("!!  unVisited->remove\n");
+		//		printf("!!  unVisited->remove\n");
 			}
 
 		if(unVisited->empty())
 		{
-			printf("!!  unVisited->empty()\n");
+		//	printf("!!  unVisited->empty()\n");
 		}
 		else
 		{
-			printf("3 Unvisited size: %2lud\n", unVisited->size());
+		//	printf("3 Unvisited size: %2lud\n", unVisited->size());
 		}
 	}
-	printf("!!  finished !!\n");
+//	printf("!!  finished !!\n");
 }
 
 
