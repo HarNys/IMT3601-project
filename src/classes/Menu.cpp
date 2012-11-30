@@ -265,6 +265,9 @@ int  Menu::SelectNumberOfCharacters()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			running = false;
+			textLineOne.setString("Singleplayer");
+			textLineTwo.setString("Multiplayer");
+			exit.setString("Exit");
 		}
 		aniamtion();
 	}
@@ -342,6 +345,7 @@ void Menu::networking()
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			running = false;
+
 		}
 
 		//check the size of ip address
@@ -352,6 +356,9 @@ void Menu::networking()
 		textLineTwo.setString(ip);
 		aniamtion();
 	};
+	textLineOne.setString("Singleplayer");
+	textLineTwo.setString("Multiplayer");
+	exit.setString("Exit");
 };
 
 bool Menu::initplayers()
