@@ -481,7 +481,7 @@ bool World::update()
 		// start of operations
 
 		//#pragma omp for schedule(dynamic)
-		//#pragma omp parallel for
+		#pragma omp parallel for
 		for (yCount = 0; yCount < area; yCount++)
 		{
 			for (xCount = 0; xCount < area; xCount++)
@@ -516,10 +516,11 @@ bool World::update()
 						}
 					}
 					
-					if ((thisCharacter = thisTile->getHasCharacter()))
+					#pragma omp critical(characterMovement)
 					{
-						#pragma omp critical(characterMovement)
+						if ((thisCharacter = thisTile->getHasCharacter()))
 						{
+					
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
 							
