@@ -76,6 +76,7 @@ bool Character::initCharacter()
 	texture.loadFromImage(*characterImage);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
+	
 	return true;
 };
 
