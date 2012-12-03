@@ -599,47 +599,76 @@ void World::draw(sf::RenderWindow *window)
 bool World::placeCharacter(Character *character)
 {
 	printf("World::placeCharacter(Character *character): Start \n");
-	static int small = 1;
-	static int big = area-2;
+	static int small=1;
+	static int big=area-2;
+	static int rotator=0;
 	int increment = 1;
 	bool doneflag = false;
-	while (small<big)
+	
+	//if (!small && !big && !rotator){
+	//small = 1;
+	//big = area-2;
+	//rotator = 0;
+	//}
+
+	while (true)
 	{
-		if ((map[small][small]->getIsWall() == false)
-		&& (map[small][small]->getHasCharacter() == NULL))
+		if (rotator == 0)
 		{
-			map[small][small]->setCharacter(character);
-			character->getSprite()->setPosition(15 * small, 15 * small);
-			printf("World::placeCharacter(Character *character): End \n");
-			return true;
+			rotator++;
+			if ((map[small][small]->getIsWall() == false)
+			&& (map[small][small]->getHasCharacter() == NULL))
+			{
+				map[small][small]->setCharacter(character);
+				character->getSprite()->setPosition(15 * small, 15 * small);
+				printf("World::placeCharacter(Character *character): End \n");
+				return true;
+			}
+			
 		}
-		if ((map[big][small]->getIsWall() == false)
-		&& (map[big][small]->getHasCharacter() == NULL))
+		if (rotator == 1)
 		{
-			map[big][small]->setCharacter(character);
-			character->getSprite()->setPosition(15 * big, 15 * small);
-			printf("World::placeCharacter(Character *character): End \n");
-			return true;
+			rotator++;
+			if ((map[big][small]->getIsWall() == false)
+			&& (map[big][small]->getHasCharacter() == NULL))
+			{
+				map[big][small]->setCharacter(character);
+				character->getSprite()->setPosition(15 * big, 15 * small);
+				printf("World::placeCharacter(Character *character): End \n");
+				return true;
+			}
+			
 		}
-		if ((map[big][big]->getIsWall() == false)
-		&& (map[big][big]->getHasCharacter() == NULL))
+		if (rotator == 2)
 		{
-			map[big][big]->setCharacter(character);
-			character->getSprite()->setPosition(15 * big, 15 * big);
-			printf("World::placeCharacter(Character *character): End \n");
-			return true;
+			rotator++;
+			if ((map[big][big]->getIsWall() == false)
+			&& (map[big][big]->getHasCharacter() == NULL))
+			{
+				map[big][big]->setCharacter(character);
+				character->getSprite()->setPosition(15 * big, 15 * big);
+				printf("World::placeCharacter(Character *character): End \n");
+				return true;
+			}
+			
 		}
-		if ((map[small][big]->getIsWall() == false)
-		&& (map[small][big]->getHasCharacter() == NULL))
+		if (rotator == 3)
 		{
-			map[small][big]->setCharacter(character);
-			character->getSprite()->setPosition(15 * small, 15 * big);
-			printf("World::placeCharacter(Character *character): End \n");
-			return true;
+			rotator=0;
+			small++;
+			big--;
+			if ((map[small][big]->getIsWall() == false)
+			&& (map[small][big]->getHasCharacter() == NULL))
+			{
+				map[small][big]->setCharacter(character);
+				character->getSprite()->setPosition(15 * small, 15 * big);
+				printf("World::placeCharacter(Character *character): End \n");
+				return true;
+			}
+			
 		}
 
-		small++;
-		big--;
+		
 		if (small >= big && doneflag==false)	 
 		{
 			small = 1;
