@@ -5,6 +5,36 @@
 
 int main(int argc, char **argv)
 {
+	/**
+	 * All options possible for configuration should
+	 * be in this struct.
+	 *
+	 * Howto add new options:
+	 * \li Define variable in confSettings struct.
+	 * \li Add file initialization at 'set variables'
+	 * \li Add default initialization at 'generate file from
+	 * 	defaults'
+	 */
+	struct confSettings
+	{
+		int screenwidth;
+		int screenheight;
+		bool fullscreen; ///< fullscreen the application if true
+	};
+	// Reading configuration file, if there is one
+	std::fstream configFile;
+	configFile.open("game.ini", std::fstream::in | std::fstream::out);
+	if (configFile.is_open())
+	{
+		// set variables
+	}
+	else
+	{
+		printf("main(int,char**): Could not open configuration "
+			"file 'game.ini' \n");
+		// generate file from defaults
+	}
+
 	#ifdef _OPENMP
 	{
 		omp_set_num_threads(10);
