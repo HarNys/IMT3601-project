@@ -237,7 +237,7 @@ void Character::useController(Character* thischaracter)
 		}
 
 		// @todo the const should be changed to reflect dificulty
-		if (!(rand()%5))
+		if (!(rand()%4))
 		{
 			 characterDirectionX =0;
 			 characterDirectionY =0;

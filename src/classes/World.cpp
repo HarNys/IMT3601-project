@@ -481,7 +481,7 @@ bool World::update()
 		// start of operations
 
 		//#pragma omp for schedule(dynamic)
-		#pragma omp parallel for
+//		#pragma omp parallel for
 		for (yCount = 0; yCount < area; yCount++)
 		{
 			for (xCount = 0; xCount < area; xCount++)
@@ -509,6 +509,7 @@ bool World::update()
 						if (thisTile->getHasCharacter())
 						{
 							///<@Todo: give character points
+							thisTile->getHasCharacter()->updatePoints(2);
 							thisTile->setGoal(false);
 							goalExists = false;
 							printf("World::Update(): Character hit flag\n");
@@ -551,9 +552,9 @@ bool World::update()
 					}
 				} // end if (!thisTile->getIsWall())
 			} // end xCount
-			int th_id = omp_get_thread_num();
-			printf ("World::update: numTh: %d, thId: %d\r",
-				omp_get_num_threads(), th_id);
+		//	int th_id = omp_get_thread_num();
+		//	printf ("World::update: numTh: %d, thId: %d\r",
+		//		omp_get_num_threads(), th_id);
 		} // end yCount
 		if (!goalExists)		//if the is no goal then make one;
 		{
@@ -598,29 +599,59 @@ void World::draw(sf::RenderWindow *window)
 bool World::placeCharacter(Character *character)
 {
 	printf("World::placeCharacter(Character *character): Start \n");
-	int xSpace = 1;
-	int ySpace = 1;
+	static int small = 1;
+	static int big = area-2;
 	int increment = 1;
-	while ((map[xSpace][ySpace]->getIsWall() == true)
-		|| (map[xSpace][ySpace]->getHasCharacter() != NULL))
+	bool doneflag = false;
+	while (small<big)
 	{
-		if (xSpace+increment < area-1)
+		if ((map[small][small]->getIsWall() == false)
+		&& (map[small][small]->getHasCharacter() == NULL))
 		{
-			xSpace+=increment;
+			map[small][small]->setCharacter(character);
+			character->getSprite()->setPosition(15 * small, 15 * small);
+			printf("World::placeCharacter(Character *character): End \n");
+			return true;
 		}
-		else
+		if ((map[big][small]->getIsWall() == false)
+		&& (map[big][small]->getHasCharacter() == NULL))
 		{
-				xSpace = 1;
-				ySpace++;
+			map[big][small]->setCharacter(character);
+			character->getSprite()->setPosition(15 * big, 15 * small);
+			printf("World::placeCharacter(Character *character): End \n");
+			return true;
 		}
+		if ((map[big][big]->getIsWall() == false)
+		&& (map[big][big]->getHasCharacter() == NULL))
+		{
+			map[big][big]->setCharacter(character);
+			character->getSprite()->setPosition(15 * big, 15 * big);
+			printf("World::placeCharacter(Character *character): End \n");
+			return true;
+		}
+		if ((map[small][big]->getIsWall() == false)
+		&& (map[small][big]->getHasCharacter() == NULL))
+		{
+			map[small][big]->setCharacter(character);
+			character->getSprite()->setPosition(15 * small, 15 * big);
+			printf("World::placeCharacter(Character *character): End \n");
+			return true;
+		}
+
+		small++;
+		big--;
+		if (small >= big && doneflag==false)	 
+		{
+			small = 1;
+			big = area-2;
+			doneflag = true;
+		}
+
 	}
 
-	map[xSpace][ySpace]->setCharacter(character);
-	character->getSprite()->setPosition(15 * xSpace, 15 * ySpace);
-	printf("World::placeCharacter(Character *character): End \n");
-	return true;
+	
+	return false;
 };
-
 
 /**
 *
