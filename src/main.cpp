@@ -15,24 +15,31 @@ int main(int argc, char **argv)
 	 * \li Add default initialization at 'generate file from
 	 * 	defaults'
 	 */
-	struct confSettings
+	struct
 	{
 		int screenwidth;
 		int screenheight;
 		bool fullscreen; ///< fullscreen the application if true
-	};
+	} confSettings;
 	// Reading configuration file, if there is one
 	std::fstream configFile;
 	configFile.open("game.ini", std::fstream::in | std::fstream::out);
 	if (configFile.is_open())
 	{
 		// set variables
+
 	}
 	else
 	{
-		printf("main(int,char**): Could not open configuration "
-			"file 'game.ini' \n");
+		printf("main(int,char**): Could not open configuration file 'game.ini' \n");
+		std::string printConf = "# Configuration file for Frank Darkhawk's Amazing Maze rpg\n";
 		// generate file from defaults
+		confSettings.screenwidth = 800;
+		sprintf(printConf.c_str(),"screenwidth %d\n", confSettings.screenwidth); // SIGSEGV! printconf is not big enough
+		confSettings.screenheight = 600;
+		sprintf(printConf.c_str(),"screenheight %d\n", confSettings.screenheight);
+		confSettings.fullscreen = false;
+		printf("%s",printConf);
 	}
 
 	#ifdef _OPENMP
@@ -43,7 +50,7 @@ int main(int argc, char **argv)
 		printf("Number of threads: %d \n",num_threads);
 		//omp_set_num_threads(num_threads/2);
 	}
-	#endif //_OPENMP 
+	#endif //_OPENMP
 
 	/**
 	 * @todo make mapsizes parsed from arguments.
