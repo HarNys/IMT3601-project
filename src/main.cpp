@@ -22,27 +22,43 @@ int main(int argc, char **argv)
 		bool fullscreen; ///< fullscreen the application if true
 	} confSettings;
 	// Reading configuration file, if there is one
-	std::fstream configFile;
-	configFile.open("game.ini", std::fstream::in | std::fstream::out);
-	if (configFile.is_open())
+	//std::fstream configFile;
+	FILE *configFile;
+	configFile = fopen("game.ini", "r");//std::fstream::in | std::fstream::out);
+	if (configFile == NULL)
 	{
-		// set variables
+		//printf("main(int,char**): Could not open configuration file 'game.ini' \n");
+		perror("main(int,char**): Could not open configuration file 'game.ini' \n");
 	}
 	else
 	{
-		printf("main(int,char**): Could not open configuration file 'game.ini' \n");
-		std::string printConf = "# Configuration file for Frank Darkhawk's Amazing Maze rpg\n";
-		char buffer[256];
-		// generate file from defaults
-		confSettings.screenwidth = 800;
-		sprintf(buffer,"screenwidth %d\n", confSettings.screenwidth);
-		printConf.append(buffer);
-		confSettings.screenheight = 600;
-		sprintf(buffer,"screenheight %d\n", confSettings.screenheight);
-		printConf.append(buffer);
-		confSettings.fullscreen = false;
-		printf("%s",printConf);
+		if (feof(configFile))
+		{
+			printf("main(int,char**): Configuration file 'game.ini' contains: \n");
+			// set variables
+		}
+		else
+		{
+			printf("main(int,char**): Writing default configuration file 'game.ini' \n");
+			//std::string printConf = "# Configuration file for Frank Darkhawk's Amazing Maze rpg\n";
+			fprintf(configFile,"# Configuration file for Frank Darkhawk's Amazing Maze rpg\n");
+			//char buffer[256];
+			// generate file from defaults
+			confSettings.screenwidth = 800;
+			fprintf(configFile,"screenwidth %d\n", confSettings.screenwidth);
+			//printConf.append(buffer);
+			confSettings.screenheight = 600;
+			fprintf(configFile,"screenheight %d\n", confSettings.screenheight);
+			//printConf.append(buffer);
+			confSettings.fullscreen = false;
+			fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
+			//printConf.append(buffer);
+			//printf("%s",printConf.c_str());
+			//fprintf(configFile,"%s",printConf.c_str());
+		}
 	}
+
+	return 0;
 
 	#ifdef _OPENMP
 	{
