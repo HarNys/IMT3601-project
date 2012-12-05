@@ -27,17 +27,19 @@ int main(int argc, char **argv)
 	if (configFile.is_open())
 	{
 		// set variables
-
 	}
 	else
 	{
 		printf("main(int,char**): Could not open configuration file 'game.ini' \n");
 		std::string printConf = "# Configuration file for Frank Darkhawk's Amazing Maze rpg\n";
+		char buffer[256];
 		// generate file from defaults
 		confSettings.screenwidth = 800;
-		sprintf(printConf.c_str(),"screenwidth %d\n", confSettings.screenwidth); // SIGSEGV! printconf is not big enough
+		sprintf(buffer,"screenwidth %d\n", confSettings.screenwidth);
+		printConf.append(buffer);
 		confSettings.screenheight = 600;
-		sprintf(printConf.c_str(),"screenheight %d\n", confSettings.screenheight);
+		sprintf(buffer,"screenheight %d\n", confSettings.screenheight);
+		printConf.append(buffer);
 		confSettings.fullscreen = false;
 		printf("%s",printConf);
 	}
