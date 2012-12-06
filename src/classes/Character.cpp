@@ -76,7 +76,7 @@ bool Character::initCharacter()
 	texture.loadFromImage(*characterImage);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
-	
+
 	return true;
 };
 
@@ -143,7 +143,9 @@ bool Character::setCharacterDirectionX(int newXDirection)
 };
 
 /**
- * @todo document this function
+ * Draws the Character's sprite.
+ *
+ * @param window The game screen we are drawing to/on.
  */
 void Character::draw(sf::RenderWindow *window)
 {
@@ -362,12 +364,12 @@ bool Character::setAggressivenes(int newaggro)
 	aggressivenes = newaggro;
 	return true;
 }
-	
+
 int Character::getAggressivenes()
 {
 	return aggressivenes;
 }
-	
+
 int Character::getHealth()
 {
 	return characterHealth;
