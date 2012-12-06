@@ -43,9 +43,12 @@ Tile::Tile(char quality)
 /**
  * @param[in] wall: the new state of this tile, whether it is a wall
  * 	or floor
+ * @param xPos X position for the sprite.
+ * @param yPos Y position for the sprite.
  *
  * @return true on success
  * @todo make it have a bool toTrue or something similar.
+ * @todo have it call setWall(bool) instead of setting isWall directly.
  */
 
 void Tile::setVisited(bool wall, int xPos, int yPos)
@@ -64,7 +67,7 @@ void Tile::setVisited(bool wall, int xPos, int yPos)
 	}
 
 
-	
+
 };
 
 void Tile::setFrontier()
@@ -346,5 +349,3 @@ bool Tile::reset()
 	return true;
 
 };
-
-

@@ -1,6 +1,8 @@
 #include "../Includes.hpp"
 
-
+/**
+ * @todo Document function.
+ */
 Menu::Menu(sf::RenderWindow* renderWindow)
 {
 	window = renderWindow;
@@ -82,10 +84,10 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 };
 
 /**
-* @brif: change old menu text into new menu text
-* @param std::string text: The new text
-* @return True on succses
-*/
+ * @brief change old menu text into new menu text
+ * @param text The new text
+ * @return True on succses
+ */
 bool Menu::changeText(std::string text)
 {
 	Menu::textLineOne.setString(text);
@@ -93,8 +95,9 @@ bool Menu::changeText(std::string text)
 };
 
 /**
-* @brif: Menu Loop
-*/
+ * @brief Menu Loop
+ * @todo Document function.
+ */
 void Menu::runMenu()
 {
 	music.play();
@@ -205,9 +208,9 @@ void Menu::runMenu()
 };
 
 /**
-* @brif: Select number of players in the game
+* @brief Select number of players in the game
 * @return The number of players
-* @todo: Stop keys from repeating.
+* @todo Stop keys from repeating.
 */
 int  Menu::SelectNumberOfCharacters()
 {
@@ -274,7 +277,9 @@ int  Menu::SelectNumberOfCharacters()
 	return numOfPlayers;
 };
 
-
+/**
+ * Document function.
+ */
 void Menu::networking()
 {
 	sf::Event event;
@@ -361,6 +366,9 @@ void Menu::networking()
 	exit.setString("Exit");
 };
 
+/**
+ * Document function.
+ */
 bool Menu::initplayers()
 {
 	int i;
@@ -409,7 +417,9 @@ bool Menu::initplayers()
 	return true;
 };
 
-
+/**
+ * Document function.
+ */
 void Menu::aniamtion()
 {
 	int curentTime = timer.getElapsedTime().asMilliseconds();
@@ -433,7 +443,7 @@ void Menu::aniamtion()
 
 
 /**
-* @brif: Draw main menu to screen.
+* @brief Draw main menu to screen.
 */
 void Menu::mainDraw()
 {
@@ -446,7 +456,7 @@ void Menu::mainDraw()
 };
 
 /**
-* @brif: Draw singleplayer part of menu to screen.
+* @brief Draw singleplayer part of menu to screen.
 */
 void Menu::localDraw()
 {
@@ -457,7 +467,7 @@ void Menu::localDraw()
 };
 
 /**
-* @brif: Draw netowk part of menu to screen.
+* @brief Draw netowk part of menu to screen.
 */
 void Menu::networkDraw()
 {

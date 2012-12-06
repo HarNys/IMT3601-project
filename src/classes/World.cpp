@@ -50,7 +50,6 @@ World *World::getWorld()
  *
  * @param[in] mapFile the relative path to the text file containing the map to
  * 	be loaded.
- * @param[out] windowSize the size of the window we draw to.
  *
  * @return true on success.
  *
@@ -288,7 +287,7 @@ void World::randomGenerate(bool start)
 									}
 								}
 							}
-							
+
 		//					printf("2 Unvisited size: %2lud\n", unVisited->size());
 		//					printf("World::randomGenerate(bool): currX, currY: %2d, %2d\n"
 		//					"World::randomGenerate(bool): dirX, dirY: %2d, %2d\n"
@@ -354,7 +353,7 @@ void World::randomGenerate(bool start)
  */
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
-	
+
 	int characterDirectionX = 0;
 	int characterDirectionY = 0;
 	characterDirectionX = character->getCharacterDirectionX();
@@ -414,8 +413,8 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	}
 	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
 		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
-	
-	
+
+
 	//#pragma omp critical
 
 	return false;
@@ -508,7 +507,7 @@ bool World::update()
 
 						if (thisTile->getHasCharacter())
 						{
-							///<@Todo: give character points
+							///<@todo give character points
 							thisTile->getHasCharacter()->updatePoints(2);
 							thisTile->setGoal(false);
 							goalExists = false;
@@ -516,15 +515,15 @@ bool World::update()
 
 						}
 					}
-					
+
 					#pragma omp critical(characterMovement)
 					{
 						if ((thisCharacter = thisTile->getHasCharacter()))
 						{
-					
+
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
-							
+
 								thisCharacter->useController(thisCharacter);
 								if (thisCharacter->getMinePlaced())
 								{
@@ -604,7 +603,7 @@ bool World::placeCharacter(Character *character)
 	static int rotator=0;
 	int increment = 1;
 	bool doneflag = false;
-	
+
 	//if (!small && !big && !rotator){
 	//small = 1;
 	//big = area-2;
@@ -624,7 +623,7 @@ bool World::placeCharacter(Character *character)
 				printf("World::placeCharacter(Character *character): End \n");
 				return true;
 			}
-			
+
 		}
 		if (rotator == 1)
 		{
@@ -637,7 +636,7 @@ bool World::placeCharacter(Character *character)
 				printf("World::placeCharacter(Character *character): End \n");
 				return true;
 			}
-			
+
 		}
 		if (rotator == 2)
 		{
@@ -650,7 +649,7 @@ bool World::placeCharacter(Character *character)
 				printf("World::placeCharacter(Character *character): End \n");
 				return true;
 			}
-			
+
 		}
 		if (rotator == 3)
 		{
@@ -665,11 +664,11 @@ bool World::placeCharacter(Character *character)
 				printf("World::placeCharacter(Character *character): End \n");
 				return true;
 			}
-			
+
 		}
 
-		
-		if (small >= big && doneflag==false)	 
+
+		if (small >= big && doneflag==false)
 		{
 			small = 1;
 			big = area-2;
@@ -678,13 +677,13 @@ bool World::placeCharacter(Character *character)
 
 	}
 
-	
+
 	return false;
 };
 
 /**
 *
-*	Finds one random tile on the map that is not a wall or a character, and 
+*	Finds one random tile on the map that is not a wall or a character, and
 *	sets that as goal
 *
 */
@@ -720,7 +719,7 @@ int World::getArea(){
 
 
 /**
-*	moves through all tiles and emptyes them 
+*	moves through all tiles and emptyes them
 *
 */
 bool World::reset()

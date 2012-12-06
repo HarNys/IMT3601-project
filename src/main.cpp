@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	{
 		int screenwidth;
 		int screenheight;
-		bool fullscreen; ///< fullscreen the application if true
+		bool fullscreen; //!> fullscreen the application if true
 	} confSettings;
 	// Reading configuration file, if there is one
 	FILE *configFile;

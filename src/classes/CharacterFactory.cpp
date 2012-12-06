@@ -10,7 +10,7 @@ CharacterFactory *CharacterFactory::characterFactory = NULL;
 
 CharacterFactory::CharacterFactory()
 {
-	
+
 	int maxChar=10;
 	Character* tempChar = new Character();
 	tempChar->initImage();
@@ -43,8 +43,6 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 /**
  * gets one charecter for you to do some nasty things with if an event is
  * triggered.
- *
- *@param [in] 0 for player character, 1 for NonPlayerCharacter, 3 for network character.
  *
  * @return on succes: pointer to a new(read: reinitialized) Character
  * 	\n on failure: NULL
@@ -91,8 +89,8 @@ bool CharacterFactory::releaseCharacter(Character *characterReleased)
 			usedCharacters.erase(umIter);
 		}
 	}
-	
-	
+
+
 	//printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
 	return true;
 }

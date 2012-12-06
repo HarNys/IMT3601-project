@@ -1,11 +1,11 @@
 #include "../Includes.hpp"
 
 /**
-*	@brief finds shortest bath and gives node pointers to player to calculate velocity
-*	@param the map in question, not really needed. the character that is to be moved
-*	@todo, give a list of coordinates to visit, so search can be done more rarely.
-*/
-
+ * @brief finds shortest bath and gives node pointers to player to calculate velocity
+ * @param map the map in question, not really needed.
+ * @param thisCharacter Character that is to be moved.
+ * @todo give a list of coordinates to visit, so search can be done more rarely.
+ */
 void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 {
 	Tile * thisTile = NULL;
@@ -13,7 +13,7 @@ void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 	Node * tempNode;
 	bool stackFlag = false;
 	int area;
-	
+
 	Node * stackNode = NULL;
 
 
@@ -72,12 +72,12 @@ void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 
 				else
 				{
-					//means no move is necessary 
+					//means no move is necessary
 					tempNode = startNode;
 				}
-				
+
 			}
-				
+
 				//when goal is not reached
 			else
 			{
@@ -117,7 +117,7 @@ Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir
 		if (!startNode->checkTreeRecursivelyForNode(xCoord+xDir, yCoord+yDir)){
 			//checking for wall in the direction
 			World* world = world->getWorld();
-			Tile ***map = world->getMap(); 
+			Tile ***map = world->getMap();
 			Tile* thisTile = map [xCoord+xDir] [yCoord+yDir];
 
 			if  (!thisTile->getIsWall()){ //checks if tile has a wall
@@ -135,7 +135,7 @@ Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir
 					nodeCost += movingChar->getPoints();
 					nodeCost -= movingChar->getHealth();
 					nodeCost -= onTileCharacter->getPoints();
-					
+
 
 					Node* tempNode;
 					tempNode = new Node(xCoord+xDir, yCoord+yDir, nodeParent->getLevel()+nodeCost, goalNode->getXPos(), goalNode->getYPos(), nodeParent);
@@ -143,9 +143,8 @@ Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir
 
 				}
 			}
-			
+
 		}
 	}
 	return NULL;
 };
-	

@@ -206,10 +206,8 @@ bool Character::updateSprite()
 }
 
 /**
-*	@param 	sf::Event e keybordevent,
-*	@param 	Character* thischaracter Character pointer to the character worked on
+*	@param 	thischaracter Character pointer to the character worked on
 */
-
 void Character::useController(Character* thischaracter)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};
@@ -309,11 +307,10 @@ bool Character::placeMine()
 
 
 /**
-*	@brif sets the typ of character this is
+*	@brief sets the typ of character this is
 *	@param type: the type of controller 0=local, 1=npc, 2=network
 *	@return true on succses
 */
-
 bool Character::setCharacterType(int type)
 {
 	controllerType = type;
@@ -321,7 +318,7 @@ bool Character::setCharacterType(int type)
 }
 
 /**
-*	@brif Give the character an ID
+*	@brief Give the character an ID
 *	@param ID: the ID he character is geting
 *	@return true on succses
 */
