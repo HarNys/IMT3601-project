@@ -11,9 +11,8 @@ int main(int argc, char **argv)
 	 *
 	 * Howto add new options:
 	 * \li Define variable in confSettings struct.
+	 * \li Add default initialization at 'generate file from defaults'
 	 * \li Add file initialization at 'set variables'
-	 * \li Add default initialization at 'generate file from
-	 * 	defaults'
 	 */
 	struct
 	{
@@ -22,43 +21,70 @@ int main(int argc, char **argv)
 		bool fullscreen; ///< fullscreen the application if true
 	} confSettings;
 	// Reading configuration file, if there is one
-	bool emptyfile = false; ///< true if confiFile is empty
-	//std::fstream configFile;
 	FILE *configFile;
 	configFile = fopen("game.ini", "r");//std::fstream::in | std::fstream::out);
 	if (configFile == NULL)
 	{
-		//printf("main(int,char**): Could not open configuration file 'game.ini' \n");
 		perror("main(int,char**): Could not open configuration file 'game.ini'");
-		emptyfile = true;
+		printf("main(int,char**): Writing default configuration file 'game.ini' \n");
+		configFile = fopen("game.ini", "w");
+		// generate file from defaults
+		fprintf(configFile,"# Configuration file for Frank Darkhawk's Amazing Maze rpg\n");
+		confSettings.screenwidth = 800;
+		fprintf(configFile,"screenwidth %d\n", confSettings.screenwidth);
+		confSettings.screenheight = 600;
+		fprintf(configFile,"screenheight %d\n", confSettings.screenheight);
+		confSettings.fullscreen = false;
+		fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
+
+		// Close configuration file after writing and setting defaults
+		// Assuming EOF is.
+		fclose(configFile);
 	}
 	else
 	{
-		if (feof(configFile))
+		printf("main(int,char**): Reading configuration file 'game.ini' \n");
+		// set variables
+		char variableBuffer[256];
+		int valueBuffer = 0;
+		while (!feof(configFile))
 		{
-			printf("main(int,char**): Configuration file 'game.ini' contains: \n");
-			// set variables
+			fscanf(configFile, "%s %d", variableBuffer, &valueBuffer);
+			if (strchr(variableBuffer, '#'))
+			{
+				char seeker;
+				do
+				{
+					seeker = fgetc(configFile);
+					printf("seeker: %c\n", seeker);
+				}
+				while (seeker != '\n');
+			}
+			if (strcmp(variableBuffer, "screenwidth"))
+			{
+				confSettings.screenwidth = valueBuffer;
+				printf("%s %d\n",variableBuffer, confSettings.screenwidth);
+			}
+			if (strcmp(variableBuffer, "screenheight"))
+			{
+				confSettings.screenheight = valueBuffer;
+				printf("%s %d\n",variableBuffer, confSettings.screenheight);
+			}
+			if (strcmp(variableBuffer, "fullscreen"))
+			{
+				confSettings.fullscreen = (bool)valueBuffer;
+				printf("%s %d\n",variableBuffer, confSettings.fullscreen);
+			}
+			else
+			{
+				printf("main(int,char**): Variable '%s' not recognized \n", variableBuffer);
+			}
 		}
-	}
-	if (emptyfile)
-	{
-		printf("main(int,char**): Writing default configuration file 'game.ini' \n");
-		std::string printConf = "# Configuration file for Frank Darkhawk's Amazing Maze rpg\n";
-		//fprintf(configFile,"# Configuration file for Frank Darkhawk's Amazing Maze rpg\n");
-		char buffer[256];
-		// generate file from defaults
-		confSettings.screenwidth = 800;
-		sprintf(buffer,"screenwidth %d\n", confSettings.screenwidth);
-		printConf.append(buffer);
-		confSettings.screenheight = 600;
-		sprintf(buffer,"screenheight %d\n", confSettings.screenheight);
-		printConf.append(buffer);
-		confSettings.fullscreen = false;
-		sprintf(buffer,"fullscreen %d\n", confSettings.fullscreen);
-		printConf.append(buffer);
-		printf("%s",printConf.c_str());
-		freopen(NULL, "w", configFile);
-		fprintf(configFile,"%s",printConf.c_str());
+		printf("main(int,char**): Current configuration: \n");
+		fprintf(stdout,"main(int,char**): screenwidth %d\n", confSettings.screenwidth);
+		fprintf(stdout,"main(int,char**): screenheight %d\n", confSettings.screenheight);
+		fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
+
 	}
 
 	return 0;
