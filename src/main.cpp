@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	{
 		int screenwidth;
 		int screenheight;
-		bool fullscreen; //!> fullscreen the application if true
+		bool fullscreen; // fullscreen the application if true
 	} confSettings;
 	// Reading configuration file, if there is one
 	FILE *configFile;
@@ -82,16 +82,6 @@ int main(int argc, char **argv)
 		fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
 	}
 
-	#ifdef _OPENMP
-	{
-		omp_set_num_threads(10);
-		int num_threads = 0;
-		num_threads = omp_get_num_threads();
-		printf("Number of threads: %d \n",num_threads);
-		//omp_set_num_threads(num_threads/2);
-	}
-	#endif //_OPENMP
-
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
@@ -100,52 +90,32 @@ int main(int argc, char **argv)
 	 * 	the system is ready).
 	 */
 
+	// Open window with configured resolution
 	sf::RenderWindow screen;
 	sf::Music music;
-	screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
-
-/*
-	char fullscreenoption;
-	std::cout << "play in fullscreen? (Y/n)";
-	std::cin >> fullscreenoption;
-
-	if (fullscreenoption == 'n' || fullscreenoption == 'N')
+	if (confSettings.fullscreen)
 	{
-		screen.create(sf::VideoMode(800,600,32),"Neuton presents: Frank Darkhawks Maze RPG!");
+		screen.create(sf::VideoMode(confSettings.screenwidth, confSettings.screenheight,32),
+			"Neuton presents: Frank Darkhawks Maze RPG!", sf::Style::Fullscreen);
 	}
 	else
 	{
-		int screenWith;
-		int ScreenHight;
-		std::cout << "what resolution do you like to have? example: 800 600 \n";
-		std::cin >> screenWith;
-		std::cin >> ScreenHight;
-
-		screen.create(sf::VideoMode(screenWith,ScreenHight,32),"Neuton presents: Frank Darkhawks Maze RPG!",sf::Style::Fullscreen);
+		screen.create(sf::VideoMode(confSettings.screenwidth, confSettings.screenheight,32),
+			"Neuton presents: Frank Darkhawks Maze RPG!");
 	}
-//*/
 	screen.setFramerateLimit(20);
-	printf("main(int,char**): before getting singletons {World, MineFactory, CharacterFactory}\n");
+	//printf("main(int,char**): Before getting singletons {World, MineFactory, CharacterFactory}\n");
 
 	Menu* mainMenu = new Menu(&screen);
 	mainMenu->runMenu();
 
-
-
 	World *world;
 	world = world->getWorld();
-	//if (argv[1]) {
-	//	world->initMap(argv[1]);
-	//}
-	//else
-	//{
-	//	world->initMap((char *)"map/maptwo.txt");
-	//}
 
-		// Open it from an audio file
+	// Open music from an audio file
 	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
 	{
-		printf("main(int argc, char **argv): can't load music");
+		printf("main(int argc, char **argv): Can't load music");
 	}
 	else
 	{
@@ -154,54 +124,47 @@ int main(int argc, char **argv)
 		music.play();
 	}
 
-	printf("main(int,char**): has got all singletons and player1\nmain(int,char**): starting gameloop\n");
+	//printf("main(int,char**): Has got all singletons and player1\nmain(int,char**): Starting gameloop\n");
 	while (screen.isOpen())
 	{
+		world->update();
+		screen.clear();
+		world->draw(&screen);
+//		player1->draw(&screen);
+		screen.display();
 
+		// Process events
+		sf::Event event;
+
+		while (screen.pollEvent(event))
 		{
 
+			//player1->characterInput(event);
 
-			world->update();
-			screen.clear();
-			world->draw(&screen);
-	//		player1->draw(&screen);
-			screen.display();
-
-			// Process events
-			sf::Event event;
-
-			/// @todo add escape as exit button
-
-			while (screen.pollEvent(event))
+			// Close window : exit
+			if (event.type == sf::Event::Closed)
 			{
+				world->~World();
 
-				//player1->characterInput(event);
+				/// @bug program segfaults in here, commented
+				///	out temporarily
+				//mineFactory->~MineFactory();
 
-				// Close window : exit
-				if (event.type == sf::Event::Closed)
+				screen.close();
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::P)
 				{
-					world->~World();
-
-					/// @bug program segfaults in here, commented
-					///	out temporarily
-					//mineFactory->~MineFactory();
-
-					screen.close();
+					world->reset();
 				}
-				if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
 				{
-					if(event.KeyReleased && event.key.code == sf::Keyboard::P)
-					{
-						world->reset();
-					}
-				}
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-				{
-					if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
-					{
-						music.stop();
-						mainMenu->runMenu();
-					}
+					music.stop();
+					mainMenu->runMenu();
 				}
 			}
 		}
