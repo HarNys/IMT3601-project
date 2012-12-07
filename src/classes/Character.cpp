@@ -294,8 +294,11 @@ void Character::useController(Character* thischaracter)
 }
 
 /**
- * @todo Documentation.
- */
+*	@brief removes an old stack of movement and creates the first node in a new one
+*	@param xPos: coordinate in X
+*	@param yPos: coordinate in Y
+*/
+
 void Character::newStack(int xPos, int yPos)
 {
 	if (startStack)
@@ -308,8 +311,10 @@ void Character::newStack(int xPos, int yPos)
 }
 
 /**
- * @todo Documentation.
- */
+*	@brief adds new node to the stack
+*	@param xPos: coordinate in X
+*	@param yPos: coordinate in Y
+*/
 void Character::addStack(int xPos, int yPos){
 	StackNode *tempStackNode;
 	tempStackNode = startStack;
@@ -351,8 +356,9 @@ bool Character::setID(int ID)
 }
 
 /**
- * @todo Documentation.
- */
+*	@brief returns true if character is NPC
+*	@return true of Npc, false if not.
+*/
 bool Character::getIsNpc(){
 	if (1 == controllerType)
 	{
