@@ -19,3 +19,10 @@
  * MA 02110-1301, USA.
  *
  */
+#include "../Includes.hpp"
+
+class NetworkClient : public Network
+{
+private:
+public:
+};

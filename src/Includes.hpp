@@ -55,6 +55,7 @@
 #include <fstream>
 #include <math.h>
 #include <omp.h>
+#include <pthread.h>
 
 
 ///////// LOCAL PROJECT FILES //////////
@@ -70,6 +71,8 @@
 #include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
 #include "classes/Menu.hpp"
+#include "classes/NetworkHost.hpp"
+#include "classes/NetworkClient.hpp"
 
 
 

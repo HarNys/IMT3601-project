@@ -1,5 +1,5 @@
 /*
- * NetworkHost.cpp
+ * Network.hpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
  *
@@ -18,5 +18,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  *
+ *
  */
 #include "../Includes.hpp"
+
+class NetworkHost
+{
+private:
+public:
+};
