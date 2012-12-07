@@ -1,3 +1,25 @@
+/*
+ * Node.cpp
+ *
+ *
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ *
+ *
+ */
 #include "../Includes.hpp"
 
 
@@ -136,7 +158,7 @@ Node* Node::findCheapestUnusedRecursively()
 					return smallestNode;
 			}
 	}
-		
+
 	else if (visited)
 	{
 			return NULL;
@@ -187,39 +209,39 @@ Node::~Node()
 	{
 		delete upChild;
 	}
-	
+
 	if (rightChild)
 	{
 		delete rightChild;
 	}
-	
-	if (downChild) 
+
+	if (downChild)
 	{
 		delete downChild;
 	}
-	
+
 	if (leftChild)
 	{
 		delete leftChild;
 	}
-	
+
 };
 
 Node* Node::getUpChild()
 {
-	return upChild;	
+	return upChild;
 };
 
 Node* Node::getRightChild()
 {
-	return rightChild;	
+	return rightChild;
 };
 
 Node* Node::getDownChild()
 {
 	return downChild;
 };
-	
+
 Node* Node::getLeftChild()
 {
 	return leftChild;
