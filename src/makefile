@@ -18,7 +18,7 @@
 #  MA 02110-1301, USA.
 #
 BINARY = ../main.bin
-OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o ../Debug/Player.o ../Debug/Node.o ../Debug/Menu.o ../Debug/NonPlayerCharacter.o ../Debug/StackNode.o ../Debug/NetworkHost.o ../Debug/NetworkClient.o
+OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFactory.o ../Debug/Mine.o ../Debug/Tile.o ../Debug/CharacterFactory.o ../Debug/Player.o ../Debug/Node.o ../Debug/Menu.o ../Debug/NonPlayerCharacter.o ../Debug/StackNode.o ../Debug/Network.o ../Debug/NetworkHost.o ../Debug/NetworkClient.o
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
 GCC = g++ -Wall -O0 -fopenmp
@@ -77,6 +77,9 @@ $(BINARY) : $(OBJECTS)
 
 ../Debug/StackNode.o : classes/StackNode.cpp classes/StackNode.hpp Includes.hpp
 	$(GCC) $(COMPILEFLAGS) classes/StackNode.cpp -o ../Debug/StackNode.o
+
+../Debug/Network.o : classes/Network.cpp classes/Network.hpp Includes.hpp
+	$(GCC) $(COMPILEFLAGS) classes/Network.cpp -o ../Debug/Network.o
 
 ../Debug/NetworkHost.o : classes/NetworkHost.cpp classes/NetworkHost.hpp Includes.hpp
 	$(GCC) $(COMPILEFLAGS) classes/NetworkHost.cpp -o ../Debug/NetworkHost.o
