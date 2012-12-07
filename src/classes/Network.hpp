@@ -22,8 +22,14 @@
  */
 #include "../Includes.hpp"
 
-class NetworkHost
+class Network
 {
-private:
+protected:
+	int hostSocket;
+	char hostAddress[256];
+	int hostPort;
 public:
+	//int sendAll(int socket, const char *buffer, int *length);
+	// ^^ Not implemented see networking code from Jayson:
+	// 'GucNetworkBase.cpp'
 };
