@@ -24,7 +24,7 @@ LINKFLAGS = -ggdb3	 #  'LINKFLAGS' has a string
 GCC = g++ -Wall -O0 -fopenmp -Wextra -ansi -pedantic #-Weffc++
 # -Weffc++ adds warnings about copy ctor's and overloaded operator=,
 # which is indeed smart, but nothing we have time for now.
-LIBRARIES = -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
+LIBRARIES = -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio -lsfml-network
 
 # syntax for entries:
 #target0 target1 : prerequisite0 prerequisite1
