@@ -31,9 +31,9 @@ next = nextNode;
 };
 StackNode::StackNode ()
 {
-positionX = NULL;
-positionY = NULL;
-next = NULL;
+positionX = 0;
+positionY = 0;
+next = 0;
 }
 
 StackNode::~StackNode()

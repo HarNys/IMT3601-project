@@ -22,7 +22,7 @@ OBJECTS = ../Debug/main.o ../Debug/World.o ../Debug/Character.o ../Debug/MineFac
 COMPILEFLAGS = -ggdb3 -c	# the debug '-g' flag is given here so that 'LINKFLAGS' has a string
 LINKFLAGS = -ggdb3		# ^^
 GCC = g++ -Wall -O0 -fopenmp
-LIBRARIES = -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio
+LIBRARIES = -lsfml-window -lsfml-graphics -lsfml-system -lsfml-audio -lsfml-network
 
 # syntax for entries:
 #target0 target1 : prerequisite0 prerequisite1

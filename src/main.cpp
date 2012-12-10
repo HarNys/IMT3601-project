@@ -24,6 +24,50 @@
  */
 #include "Includes.hpp"
 
+void *chatserver(void *unused)
+{
+	sf::UdpSocket socket;
+	socket.bind(4444);
+	bool quit = false;
+	char buffer[1024];
+	std::size_t received = 0;
+	sf::IpAddress sender;
+	unsigned short port;
+	unsigned short count = 0;
+	while(!quit)
+	{
+		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port))
+		{
+			count++;
+		}
+		printf("%s said: %s, count: %u\r", sender.toString().c_str(), buffer, count);
+		std::string message = "Welcome " + sender.toString();
+		socket.send(message.c_str(), message.size() + 1, sender, port);
+	}
+	return NULL;
+}
+
+void *chatclient(void *params)
+{
+	char *peerIp = (char*) params;
+	// Create a socket and bind it to the port 55001
+	sf::UdpSocket socket;
+	socket.bind(55001);
+	char buffer[1024];
+	std::size_t received = 0;
+	sf::IpAddress sender;
+	unsigned short port;
+	bool quit = 0;
+	while (!quit)
+	{
+		std::string message = "Hi, I am " + sf::IpAddress::getLocalAddress().toString();
+		socket.send(message.c_str(), message.size() + 1, peerIp, 4444);
+		socket.receive(buffer, sizeof(buffer), received, sender, port);
+		printf("%s said: %s\r",sender.toString().c_str() ,buffer);
+	}
+	return NULL;
+}
+
 int main(int argc, char **argv)
 {
 	/**
@@ -35,12 +79,17 @@ int main(int argc, char **argv)
 	 * \li Add default initialization right before
 	 *	'Close configuration file after writing and setting defaults'
 	 * \li Add file initialization at 'set variables'
+	 *
+	 * Note that adding a new option requires either writing a new
+	 * config file, or manually adding in the new option.
 	 */
 	struct
 	{
 		int screenwidth;
 		int screenheight;
 		bool fullscreen; // fullscreen the application if true
+		bool isHost;
+		sf::IpAddress peerIp;
 	} confSettings;
 	// Reading configuration file, if there is one
 	FILE *configFile;
@@ -58,6 +107,10 @@ int main(int argc, char **argv)
 		fprintf(configFile,"screenheight %d\n", confSettings.screenheight);
 		confSettings.fullscreen = false;
 		fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
+		confSettings.isHost = false;
+		fprintf(configFile,"isHost %d\n", confSettings.isHost);
+		confSettings.peerIp = sf::IpAddress::LocalHost;
+		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 
 		// Close configuration file after writing and setting defaults
 		fclose(configFile);
@@ -92,6 +145,15 @@ int main(int argc, char **argv)
 			{
 				confSettings.fullscreen = valueBuffer;
 			}
+			else if (!strcmp(variableBuffer, "isHost"))
+			{
+				confSettings.isHost = valueBuffer;
+			}
+			else if (!strcmp(variableBuffer, "peerIp"))
+			{
+				unsigned int castUInt32Addr = valueBuffer;
+				confSettings.peerIp = sf::IpAddress(castUInt32Addr);
+			}
 			else
 			{
 				printf("main(int,char**): Variable '%s' not recognized \n", variableBuffer);
@@ -101,7 +163,29 @@ int main(int argc, char **argv)
 		fprintf(stdout,"main(int,char**): screenwidth %d\n", confSettings.screenwidth);
 		fprintf(stdout,"main(int,char**): screenheight %d\n", confSettings.screenheight);
 		fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
+		fprintf(stdout,"main(int,char**): isHost %d\n", confSettings.isHost);
+		fprintf(stdout,"main(int,char**): peerIp %s\n", confSettings.peerIp.toString().c_str());
 	}
+
+	pthread_t networkHostThread;
+	pthread_t networkClientThread;
+	if (confSettings.isHost)
+	{
+		// host code, spawn thread.
+		pthread_create(&networkHostThread, NULL, &chatserver, NULL);
+	}
+	else
+	{
+		// client code, spawn thread.
+		pthread_create(&networkClientThread, NULL, &chatclient, (void*)confSettings.peerIp.toString().c_str());
+	}
+	pthread_join(networkHostThread, NULL);
+	pthread_join(networkClientThread, NULL);
+	/*
+	 * We exit the program here for testing purposes during this
+	 * early testing of networking.
+	 */
+	return 0;
 
 	/**
 	 * @todo make mapsizes parsed from arguments.

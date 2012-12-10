@@ -37,6 +37,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Network.hpp>
 #include <SFML/Audio/Music.hpp>
 
 #elif defined __APPLE__&__MACH__
@@ -69,6 +70,7 @@
 #include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
 #include "classes/Menu.hpp"
+#include "classes/Network.hpp"
 #include "classes/NetworkHost.hpp"
 #include "classes/NetworkClient.hpp"
 
