@@ -372,10 +372,19 @@ bool Character::setLastUpdate(int time)
 	lastUpdate = time;
 	return true;
 }
+bool Character::setLastAiUpdate(int time)
+{
+	lastUpdate = time;
+	return true;
+}
 
 int Character::getLastUpdate()
 {
 	return lastUpdate;
+}
+int Character::getLastAiUpdate()
+{
+	return lastAiUpdate;
 }
 
 int Character::updatePoints(int adjustment)
@@ -402,4 +411,16 @@ int Character::getHealth()
 int Character::getPoints()
 {
 	return pointsValue;
+}
+
+bool Character::isStack()
+{
+	if (startStack)
+	{
+		if (NULL != startStack->getNext())
+		{
+			return true;
+		}
+	}
+	return false;
 }
