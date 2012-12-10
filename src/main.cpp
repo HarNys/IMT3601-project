@@ -33,14 +33,14 @@ void *chatserver(void *unused)
 	std::size_t received = 0;
 	sf::IpAddress sender;
 	unsigned short port;
-	unsigned short count = 0;
+	unsigned long count = 0;
 	while(!quit)
 	{
 		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port))
 		{
 			count++;
 		}
-		printf("%s said: %s, count: %u\r", sender.toString().c_str(), buffer, count);
+		printf("%s said: %s, count: %lu\r", sender.toString().c_str(), buffer, count);
 		std::string message = "Welcome " + sender.toString();
 		socket.send(message.c_str(), message.size() + 1, sender, port);
 	}
@@ -58,12 +58,13 @@ void *chatclient(void *params)
 	sf::IpAddress sender;
 	unsigned short port;
 	bool quit = 0;
+	unsigned long count = 0;
 	while (!quit)
 	{
 		std::string message = "Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 		socket.send(message.c_str(), message.size() + 1, peerIp, 4444);
 		socket.receive(buffer, sizeof(buffer), received, sender, port);
-		printf("%s said: %s\r",sender.toString().c_str() ,buffer);
+		printf("%s said: %s, count: %lu\r",sender.toString().c_str() ,buffer, count++);
 	}
 	return NULL;
 }
