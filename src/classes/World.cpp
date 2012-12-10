@@ -96,21 +96,21 @@ bool World::initMap(char *mapFile)
 	map = new Tile**[area];
 	Tile *tempTile = new Tile();
 	tempTile->initImage();
-	for (int xPosition = 0; xPosition < area; xPosition++)
+	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
 		///@note creates tile pointer for each row
-		map[xPosition] = new Tile*[area];
+		map[yPosition] = new Tile*[area];
 
 		///@note the x value of the map
-		for (int yPosition = 0; yPosition < area; yPosition++)
+		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
 			///@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
-				map[xPosition][yPosition] = new Tile(*tempTile);
-				map[xPosition][yPosition]->setPosition(xPosition, yPosition);
-				map[xPosition][yPosition]->initTile(file.get());
-				if (map[xPosition][yPosition]->initSprite(xPosition, yPosition))
+				map[yPosition][xPosition] = new Tile(*tempTile);
+				map[yPosition][xPosition]->setPosition(yPosition, xPosition);
+				map[yPosition][xPosition]->initTile(file.get());
+				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
 //					, (windowSize.x/area), (windowSize.y/area)))
 				{
 					static int count = 0;
