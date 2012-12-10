@@ -599,7 +599,7 @@ void World::draw(sf::RenderWindow *window)
 	{
 		for (int xCount = 0; xCount < area; xCount++)
 		{
-			thisTile = map[xCount][yCount];
+			thisTile = map[yCount][xCount];
 			thisCharacter = thisTile->getHasCharacter();
 
 			// draw the Tile
@@ -610,7 +610,7 @@ void World::draw(sf::RenderWindow *window)
 /*				thisCharacter->getSprite()->setPosition(((float)(15 * xCount)), ((float)(15 * yCount)));
 				thisCharacter->setSprite().setTextureRect(sf::IntRect(0, 51, 15, 15));
 //*/
-				thisCharacter->updateSprite((float) xCount, (float) yCount);
+				thisCharacter->updateSprite((float) yCount, (float) xCount);
 				window->draw(*thisCharacter->getSprite());
 			}
 		}
