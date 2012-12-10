@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 		fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
 		confSettings.isHost = false;
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
-		confSettings.peerIp = sf::IpAddress::LocalHost;
+		confSettings.peerIp = "128.39.142.226";//sf::IpAddress::LocalHost;
 		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 
 		// Close configuration file after writing and setting defaults
