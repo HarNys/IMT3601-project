@@ -42,6 +42,7 @@ private:
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.
 	int characterID;
 	int lastUpdate;
+	int lastAiUpdate;
 	int pointsValue;
 	sf::Texture texture;
 	sf::Sprite sprite;
@@ -82,6 +83,9 @@ public:
 	int getAggressivenes();
 	int getHealth();
 	int getPoints();
+	bool isStack();
+	int getLastAiUpdate();
+	bool setLastAiUpdate(int time);
 
 
 };

@@ -362,8 +362,6 @@ void World::randomGenerate(bool start)
 //	printf("!!  finished !!\n");
 }
 
-
-
 /**
  * Moves Character if possible.
  *
@@ -559,13 +557,14 @@ bool World::update()
 							}
 							if (goalExists)
 							{
-								if (thisCharacter->getIsNpc())
+								if (thisCharacter->getIsNpc() && ((thisCharacter->getLastAiUpdate() <= updatetime-5) || !thisCharacter->isStack()))
 								{
 
 									//#pragma omp critical(astar)
 									//{
 										npcController.aStar(map, thisCharacter);
 									//}
+										thisCharacter->setLastAiUpdate(updatetime);
 								}
 							}
 							thisCharacter->setLastUpdate(updatetime);
@@ -738,7 +737,6 @@ Tile ***World::getMap()
 int World::getArea(){
 	return area;
 }
-
 
 /**
 *	moves through all tiles and emptyes them
