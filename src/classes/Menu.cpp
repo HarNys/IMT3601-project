@@ -301,7 +301,6 @@ void Menu::networking()
 {
 	sf::Event event;
 	std::string ip;
-	int ipLength = 0;
 	bool running = true;
 
 	window->setKeyRepeatEnabled(false);
@@ -315,7 +314,7 @@ void Menu::networking()
 		networkDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{
-				ip.insert((ip.size()),"1");
+			ip.insert((ip.size()),"1");
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 		{
@@ -343,7 +342,7 @@ void Menu::networking()
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
 		{
-				ip.insert((ip.size()),"8");
+			ip.insert((ip.size()),"8");
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
 		{
@@ -351,7 +350,7 @@ void Menu::networking()
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 		{
-				ip.insert((ip.size()),"0");
+			ip.insert((ip.size()),"0");
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Period))
 		{

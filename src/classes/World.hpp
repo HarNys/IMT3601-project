@@ -44,7 +44,7 @@ private:
         Tile ***map;
         int area; //size from origin to one side of the map
         MineFactory *mineFactory;
-		int updatetime;
+	int updatetime;
 public:
         static World *getWorld();
         bool initMap(char *mapFile);
