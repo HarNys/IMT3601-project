@@ -39,6 +39,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/Audio/Music.hpp>
+#include <pthread.h>
 
 #elif defined __APPLE__&__MACH__
 // we are on mac
@@ -55,7 +56,6 @@
 #include <fstream>
 #include <math.h>
 #include <omp.h>
-#include <pthread.h>
 
 
 ///////// LOCAL PROJECT FILES //////////
