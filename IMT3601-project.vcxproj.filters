@@ -9,7 +9,75 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClInclude Include="src\classes\Character.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\CharacterFactory.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Menu.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Mine.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\MineFactory.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Network.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\NetworkClient.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\NetworkHost.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\NetworkPlayerCharacter.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Node.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\NonPlayerCharacter.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Player.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\StackNode.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Tile.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\World.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Includes.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\classes\NetworkClient.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\NetworkHost.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\NetworkPlayerCharacter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\Node.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\NonPlayerCharacter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\Player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\StackNode.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\classes\Tile.cpp">
@@ -33,55 +101,11 @@
     <ClCompile Include="src\classes\MineFactory.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\classes\Node.cpp">
+    <ClCompile Include="src\classes\Network.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\classes\NonPlayerCharacter.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\classes\Player.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\classes\StackNode.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Includes.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\Character.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\CharacterFactory.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\Menu.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\Mine.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\MineFactory.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\Node.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\NonPlayerCharacter.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\Player.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\StackNode.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\Tile.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="src\classes\World.hpp">
-      <Filter>header</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

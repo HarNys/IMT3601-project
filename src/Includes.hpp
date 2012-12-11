@@ -30,7 +30,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Audio/Music.hpp>
-#include <SFML/System/Thread.hpp>
+#include <SFML/Network.hpp>
+#include <pthread.h>
 
 #elif defined __linux__
 //we are on linux
