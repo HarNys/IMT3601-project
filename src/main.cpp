@@ -55,7 +55,8 @@ void *chatclient(void *params)
 	socket.bind(55001);
 	char buffer[1024];
 	std::size_t received = 0;
-	sf::IpAddress sender;
+	sf::IpAddress sender("128.39.142.226");
+//	sender("128.39.142.226");
 	unsigned short port;
 	bool quit = 0;
 	unsigned long count = 0;
