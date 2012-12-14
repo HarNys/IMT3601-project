@@ -24,52 +24,6 @@
  */
 #include "Includes.hpp"
 
-void *chatserver(void *unused)
-{
-	sf::UdpSocket socket;
-	socket.bind(4444);
-	bool quit = false;
-	char buffer[1024];
-	std::size_t received = 0;
-	sf::IpAddress sender;
-	unsigned short port;
-	unsigned long count = 0;
-	while(!quit)
-	{
-		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port))
-		{
-			count++;
-		}
-		printf("%s said: %s, count: %lu\r", sender.toString().c_str(), buffer, count);
-		std::string message = "Welcome " + sender.toString();
-		socket.send(message.c_str(), message.size() + 1, sender, port);
-	}
-	return NULL;
-}
-
-void *chatclient(void *params)
-{
-	char *peerIp = (char*) params;
-	// Create a socket and bind it to the port 55001
-	sf::UdpSocket socket;
-	socket.bind(55001);
-	char buffer[1024];
-	std::size_t received = 0;
-	sf::IpAddress sender("128.39.142.226");
-//	sender("128.39.142.226");
-	unsigned short port;
-	bool quit = 0;
-	unsigned long count = 0;
-	while (!quit)
-	{
-		std::string message = "Hi, I am " + sf::IpAddress::getLocalAddress().toString();
-		socket.send(message.c_str(), message.size() + 1, peerIp, 4444);
-		socket.receive(buffer, sizeof(buffer), received, sender, port);
-		printf("%s said: %s, count: %lu\r",sender.toString().c_str() ,buffer, count++);
-	}
-	return NULL;
-}
-
 int main(int argc, char **argv)
 {
 	/**
@@ -169,26 +123,6 @@ int main(int argc, char **argv)
 		fprintf(stdout,"main(int,char**): peerIp %s\n", confSettings.peerIp.toString().c_str());
 	}
 
-	pthread_t networkHostThread;
-	pthread_t networkClientThread;
-	if (confSettings.isHost)
-	{
-		// host code, spawn thread.
-		pthread_create(&networkHostThread, NULL, &chatserver, NULL);
-	}
-	else
-	{
-		// client code, spawn thread.
-		pthread_create(&networkClientThread, NULL, &chatclient, (void*)confSettings.peerIp.toString().c_str());
-	}
-	pthread_join(networkHostThread, NULL);
-	pthread_join(networkClientThread, NULL);
-	/*
-	 * We exit the program here for testing purposes during this
-	 * early testing of networking.
-	 */
-	return 0;
-
 	/**
 	 * @todo make mapsizes parsed from arguments.
 	 * @todo make System.{c,h}pp (maybe call it init?)
@@ -218,6 +152,25 @@ int main(int argc, char **argv)
 
 	World *world;
 	world = world->getWorld();
+
+	/*
+	 * I am inserting a network thread here. It should only be here
+	 * as long as there is no better way to start networked play.
+	 * Having this thread here may(will?) break the singleplayer
+	 *
+	 * Create a struct or something, (a function?) which init's
+	 * a networking object correctly (host and client) and waits
+	 * for world to send the interrupt for running sync.
+	 *
+	 * Sync should be done in between frames, in the time we are
+	 * denying world to rerun update. If we need more performance,
+	 * sync only when the AI agents are not calculating.
+	 */
+	pthread_t networkThread;
+	//pthread_create();
+
+	// Network should have a thread and ran away by now.
+	printf("main(int,char**): Network thread section done\n");
 
 	// Open music from an audio file
 	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
