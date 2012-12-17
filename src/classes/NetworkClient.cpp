@@ -1,7 +1,7 @@
 /*
  * NetworkClient.cpp
  *
- * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,3 +20,43 @@
  *
  */
 #include "../Includes.hpp"
+
+/**
+ * name: NetworkClient::NetworkClient
+ * Default constructor for the NetworkClient object.
+ */
+NetworkClient::NetworkClient()
+{
+	hostIp = NULL;
+	hostSocket = 0;
+	mySocket = 0;
+}
+
+/**
+ * name: NetworkClient::NetworkClient
+ * Parameterized constructor for the NetworkClient object.
+ */
+NetworkClient::NetworkClient()
+{
+	// TODO					!!!!!!
+}
+
+/**
+ *
+ * name: NetworkClient::networkInitialize
+ * @return NULL (not used)
+ */
+void *NetworkClient::networkInitialize()
+{
+	return (void*)NULL;
+}
+
+int NetworkClient::listener()
+{
+	return 0;
+}
+
+int NetworkClient::sender()
+{
+	return 0;
+}

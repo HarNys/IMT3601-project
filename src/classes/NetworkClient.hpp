@@ -1,7 +1,7 @@
 /*
  * NetworkClient.hpp
  *
- * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,5 +24,12 @@
 class NetworkClient : public Network
 {
 private:
+	sf::IpAddress hostIp;
+	int hostSocket;
+	int mySocket;
 public:
+	NetworkClient();
+	void *networkInitialize();
+	int listener();
+	int sender();
 };

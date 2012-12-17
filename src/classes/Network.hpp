@@ -1,7 +1,7 @@
 /*
  * Network.hpp
  *
- * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ protected:
 	char hostAddress[256];
 	int hostPort;
 public:
+	virtual void *networkInitialize() = 0;
+
 	//int sendAll(int socket, const char *buffer, int *length);
 	// ^^ Not implemented see networking code from Jayson:
 	// 'GucNetworkBase.cpp'

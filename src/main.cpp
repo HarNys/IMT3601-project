@@ -154,6 +154,9 @@ int main(int argc, char **argv)
 	world = world->getWorld();
 
 	/*
+	 * !! this has been done, keeping the comment for	!!
+	 * !! documentation purposes 				!!
+	 *
 	 * I am inserting a network thread here. It should only be here
 	 * as long as there is no better way to start networked play.
 	 * Having this thread here may(will?) break the singleplayer
@@ -166,11 +169,14 @@ int main(int argc, char **argv)
 	 * denying world to rerun update. If we need more performance,
 	 * sync only when the AI agents are not calculating.
 	 */
-	pthread_t networkThread;
-	//pthread_create();
-
-	// Network should have a thread and ran away by now.
-	printf("main(int,char**): Network thread section done\n");
+	if (confSettings.isHost)
+	{
+		NetworkHost network = new NetworkHost;
+	}
+	else
+	{
+		NetworkClient network = new NetworkClient;
+	}
 
 	// Open music from an audio file
 	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
