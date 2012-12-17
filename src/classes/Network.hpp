@@ -29,7 +29,7 @@ protected:
 	char hostAddress[256];
 	int hostPort;
 public:
-	virtual void *networkInitialize() = 0;
+	virtual void networkInitialize() = 0;
 
 	//int sendAll(int socket, const char *buffer, int *length);
 	// ^^ Not implemented see networking code from Jayson:

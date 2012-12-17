@@ -27,9 +27,13 @@ private:
 	sf::IpAddress hostIp;
 	int hostSocket;
 	int mySocket;
+	pthread_t networkThread;
 public:
 	NetworkClient();
-	void *networkInitialize();
+	NetworkClient(sf::Uint8 byte0,
+		sf::Uint8 byte1, sf::Uint8 byte2,
+		sf::Uint8 byte3, int hostPort, int myPort);
+	void networkInitialize(void*);
 	int listener();
 	int sender();
 };

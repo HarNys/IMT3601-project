@@ -36,9 +36,21 @@ NetworkClient::NetworkClient()
  * name: NetworkClient::NetworkClient
  * Parameterized constructor for the NetworkClient object.
  */
-NetworkClient::NetworkClient()
+NetworkClient::NetworkClient(sf::Uint8 byte0,
+	sf::Uint8 byte1, sf::Uint8 byte2,
+	sf::Uint8 byte3, int hostPort, int myPort)
 {
-	// TODO					!!!!!!
+//	NetworkClient::NetworkClient();
+	hostIp = sf::IpAddress(byte0, byte1, byte2, byte3);
+	hostSocket = hostPort;
+	mySocket = myPort;
+	if (pthread_create(&networkThread, NULL, NetworkClient::networkInitialize, (void *)this))
+	{
+		printf("NetworkClient::NetworkClient([4]xUint8,int,int): "
+			"pthread_create failed\n");
+		exit(1);
+	}
+
 }
 
 /**
@@ -46,9 +58,9 @@ NetworkClient::NetworkClient()
  * name: NetworkClient::networkInitialize
  * @return NULL (not used)
  */
-void *NetworkClient::networkInitialize()
+void NetworkClient::networkInitialize(void *lol)
 {
-	return (void*)NULL;
+	return NULL;
 }
 
 int NetworkClient::listener()

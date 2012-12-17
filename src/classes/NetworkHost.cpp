@@ -21,7 +21,7 @@
  */
 #include "../Includes.hpp"
 
-void *NetworkHost::networkInitialize()
+void NetworkHost::networkInitialize()
 {
-	return (void*)NULL;
+//	return (void)NULL;
 }

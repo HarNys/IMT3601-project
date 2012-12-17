@@ -25,5 +25,5 @@ class NetworkHost : public Network
 {
 private:
 public:
-	void *networkInitialize();
+	void networkInitialize();
 };
