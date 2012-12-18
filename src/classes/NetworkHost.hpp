@@ -21,7 +21,7 @@
  */
 #include "../Includes.hpp"
 
-class NetworkHost : public Network
+class NetworkHost //: public Network
 {
 private:
 public:

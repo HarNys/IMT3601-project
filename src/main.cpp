@@ -166,7 +166,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		new NetworkClient(127, 0, 0, 1, 4444, 4444);;
+		new NetworkClient(127, 0, 0, 1, 4444, 4444);
 	}
 
 	// Open music from an audio file

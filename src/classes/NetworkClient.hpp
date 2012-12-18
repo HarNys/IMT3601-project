@@ -21,7 +21,7 @@
  */
 #include "../Includes.hpp"
 
-class NetworkClient : public Network
+class NetworkClient //: public Network
 {
 private:
 	sf::IpAddress hostIp;
@@ -33,7 +33,7 @@ public:
 	NetworkClient(sf::Uint8 byte0,
 		sf::Uint8 byte1, sf::Uint8 byte2,
 		sf::Uint8 byte3, int hostPort, int myPort);
-	void networkInitialize(void*);
+	void *networkInitialize(void*);
 	int listener();
 	int sender();
 };

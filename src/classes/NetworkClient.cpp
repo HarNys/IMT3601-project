@@ -58,7 +58,7 @@ NetworkClient::NetworkClient(sf::Uint8 byte0,
  * name: NetworkClient::networkInitialize
  * @return NULL (not used)
  */
-void NetworkClient::networkInitialize(void *lol)
+void *NetworkClient::networkInitialize(void *lol)
 {
 	return NULL;
 }
