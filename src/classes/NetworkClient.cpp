@@ -94,6 +94,16 @@ void *NetworkClient::networkInitialize(void *sentSelf)
 	return NULL;
 }
 
+/**
+ * Listens to the host, and acts upon all messages from it.
+ * Possible actions are:
+ * @li Update World::map[][]
+ *
+ * @return 0, not used.
+ *
+ * @todo Implement World::updateMap and call it in an appropriate
+ * 	manner.
+ */
 int NetworkClient::listener()
 {
 	if (DEBUG > 0)
@@ -103,6 +113,10 @@ int NetworkClient::listener()
 	return 0;
 }
 
+/**
+ * Sends all the actions of the local player, to the host.
+ * @return 0, not used.
+ */
 int NetworkClient::sender()
 {
 	if (DEBUG > 0)
