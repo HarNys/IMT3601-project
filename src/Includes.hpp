@@ -78,6 +78,17 @@
 //// Controllers ////
 	static LocalPlayer localPlayerController;
 	static NonPlayerCharacter npcController;
-//*/
+
+//// DEBUG ////
+/*
+ * The DEBUG flag, change it to change level of debug info:
+ * 0:	No debug info[1]
+ * 1:	First level of debug messages, should only print information
+ * 	relevant to what is being worked on.
+ * 2:	Second level debug, this is where almost all messages live.
+ * 3:	Third level debug, this is for verbose or frequently repeated
+ * 	debug messages.
+ */
+const int DEBUG = 1;
 
 #endif //__IMT3601__INCLUDES__HEADER__GUARD__
