@@ -97,12 +97,19 @@ void *NetworkClient::networkInitialize(void *sentSelf)
 
 int NetworkClient::listener()
 {
-	printf("NetworkClient::listener(): In thread: \t%lu\n", pthread_self());
+	if (DEBUG == 1)
+	{
+		printf("NetworkClient::listener(): In thread: \t%lu\n", pthread_self());
+	}
+
 	return 0;
 }
 
 int NetworkClient::sender()
 {
-	printf("NetworkClient::sender(): In thread: \t%lu\n", pthread_self());
+	if (DEBUG == 1)
+	{
+		printf("NetworkClient::sender(): In thread: \t%lu\n", pthread_self());
+	}
 	return 0;
 }

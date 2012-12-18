@@ -88,6 +88,9 @@
  * 2:	Second level debug, this is where almost all messages live.
  * 3:	Third level debug, this is for verbose or frequently repeated
  * 	debug messages.
+ *
+ * [1]: This will not be true until the debug flag has been implemented
+ * 	project wide.
  */
 const int DEBUG = 1;
 
