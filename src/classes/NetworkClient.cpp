@@ -54,7 +54,6 @@ NetworkClient::NetworkClient(short byte0, short byte1, short byte2,
 			"pthread_create failed, sendThread\n");
 		exit(1);
 	}
-
 }
 
 /**
@@ -97,17 +96,16 @@ void *NetworkClient::networkInitialize(void *sentSelf)
 
 int NetworkClient::listener()
 {
-	if (DEBUG == 1)
+	if (DEBUG > 0)
 	{
 		printf("NetworkClient::listener(): In thread: \t%lu\n", pthread_self());
 	}
-
 	return 0;
 }
 
 int NetworkClient::sender()
 {
-	if (DEBUG == 1)
+	if (DEBUG > 0)
 	{
 		printf("NetworkClient::sender(): In thread: \t%lu\n", pthread_self());
 	}

@@ -107,11 +107,14 @@ int main(int argc, char **argv)
 				printf("main(int,char**): Variable '%s' not recognized \n", variableBuffer);
 			}
 		}
-		printf("main(int,char**): Current configuration: \n");
-		fprintf(stdout,"main(int,char**): screenwidth %d\n", confSettings.screenwidth);
-		fprintf(stdout,"main(int,char**): screenheight %d\n", confSettings.screenheight);
-		fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
-		fprintf(stdout,"main(int,char**): isHost %d\n", confSettings.isHost);
+		if (DEBUG)
+		{
+			printf("main(int,char**): Current configuration: \n");
+			fprintf(stdout,"main(int,char**): screenwidth %d\n", confSettings.screenwidth);
+			fprintf(stdout,"main(int,char**): screenheight %d\n", confSettings.screenheight);
+			fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
+			fprintf(stdout,"main(int,char**): isHost %d\n", confSettings.isHost);
+		}
 	}
 
 	/**
