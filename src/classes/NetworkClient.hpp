@@ -27,7 +27,8 @@ private:
 	sf::IpAddress hostIp;
 	int hostSocket;
 	int mySocket;
-	pthread_t networkThread;
+	pthread_t listenThread;
+	pthread_t sendThread;
 public:
 	NetworkClient();
 	NetworkClient(short byte0, short byte1, short byte2,

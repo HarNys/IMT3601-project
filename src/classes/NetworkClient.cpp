@@ -42,10 +42,16 @@ NetworkClient::NetworkClient(short byte0, short byte1, short byte2,
 	hostIp = sf::IpAddress(byte0, byte1, byte2, byte3);
 	hostSocket = hostPort;
 	mySocket = myPort;
-	if (pthread_create(&networkThread, NULL, &NetworkClient::networkInitialize, reinterpret_cast<void *> (this)))
+	if (pthread_create(&listenThread, NULL, &NetworkClient::networkInitialize, reinterpret_cast<void *> (this)))
 	{
 		printf("NetworkClient::NetworkClient([4]xUint8,int,int): "
-			"pthread_create failed\n");
+			"pthread_create failed, listenThread\n");
+		exit(1);
+	}
+	if (pthread_create(&sendThread, NULL, &NetworkClient::networkInitialize, reinterpret_cast<void *> (this)))
+	{
+		printf("NetworkClient::NetworkClient([4]xUint8,int,int): "
+			"pthread_create failed, sendThread\n");
 		exit(1);
 	}
 
@@ -63,16 +69,40 @@ NetworkClient::NetworkClient(short byte0, short byte1, short byte2,
 void *NetworkClient::networkInitialize(void *sentSelf)
 {
 	NetworkClient *myself = reinterpret_cast<NetworkClient*>(sentSelf);
-	//DO STUFF!
+	if (pthread_equal(pthread_self(), myself->listenThread))
+	{
+		myself->listener();
+	}
+	else if (pthread_equal(pthread_self(), myself->sendThread))
+	{
+		myself->sender();
+	}
+	else
+	{
+		/*	PORTABILITY WARNING
+		 * pthread_t on linux(at least on my box) is a typedef
+		 * of unsigned long int. This means the printf in this
+		 * section may not compile or have errors on other
+		 * platforms. If this is the case, uncomment the ifdef's
+		 */
+		//#ifdef __linux__
+		printf("NetworkClient::networkInitialize(void*): Thread"
+		" ID '%lu' not recognized.\n", pthread_self());
+		//#endif
+	}
+
+
 	return NULL;
 }
 
 int NetworkClient::listener()
 {
+	printf("NetworkClient::listener(): In thread: \t%lu\n", pthread_self());
 	return 0;
 }
 
 int NetworkClient::sender()
 {
+	printf("NetworkClient::sender(): In thread: \t%lu\n", pthread_self());
 	return 0;
 }
