@@ -31,10 +31,10 @@ int main(int argc, char **argv)
 	 * be in this struct.
 	 *
 	 * Howto add new options:
-	 * \li Define variable in confSettings struct.
-	 * \li Add default initialization right before
+	 * @li Define variable in confSettings struct.
+	 * @li Add default initialization right before
 	 *	'Close configuration file after writing and setting defaults'
-	 * \li Add file initialization at 'set variables'
+	 * @li Add file initialization at 'set variables'
 	 *
 	 * Note that adding a new option requires either writing a new
 	 * config file, or manually adding in the new option.
@@ -45,7 +45,6 @@ int main(int argc, char **argv)
 		int screenheight;
 		bool fullscreen; // fullscreen the application if true
 		bool isHost;
-		sf::IpAddress peerIp;
 	} confSettings;
 	// Reading configuration file, if there is one
 	FILE *configFile;
@@ -65,8 +64,6 @@ int main(int argc, char **argv)
 		fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
 		confSettings.isHost = false;
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
-		confSettings.peerIp = "128.39.142.226";//sf::IpAddress::getPublicAddress(); // remove hardcoded IP
-		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 
 		// Close configuration file after writing and setting defaults
 		fclose(configFile);
@@ -105,11 +102,6 @@ int main(int argc, char **argv)
 			{
 				confSettings.isHost = valueBuffer;
 			}
-			else if (!strcmp(variableBuffer, "peerIp"))
-			{
-				unsigned int castUInt32Addr = valueBuffer;
-				confSettings.peerIp = sf::IpAddress(castUInt32Addr);
-			}
 			else
 			{
 				printf("main(int,char**): Variable '%s' not recognized \n", variableBuffer);
@@ -120,7 +112,6 @@ int main(int argc, char **argv)
 		fprintf(stdout,"main(int,char**): screenheight %d\n", confSettings.screenheight);
 		fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
 		fprintf(stdout,"main(int,char**): isHost %d\n", confSettings.isHost);
-		fprintf(stdout,"main(int,char**): peerIp %s\n", confSettings.peerIp.toString().c_str());
 	}
 
 	/**
