@@ -159,14 +159,38 @@ int main(int argc, char **argv)
 	 * Sync should be done in between frames, in the time we are
 	 * denying world to rerun update. If we need more performance,
 	 * sync only when the AI agents are not calculating.
+	 *
+	 * !! Not done:						!!
+	 *
+	 * Set IP addresses somewhere else.
 	 */
+	short ipbyte0 = 127;
+	short ipbyte1 = 0;
+	short ipbyte2 = 0;
+	short ipbyte3 = 1;
+	printf("main(int,char**): User input:\n");
 	if (confSettings.isHost)
 	{
 		new NetworkHost;
 	}
 	else
 	{
-		new NetworkClient(127, 0, 0, 1, 4444, 4444);
+		printf("\tClient setup:\n"
+			"\tPlease enter the IP address of the host.\n"
+			"\tDefault and example: %d.%d.%d.%d: ",
+			ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+		if (4 != scanf("%hd.%hd.%hd.%hd", &ipbyte0, &ipbyte1, &ipbyte2, &ipbyte3))
+		{
+			printf("\n\tIncorrect value entered: %d.%d.%d."
+				"%d\n", ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+			ipbyte0 = 127;
+			ipbyte1 = 0;
+			ipbyte2 = 0;
+			ipbyte3 = 1;
+			printf("\tUsing default: %d.%d.%d.%d\n",
+				ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+		}
+		new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
 	}
 
 	// Open music from an audio file

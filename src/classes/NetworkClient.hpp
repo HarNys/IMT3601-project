@@ -30,10 +30,9 @@ private:
 	pthread_t networkThread;
 public:
 	NetworkClient();
-	NetworkClient(sf::Uint8 byte0,
-		sf::Uint8 byte1, sf::Uint8 byte2,
-		sf::Uint8 byte3, int hostPort, int myPort);
-	void *networkInitialize(void*);
+	NetworkClient(short byte0, short byte1, short byte2,
+		short byte3, int hostPort, int myPort);
+	static void *networkInitialize(void*);
 	int listener();
 	int sender();
 };
