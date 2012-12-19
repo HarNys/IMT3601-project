@@ -1,3 +1,4 @@
+
 About IMT3601-project
 =====================
 
@@ -35,6 +36,42 @@ Mac
 The 'src/Includes.hpp' file will need to be adjusted for Mac's positioning and
 naming of libraries, But once that is fixed it should work fine with gcc and
 make. See Linux setup above.
+
+Controls
+========
+The controls are hardcoded as of now, but there is an issue(#31) up for
+making them configurable. They are as follows:
+
+<table>
+	<tr>
+		<th>Key</th>
+		<th>Response</th>
+	</tr>
+	<tr>
+		<td>w,a,s,d</td>
+		<td>Move up, left, down, right</td>
+	</tr>
+	<tr>
+		<td>e</td>
+		<td>Activate menu item(1)</td>
+	</tr>
+	<tr>
+		<td>escape</td>
+		<td>Open main menu</td>
+	</tr>
+</table>
+
+(1): In earlier versions (and likely future ones) this key could be used
+to put down mines.
+
+Keys can be modified in code, for in-game controls:
+src/classes/Player.cpp:LocalPlayer::characterInput(Character* thisCharacter)
+and menu controls:
+src/classes/Menu.cpp:Menu::runMenu()
+
+The menu controls are spread around the Menu.cpp file a bit. So if the
+behaviour you are trying to change is not in that method, you will have
+to search the rest of the file for it.
 
 Licensing and Legalese
 =======================
