@@ -1,7 +1,7 @@
 /*
  * Player.cpp
  *
- *
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,23 @@
  */
 #include "../Includes.hpp"
 
+/**
+ * Default constructor for the LocalPlayer class
+ */
+LocalPlayer::LocalPlayer()
+{
+	isClient = false;
+}
+
+/**
+ * Parameterized constructor for the LocalPlayer class
+ * @param iAmClient Whether the game instance is multiplayer client
+ * 	(true) or not (false).
+ */
+LocalPlayer::LocalPlayer(bool iAmClient)
+{
+	isClient = iAmClient;
+}
 ///movement-functions
 ///checks if the key is pressed and then released
 ///to reset characterDirectionX/Y
@@ -79,5 +96,4 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		//	thisCharacter->placeMine();
 		//}
 	}
-
 };

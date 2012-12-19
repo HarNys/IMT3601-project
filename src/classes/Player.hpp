@@ -1,6 +1,7 @@
 /*
  * Player.hpp
  *
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +20,28 @@
  *
  *
  */
+/**
+ * @todo rename this classes files from Player.{c,h}pp to
+ * 	LocalPlayer.{c,h}pp
+ */
 #ifndef __LOCALPLAYER__HEADER__GUARD__
 #define __LOCALPLAYER__HEADER__GUARD__
 #include "../Includes.hpp"
 
 class LocalPlayer
 {
+private:
+	/**
+	 * isClient is checked to see if we need to signal the
+	 * NetworkClient to send. It should only ever be true when this
+	 * instance of the game is a multiplayer client.
+	 *
+	 * Defaults to false in default constructor.
+	 */
+	bool isClient;
 public:
+	LocalPlayer();
+	LocalPlayer(bool iAmHost);
 	void characterInput(Character* thisCharacter);
 };
 
