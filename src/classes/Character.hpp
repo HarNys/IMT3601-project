@@ -36,7 +36,7 @@ private:
 	bool minePlaced; ///< whether or not we want to place a Mine.
 	int characterDirectionX; ///< Changed from float to int
 	int characterDirectionY; ///< Changed from float to int
-	int characterHealth;	///< How much health the player have left
+	int characterHealth;	///< How much health the player has left
 	static sf::Image *characterImage;
 	enum type{mine,rifle};
 	int controllerType;		///< 0 for localplayer, 1 for NPC, 2 for networkPlayer.

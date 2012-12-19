@@ -119,7 +119,7 @@ void Character::setMinePlaced(bool minePlace)
 };
 
 /**
- * returns the value of this Character's characterDirectionX.
+ * Returns the value of this Character's characterDirectionX.
  *
  * @return characterDirectionX
  */
@@ -129,7 +129,7 @@ int Character::getCharacterDirectionX()
 };
 
 /**
- *returns the value of this Character's characterDirectionY.
+ * Returns the value of this Character's characterDirectionY.
  *
  * @return characterDirectionY
  */
@@ -139,7 +139,7 @@ int Character::getCharacterDirectionY()
 };
 
 /**
- * returns the value of this Character's characterDirectionY.
+ * Returns the value of this Character's characterDirectionY.
  *
  * @param newYDirection the new y direction.
  *
@@ -152,7 +152,7 @@ bool Character::setCharacterDirectionY(int newYDirection)
 };
 
 /**
- * returns the value of this Character's characterDirectionX.
+ * Returns the value of this Character's characterDirectionX.
  *
  * @param newXDirection the new x direction.
  *
@@ -175,15 +175,16 @@ void Character::draw(sf::RenderWindow *window)
 };
 
 /**
- * resets Character's direction, is a dirty way of doing it.
+ * Resets Character's direction, is a dirty way of doing it.
+ *
+ * @todo Make this method use Character::setCharacterDirection{X,Y}
+ * 	instead of using direct assignment.
  */
 void Character::resetDirection()
 {
 	characterDirectionX = 0;
 	characterDirectionY = 0;
 };
-
-
 
 /**
  * returns the current sprite.
@@ -259,7 +260,7 @@ void Character::useController(Character* thischaracter)
 			thischaracter->updateSprite();
 		}
 
-		// @todo the const should be changed to reflect dificulty
+		/// @todo the const should be changed to reflect dificulty
 		if (!(rand()%4))
 		{
 			 characterDirectionX =0;
@@ -329,8 +330,11 @@ bool Character::placeMine()
 
 
 /**
-*	@brief sets the typ of character this is
-*	@param type: the type of controller 0=local, 1=npc, 2=network
+*	@brief Sets the type controllerType for this Character.
+*	@param type The controllerType:
+* 		0 = local,
+* 		1 = npc,
+* 		2 = network
 *	@return true on succses
 */
 bool Character::setCharacterType(int type)
@@ -352,6 +356,8 @@ bool Character::setID(int ID)
 
 /**
  * @todo Documentation.
+ * @todo Proposition: refactor this into int Character::getType()
+ * 	{ return controllerType; }
  */
 bool Character::getIsNpc(){
 	if (1 == controllerType)
@@ -361,38 +367,60 @@ bool Character::getIsNpc(){
 	return false;
 }
 
+/**
+ * @todo Documentation.
+ */
 bool Character::setLastUpdate(int time)
 {
 	lastUpdate = time;
 	return true;
 }
 
+/**
+ * @todo Documentation.
+ */
 int Character::getLastUpdate()
 {
 	return lastUpdate;
 }
 
+/**
+ * @todo Documentation.
+ */
 int Character::updatePoints(int adjustment)
 {
 	pointsValue += adjustment;
 	return pointsValue;
 }
 
+/**
+ * @todo Documentation.
+ */
 bool Character::setAggressivenes(int newaggro)
 {
 	aggressivenes = newaggro;
 	return true;
 }
 
+/**
+ * @todo Documentation.
+ */
 int Character::getAggressivenes()
 {
 	return aggressivenes;
 }
 
+/**
+ * @todo Documentation.
+ */
 int Character::getHealth()
 {
 	return characterHealth;
 }
+
+/**
+ * @todo Documentation.
+ */
 int Character::getPoints()
 {
 	return pointsValue;

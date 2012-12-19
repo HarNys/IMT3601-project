@@ -23,10 +23,18 @@
 #include "../Includes.hpp"
 
 /**
- * Default constructor for the LocalPlayer class
+ * Default constructor for the LocalPlayer class.
+ * Will complain if ran, you should use the parameterized constructor.
+ * Rationale: being explicit is good.
  */
 LocalPlayer::LocalPlayer()
 {
+	if (DEBUG > 0)
+	{
+		printf("LocalPlayer::LocalPlayer(): WARNING: Are you "
+			"sure you wanted to run the default constructor"
+			"?\n");
+	}
 	isClient = false;
 }
 
@@ -39,6 +47,7 @@ LocalPlayer::LocalPlayer(bool iAmClient)
 {
 	isClient = iAmClient;
 }
+
 ///movement-functions
 ///checks if the key is pressed and then released
 ///to reset characterDirectionX/Y
