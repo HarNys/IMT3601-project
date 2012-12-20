@@ -36,6 +36,9 @@ private:
 	int StartY;
 	int border;
 	int xSpace;
+	int difficulty;
+	int primes[15];
+
         // constructor
         World();
 
@@ -45,6 +48,7 @@ private:
         int area; //size from origin to one side of the map
         MineFactory *mineFactory;
 		int updatetime;
+
 public:
         static World *getWorld();
         bool initMap(char *mapFile);
@@ -59,6 +63,10 @@ public:
 	void setGoal();
 	bool reset();
 	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
+	int getDifficulty();
+	bool addDifficulty(int modifier);
+	int getPrime(int number);
+
 };
 
 #endif // __WORLD__HEADER__GUARD__

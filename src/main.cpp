@@ -188,6 +188,21 @@ int main(int argc, char **argv)
 					mainMenu->runMenu();
 				}
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::Add)
+				{
+					world->addDifficulty(1);
+				}
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
+			{
+				if(event.KeyReleased && event.key.code == sf::Keyboard::Subtract
+					)
+				{
+					world->addDifficulty(-1);
+				}
+			}
 		}
 	}
 	return EXIT_SUCCESS;

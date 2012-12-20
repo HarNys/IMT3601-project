@@ -59,6 +59,10 @@ making them configurable. They are as follows:
 		<td>escape</td>
 		<td>Open main menu</td>
 	</tr>
+	<tr>
+		<td>+,-</td>
+		<td>adjust difficulty up and down</td>
+	</tr>
 </table>
 
 (1): In earlier versions (and likely future ones) this key could be used

@@ -45,6 +45,25 @@ World::World()
 	xSpace = 1;
 	updatetime = 0;
 
+	////////////
+	difficulty = 1;  //must be between 1 and 14 controls are in place
+	primes[0] = 2;
+	primes[1] = 3;
+	primes[2] = 5;
+	primes[3] = 7;
+	primes[4] = 11;
+	primes[5] = 13;
+	primes[6] = 17;
+	primes[7] = 19;
+	primes[8] = 23;
+	primes[9] = 29;
+	primes[10] = 31;
+	primes[11] = 37;
+	primes[12] = 41;
+	primes[13] = 43;
+	primes[14] = 47;
+	////////////
+
 };
 
 /**
@@ -316,7 +335,7 @@ void World::randomGenerate(bool start)
 		//					"World::randomGenerate(bool): frontier size: %4lu\n",
 		//					currentX, currentY, directionX, directionY, unVisited->size());
 
-							if(count % 5 == 0)	//this adds a random tile every 5 step so we create an imperfect maze
+							if(count % 5 == 0  || count % 7 == 0 || count % 9 == 0)	//this adds a random tile every 5 step so we create an imperfect maze
 							{
 								if((map[currentX + 1][currentY] != NULL) &&	(map[currentX + 1][currentY]->getVisited() == false) &&
 									(currentX + 1 < area -1))
@@ -557,14 +576,17 @@ bool World::update()
 							}
 							if (goalExists)
 							{
-								if (thisCharacter->getIsNpc() && ((thisCharacter->getLastAiUpdate() <= updatetime-5) || !thisCharacter->isStack()))
+								if (thisCharacter->getIsNpc())
 								{
 
+									if ((thisCharacter->getLastAiUpdate() <= updatetime-(14-difficulty)) || !thisCharacter->isStack())
+									{
 									//#pragma omp critical(astar)
 									//{
 										npcController.aStar(map, thisCharacter);
 									//}
 										thisCharacter->setLastAiUpdate(updatetime);
+									}
 								}
 							}
 							thisCharacter->setLastUpdate(updatetime);
@@ -766,6 +788,29 @@ bool World::reset()
 	placeCharacter(tempCharacter);
 
 	return true;
+}
+
+int World::getDifficulty()
+{
+	return difficulty;
+}
+
+
+bool World::addDifficulty(int modifier)
+{
+	if (difficulty + modifier <1 || difficulty + modifier >14)
+	{
+		return false;
+	}
+
+	difficulty += modifier;
+
+	return true;
+}
+
+int World::getPrime(int number)
+{
+	return primes[number];
 }
 
 /**
