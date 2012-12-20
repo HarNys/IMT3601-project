@@ -1,7 +1,7 @@
 /*
  * World.cpp
  *
- * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -96,21 +96,21 @@ bool World::initMap(char *mapFile)
 	map = new Tile**[area];
 	Tile *tempTile = new Tile();
 	tempTile->initImage();
-	for (int xPosition = 0; xPosition < area; xPosition++)
+	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
 		///@note creates tile pointer for each row
-		map[xPosition] = new Tile*[area];
+		map[yPosition] = new Tile*[area];
 
 		///@note the x value of the map
-		for (int yPosition = 0; yPosition < area; yPosition++)
+		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
 			///@note makes sure the file is not overextended, this is meant to be redundant
 			if(!file.eof())
 			{
-				map[xPosition][yPosition] = new Tile(*tempTile);
-				map[xPosition][yPosition]->setPosition(xPosition, yPosition);
-				map[xPosition][yPosition]->initTile(file.get());
-				if (map[xPosition][yPosition]->initSprite(xPosition, yPosition))
+				map[yPosition][xPosition] = new Tile(*tempTile);
+				map[yPosition][xPosition]->setPosition(yPosition, xPosition);
+				map[yPosition][xPosition]->initTile(file.get());
+				if (map[yPosition][xPosition]->initSprite(yPosition, xPosition))
 //					, (windowSize.x/area), (windowSize.y/area)))
 				{
 					static int count = 0;
@@ -362,8 +362,6 @@ void World::randomGenerate(bool start)
 //	printf("!!  finished !!\n");
 }
 
-
-
 /**
  * Moves Character if possible.
  *
@@ -559,13 +557,14 @@ bool World::update()
 							}
 							if (goalExists)
 							{
-								if (thisCharacter->getIsNpc())
+								if (thisCharacter->getIsNpc() && ((thisCharacter->getLastAiUpdate() <= updatetime-5) || !thisCharacter->isStack()))
 								{
 
 									//#pragma omp critical(astar)
 									//{
 										npcController.aStar(map, thisCharacter);
 									//}
+										thisCharacter->setLastAiUpdate(updatetime);
 								}
 							}
 							thisCharacter->setLastUpdate(updatetime);
@@ -599,7 +598,7 @@ void World::draw(sf::RenderWindow *window)
 	{
 		for (int xCount = 0; xCount < area; xCount++)
 		{
-			thisTile = map[xCount][yCount];
+			thisTile = map[yCount][xCount];
 			thisCharacter = thisTile->getHasCharacter();
 
 			// draw the Tile
@@ -610,7 +609,7 @@ void World::draw(sf::RenderWindow *window)
 /*				thisCharacter->getSprite()->setPosition(((float)(15 * xCount)), ((float)(15 * yCount)));
 				thisCharacter->setSprite().setTextureRect(sf::IntRect(0, 51, 15, 15));
 //*/
-				thisCharacter->updateSprite((float) xCount, (float) yCount);
+				thisCharacter->updateSprite((float) yCount, (float) xCount);
 				window->draw(*thisCharacter->getSprite());
 			}
 		}
@@ -738,7 +737,6 @@ Tile ***World::getMap()
 int World::getArea(){
 	return area;
 }
-
 
 /**
 *	moves through all tiles and emptyes them

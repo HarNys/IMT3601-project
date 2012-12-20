@@ -1,7 +1,7 @@
 /*
  * main.cpp
  *
- * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
  * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
