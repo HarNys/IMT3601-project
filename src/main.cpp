@@ -2,6 +2,7 @@
  * main.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,13 +50,14 @@ void *chatserver(void *unused)
 
 void *chatclient(void *params)
 {
-	char *peerIp = (char*) params;
-	// Create a socket and bind it to the port 55001
+	char * peerIp = "128.39.141.108";//peerIp = (char*) params;
+	
 	sf::UdpSocket socket;
-	socket.bind(55001);
+	socket.bind(4444);
 	char buffer[1024];
 	std::size_t received = 0;
 	sf::IpAddress sender;
+	sender = "128.39.141.108";
 	unsigned short port;
 	bool quit = 0;
 	unsigned long count = 0;
