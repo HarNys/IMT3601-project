@@ -64,7 +64,7 @@ NetworkClient::NetworkClient(short byte0, short byte1, short byte2,
  * @todo look at a way of not hardcoding the ports.
  * @todo refactor the IP address reading into it's own function.
  */
-static NetworkClient *NetworkClient::getNetworkClient()
+/*static NetworkClient *NetworkClient::getNetworkClient()
 {
 	if (networkClient == NULL)
 	{
@@ -91,7 +91,7 @@ static NetworkClient *NetworkClient::getNetworkClient()
 		networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
 	}
 	return networkClient;
-}
+} //*/
 
 /**
  *

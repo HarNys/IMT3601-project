@@ -24,6 +24,7 @@
 #define __CHARACTER__HEADER__GUARD__
 
 #include "../Includes.hpp"
+#include "Player.hpp"
 
 /**
  * These could probably be made int's.
@@ -52,7 +53,8 @@ private:
 public:
 	Character();
 	bool initImage();
-	bool initCharacter();
+	bool initCharacter(int type, int identity,
+		pthread_cond_t *senderCV = NULL);
 	bool getMinePlaced();
 	void setMinePlaced(bool minePlace);
 	int getCharacterDirectionX();
@@ -82,8 +84,8 @@ public:
 	int getAggressivenes();
 	int getHealth();
 	int getPoints();
-
-
+	pthread_cond_t *getSenderCV();
+	LocalPlayer *getLocalPlayerController();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

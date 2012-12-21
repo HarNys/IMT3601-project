@@ -167,6 +167,8 @@ int main(int argc, char **argv)
 	 *
 	 * Set IP addresses somewhere else.
 	 */
+	NetworkClient *networkClient;
+	NetworkHost *networkHost;
 	short ipbyte0 = 127;
 	short ipbyte1 = 0;
 	short ipbyte2 = 0;
@@ -174,12 +176,29 @@ int main(int argc, char **argv)
 	printf("main(int,char**): User input:\n");
 	if (confSettings.isHost)
 	{
-		new NetworkHost;
+		networkHost = new NetworkHost;
 	}
 	else
 	{
-		NetworkClient *networkClient;
+		printf("\tClient setup:\n"
+			"\tPlease enter the IP address of the host.\n"
+			"\tDefault and example: %d.%d.%d.%d: ",
+			ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+		if (4 != scanf("%hd.%hd.%hd.%hd", &ipbyte0, &ipbyte1, &ipbyte2, &ipbyte3))
+		{
+			printf("\n\tIncorrect value entered: %d.%d.%d."
+				"%d\n", ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+			ipbyte0 = 127;
+			ipbyte1 = 0;
+			ipbyte2 = 0;
+			ipbyte3 = 1;
+			printf("\tUsing default: %d.%d.%d.%d\n",
+				ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+		}
+		networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
+/*		NetworkClient *networkClient;
 		networkClient = networkClient->getNetworkClient();
+*/
 	}
 
 	// Open music from an audio file

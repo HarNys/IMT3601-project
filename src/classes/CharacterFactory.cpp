@@ -80,12 +80,18 @@ Character* CharacterFactory::getCharacter()
 		tempCharacter = readyCharacters.at(readyCharacters.size()-1);
 		usedCharacters.push_back(tempCharacter);
 		readyCharacters.pop_back();
-		tempCharacter->initCharacter();
+		tempCharacter->initCharacter(-1, -1, NULL);
+		if (DEBUG > 0)
+		{
+			printf("CharacterFactory::getCharacter(): I "
+				"initialize tempCharacter with -1, -1, "
+				"NULL. Is this wrong?\n");
+		}
 	}
 	else
 	{
 		printf("CharacterFactory::getCharacter(): Something went wrong,"
-			"can not return a Character.");
+			"can not return a Character.\n");
 		return NULL;
 	}
 	return tempCharacter;

@@ -39,10 +39,12 @@ private:
 	 * Defaults to false in default constructor.
 	 */
 	bool isClient;
-	pthread_cond_t senderCV;
+	pthread_cond_t *senderCV;
 public:
 	LocalPlayer();
 	LocalPlayer(bool iAmHost);
+	int setSenderCV(pthread_cond_t *sentSenderCV);
+	pthread_cond_t *getSenderCV();
 	void characterInput(Character* thisCharacter);
 };
 

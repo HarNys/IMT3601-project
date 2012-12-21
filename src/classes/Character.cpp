@@ -22,6 +22,7 @@
  */
 
 #include "../Includes.hpp"
+#include "Player.hpp"
 
 sf::Image *Character::characterImage = NULL;
 
@@ -89,18 +90,39 @@ bool Character::initImage()
 /**
  * initializes the character to the values/states we need it in. should be done
  * after all characterFactory->getCharacter()
- * @todo should have parameters, when we get that far
  *
+ * @param type The controllerType:
+ * 	0 = local,
+ * 	1 = npc,
+ * 	2 = network
+ * @param identity identity of this Character.
+ * @param senderCV The Pthread_cond_t used for synchronisation
+ * 	between the LocalPlayer and the NetworkClient classes, defaults
+ * 	to NULL.
  * @return true on success
  */
-bool Character::initCharacter()
+bool Character::initCharacter(int type, int identity,
+	pthread_cond_t *senderCV)
 {
 	texture.loadFromImage(*characterImage);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
-
+	setID(identity);
+	if (!setCharacterType(type))
+	{
+		if (DEBUG > 0)
+		{
+			printf("Character::initCharacter(int): Could not"
+				"set type.\n");
+		}
+		return false;
+	}
+	if (0 == type)
+	{
+		localPlayerController.setSenderCV(senderCV);
+	}
 	return true;
-};
+}
 
 /**
  * @return minePlaced
@@ -424,4 +446,36 @@ int Character::getHealth()
 int Character::getPoints()
 {
 	return pointsValue;
+}
+
+/**
+ * Getter for the senderCV variable.
+ * @return senderCV, or NULL if not client
+ */
+pthread_cond_t *Character::getSenderCV()
+{
+	if (0 != controllerType)
+	{
+		if (DEBUG > 0)
+		{
+			printf("Character::getSenderCV(): controllerType"
+				" is not 0 (player)\n");
+		}
+		return NULL;
+	}
+	return localPlayerController.getSenderCV();
+}
+
+LocalPlayer *Character::getLocalPlayerController()
+{
+	if (0 != controllerType)
+	{
+		if (DEBUG > 0)
+		{
+			printf("Character::getLocalPlayer(): controllerType"
+				" is not 0 (player)\n");
+		}
+		return NULL;
+	}
+	return &localPlayerController;
 }

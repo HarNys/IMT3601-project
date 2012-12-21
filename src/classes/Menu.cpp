@@ -410,11 +410,42 @@ bool Menu::initplayers()
 
 	//This is comented out to just have npc's running around
 
-	/*printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
+	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
-	player->setCharacterType(0); // 0 for local-player character
+/*	player->setCharacterType(0); // 0 for local-player character
 	player->setID(0);
-	world->placeCharacter(player);*/
+*/
+	/*
+	 * !!!!		NEEDED FOR NETWORKING WHEN CLIENT	!!!!
+	 * Here is a big bit of code which should be moved.
+	 */
+	pthread_cond_t clientPlayerCV;
+	player->initCharacter(0, 0, &clientPlayerCV);
+	// start NetworkClient:
+	short ipbyte0 = 127;
+	short ipbyte1 = 0;
+	short ipbyte2 = 0;
+	short ipbyte3 = 1;
+	printf("NetworkClient::getNetworkClient(): User input:\n");
+	printf("\tClient setup:\n"
+		"\tPlease enter the IP address of the host.\n"
+		"\tDefault and example: %d.%d.%d.%d: ",
+		ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+	if (4 != scanf("%hd.%hd.%hd.%hd", &ipbyte0, &ipbyte1, &ipbyte2, &ipbyte3))
+	{
+		printf("\n\tIncorrect value entered: %d.%d.%d."
+			"%d\n", ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+		ipbyte0 = 127;
+		ipbyte1 = 0;
+		ipbyte2 = 0;
+		ipbyte3 = 1;
+		printf("\tUsing default: %d.%d.%d.%d\n",
+			ipbyte0, ipbyte1, ipbyte2, ipbyte3);
+	}
+	networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
+	networkClient->setPlayer(player);
+
+	world->placeCharacter(player);
 
 	Character *npc;
 

@@ -36,6 +36,7 @@ LocalPlayer::LocalPlayer()
 			"?\n");
 	}
 	isClient = false;
+	senderCV = NULL;
 }
 
 /**
@@ -46,6 +47,36 @@ LocalPlayer::LocalPlayer()
 LocalPlayer::LocalPlayer(bool iAmClient)
 {
 	isClient = iAmClient;
+	senderCV = NULL;
+}
+
+/**
+ * Setter for the senderCV variable.
+ * @param sentSenderCV The Pthread_cond_t used for synchronisation
+ * 	between the LocalPlayer and the NetworkClient classes.
+ * @return 0 on success.
+ */
+int LocalPlayer::setSenderCV(pthread_cond_t *sentSenderCV)
+{
+	senderCV = sentSenderCV;
+	return 0;
+}
+
+/**
+ * Getter for the senderCV variable.
+ * @return senderCV, or NULL if not client
+ */
+pthread_cond_t *LocalPlayer::getSenderCV()
+{
+	if (senderCV == NULL)
+	{
+		if (DEBUG > 0)
+		{
+			printf("LocalPlayer::getSenderCV(): senderCV is"
+				" NULL. Have you forgotten to set it?\n");
+		}
+	}
+	return senderCV;
 }
 
 ///movement-functions
