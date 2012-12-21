@@ -310,6 +310,7 @@ void Menu::networking()
 	//while this part of the menu is running
 	while(running)
 	{
+		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
 		networkDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{
