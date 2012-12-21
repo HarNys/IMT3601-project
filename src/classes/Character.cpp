@@ -42,6 +42,8 @@ Character::Character()
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	pointsValue = 0;
 	aggressivenes = 0;
+	characterID = -1;
+	lastAiUpdate = 0;
 };
 
 /**
@@ -264,7 +266,7 @@ void Character::useController(Character* thischaracter)
 		world = world->getWorld();
 
 		if ( !(rand()%world->getPrime(world->getDifficulty()-1))
-			|| !(rand()%world->getPrime(world->getDifficulty())) 
+			|| !(rand()%world->getPrime(world->getDifficulty()))
 			|| !(rand()%world->getPrime(world->getDifficulty()+1))
 			)
 		{
