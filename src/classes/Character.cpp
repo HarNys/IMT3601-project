@@ -260,30 +260,16 @@ void Character::useController(Character* thischaracter)
 		}
 
 		// @todo the const should be changed to reflect dificulty
-		if (!(rand()%4))
+		World *world;
+		world = world->getWorld();
+
+		if ( !(rand()%world->getPrime(world->getDifficulty()-1))
+			|| !(rand()%world->getPrime(world->getDifficulty())) 
+			|| !(rand()%world->getPrime(world->getDifficulty()+1))
+			)
 		{
 			 characterDirectionX =0;
 			 characterDirectionY =0;
-		/*	if (tempdirection = 0)
-			{
-				characterDirectionX = 0;
-				characterDirectionY = -1;
-			}
-			if (tempdirection = 1)
-			{
-				characterDirectionX = 1;
-				characterDirectionY = 0;
-			}
-			if (tempdirection = 2)
-			{
-				characterDirectionX = 0;
-				characterDirectionY = 1;
-			}
-			if (tempdirection = 3)
-			{
-				characterDirectionX = -1;
-				characterDirectionY = 0;
-			}*/
 		}
 	}
 	else if(controllerType == NetworkControl)
@@ -374,7 +360,7 @@ bool Character::setLastUpdate(int time)
 }
 bool Character::setLastAiUpdate(int time)
 {
-	lastUpdate = time;
+	lastAiUpdate = time;
 	return true;
 }
 

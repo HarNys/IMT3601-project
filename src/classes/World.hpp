@@ -36,6 +36,9 @@ private:
 	int StartY;
 	int border;
 	int xSpace;
+	int difficulty;
+	int primes[15];
+
         // constructor
         World();
 
@@ -46,6 +49,7 @@ private:
         MineFactory *mineFactory;
 		int updatetime;
 		sf::Music death;
+
 public:
         static World *getWorld();
         bool initMap(char *mapFile);
@@ -60,6 +64,10 @@ public:
 	void setGoal();
 	bool reset();
 	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
+	int getDifficulty();
+	bool addDifficulty(int modifier);
+	int getPrime(int number);
+
 };
 
 #endif // __WORLD__HEADER__GUARD__
