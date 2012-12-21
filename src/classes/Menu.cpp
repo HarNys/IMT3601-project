@@ -295,7 +295,7 @@ int  Menu::SelectNumberOfCharacters()
 };
 
 /**
- * Document function.
+ * @todo Document function.
  */
 void Menu::networking()
 {
@@ -383,7 +383,7 @@ void Menu::networking()
 };
 
 /**
- * Document function.
+ * @todo Document function.
  */
 bool Menu::initplayers()
 {
@@ -399,25 +399,34 @@ bool Menu::initplayers()
 	world->initMap((char *)"map/maptwo.txt");
 	world->randomGenerate(true);
 
-	printf("Menu::initplayers(): has got World, getting MineFactory\n");
+	if (DEBUG > 1)
+	{
+		printf("Menu::initplayers(): has got World, getting MineFactory\n");
+	}
 	MineFactory *mineFactory;
 	mineFactory = mineFactory->getMineFactory();
 
-	printf("Menu::initplayers(): has got MineFactory, getting CharacterFactory\n");
+	if (DEBUG > 1)
+	{
+		printf("Menu::initplayers(): has got MineFactory, getting CharacterFactory\n");
+	}
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
 
 	//This is comented out to just have npc's running around
-
-	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
+	if (DEBUG > 1)
+	{
+		printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
+	}
 	Character *player = characterFactory->getCharacter();
 /*	player->setCharacterType(0); // 0 for local-player character
 	player->setID(0);
-*/
+	//*/
 	/*
 	 * !!!!		NEEDED FOR NETWORKING WHEN CLIENT	!!!!
-	 * Here is a big bit of code which should be moved.
+	 * Here is a big bit of code which should be moved/refactored
+	 * into a function/method somewhere.
 	 */
 	NetworkClient *networkClient;
 	pthread_cond_t clientPlayerCV;
@@ -445,6 +454,9 @@ bool Menu::initplayers()
 	}
 	networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
 	networkClient->setPlayerCharacter(player);
+	/*
+	 * !!!!	END OF NEEDED FOR NETWORKING WHEN CLIENT	!!!!
+	 */
 
 	world->placeCharacter(player);
 

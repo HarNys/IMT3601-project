@@ -73,7 +73,8 @@ pthread_cond_t *LocalPlayer::getSenderCV()
 		if (DEBUG > 0)
 		{
 			printf("LocalPlayer::getSenderCV(): senderCV is"
-				" NULL. Have you forgotten to set it?\n");
+				" NULL. Have you forgotten to set it?"
+				"\n");
 		}
 	}
 	return senderCV;
@@ -85,13 +86,16 @@ pthread_cond_t *LocalPlayer::getSenderCV()
 /// @param [in] thisCharacter pointer to character to move.
 void LocalPlayer::characterInput(Character* thisCharacter)
 {
-	sf::Event e;
+//	sf::Event e; // not used.
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		thisCharacter->setCharacterDirectionX(-1);
 		thisCharacter->updateSprite();
-
+		if (senderCV)
+		{
+			pthread_cond_signal(senderCV);
+		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::A)
 		//{
 		//	thisCharacter->setCharacterDirectionX(0);
@@ -102,7 +106,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	{
 		thisCharacter->setCharacterDirectionX(1);
 		thisCharacter->updateSprite();
-
+		if (senderCV)
+		{
+			pthread_cond_signal(senderCV);
+		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::D)
 		//{
 		//	thisCharacter->setCharacterDirectionX(0);
@@ -113,7 +120,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	{
 		thisCharacter->setCharacterDirectionY(-1);
 		thisCharacter->updateSprite();
-
+		if (senderCV)
+		{
+			pthread_cond_signal(senderCV);
+		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::W)
 		//{
 		//	thisCharacter->setCharacterDirectionY(0);
@@ -123,7 +133,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	{
 		thisCharacter->setCharacterDirectionY(1);
 		thisCharacter->updateSprite();
-
+		if (senderCV)
+		{
+			pthread_cond_signal(senderCV);
+		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::S)
 		//{
 		//	thisCharacter->setCharacterDirectionY(0);
@@ -131,6 +144,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
+		if (senderCV)
+		{
+			pthread_cond_signal(senderCV);
+		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::E)
 		//{
 		//	thisCharacter->placeMine();
