@@ -21,6 +21,12 @@
  */
 #include "../Includes.hpp"
 
+/**
+ * NetworkClient class, follows the singleton pattern.
+ *
+ * @todo Refactor this class so it is not a singleton. Right now it is
+ * 	a singleton for all the wrong reasons.
+ */
 class NetworkClient //: public Network
 {
 private:
@@ -29,6 +35,7 @@ private:
 	int mySocket;
 	pthread_t listenThread;
 	pthread_t sendThread;
+	LocalPlayer *localPlayer;
 	enum {
 		MINEPLACED = 1,
 		MOVEPOSITIVEX,
@@ -36,10 +43,14 @@ private:
 		MOVEPOSITIVEY,
 		MOVENEGATIVEY,
 	} playerActions;
-public:
+	// constructors
 	NetworkClient();
 	NetworkClient(short byte0, short byte1, short byte2,
 		short byte3, int hostPort, int myPort);
+	static NetworkClient *networkClient;
+public:
+	static NetworkClient *getNetworkClient();
+	int setLocalPlayer(LocalPlayer *player);
 	static void *networkInitialize(void*);
 	int listener();
 	int sender();
