@@ -18,7 +18,7 @@
 #include "../Includes.hpp"
 
 /**
- * @todo Document function.
+ * initialise the menu, sets up the text (size, color, etc), sprite for background and loads in the music for the menu.
  */
 Menu::Menu(sf::RenderWindow* renderWindow)
 {
@@ -112,8 +112,7 @@ bool Menu::changeText(std::string text)
 };
 
 /**
- * @brief Menu Loop
- * @todo Document function.
+ * Displays a menu screen where the layer can pick singelplayer, multiplayer or exit the game
  */
 void Menu::runMenu()
 {
@@ -227,7 +226,6 @@ void Menu::runMenu()
 /**
 * @brief Select number of players in the game
 * @return The number of players
-* @todo Stop keys from repeating.
 */
 int  Menu::SelectNumberOfCharacters()
 {
@@ -295,7 +293,7 @@ int  Menu::SelectNumberOfCharacters()
 };
 
 /**
- * Document function.
+ * Displays a screen where the player can write in an ip address for netowrking
  */
 void Menu::networking()
 {
@@ -370,7 +368,7 @@ void Menu::networking()
 
 		}
 
-		//check the size of ip address
+		//check the size of ip address (ipv 4)
 		if(ip.size() > 15)
 		{
 			ip.resize(15);
@@ -384,7 +382,7 @@ void Menu::networking()
 };
 
 /**
- * Document function.
+ * Resets World and then sets up a new one and adds characters to it
  */
 bool Menu::initplayers()
 {
@@ -408,14 +406,11 @@ bool Menu::initplayers()
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
-
-	//This is comented out to just have npc's running around
-
-	/*printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
+	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
 	player->setID(0);
-	world->placeCharacter(player);*/
+	world->placeCharacter(player);
 
 	Character *npc;
 
