@@ -30,6 +30,7 @@ NetworkClient::NetworkClient()
 	hostIp = NULL;
 	hostSocket = 0;
 	mySocket = 0;
+	iAmSending = true;
 }
 
 /**
@@ -42,6 +43,7 @@ NetworkClient::NetworkClient(short byte0, short byte1, short byte2,
 	hostIp = sf::IpAddress(byte0, byte1, byte2, byte3);
 	hostSocket = hostPort;
 	mySocket = myPort;
+	iAmSending = true;
 	if (pthread_create(&listenThread, NULL, &NetworkClient::networkInitialize, reinterpret_cast<void *> (this)))
 	{
 		printf("NetworkClient::NetworkClient([4]xUint8,int,int): "
@@ -120,6 +122,9 @@ int NetworkClient::sender()
 	if (DEBUG > 0)
 	{
 		printf("NetworkClient::sender(): In thread: \t%lu\n", pthread_self());
+	}
+	while (iAmSending)
+	{
 	}
 	return 0;
 }

@@ -32,18 +32,31 @@ class LocalPlayer
 {
 private:
 	/**
+	 * !!		isClient IS NOT USED			!!
 	 * isClient is checked to see if we need to signal the
 	 * NetworkClient to send. It should only ever be true when this
 	 * instance of the game is a multiplayer client.
 	 *
 	 * Defaults to false in default constructor.
+	 *
+	 * I am using senderCV and checking for NULL instead of using
+	 * isClient.
 	 */
 	bool isClient;
 	pthread_cond_t *senderCV;
+	std::queue<int> *sendActions;
+	enum {
+		MINEPLACED = 1,
+		MOVEPOSITIVEX,
+		MOVENEGATIVEX,
+		MOVEPOSITIVEY,
+		MOVENEGATIVEY,
+	} playerSendActions;
 public:
 	LocalPlayer();
 	LocalPlayer(bool iAmHost);
 	int setSenderCV(pthread_cond_t *sentSenderCV);
+	int setActionQueue();
 	pthread_cond_t *getSenderCV();
 	void characterInput(Character* thisCharacter);
 };

@@ -36,13 +36,15 @@ private:
 	pthread_t listenThread;
 	pthread_t sendThread;
 	Character *playerCharacter;
-	enum {
+	bool iAmSending;
+/*	enum {
 		MINEPLACED = 1,
 		MOVEPOSITIVEX,
 		MOVENEGATIVEX,
 		MOVEPOSITIVEY,
 		MOVENEGATIVEY,
 	} playerActions;
+	//*/
 public:
 	NetworkClient();
 	NetworkClient(short byte0, short byte1, short byte2,

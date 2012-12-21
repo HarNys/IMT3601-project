@@ -430,6 +430,9 @@ bool Menu::initplayers()
 	 */
 	NetworkClient *networkClient;
 	pthread_cond_t clientPlayerCV;
+	pthread_cond_init(&clientPlayerCV, NULL);
+	std::queue<int> *sendActions;
+	sendActions = new std::queue<int>;
 	player->initCharacter(0, 0, &clientPlayerCV);
 	// start NetworkClient:
 	short ipbyte0 = 127;

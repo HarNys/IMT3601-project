@@ -56,6 +56,7 @@
 #include <fstream>
 #include <math.h>
 #include <omp.h>
+#include <queue>
 
 
 ///////// LOCAL PROJECT FILES //////////
