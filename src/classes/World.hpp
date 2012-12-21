@@ -45,6 +45,7 @@ private:
         int area; //size from origin to one side of the map
         MineFactory *mineFactory;
 		int updatetime;
+		sf::Music death;
 public:
         static World *getWorld();
         bool initMap(char *mapFile);

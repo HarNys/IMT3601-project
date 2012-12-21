@@ -45,6 +45,18 @@ World::World()
 	xSpace = 1;
 	updatetime = 0;
 
+	
+			// Open it from an audio file
+	if (!death.openFromFile("music/death_by _Mediapaja2009_at_freesound.ogg"))
+	{
+		printf("Menu::Menu(sf::RenderWindow* renderWindow): can't load music");
+	}
+	else
+	{
+		death.setVolume(70);         
+		death.setLoop(false);
+	}
+
 };
 
 /**
@@ -412,6 +424,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 							tempcharacter = nextTile->getHasCharacter();
 							nextTile->setCharacter(NULL);
 							placeCharacter(tempcharacter);
+							death.play();
 						}
 						whatIsThere = (char *) "there is a Character, stab!";
 					}
