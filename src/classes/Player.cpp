@@ -37,6 +37,8 @@ LocalPlayer::LocalPlayer()
 	}
 	isClient = false;
 	senderCV = NULL;
+	pthread_mutex_init(actionMutex, NULL);
+	sendActions = new std::queue<int>;
 }
 
 /**
@@ -48,6 +50,8 @@ LocalPlayer::LocalPlayer(bool iAmClient)
 {
 	isClient = iAmClient;
 	senderCV = NULL;
+	pthread_mutex_init(actionMutex, NULL);
+	sendActions = new std::queue<int>;
 }
 
 /**
@@ -94,7 +98,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		thisCharacter->updateSprite();
 		if (senderCV)
 		{
+			pthread_mutex_lock(actionMutex);
+			sendActions->push(MOVENEGATIVEX);
 			pthread_cond_signal(senderCV);
+			pthread_mutex_unlock(actionMutex);
 		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::A)
 		//{
@@ -108,7 +115,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		thisCharacter->updateSprite();
 		if (senderCV)
 		{
+			pthread_mutex_lock(actionMutex);
+			sendActions->push(MOVEPOSITIVEX);
 			pthread_cond_signal(senderCV);
+			pthread_mutex_unlock(actionMutex);
 		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::D)
 		//{
@@ -122,7 +132,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		thisCharacter->updateSprite();
 		if (senderCV)
 		{
+			pthread_mutex_lock(actionMutex);
+			sendActions->push(MOVENEGATIVEY);
 			pthread_cond_signal(senderCV);
+			pthread_mutex_unlock(actionMutex);
 		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::W)
 		//{
@@ -135,6 +148,7 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		thisCharacter->updateSprite();
 		if (senderCV)
 		{
+			sendActions->push(MOVEPOSITIVEY);
 			pthread_cond_signal(senderCV);
 		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::S)
@@ -146,7 +160,10 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	{
 		if (senderCV)
 		{
+			pthread_mutex_lock(actionMutex);
+			sendActions->push(MINEPLACED);
 			pthread_cond_signal(senderCV);
+			pthread_mutex_unlock(actionMutex);
 		}
 		//if(e.KeyReleased && e.key.code == sf::Keyboard::E)
 		//{

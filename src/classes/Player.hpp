@@ -44,6 +44,7 @@ private:
 	 */
 	bool isClient;
 	pthread_cond_t *senderCV;
+	pthread_mutex_t *actionMutex;
 	std::queue<int> *sendActions;
 	enum {
 		MINEPLACED = 1,

@@ -167,7 +167,7 @@ int main(int argc, char **argv)
 	 *
 	 * Set IP addresses somewhere else.
 	 */
-	NetworkClient *networkClient;
+/*	NetworkClient *networkClient;
 	NetworkHost *networkHost;
 	short ipbyte0 = 127;
 	short ipbyte1 = 0;
@@ -196,10 +196,10 @@ int main(int argc, char **argv)
 				ipbyte0, ipbyte1, ipbyte2, ipbyte3);
 		}
 		networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
-/*		NetworkClient *networkClient;
+*//*		NetworkClient *networkClient;
 		networkClient = networkClient->getNetworkClient();
 */
-	}
+//	}
 
 	// Open music from an audio file
 	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
