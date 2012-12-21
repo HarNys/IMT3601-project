@@ -20,9 +20,7 @@
  *
  *
  */
-
 #include "../Includes.hpp"
-#include "Player.hpp"
 
 sf::Image *Character::characterImage = NULL;
 
@@ -377,16 +375,16 @@ bool Character::setID(int ID)
 }
 
 /**
- * @todo Documentation.
- * @todo Proposition: refactor this into int Character::getType()
- * 	{ return controllerType; }
+ * Getter for the controllerType.
+ * \li 0 = local player
+ * \li 1 = nonplayer character
+ * \li 2 = remote player
+ *
+ * @return The controllerType int.
  */
-bool Character::getIsNpc(){
-	if (1 == controllerType)
-	{
-		return true;
-	}
-	return false;
+int Character::getType()
+{
+	return controllerType;
 }
 
 /**
@@ -464,18 +462,4 @@ pthread_cond_t *Character::getSenderCV()
 		return NULL;
 	}
 	return localPlayerController.getSenderCV();
-}
-
-LocalPlayer *Character::getLocalPlayerController()
-{
-	if (0 != controllerType)
-	{
-		if (DEBUG > 0)
-		{
-			printf("Character::getLocalPlayer(): controllerType"
-				" is not 0 (player)\n");
-		}
-		return NULL;
-	}
-	return &localPlayerController;
 }

@@ -35,7 +35,7 @@ private:
 	int mySocket;
 	pthread_t listenThread;
 	pthread_t sendThread;
-	LocalPlayer *localPlayer;
+	Character *playerCharacter;
 	enum {
 		MINEPLACED = 1,
 		MOVEPOSITIVEX,
@@ -50,7 +50,7 @@ public:
 	NetworkClient(short byte0, short byte1, short byte2,
 		short byte3, int hostPort, int myPort);
 //	static NetworkClient *getNetworkClient();
-	int setLocalPlayer(LocalPlayer *player);
+	int setPlayerCharacter(Character *player);
 	static void *networkInitialize(void*);
 	int listener();
 	int sender();

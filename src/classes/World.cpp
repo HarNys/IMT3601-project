@@ -559,7 +559,7 @@ bool World::update()
 							}
 							if (goalExists)
 							{
-								if (thisCharacter->getIsNpc())
+								if (1 == thisCharacter->getType())
 								{
 
 									//#pragma omp critical(astar)

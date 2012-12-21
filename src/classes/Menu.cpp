@@ -419,6 +419,7 @@ bool Menu::initplayers()
 	 * !!!!		NEEDED FOR NETWORKING WHEN CLIENT	!!!!
 	 * Here is a big bit of code which should be moved.
 	 */
+	NetworkClient *networkClient;
 	pthread_cond_t clientPlayerCV;
 	player->initCharacter(0, 0, &clientPlayerCV);
 	// start NetworkClient:
@@ -443,7 +444,7 @@ bool Menu::initplayers()
 			ipbyte0, ipbyte1, ipbyte2, ipbyte3);
 	}
 	networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
-	networkClient->setPlayer(player);
+	networkClient->setPlayerCharacter(player);
 
 	world->placeCharacter(player);
 

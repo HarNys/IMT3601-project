@@ -160,3 +160,21 @@ int NetworkClient::sender()
 	}
 	return 0;
 }
+
+/**
+ * Setter for the Character contained within NetworkClient
+ * @param player The Character who is the local player for this client
+ * @return 0 on success.
+ */
+int NetworkClient::setPlayerCharacter(Character *player)
+{
+	if (player->getType())
+	{
+		printf("NetworkClient::setPlayerCharacter(Character*): "
+			"'player' is not this clients player."
+			" Wrong type\n");
+		return 1;
+	}
+	playerCharacter = player;
+	return 0;
+}

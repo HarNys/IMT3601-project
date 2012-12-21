@@ -69,10 +69,10 @@
 #include "classes/World.hpp"
 #include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
-#include "classes/Menu.hpp"
 //#include "classes/Network.hpp"
 #include "classes/NetworkHost.hpp"
 #include "classes/NetworkClient.hpp"
+#include "classes/Menu.hpp"
 
 
 //// Controllers ////

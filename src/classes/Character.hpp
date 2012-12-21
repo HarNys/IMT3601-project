@@ -24,7 +24,6 @@
 #define __CHARACTER__HEADER__GUARD__
 
 #include "../Includes.hpp"
-#include "Player.hpp"
 
 /**
  * These could probably be made int's.
@@ -76,7 +75,7 @@ public:
 	bool setID(int ID);
 	void newStack(int xPos, int yPos);
 	void addStack(int xPos, int yPos);
-	bool getIsNpc();
+	int getType();
 	bool setLastUpdate(int time);
 	int getLastUpdate();
 	int updatePoints(int adjustment);
@@ -85,7 +84,6 @@ public:
 	int getHealth();
 	int getPoints();
 	pthread_cond_t *getSenderCV();
-	LocalPlayer *getLocalPlayerController();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__
