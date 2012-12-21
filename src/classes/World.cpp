@@ -45,7 +45,7 @@ World::World()
 	xSpace = 1;
 	updatetime = 0;
 
-	
+
 			// Open it from an audio file
 	if (!death.openFromFile("music/death_by _Mediapaja2009_at_freesound.ogg"))
 	{
@@ -53,7 +53,7 @@ World::World()
 	}
 	else
 	{
-		death.setVolume(70);         
+		death.setVolume(70);
 		death.setLoop(false);
 	}
 
@@ -77,7 +77,7 @@ World::World()
 	////////////
 
 
-};
+}
 
 /**
  * The singleton handler, returns a working World object.
@@ -97,7 +97,7 @@ World *World::getWorld()
 	{
 		return world;
 	}
-};
+}
 
 /**
  * Initializes the map using 'mapFile'
@@ -156,7 +156,7 @@ bool World::initMap(char *mapFile)
 	file.close();
 //	map[currentX][currentY]->setVisited();
 	return true;
-};
+}
 
 /**
 * generates a random map
@@ -471,7 +471,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	//#pragma omp critical
 
 	return false;
-};
+}
 
 /**
  * Puts a Mine on the Tile parameter.
@@ -493,7 +493,7 @@ bool World::placeMine(Character *character, Tile *characterPosition)
 	}
 	character->setMinePlaced(false);
 	return true;
-};
+}
 
 /**
  * runs through all active tiles(tiles within 'area'), and updates them
@@ -618,7 +618,7 @@ bool World::update()
 		}
 	}
 	return true;
-};
+}
 
 /**
  * Draws this World Tile's and Character's.
@@ -650,7 +650,7 @@ void World::draw(sf::RenderWindow *window)
 			}
 		}
 	}
-};
+}
 
 bool World::placeCharacter(Character *character)
 {
@@ -658,7 +658,7 @@ bool World::placeCharacter(Character *character)
 	static int small=1;
 	static int big=area-2;
 	static int rotator=0;
-	int increment = 1;
+//	int increment = 1; // Not used, remove it?
 	bool doneflag = false;
 
 	//if (!small && !big && !rotator){
@@ -677,7 +677,10 @@ bool World::placeCharacter(Character *character)
 			{
 				map[small][small]->setCharacter(character);
 				character->getSprite()->setPosition(15 * small, 15 * small);
-				printf("World::placeCharacter(Character *character): End \n");
+				if (DEBUG > 1)
+				{
+					printf("World::placeCharacter(Character *character): End \n");
+				}
 				return true;
 			}
 
@@ -736,7 +739,7 @@ bool World::placeCharacter(Character *character)
 
 
 	return false;
-};
+}
 
 /**
 *

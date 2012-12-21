@@ -23,39 +23,62 @@
 
 
 
+/**
+ * @todo Document function
+ */
 StackNode::StackNode (int xPosition, int yPosition, StackNode * nextNode)
 {
-positionX = xPosition;
-positionY = yPosition;
-next = nextNode;
-};
-StackNode::StackNode ()
-{
-positionX = NULL;
-positionY = NULL;
-next = NULL;
+	positionX = xPosition;
+	positionY = yPosition;
+	next = nextNode;
 }
 
+/**
+ * @todo Document function
+ */
+StackNode::StackNode ()
+{
+	positionX = NULL;
+	positionY = NULL;
+	next = NULL;
+}
+
+/**
+ * @bug this.
+ */
 StackNode::~StackNode()
 {
 
-};
+}
 
 
+/**
+ * @todo Document function
+ */
 int StackNode::getXPos()
 {
 	return positionX;
-};
+}
+
+/**
+ * @todo Document function
+ */
 int StackNode::getYPos()
 {
 	return positionY;
-};
+}
 
+/**
+ * @todo Document function
+ */
 StackNode * StackNode::getNext()
 {
 	return next;
-};
+}
 
+/**
+ * @todo Document function
+ */
 void StackNode::removeStack()
 {
 	if (next)
@@ -63,4 +86,4 @@ void StackNode::removeStack()
 		next->removeStack();
 	}
 	delete this;
-};
+}

@@ -42,7 +42,7 @@ private:
 	int numOfPlayers;
 	bool menuOpen;
 	int imageCount;
-	int imageCountY;
+//	int imageCountY; // Not used
 	bool gameRuning;
 	sf::Clock timer;
 

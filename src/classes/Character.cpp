@@ -44,7 +44,7 @@ Character::Character()
 	aggressivenes = 0;
 	characterID = -1;
 	lastAiUpdate = 0;
-};
+}
 
 /**
 *	@brief Updates characters healt if it taks demages og health is refreshed etc.
@@ -86,7 +86,7 @@ bool Character::initImage()
 	sf::Color alpha(151,251,151);		//Alpha color that is not to be drawn
 	characterImage->createMaskFromColor(alpha,0);	//Alpha out the alpha color
 	return true;
-};
+}
 
 /**
  * initializes the character to the values/states we need it in. should be done
@@ -102,7 +102,7 @@ bool Character::initCharacter()
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 
 	return true;
-};
+}
 
 /**
  * @return minePlaced
@@ -110,7 +110,7 @@ bool Character::initCharacter()
 bool Character::getMinePlaced()
 {
 	return minePlaced;
-};
+}
 
 /**
  * @param [in] minePlace: the new value of minePlace.
@@ -118,7 +118,7 @@ bool Character::getMinePlaced()
 void Character::setMinePlaced(bool minePlace)
 {
 	minePlaced = minePlace;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionX.
@@ -128,7 +128,7 @@ void Character::setMinePlaced(bool minePlace)
 int Character::getCharacterDirectionX()
 {
 	return characterDirectionX;
-};
+}
 
 /**
  *returns the value of this Character's characterDirectionY.
@@ -138,7 +138,7 @@ int Character::getCharacterDirectionX()
 int Character::getCharacterDirectionY()
 {
 	return characterDirectionY;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionY.
@@ -151,7 +151,7 @@ bool Character::setCharacterDirectionY(int newYDirection)
 {
 	characterDirectionY = newYDirection;
 	return true;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionX.
@@ -164,7 +164,7 @@ bool Character::setCharacterDirectionX(int newXDirection)
 {
 	characterDirectionX = newXDirection;
 	return true;
-};
+}
 
 /**
  * Draws the Character's sprite.
@@ -174,7 +174,7 @@ bool Character::setCharacterDirectionX(int newXDirection)
 void Character::draw(sf::RenderWindow *window)
 {
 	window->draw(sprite);
-};
+}
 
 /**
  * resets Character's direction, is a dirty way of doing it.
@@ -183,7 +183,7 @@ void Character::resetDirection()
 {
 	characterDirectionX = 0;
 	characterDirectionY = 0;
-};
+}
 
 
 
@@ -195,7 +195,7 @@ void Character::resetDirection()
 sf::Sprite *Character::getSprite()
 {
 	return &sprite;
-};
+}
 
 /**
  * Updates and sets a Characters sprite position.
@@ -355,17 +355,27 @@ bool Character::getIsNpc(){
 	return false;
 }
 
+/**
+ * @todo Document function
+ */
 bool Character::setLastUpdate(int time)
 {
 	lastUpdate = time;
 	return true;
 }
+
+/**
+ * @todo Document function
+ */
 bool Character::setLastAiUpdate(int time)
 {
 	lastAiUpdate = time;
 	return true;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::getLastUpdate()
 {
 	return lastUpdate;
@@ -375,32 +385,51 @@ int Character::getLastAiUpdate()
 	return lastAiUpdate;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::updatePoints(int adjustment)
 {
 	pointsValue += adjustment;
 	return pointsValue;
 }
 
+/**
+ * @todo Document function
+ */
 bool Character::setAggressivenes(int newaggro)
 {
 	aggressivenes = newaggro;
 	return true;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::getAggressivenes()
 {
 	return aggressivenes;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::getHealth()
 {
 	return characterHealth;
 }
+
+/**
+ * @todo Document function
+ */
 int Character::getPoints()
 {
 	return pointsValue;
 }
 
+/**
+ * @todo Document function
+ */
 bool Character::isStack()
 {
 	if (startStack)

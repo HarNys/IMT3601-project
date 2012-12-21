@@ -32,7 +32,7 @@ MineFactory::MineFactory()
 	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.reserve(32);
 	readyMines.assign(30, new Mine);
-};
+}
 
 MineFactory *MineFactory::getMineFactory()
 {
@@ -45,7 +45,7 @@ MineFactory *MineFactory::getMineFactory()
 	{
 		return mineFactory;
 	}
-};
+}
 
 /**
  * @brief Moves the last mine from 'readyMines' to 'usedMines' before it
@@ -148,7 +148,7 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
 			"\n\ttmpPossibleTotal: %d", possibleTotal,
 			tmpPossibleTotal);
 	return false;
-};
+}
 
 /**
  * @brief Deletes mines in both 'readyMines' and 'usedMines' before
@@ -177,4 +177,4 @@ MineFactory::~MineFactory()
 	}
 //	readyMines.clear();
 //	usedMines.clear();
-};
+}

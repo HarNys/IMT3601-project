@@ -28,7 +28,7 @@
 /// @param [in] thisCharacter pointer to character to move.
 void LocalPlayer::characterInput(Character* thisCharacter)
 {
-	sf::Event e;
+//	sf::Event e; // Not used.
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -80,4 +80,4 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		//}
 	}
 
-};
+}

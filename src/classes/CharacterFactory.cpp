@@ -40,12 +40,12 @@ CharacterFactory::CharacterFactory()
 	usedCharacters.reserve(maxChar);
 	readyCharacters.reserve(maxChar);
 	//readyCharacters.assign(maxChar, new Character);
-	for (int i = 0; i < maxChar; i ++)
+	for (int i = 0; i < maxChar; i++)
 	{
 		tempChar = new Character();
 		readyCharacters.push_back(tempChar);
 	}
-};
+}
 
 ///Singleton that gets the Character Factory for you when asked for
 CharacterFactory *CharacterFactory::getCharacterFactory()
@@ -59,7 +59,7 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 	{
 		return characterFactory;
 	}
-};
+}
 
 
 /**
@@ -89,7 +89,7 @@ Character* CharacterFactory::getCharacter()
 		return NULL;
 	}
 	return tempCharacter;
-};
+}
 
 /**
  * releases a Character from World.
@@ -104,7 +104,7 @@ bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
 	characterFactory->readyCharacters.push_back(characterReleased);
 	std::vector<Character *>::iterator umIter;
-	for (umIter=characterFactory->usedCharacters.begin(); umIter < usedCharacters.end(); umIter++ )
+	for (umIter=characterFactory->usedCharacters.begin(); umIter < usedCharacters.end(); ++umIter)
 	{
 		if ((*umIter) == characterReleased)
 		{

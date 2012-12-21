@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 		int valueBuffer = 0;
 		while (!feof(configFile))
 		{
-			fscanf(configFile, "%s %d\n", variableBuffer, &valueBuffer);
+			fscanf(configFile, "%255s %9d\n", variableBuffer, &valueBuffer);
 			if (strchr(variableBuffer, '#'))
 			{
 				char seeker;
