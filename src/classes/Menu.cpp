@@ -435,7 +435,8 @@ bool Menu::initplayers()
 };
 
 /**
- * Document function.
+ * This fuction is used to select the next frame in the animation of the planet in the background.
+ * every 0.5 sec the fram is changing and loops back to fram 0 after fram 12 is displayed
  */
 void Menu::aniamtion()
 {
