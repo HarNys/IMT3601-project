@@ -43,13 +43,10 @@ private:
 		MOVEPOSITIVEY,
 		MOVENEGATIVEY,
 	} playerActions;
-//	static NetworkClient *networkClient;
 public:
-	// constructors
 	NetworkClient();
 	NetworkClient(short byte0, short byte1, short byte2,
 		short byte3, int hostPort, int myPort);
-//	static NetworkClient *getNetworkClient();
 	int setPlayerCharacter(Character *player);
 	static void *networkInitialize(void*);
 	int listener();

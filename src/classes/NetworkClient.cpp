@@ -57,43 +57,6 @@ NetworkClient::NetworkClient(short byte0, short byte1, short byte2,
 }
 
 /**
- * NetworkClient singleton handler.
- *
- * @return Singleton instance of NetworkClient.
- *
- * @todo look at a way of not hardcoding the ports.
- * @todo refactor the IP address reading into it's own function.
- */
-/*static NetworkClient *NetworkClient::getNetworkClient()
-{
-	if (networkClient == NULL)
-	{
-		short ipbyte0 = 127;
-		short ipbyte1 = 0;
-		short ipbyte2 = 0;
-		short ipbyte3 = 1;
-		printf("NetworkClient::getNetworkClient(): User input:\n");
-		printf("\tClient setup:\n"
-			"\tPlease enter the IP address of the host.\n"
-			"\tDefault and example: %d.%d.%d.%d: ",
-			ipbyte0, ipbyte1, ipbyte2, ipbyte3);
-		if (4 != scanf("%hd.%hd.%hd.%hd", &ipbyte0, &ipbyte1, &ipbyte2, &ipbyte3))
-		{
-			printf("\n\tIncorrect value entered: %d.%d.%d."
-				"%d\n", ipbyte0, ipbyte1, ipbyte2, ipbyte3);
-			ipbyte0 = 127;
-			ipbyte1 = 0;
-			ipbyte2 = 0;
-			ipbyte3 = 1;
-			printf("\tUsing default: %d.%d.%d.%d\n",
-				ipbyte0, ipbyte1, ipbyte2, ipbyte3);
-		}
-		networkClient = new NetworkClient(ipbyte0, ipbyte1, ipbyte2, ipbyte3, 4444, 4444);
-	}
-	return networkClient;
-} //*/
-
-/**
  *
  * name: NetworkClient::networkInitialize
  *
