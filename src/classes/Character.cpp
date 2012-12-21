@@ -463,3 +463,12 @@ pthread_cond_t *Character::getSenderCV()
 	}
 	return localPlayerController.getSenderCV();
 }
+
+/**
+ * Getter for the actionMutex variable.
+ * @return actionMutex
+ */
+pthread_mutex_t *Character::getActionMutex()
+{
+	return localPlayerController.getActionMutex();
+}

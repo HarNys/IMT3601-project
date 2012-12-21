@@ -125,6 +125,28 @@ int NetworkClient::sender()
 	}
 	while (iAmSending)
 	{
+		if (DEBUG > 0)
+		{
+			printf("NetworkClient::sender(): If I fail here"
+				" it may be because I do not lock my\n"
+				"NetworkClient::sender(): mutex before "
+				"calling pthread_cond_wait.\n");
+		}
+		pthread_cond_wait(playerCharacter->getSenderCV(),
+			playerCharacter->getActionMutex());
+		printf("NetworkClient::sender(): I STOP HERE UNFINISHED"
+			"!\n");
+		iAmSending = false;
+		/*
+		 * The rest of this function would be something like
+		 * this:
+		 * # lock mutex.
+		 * # copy players actionQueue.
+		 * # unlock mutex.
+		 * # send all items in actionQueue (this may be
+		 * 	something we want to do in a separate thread.
+		 * # loop back up to start.
+		 */
 	}
 	return 0;
 }

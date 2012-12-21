@@ -59,6 +59,7 @@ public:
 	int setSenderCV(pthread_cond_t *sentSenderCV);
 	int setActionQueue();
 	pthread_cond_t *getSenderCV();
+	pthread_mutex_t *getActionMutex();
 	void characterInput(Character* thisCharacter);
 };
 

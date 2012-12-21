@@ -84,6 +84,7 @@ public:
 	int getHealth();
 	int getPoints();
 	pthread_cond_t *getSenderCV();
+	pthread_mutex_t *getActionMutex();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

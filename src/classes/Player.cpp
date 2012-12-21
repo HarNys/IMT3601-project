@@ -84,6 +84,15 @@ pthread_cond_t *LocalPlayer::getSenderCV()
 	return senderCV;
 }
 
+/**
+ * Getter for the actionMutex variable.
+ * @return actionMutex
+ */
+pthread_mutex_t *LocalPlayer::getActionMutex()
+{
+	return actionMutex;
+}
+
 ///movement-functions
 ///checks if the key is pressed and then released
 ///to reset characterDirectionX/Y
@@ -170,4 +179,4 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		//	thisCharacter->placeMine();
 		//}
 	}
-};
+}
