@@ -11,8 +11,13 @@ throughout the project.
 Dependencies
 ============
 
-The game is built using SFML 2.0 <http://www.sfml-dev.org/> and either visual
-studio or make and gcc.
+The game is built using either visual studio or make and gcc.
+
+ * SFML 2.0 <http://www.sfml-dev.org/>
+ * POSIX threads (pthread)
+
+For pthreads on windows this guide should do the trick
+<http://browniehive.net/doku.php/indexpageblog:posix_threads_on_windows>
 
 Installing and Running
 ======================
