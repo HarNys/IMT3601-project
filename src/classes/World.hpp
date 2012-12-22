@@ -29,7 +29,6 @@
 /**
  * @brief world X is across, world Y is downwards
  *
- * @todo fix clock for timing of ticks
  */
 class World
 {
