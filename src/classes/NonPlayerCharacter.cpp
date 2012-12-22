@@ -29,7 +29,7 @@ NonPlayerCharacter::NonPlayerCharacter()
 }
 
 /**
- * @brief finds shortest bath and gives node pointers to player to calculate velocity
+ * @brief finds shortest path and gives node pointers to player to calculate velocity
  * @param map the map in question, not really needed.
  * @param thisCharacter Character that is to be moved.
  * @todo give a list of coordinates to visit, so search can be done more rarely.

@@ -51,14 +51,14 @@ private:
 	sf::Music death;
 
 public:
-        static World *getWorld();
-        bool initMap(char *mapFile);
-        bool placeCharacter(Character *character);
-        bool moveCharacter(Character *character, int xPosition, int yPosition);
-        bool placeMine(Character *character, Tile *tile);
-        bool update();
+    static World *getWorld();
+    bool initMap(char *mapFile);
+    bool placeCharacter(Character *character);
+    bool moveCharacter(Character *character, int xPosition, int yPosition);
+    bool placeMine(Character *character, Tile *tile);
+    bool update();
 	void randomGenerate(bool start);
-        void draw(sf::RenderWindow *window);
+    void draw(sf::RenderWindow *window);
 	Tile ***getMap();
 	int getArea();
 	void setGoal();
@@ -67,7 +67,6 @@ public:
 	int getDifficulty();
 	bool addDifficulty(int modifier);
 	int getPrime(int number);
-
 };
 
 #endif // __WORLD__HEADER__GUARD__
