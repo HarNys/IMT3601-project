@@ -2,6 +2,7 @@
  * Includes.hpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,11 +65,12 @@
 #include "classes/Mine.hpp" // requires character
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
+#include "classes/Scoreboard.hpp"
 #include "classes/World.hpp"
 #include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
 #include "classes/Menu.hpp"
-#include "classes/Scoreboard.hpp"
+
 
 
 //// Controllers ////

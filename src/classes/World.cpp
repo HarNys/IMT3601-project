@@ -2,6 +2,7 @@
  * World.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -588,7 +589,7 @@ bool World::update()
 
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
-
+								//scoreboard->setNewElement(thisCharacter->getID(), thisCharacter->getPoints());
 								thisCharacter->useController(thisCharacter);
 								if (thisCharacter->getMinePlaced())
 								{
@@ -628,6 +629,7 @@ bool World::update()
 		{
 			setGoal();
 		}
+		//scoreboard->printList();
 	}
 	return true;
 }
