@@ -1,0 +1,93 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+
+\author{Thomas Sigurdsen - 090320}
+\title{IMT3601 Game Programming \\ Individual Report \\ Group Neuton}
+\date{\today}
+
+\begin{document}
+\headheight = 14.0pt
+\pagestyle{fancy}
+\maketitle
+\section*{Abstract}
+%% This section is to be written when all
+%% else is done. 100-200 words summarizing.
+This project has been refreshing and a lot of work. Even though I have had two
+chunks of downtime, I feel I have given a good shot at this, and delivered an ok
+product.
+%\tableofcontents
+
+\section{Features Worked On}
+\subsection{Networking}
+Week 50 and 51 were spent on networking and thus threading. This was all to late 
+in the process. And even though I think I could have gotten the code finished,
+it would have been untested and most prone to breaking at unexpected opportunities.
+It still resides in the branch '30-world-network-sync'
+
+\subsection{Configuration File}
+Week 49 I spent working on reading a configuration, and creating it if it was 
+missing. I spent a lot more time on this then I should have, mainly because I
+wasn't familiar with the differences between 'fopen' and 'freopen'.
+
+\subsection{Framework}
+From the start of the project I did work on most of the framework. Getting among 
+other things the World singleton; The MineFactory factory object-pool singleton
+and Tile up and running. I also had some work doing the makefile and Includes
+header.
+
+\subsection{Libraries}
+We have at times been struggling with getting libraries to play with MSBuild and
+Visual Studio. I have more often than not been involved in troubleshooting these
+issues as I have more experience with the workings of libraries, compilers and
+linkers from my use of GNU/Linux.
+
+\section{Things Learned}
+\subsection{Libraries}
+I have during this project for the first time compiled an external library. And
+through that I have familiarized myself further with CMake and GNU Make.
+
+\subsection{Git}
+Learning git has been way more fun than i thought it would be. It also proved to be
+really good at helping organize work, and workflow. Branching makes software 
+configuration management's value increase exponentially.
+
+\subsection{Design Patterns}
+When I first learned of them at the start of the semester I was thrilled. During
+this semester however, I have come to see them as tools to be catious of. Awesome
+tools for the right job. Bloating if used for a wrong job.
+
+\subsection{Threading}
+Pthreads, I have learned, are both a pain and a joy. There are quite a few snags
+to hit for us using (or attempting to use) object orientation and C++.
+
+\subsection{Networking}
+Is a bit of a design issue. Especially if implementing it at a late stage in 
+development.
+
+\subsection{Portability}
+The biggest issue I believe we have had throughout the project is in dealing with
+Visual Studio and external libraries. We have run into few problems outside of this.
+
+\subsection{Groupmanagement}
+As I did much of the work on the initial prototype and frameworks of the game, I 
+got to know it rather intimately from the beginning. This lead to me sitting 
+metaphorically in the middle of a lot of the decision making throughout the project.
+
+\subsection{Generally}
+\begin{description}
+ \item [Static code analysis] makes me sorry I didn't use it earlier.
+ \item [Valgrind] has become more of a saviour than it ever where.
+ \item [Doxygen] enhances commenting. A lot.
+ \item []
+\end{description}
+
+
+
+
+
+\end{document}

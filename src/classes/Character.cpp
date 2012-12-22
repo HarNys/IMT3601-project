@@ -269,7 +269,6 @@ void Character::useController(Character* thischaracter)
 			thischaracter->updateSprite();
 		}
 
-		// @todo the const should be changed to reflect dificulty
 		World *world;
 		world = world->getWorld();
 

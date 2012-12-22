@@ -44,9 +44,10 @@ Thumbs.db
 *.aux
 *.bib.bak
 *.tex.bak
+*.tex.backup
 *.bbl
 *.bcf
-*.pdf
+#*.pdf
 *.synctex.gz
 *.out
 *.blg
@@ -69,9 +70,8 @@ Thumbs.db
 
 #  VC10 Debug folder #
 ######################
-./Debug/
+Debug/*
 ./ipch/
-Debug/
 ipch/
 Release/
 

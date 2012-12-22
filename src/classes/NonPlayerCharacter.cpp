@@ -32,7 +32,6 @@ NonPlayerCharacter::NonPlayerCharacter()
  * @brief finds shortest path and gives node pointers to player to calculate velocity
  * @param map the map in question, not really needed.
  * @param thisCharacter Character that is to be moved.
- * @todo give a list of coordinates to visit, so search can be done more rarely.
  */
 void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 {
@@ -77,7 +76,6 @@ void NonPlayerCharacter::aStar(Tile*** const map, Character* thisCharacter)
 
 
 			//when the goal has been reached, meaning they can create a stack
-			// @todo add actual stack instead of two node pointers
 			if( visitNode->getXPos() == goalNode->getXPos()
 				&& visitNode->getYPos() == goalNode->getYPos())
 			{

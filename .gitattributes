@@ -4,3 +4,5 @@
 *.jpg binary
 *.sln binary
 *.vcxproj.* binary
+*.pdf binary
+*.doc* binary
