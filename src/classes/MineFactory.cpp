@@ -98,7 +98,7 @@ void MineFactory::releaseMine(Mine *releasedMine)
 {
 	readyMines.push_back(releasedMine);
 	std::vector<Mine *>::iterator umIter;
-	for (umIter=usedMines.begin(); umIter < usedMines.end(); umIter++ )
+	for (umIter=usedMines.begin(); umIter < usedMines.end(); ++umIter )
 	{
 		if ((*umIter) == releasedMine)
 		{
@@ -159,7 +159,7 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
 MineFactory::~MineFactory()
 {
 	std::vector<Mine *>::iterator rmIter;
-	for (rmIter = readyMines.end(); rmIter >= readyMines.begin(); rmIter--)
+	for (rmIter = readyMines.end(); rmIter >= readyMines.begin(); --rmIter)
 	{
 		if (*rmIter)
 		{
@@ -168,7 +168,7 @@ MineFactory::~MineFactory()
 	}
 
 	std::vector<Mine *>::iterator umIter;
-	for (umIter = usedMines.end(); umIter >= usedMines.begin(); umIter--)
+	for (umIter = usedMines.end(); umIter >= usedMines.begin(); --umIter)
 	{
 		if (*umIter)
 		{

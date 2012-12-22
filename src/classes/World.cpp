@@ -49,7 +49,10 @@ World::World()
 			// Open it from an audio file
 	if (!death.openFromFile("music/death_by _Mediapaja2009_at_freesound.ogg"))
 	{
-		printf("Menu::Menu(sf::RenderWindow* renderWindow): can't load music");
+		if (DEBUG > 0)
+		{
+			printf("Menu::Menu(sf::RenderWindow* renderWindow): can't load music");
+		}
 	}
 	else
 	{
@@ -159,21 +162,19 @@ bool World::initMap(char *mapFile)
 }
 
 /**
-* generates a random map
-*
-* @return true on success
-* @todo make this shit work
-*/
+ * generates a random map
+ *
+ * @return true on success
+ * @todo General cleaning, among other:
+ * 	Change variable name of temp_list, rationale: It is not a list.
+ * 	Also it is hardly temporary, that is not it's function.
+ */
 void World::randomGenerate(bool start)
 {
-
 	int directionX = 0;
 	int directionY = 0;
-
-
 	static int currentX;
 	static int currentY;
-
 	static std::list<Tile*> *unVisited;
 	static std::list<Tile*> *visited;
 	Tile *temp;
@@ -275,7 +276,7 @@ void World::randomGenerate(bool start)
 					currentX += directionX;
 					currentY += directionY;
 
-					for(temp_list = unVisited->begin(); temp_list != unVisited->end(); temp_list++)
+					for(temp_list = unVisited->begin(); temp_list != unVisited->end(); ++temp_list)
 					{
 						temp = *temp_list;
 
@@ -406,8 +407,8 @@ void World::randomGenerate(bool start)
 bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 {
 
-	int characterDirectionX = 0;
-	int characterDirectionY = 0;
+	int characterDirectionX;
+	int characterDirectionY;
 	characterDirectionX = character->getCharacterDirectionX();
 	characterDirectionY = character->getCharacterDirectionY();
 	char *whatIsThere = NULL;
@@ -423,7 +424,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 			if (((xPosition + characterDirectionX) < area)
 				&& ((yPosition + characterDirectionY) < area))
 			{
-				Tile *nextTile = NULL;
+				Tile *nextTile;
 				nextTile = map[xPosition + characterDirectionX][yPosition + characterDirectionY];
 				if (!nextTile->getIsWall())
 				{
@@ -464,8 +465,11 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 			whatIsThere = (char *) "nextTile is out of bounds, smaller.";
 		}
 	}
-	printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
-		whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
+	if (DEBUG > 1)
+	{
+		printf("World::moveCharacter(): can't move: %s at: %d, %d\n",
+			whatIsThere,(xPosition + characterDirectionX), (yPosition + characterDirectionY));
+	}
 
 
 	//#pragma omp critical
@@ -507,7 +511,10 @@ bool World::placeMine(Character *character, Tile *characterPosition)
  */
 bool World::update()
 {
-//	printf("World::update(): in World::update()\n");
+	if (DEBUG > 0)
+	{
+		printf("World::update(): in World::update()\n");
+	}
 	// variables to be used
 	int xCount = 0;
 	int yCount = 0;
@@ -521,8 +528,11 @@ bool World::update()
 	static sf::Clock timer;
 
 	int curentTime = timer.getElapsedTime().asMilliseconds();
-	//printf("timer is: %d \r ",curentTime);
-	curentTime = timer.getElapsedTime().asMilliseconds();
+	if (DEBUG > 1)
+	{
+		printf("timer is: %d \r ",curentTime);
+	}
+//	curentTime = timer.getElapsedTime().asMilliseconds(); // Allready has this value.
 
 	if(curentTime > 100)
 	{
@@ -564,8 +574,10 @@ bool World::update()
 							thisTile->getHasCharacter()->updatePoints(2);
 							thisTile->setGoal(false);
 							goalExists = false;
-							printf("World::Update(): Character hit flag\n");
-
+							if (DEBUG > 1)
+							{
+								printf("World::Update(): Character hit flag\n");
+							}
 						}
 					}
 
@@ -627,7 +639,10 @@ bool World::update()
  */
 void World::draw(sf::RenderWindow *window)
 {
-//	printf("World::draw(sf::RenderWindow*): in World::draw(sf::RenderWindow*)\n");
+	if (DEBUG > 2)
+	{
+		printf("World::draw(sf::RenderWindow*): in World::draw(sf::RenderWindow*)\n");
+	}
 	Tile *thisTile = NULL;
 	Character *thisCharacter = NULL;
 	for (int yCount = 0; yCount < area; yCount++)
@@ -652,9 +667,15 @@ void World::draw(sf::RenderWindow *window)
 	}
 }
 
+/**
+ * @todo Document function.
+ */
 bool World::placeCharacter(Character *character)
 {
-	printf("World::placeCharacter(Character *character): Start \n");
+	if (DEBUG > 1)
+	{
+		printf("World::placeCharacter(Character *character): Start \n");
+	}
 	static int small=1;
 	static int big=area-2;
 	static int rotator=0;
@@ -693,7 +714,10 @@ bool World::placeCharacter(Character *character)
 			{
 				map[big][small]->setCharacter(character);
 				character->getSprite()->setPosition(15 * big, 15 * small);
-				printf("World::placeCharacter(Character *character): End \n");
+				if (DEBUG > 1)
+				{
+					printf("World::placeCharacter(Character *character): End \n");
+				}
 				return true;
 			}
 
@@ -706,7 +730,10 @@ bool World::placeCharacter(Character *character)
 			{
 				map[big][big]->setCharacter(character);
 				character->getSprite()->setPosition(15 * big, 15 * big);
-				printf("World::placeCharacter(Character *character): End \n");
+				if (DEBUG > 1)
+				{
+					printf("World::placeCharacter(Character *character): End \n");
+				}
 				return true;
 			}
 
@@ -721,7 +748,10 @@ bool World::placeCharacter(Character *character)
 			{
 				map[small][big]->setCharacter(character);
 				character->getSprite()->setPosition(15 * small, 15 * big);
-				printf("World::placeCharacter(Character *character): End \n");
+				if (DEBUG > 1)
+				{
+					printf("World::placeCharacter(Character *character): End \n");
+				}
 				return true;
 			}
 
@@ -768,11 +798,17 @@ void World::setGoal()
 	thisTile->setGoal(true);
 }
 
+/**
+ * @todo Document function.
+ */
 Tile ***World::getMap()
 {
 	return map;
 }
 
+/**
+ * @todo Document function.
+ */
 int World::getArea(){
 	return area;
 }
@@ -784,7 +820,7 @@ int World::getArea(){
 bool World::reset()
 {
 	Tile *thisTile;
-	CharacterFactory* characterFetcher;
+	CharacterFactory* characterFactory;//characterFetcher;
 	Character* tempCharacter;
 
 	xSpace = 1;
@@ -800,19 +836,25 @@ bool World::reset()
 			thisTile->reset();
 		}
 	}
-	characterFetcher = characterFetcher->getCharacterFactory();
-	tempCharacter = characterFetcher->getCharacter();
+	characterFactory = characterFactory->getCharacterFactory();
+	tempCharacter = characterFactory->getCharacter();
 	placeCharacter(tempCharacter);
 
 	return true;
 }
 
+/**
+ * @todo Document function.
+ */
 int World::getDifficulty()
 {
 	return difficulty;
 }
 
 
+/**
+ * @todo Document function.
+ */
 bool World::addDifficulty(int modifier)
 {
 	if (difficulty + modifier <1 || difficulty + modifier >14)
@@ -825,16 +867,20 @@ bool World::addDifficulty(int modifier)
 	return true;
 }
 
+/**
+ * @todo Document function.
+ */
 int World::getPrime(int number)
 {
 	return primes[number];
 }
 
 /**
-*	@brif updates everything for a character.
-*	@parm Character* thisCharacter: pointer to the character this fuction is going to update for.
-*	@parm Tile *thisTile: the tile the character is standing on.
-*	@parm xCount: x position in the world.
-*	@parm yCount: y position in the world.
+ * @todo What is this doing here?
+*	@brief updates everything for a character.
+*	@param Character* thisCharacter: pointer to the character this fuction is going to update for.
+*	@param Tile *thisTile: the tile the character is standing on.
+*	@param xCount: x position in the world.
+*	@param yCount: y position in the world.
 *	@return true on success.
 */

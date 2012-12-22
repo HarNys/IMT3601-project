@@ -75,7 +75,7 @@ Character* CharacterFactory::getCharacter()
 
 	Character* tempCharacter;
 
-	if (readyCharacters.size() >= 0)
+	if (!readyCharacters.empty())
 	{
 		tempCharacter = readyCharacters.at(readyCharacters.size()-1);
 		usedCharacters.push_back(tempCharacter);

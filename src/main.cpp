@@ -33,7 +33,8 @@ int main(int argc, char **argv)
 	 * Howto add new options:
 	 * \li Define variable in confSettings struct.
 	 * \li Add default initialization right before
-	 *	'Close configuration file after writing and setting defaults'
+	 *	'Close configuration file after writing and
+	 * 	 setting defaults'
 	 * \li Add file initialization at 'set variables'
 	 */
 	struct

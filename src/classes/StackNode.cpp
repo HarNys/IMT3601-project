@@ -38,8 +38,8 @@ StackNode::StackNode (int xPosition, int yPosition, StackNode * nextNode)
  */
 StackNode::StackNode ()
 {
-	positionX = NULL;
-	positionY = NULL;
+	positionX = 0;
+	positionY = 0;
 	next = NULL;
 }
 

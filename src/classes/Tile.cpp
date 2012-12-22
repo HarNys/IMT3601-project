@@ -36,7 +36,10 @@ Tile::Tile()
 	hasMine = NULL;
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
-	printf("Tile::Tile(): done standard Tile constructor\n");
+	if (DEBUG > 1)
+	{
+		printf("Tile::Tile(): done standard Tile constructor\n");
+	}
 	isGoal = false;
 }
 
@@ -59,7 +62,10 @@ Tile::Tile(char quality)
 	hasMine = NULL;
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
-	printf("Tile::Tile(char): done overloaded Tile constructor\n");
+	if (DEBUG > 1)
+	{
+		printf("Tile::Tile(char): done overloaded Tile constructor\n");
+	}
 }
 
 /**
