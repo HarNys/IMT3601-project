@@ -33,7 +33,8 @@ int main(int argc, char **argv)
 	 * Howto add new options:
 	 * \li Define variable in confSettings struct.
 	 * \li Add default initialization right before
-	 *	'Close configuration file after writing and setting defaults'
+	 *	'Close configuration file after writing and
+	 * 	 setting defaults'
 	 * \li Add file initialization at 'set variables'
 	 */
 	struct
@@ -70,7 +71,7 @@ int main(int argc, char **argv)
 		int valueBuffer = 0;
 		while (!feof(configFile))
 		{
-			fscanf(configFile, "%s %d\n", variableBuffer, &valueBuffer);
+			fscanf(configFile, "%255s %9d\n", variableBuffer, &valueBuffer);
 			if (strchr(variableBuffer, '#'))
 			{
 				char seeker;

@@ -40,12 +40,12 @@ CharacterFactory::CharacterFactory()
 	usedCharacters.reserve(maxChar);
 	readyCharacters.reserve(maxChar);
 
-	for (int i = 0; i < maxChar; i ++)
+	for (int i = 0; i < maxChar; i++)
 	{
 		tempChar = new Character();
 		readyCharacters.push_back(tempChar);
 	}
-};
+}
 
 ///Singleton that gets the Character Factory for you when asked for
 CharacterFactory *CharacterFactory::getCharacterFactory()
@@ -53,13 +53,9 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 	if (characterFactory == NULL)
 	{
 		characterFactory = new CharacterFactory();
-		return characterFactory;
 	}
-	else
-	{
-		return characterFactory;
-	}
-};
+	return characterFactory;
+}
 
 
 /**
@@ -71,11 +67,9 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  */
 Character* CharacterFactory::getCharacter()
 {
-//	characterType typeOfplayer;
-
 	Character* tempCharacter;
 
-	if (readyCharacters.size() >= 0)
+	if (!readyCharacters.empty())
 	{
 		tempCharacter = readyCharacters.at(readyCharacters.size()-1);
 		usedCharacters.push_back(tempCharacter);
@@ -89,14 +83,14 @@ Character* CharacterFactory::getCharacter()
 		return NULL;
 	}
 	return tempCharacter;
-};
+}
 
 /**
  * releases a Character from World.
  *
  * @todo implement function!
  *
- *@todo fix bug with reading location!
+ * @todo fix bug with reading location!
  *
  * @return true on success.
  */
@@ -104,15 +98,12 @@ bool CharacterFactory::releaseCharacter(Character *characterReleased)
 {
 	characterFactory->readyCharacters.push_back(characterReleased);
 	std::vector<Character *>::iterator umIter;
-	for (umIter=characterFactory->usedCharacters.begin(); umIter < usedCharacters.end(); umIter++ )
+	for (umIter=characterFactory->usedCharacters.begin(); umIter < usedCharacters.end(); ++umIter)
 	{
 		if ((*umIter) == characterReleased)
 		{
 			usedCharacters.erase(umIter);
 		}
 	}
-
-
-	//printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
 	return true;
 }

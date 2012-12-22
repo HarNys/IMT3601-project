@@ -36,6 +36,7 @@ Node * goalNode;
 
 protected:
 public:
+	NonPlayerCharacter();
 	void aStar(Tile*** const map, Character* thisCharacter);
 	Node *addFrontier(int xCoord,int yCoord,int xDir,int yDir, Node *nodeParent, Character* movingChar);
 

@@ -1,7 +1,7 @@
 /*
  * Mine.cpp
  *
- *
+ * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 Mine::Mine()
 {
 	visibilityTimer = 0;
-};
+}
 
 /**
  * called when a mine is placed, initializes variables as needed.
@@ -46,7 +46,7 @@ bool Mine::initMine(int timeShown)
 {
 	visibilityTimer = timeShown;
 	return true;
-};
+}
 
 /**
  * this is run for every mine on the map.
@@ -57,14 +57,17 @@ bool Mine::initMine(int timeShown)
  */
 bool Mine::update(Character *character)
 {
-	static int count = 0;
 	if (character)
 	{
-		printf("Mine::update(Character*): BANG! someone triggered a mine %d\n",++count);
+		if (DEBUG > 1)
+		{
+			static int count = 0;
+			printf("Mine::update(Character*): BANG! someone triggered a mine %d\n",++count);
+		}
 		character->updateCharacterHealth((-1));
 	}
 	return true;
-};
+}
 
 /**
  * decrements the invisibility timer.
@@ -79,4 +82,4 @@ bool Mine::visibilityCountDown()
 		return false;
 	}
 	return true;
-};
+}
