@@ -395,17 +395,22 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 						if (nextTile->getHasMine())
 						{
 							nextTile->getHasMine()->update(character);
+							if (!character->updateCharacterHealth(-5))
+							{
+								placeCharacter(character);
+								death.play();
+							}
 						}
 						return true;
 					}
 					else
 					{
-						if (!nextTile->getHasCharacter()->updateCharacterHealth(-5))
+						if (!nextTile->getHasCharacter()->updateCharacterHealth(-10))
 						{
 							Character * tempcharacter;
 							tempcharacter = nextTile->getHasCharacter();
 							nextTile->setCharacter(NULL);
-							placeCharacter(tempcharacter);
+							placeCharacter(character);
 							death.play();
 						}
 						whatIsThere = (char *) "there is a Character, stab!";
@@ -800,7 +805,7 @@ bool World::reset()
 	}
 	characterFactory = characterFactory->getCharacterFactory();
 	tempCharacter = characterFactory->getCharacter();
-	placeCharacter(tempCharacter);
+	//placeCharacter(tempCharacter);
 
 	return true;
 }
