@@ -53,8 +53,8 @@ Tile::Tile()
 Tile::Tile(char quality)
 {
 
-	if(quality=='x')
-	{
+	if(quality=='x') //x's are representative of a wall in our textfile that is loaded in. ' ' is representative
+	{                //of a corridor
 		isWall = true;
 	}
 	else
@@ -84,10 +84,12 @@ Tile::Tile(char quality)
 void Tile::setVisited(bool wall, int xPos, int yPos)
 {
 	visited = true;
+	
 	if (DEBUG > 1)
 	{
 		printf("Setvisited Wall = %2d, xPos = %2d, yPos = %2d\n\n", wall, xPos, yPos);
 	}
+	
 	if(wall)
 	{
 		this->isWall = true;
@@ -98,13 +100,10 @@ void Tile::setVisited(bool wall, int xPos, int yPos)
 		this->isWall = false;
 		this->initSprite(xPos, yPos);
 	}
-
-
-
 }
 
 /**
- * @todo Document function
+ * This marks the tile as a part of the frontier when constructing a map
  */
 void Tile::setFrontier()
 {
@@ -112,7 +111,7 @@ void Tile::setFrontier()
 }
 
 /**
- * @todo Document function
+ * sets the tile-position
  */
 void Tile::setPosition(int xPos, int yPos)
 {
@@ -121,7 +120,7 @@ void Tile::setPosition(int xPos, int yPos)
 }
 
 /**
- * @todo Document function
+ * check to see whether the tile is part of the frontier
  */
 bool Tile::getFrontier()
 {
@@ -132,7 +131,7 @@ bool Tile::getFrontier()
 }
 
 /**
- * @todo Document function
+ * sets a tile to be a wall
  */
 bool Tile::setWall(bool wall)
 {
@@ -256,7 +255,7 @@ bool Tile::setCharacter(Character *character)
 }
 
 /**
- * @todo Document function
+ * sets a Tile as the goal for the players
  */
 bool Tile::setGoal(bool goal)
 {
@@ -271,7 +270,7 @@ bool Tile::setGoal(bool goal)
 }
 
 /**
- * @todo Document function
+ * returns whether the tile is a goal or not
  */
 bool Tile::getIsGoal(){
 	return isGoal;
@@ -371,23 +370,6 @@ Tile::~Tile()
 	{
 			hasCharacter = NULL;
 	}
-}
-
-
-/**
- * @todo Document function
- */
-int Tile::returnXpos()
-{
-	return positionX;
-}
-
-/**
- * @todo Document function
- */
-int Tile::returnYpos()
-{
-	return positionY;
 }
 
 /**

@@ -73,8 +73,6 @@ public:
 	void initImage();
 	bool initTile(char quality);
 	void setPosition(int xPos, int yPos);
-	int returnXpos();
-	int returnYpos();
 	void setFloor(int floorType);
 	~Tile();
 	sf::Sprite getSprite();
