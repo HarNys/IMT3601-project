@@ -399,7 +399,6 @@ int Character::getLastUpdate()
 * @return the value of lastAiUpdate
 *
 */
-
 int Character::getLastAiUpdate()
 {
 	return lastAiUpdate;
@@ -427,32 +426,39 @@ bool Character::setAggressivenes(int newaggro)
 }
 
 /**
- * @todo Document function
- */
+* @return the value of agressivenes
+*
+*/
+
 int Character::getAggressivenes()
 {
 	return aggressivenes;
 }
 
 /**
- * @todo Document function
- */
+* @return the value of characterHealth
+*
+*/
+
 int Character::getHealth()
 {
 	return characterHealth;
 }
 
 /**
- * @todo Document function
- */
+* @return the value of pointValue
+*
+*/
+
 int Character::getPoints()
 {
 	return pointsValue;
 }
 
 /**
- * @todo Document function
- */
+* @return false if no stack, true if there is a stack
+* @brief checks if a stack exists of movements, returns true of there is a stack
+*/
 bool Character::isStack()
 {
 	if (startStack)
@@ -465,6 +471,10 @@ bool Character::isStack()
 	return false;
 }
 
+/**
+* @return the value of characterID
+*
+*/
 int Character::getID()
 {
 	return characterID; 
