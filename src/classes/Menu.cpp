@@ -124,7 +124,7 @@ void Menu::runMenu()
 	menuOpen = true;
 	int menuItem = 0;
 
-
+	
 	while(menuOpen)
 	{
 		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
@@ -133,6 +133,7 @@ void Menu::runMenu()
 		window->setKeyRepeatEnabled(false);
 		window->pollEvent(event);
 
+		//keypress events
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			if(event.KeyReleased && event.key.code == sf::Keyboard::W)
@@ -218,7 +219,7 @@ void Menu::runMenu()
 			}
 		}
 
-		aniamtion();
+		animation();
 	}
 
 };
@@ -287,7 +288,7 @@ int  Menu::SelectNumberOfCharacters()
 			textLineTwo.setString("Multiplayer");
 			exit.setString("Exit");
 		}
-		aniamtion();
+		animation();
 	}
 	return numOfPlayers;
 };
@@ -374,7 +375,7 @@ void Menu::networking()
 			ip.resize(15);
 		}
 		textLineTwo.setString(ip);
-		aniamtion();
+		animation();
 	};
 	textLineOne.setString("Singleplayer");
 	textLineTwo.setString("Multiplayer");
@@ -433,7 +434,7 @@ bool Menu::initplayers()
  * This fuction is used to select the next frame in the animation of the planet in the background.
  * every 0.5 sec the fram is changing and loops back to fram 0 after fram 12 is displayed
  */
-void Menu::aniamtion()
+void Menu::animation()
 {
 	int curentTime = timer.getElapsedTime().asMilliseconds();
 	printf("timer is: %d \r",curentTime);

@@ -56,7 +56,7 @@ public:
 	int  SelectNumberOfCharacters();
 	bool initplayers();
 	void networking();
-	void aniamtion();
+	void animation();
 
 };
 

@@ -22,7 +22,15 @@
  */
 #include "../Includes.hpp"
 
-
+/**
+* @brief This constructor creates a node
+* @param posx contains the x-position
+* @param posy contains the y-position
+* @param step shows which level of the tree we are on
+* @param goalXValue holds the objectives X-value
+* @param goalYValue holds the objectives Y-value
+* @param par holds a pointer to the current nodes parent node
+*/
 Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* par)
 {
 	xValue=posx;
