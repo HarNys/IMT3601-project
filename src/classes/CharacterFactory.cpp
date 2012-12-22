@@ -53,12 +53,8 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 	if (characterFactory == NULL)
 	{
 		characterFactory = new CharacterFactory();
-		return characterFactory;
 	}
-	else
-	{
-		return characterFactory;
-	}
+	return characterFactory;
 }
 
 
@@ -71,8 +67,6 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
  */
 Character* CharacterFactory::getCharacter()
 {
-//	characterType typeOfplayer;
-
 	Character* tempCharacter;
 
 	if (!readyCharacters.empty())
@@ -96,7 +90,7 @@ Character* CharacterFactory::getCharacter()
  *
  * @todo implement function!
  *
- *@todo fix bug with reading location!
+ * @todo fix bug with reading location!
  *
  * @return true on success.
  */
@@ -111,8 +105,5 @@ bool CharacterFactory::releaseCharacter(Character *characterReleased)
 			usedCharacters.erase(umIter);
 		}
 	}
-
-
-	//printf("CharacterFactory::releaseCharacter(Character*): I DO NOTHING!\n");
 	return true;
 }
