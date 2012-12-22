@@ -49,7 +49,7 @@ bool Mine::initMine(int timeShown)
 }
 
 /**
- * this is run every for every mine on the map.
+ * this is run for every mine on the map.
  *
  * @param [in] character: the character pointer on the same tile as the mine.
  *

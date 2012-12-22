@@ -48,9 +48,9 @@ Character::Character()
 }
 
 /**
-*	@brief Updates characters healt if it taks demages og health is refreshed etc.
-*	@param health The amount of healt to add/subtract.
-*	@todo when dead give signal to pop up menu or something like that.
+*	@brief Updates characters health if it takes damage and health is refreshed etc.
+*	@param health The amount of health to add/subtract.
+*	@todo when dead give signal to pop-up menu or something like that.
 *	@return true if alive, false if dead
 */
 bool Character::updateCharacterHealth(int health)
@@ -178,7 +178,7 @@ void Character::draw(sf::RenderWindow *window)
 }
 
 /**
- * resets Character's direction, is a dirty way of doing it.
+ * resets Character's direction, it is a dirty way of doing it.
  */
 void Character::resetDirection()
 {
@@ -214,7 +214,7 @@ bool Character::updateSprite(float xPosition, float yPosition)
 
 
 /**
- * Updates and sets a Characters sprite. The formula for arrowdirection
+ * Updates and sets a Character's sprite. The formula for arrow-direction
  * calculates for the img/player.png which square to use. A more easily
  * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
  * or \f$(((x+2)*17*(x*x))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
@@ -287,7 +287,6 @@ void Character::useController(Character* thischaracter)
 *	@param xPos: coordinate in X
 *	@param yPos: coordinate in Y
 */
-
 void Character::newStack(int xPos, int yPos)
 {
 	if (startStack)
@@ -323,7 +322,7 @@ bool Character::placeMine()
 
 
 /**
-*	@brief sets the typ of character this is
+*	@brief sets the type of character this is
 *	@param type: the type of controller 0=local, 1=npc, 2=network
 *	@return true on succses
 */
@@ -335,7 +334,7 @@ bool Character::setCharacterType(int type)
 
 /**
 *	@brief Give the character an ID
-*	@param ID: the ID he character is geting
+*	@param ID: the ID the character is geting
 *	@return true on succses
 */
 bool Character::setID(int ID)
@@ -366,7 +365,9 @@ bool Character::setLastUpdate(int time)
 }
 
 /**
- * @todo Document function
+ * @param time the update time in the cycle
+ * @brief set's the AIUpdate to be the time input
+ * @return true when it completes
  */
 bool Character::setLastAiUpdate(int time)
 {
@@ -381,13 +382,21 @@ int Character::getLastUpdate()
 {
 	return lastUpdate;
 }
+
+/**
+* @return the value of lastAiUpdate
+*
+*/
+
 int Character::getLastAiUpdate()
 {
 	return lastAiUpdate;
 }
 
 /**
- * @todo Document function
+ * @param adjustment is added to the current pointsValue
+ * @return returns the new value of pointsValue
+ * 
  */
 int Character::updatePoints(int adjustment)
 {
@@ -396,7 +405,8 @@ int Character::updatePoints(int adjustment)
 }
 
 /**
- * @todo Document function
+ * @param newaggro the new value of aggro, replaces aggressivenes
+ * @return true when completed
  */
 bool Character::setAggressivenes(int newaggro)
 {

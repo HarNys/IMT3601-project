@@ -1,7 +1,7 @@
 /*
  * Player.cpp
  *
- *
+ * Copyright 2012 Peer Andreas Stange <peerandreas@live.com>
  * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

@@ -39,7 +39,7 @@ CharacterFactory::CharacterFactory()
 
 	usedCharacters.reserve(maxChar);
 	readyCharacters.reserve(maxChar);
-	//readyCharacters.assign(maxChar, new Character);
+
 	for (int i = 0; i < maxChar; i++)
 	{
 		tempChar = new Character();
@@ -59,7 +59,7 @@ CharacterFactory *CharacterFactory::getCharacterFactory()
 
 
 /**
- * gets one charecter for you to do some nasty things with if an event is
+ * gets one character for you to do some nasty things with if an event is
  * triggered.
  *
  * @return on succes: pointer to a new(read: reinitialized) Character
