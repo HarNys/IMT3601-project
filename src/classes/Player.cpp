@@ -2,6 +2,8 @@
  * Player.cpp
  *
  * Copyright 2012 Peer Andreas Stange <peerandreas@live.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +56,7 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
-
+		thisCharacter->placeMine();
 	}
 
 }

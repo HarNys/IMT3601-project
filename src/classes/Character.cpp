@@ -2,6 +2,8 @@
  * Character.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,11 +57,17 @@ Character::Character()
 bool Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
-	printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \r",characterID, characterHealth);
+	if (DEBUG > 0)
+	{
+		printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \n",characterID, characterHealth);
+	}
 	if(characterHealth < 1)
 	{
 		updatePoints(-1);
-		printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
+		if (DEBUG > 0)
+		{
+			printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
+		}
 		updateCharacterHealth(10);		///< resets characters health if dead
 		return false;
 	}
@@ -310,12 +318,17 @@ void Character::addStack(int xPos, int yPos){
 }
 
 /**
- * @todo Documentation.
+ * Sets Character::minePlaced to true.
+ *
+ * @return true
  */
 bool Character::placeMine()
 {
 	minePlaced = true;
-	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
+	if (DEBUG > 0)
+	{
+		printf("Character::placeMine(): Mine placed\n");
+	}
 	return true;
 }
 
@@ -364,7 +377,9 @@ bool Character::setLastUpdate(int time)
 }
 
 /**
- * @todo Document function
+ * @param time the update time in the cycle
+ * @brief set's the AIUpdate to be the time input
+ * @return true when it completes
  */
 bool Character::setLastAiUpdate(int time)
 {
@@ -379,13 +394,20 @@ int Character::getLastUpdate()
 {
 	return lastUpdate;
 }
+
+/**
+* @return the value of lastAiUpdate
+*
+*/
 int Character::getLastAiUpdate()
 {
 	return lastAiUpdate;
 }
 
 /**
- * @todo Document function
+ * @param adjustment is added to the current pointsValue
+ * @return returns the new value of pointsValue
+ * 
  */
 int Character::updatePoints(int adjustment)
 {
@@ -394,7 +416,8 @@ int Character::updatePoints(int adjustment)
 }
 
 /**
- * @todo Document function
+ * @param newaggro the new value of aggro, replaces aggressivenes
+ * @return true when completed
  */
 bool Character::setAggressivenes(int newaggro)
 {
@@ -403,32 +426,39 @@ bool Character::setAggressivenes(int newaggro)
 }
 
 /**
- * @todo Document function
- */
+* @return the value of agressivenes
+*
+*/
+
 int Character::getAggressivenes()
 {
 	return aggressivenes;
 }
 
 /**
- * @todo Document function
- */
+* @return the value of characterHealth
+*
+*/
+
 int Character::getHealth()
 {
 	return characterHealth;
 }
 
 /**
- * @todo Document function
- */
+* @return the value of pointValue
+*
+*/
+
 int Character::getPoints()
 {
 	return pointsValue;
 }
 
 /**
- * @todo Document function
- */
+* @return false if no stack, true if there is a stack
+* @brief checks if a stack exists of movements, returns true of there is a stack
+*/
 bool Character::isStack()
 {
 	if (startStack)
@@ -439,4 +469,13 @@ bool Character::isStack()
 		}
 	}
 	return false;
+}
+
+/**
+* @return the value of characterID
+*
+*/
+int Character::getID()
+{
+	return characterID; 
 }

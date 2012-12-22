@@ -27,11 +27,26 @@
 
 MineFactory *MineFactory::mineFactory = NULL;
 
+/**
+ * Default constructor for MineFactory
+ */
 MineFactory::MineFactory()
 {
-	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.reserve(32);
-	readyMines.assign(30, new Mine);
+	//readyMines.assign(30, new Mine);
+	// Bruteforcing Mine creation, ugly...
+	Mine *emptyMine;
+	for (int rmCount = 0; rmCount < 30; ++rmCount)
+	{
+		emptyMine = new Mine();
+		readyMines.push_back(emptyMine);
+	}
+	if (DEBUG > 0)
+	{
+		printf("MineFactory::MineFactory(): readyMines size: "
+			"%lu\n", readyMines.size());
+	}
+
 }
 
 MineFactory *MineFactory::getMineFactory()
@@ -39,12 +54,8 @@ MineFactory *MineFactory::getMineFactory()
 	if (mineFactory == NULL)
 	{
 		mineFactory = new MineFactory();
-		return mineFactory;
 	}
-	else
-	{
-		return mineFactory;
-	}
+	return mineFactory;
 }
 
 /**
@@ -62,7 +73,7 @@ Mine *MineFactory::getMine()
 {
 	int rmSize = readyMines.size();
 	Mine *tempMine = NULL;
-	if (rmSize >= 0)
+	if (rmSize > 0)
 	{
 		if (usedMines.size() < 30)
 		{
@@ -70,7 +81,7 @@ Mine *MineFactory::getMine()
 			/// @todo tempMine.reInit();
 			usedMines.push_back(tempMine);
 			readyMines.pop_back();
-			tempMine->initMine(50000000);
+			tempMine->initMine(10);
 		}
 		else
 		{

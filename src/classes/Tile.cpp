@@ -2,6 +2,8 @@
  * Tile.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,6 +84,12 @@ Tile::Tile(char quality)
 void Tile::setVisited(bool wall, int xPos, int yPos)
 {
 	visited = true;
+	
+	if (DEBUG > 1)
+	{
+		printf("Setvisited Wall = %2d, xPos = %2d, yPos = %2d\n\n", wall, xPos, yPos);
+	}
+	
 	if(wall)
 	{
 		this->isWall = true;

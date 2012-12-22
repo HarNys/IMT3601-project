@@ -2,6 +2,8 @@
  * Character.hpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,8 +88,7 @@ public:
 	bool isStack();
 	int getLastAiUpdate();
 	bool setLastAiUpdate(int time);
-
-
+	int getID();
 };
 
 #endif //__CHARACTER__HEADER__GUARD__

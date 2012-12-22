@@ -1,7 +1,7 @@
 /*
  * NonPlayerCharacter.hpp
  *
- *
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,6 @@ public:
 	NonPlayerCharacter();
 	void aStar(Tile*** const map, Character* thisCharacter);
 	Node *addFrontier(int xCoord,int yCoord,int xDir,int yDir, Node *nodeParent, Character* movingChar);
-
 };
 
 

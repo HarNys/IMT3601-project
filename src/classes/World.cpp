@@ -2,6 +2,8 @@
  * World.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
+ * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -470,7 +472,7 @@ bool World::placeMine(Character *character, Tile *characterPosition)
  */
 bool World::update()
 {
-	if (DEBUG > 0)
+	if (DEBUG > 1)
 	{
 		printf("World::update(): in World::update()\n");
 	}
@@ -512,7 +514,7 @@ bool World::update()
 				{
 					if ((thisMine = thisTile->getHasMine()))
 					{
-						if (!thisMine->visibilityCountDown())
+						if (thisMine->visibilityCountDown() > 0)
 						{
 							thisTile->setFloor(1);
 						}
@@ -547,7 +549,7 @@ bool World::update()
 
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
-
+								//scoreboard->setNewElement(thisCharacter->getID(), thisCharacter->getPoints());
 								thisCharacter->useController(thisCharacter);
 								if (thisCharacter->getMinePlaced())
 								{
@@ -583,10 +585,11 @@ bool World::update()
 		//	printf ("World::update: numTh: %d, thId: %d\r",
 		//		omp_get_num_threads(), th_id);
 		} // end yCount
-		if (!goalExists)		//if the is no goal then make one;
+		if (!goalExists) // If there is no goal then make one;
 		{
 			setGoal();
 		}
+		//scoreboard->printList();
 	}
 	return true;
 }
