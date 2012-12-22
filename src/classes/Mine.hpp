@@ -32,9 +32,10 @@ private:
 public:
         // constructor
         Mine();
+	// methods
         bool initMine(int timeShown);
         bool update(Character *character);
-        bool visibilityCountDown();
+        int visibilityCountDown();
 };
 
 #endif // __MINE__HEADER__GUARD__

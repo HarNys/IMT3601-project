@@ -1,6 +1,7 @@
 /*
  * Menu.cpp
  *
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -315,6 +316,7 @@ void Menu::networking()
 	//while this part of the menu is running
 	while(running)
 	{
+		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
 		networkDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{

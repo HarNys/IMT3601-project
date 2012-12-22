@@ -2,6 +2,7 @@
  * World.hpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

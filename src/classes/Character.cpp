@@ -3,6 +3,7 @@
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
  * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,11 +57,17 @@ Character::Character()
 bool Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
-	printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \r",characterID, characterHealth);
+	if (DEBUG > 0)
+	{
+		printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \n",characterID, characterHealth);
+	}
 	if(characterHealth < 1)
 	{
 		updatePoints(-1);
-		printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
+		if (DEBUG > 0)
+		{
+			printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
+		}
 		updateCharacterHealth(10);		///< resets characters health if dead
 		return false;
 	}
@@ -311,12 +318,17 @@ void Character::addStack(int xPos, int yPos){
 }
 
 /**
- * @todo Documentation.
+ * Sets Character::minePlaced to true.
+ *
+ * @return true
  */
 bool Character::placeMine()
 {
 	minePlaced = true;
-	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
+	if (DEBUG > 0)
+	{
+		printf("Character::placeMine(): Mine placed\n");
+	}
 	return true;
 }
 
