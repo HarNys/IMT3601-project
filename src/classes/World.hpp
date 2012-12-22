@@ -56,7 +56,7 @@ private:
 public:
     static World *getWorld();
     bool initMap(char *mapFile);
-    bool placeCharacter(Character *character);
+    bool placeCharacter(Character &character);
     bool moveCharacter(Character *character, int xPosition, int yPosition);
     bool placeMine(Character *character, Tile *tile);
     bool update();

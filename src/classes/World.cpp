@@ -397,7 +397,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 							nextTile->getHasMine()->update(character);
 							if (!character->updateCharacterHealth(-5))
 							{
-								placeCharacter(character);
+								placeCharacter(*character);
 								death.play();
 							}
 						}
