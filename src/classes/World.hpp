@@ -40,7 +40,7 @@ private:
 	int xSpace;
 	int difficulty;
 	int primes[15];
-	Scoreboard * scoreboard;
+	//Scoreboard * scoreboard; never used, to fix later
 
         // constructor
         World();
@@ -56,7 +56,7 @@ private:
 public:
         static World *getWorld();
         bool initMap(char *mapFile);
-        bool placeCharacter(Character *character);
+        bool placeCharacter(Character &character);
         bool moveCharacter(Character *character, int xPosition, int yPosition);
         bool placeMine(Character *character, Tile *tile);
         bool update();

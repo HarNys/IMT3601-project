@@ -418,7 +418,7 @@ bool Menu::initplayers()
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
 	player->setID(0);
-	world->placeCharacter(player);
+	world->placeCharacter(*player);
 
 	Character *npc;
 
@@ -428,7 +428,7 @@ bool Menu::initplayers()
 		npc = characterFactory->getCharacter();
 		npc->setCharacterType(1);
 		npc ->setID(i+1);
-		world->placeCharacter(npc);
+		world->placeCharacter(*npc);
 	}
 	printf("Menu::initplayers(): Menu all done \n");
 	window->setKeyRepeatEnabled(true);

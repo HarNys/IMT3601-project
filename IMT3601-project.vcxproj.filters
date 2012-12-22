@@ -45,7 +45,7 @@
     <ClCompile Include="src\classes\StackNode.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\classes\Scoreboard .cpp">
+    <ClCompile Include="src\classes\Scoreboard.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
