@@ -44,9 +44,10 @@ Thumbs.db
 *.aux
 *.bib.bak
 *.tex.bak
+*.tex.backup
 *.bbl
 *.bcf
-*.pdf
+#*.pdf
 *.synctex.gz
 *.out
 *.blg
