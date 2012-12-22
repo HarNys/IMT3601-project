@@ -75,10 +75,7 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
-		//if(e.KeyReleased && e.key.code == sf::Keyboard::E)
-		//{
-		//	thisCharacter->placeMine();
-		//}
+		thisCharacter->placeMine();
 	}
 
 }

@@ -311,12 +311,17 @@ void Character::addStack(int xPos, int yPos){
 }
 
 /**
- * @todo Documentation.
+ * Sets Character::minePlaced to true.
+ *
+ * @return true
  */
 bool Character::placeMine()
 {
 	minePlaced = true;
-	std::cout<< "Character::characterInput(sf::Event e): Mine placed\n";
+	if (DEBUG > 0)
+	{
+		printf("Character::placeMine(): Mine placed\n");
+	}
 	return true;
 }
 
