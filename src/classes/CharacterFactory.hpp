@@ -26,10 +26,10 @@
 #include "../Includes.hpp"
 
 /**
-* @brief Character factory that holds the characters in the game
-* @todo Make the clase take parameters from console
-* @todo Add resize function
-*/
+ * @brief Character factory that holds the characters in the game
+ * @todo Make the clase take parameters from console
+ * @todo Add resize function
+ */
 
 class CharacterFactory
 {

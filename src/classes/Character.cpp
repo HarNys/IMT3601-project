@@ -42,12 +42,14 @@ Character::Character()
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 	pointsValue = 0;
 	aggressivenes = 0;
-};
+	characterID = -1;
+	lastAiUpdate = 0;
+}
 
 /**
-*	@brief Updates characters healt if it taks demages og health is refreshed etc.
-*	@param health The amount of healt to add/subtract.
-*	@todo when dead give signal to pop up menu or something like that.
+*	@brief Updates characters health if it takes damage and health is refreshed etc.
+*	@param health The amount of health to add/subtract.
+*	@todo when dead give signal to pop-up menu or something like that.
 *	@return true if alive, false if dead
 */
 bool Character::updateCharacterHealth(int health)
@@ -84,7 +86,7 @@ bool Character::initImage()
 	sf::Color alpha(151,251,151);		//Alpha color that is not to be drawn
 	characterImage->createMaskFromColor(alpha,0);	//Alpha out the alpha color
 	return true;
-};
+}
 
 /**
  * initializes the character to the values/states we need it in. should be done
@@ -100,7 +102,7 @@ bool Character::initCharacter()
 	sprite.setTextureRect(sf::IntRect(0, 0, 15, 15));
 
 	return true;
-};
+}
 
 /**
  * @return minePlaced
@@ -108,7 +110,7 @@ bool Character::initCharacter()
 bool Character::getMinePlaced()
 {
 	return minePlaced;
-};
+}
 
 /**
  * @param [in] minePlace: the new value of minePlace.
@@ -116,7 +118,7 @@ bool Character::getMinePlaced()
 void Character::setMinePlaced(bool minePlace)
 {
 	minePlaced = minePlace;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionX.
@@ -126,7 +128,7 @@ void Character::setMinePlaced(bool minePlace)
 int Character::getCharacterDirectionX()
 {
 	return characterDirectionX;
-};
+}
 
 /**
  *returns the value of this Character's characterDirectionY.
@@ -136,7 +138,7 @@ int Character::getCharacterDirectionX()
 int Character::getCharacterDirectionY()
 {
 	return characterDirectionY;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionY.
@@ -149,7 +151,7 @@ bool Character::setCharacterDirectionY(int newYDirection)
 {
 	characterDirectionY = newYDirection;
 	return true;
-};
+}
 
 /**
  * returns the value of this Character's characterDirectionX.
@@ -162,7 +164,7 @@ bool Character::setCharacterDirectionX(int newXDirection)
 {
 	characterDirectionX = newXDirection;
 	return true;
-};
+}
 
 /**
  * Draws the Character's sprite.
@@ -172,16 +174,16 @@ bool Character::setCharacterDirectionX(int newXDirection)
 void Character::draw(sf::RenderWindow *window)
 {
 	window->draw(sprite);
-};
+}
 
 /**
- * resets Character's direction, is a dirty way of doing it.
+ * resets Character's direction, it is a dirty way of doing it.
  */
 void Character::resetDirection()
 {
 	characterDirectionX = 0;
 	characterDirectionY = 0;
-};
+}
 
 
 
@@ -193,7 +195,7 @@ void Character::resetDirection()
 sf::Sprite *Character::getSprite()
 {
 	return &sprite;
-};
+}
 
 /**
  * Updates and sets a Characters sprite position.
@@ -211,7 +213,7 @@ bool Character::updateSprite(float xPosition, float yPosition)
 
 
 /**
- * Updates and sets a Characters sprite. The formula for arrowdirection
+ * Updates and sets a Character's sprite. The formula for arrow-direction
  * calculates for the img/player.png which square to use. A more easily
  * read form of it would be \f$(17(x^{3}+2x^{2}+y^{3}+y^{2}))\f$
  * or \f$(((x+2)*17*(x*x))+((y+1)*17*(y*y)))\f$. x and y is characterDirectionX
@@ -264,7 +266,7 @@ void Character::useController(Character* thischaracter)
 		world = world->getWorld();
 
 		if ( !(rand()%world->getPrime(world->getDifficulty()-1))
-			|| !(rand()%world->getPrime(world->getDifficulty())) 
+			|| !(rand()%world->getPrime(world->getDifficulty()))
 			|| !(rand()%world->getPrime(world->getDifficulty()+1))
 			)
 		{
@@ -284,7 +286,6 @@ void Character::useController(Character* thischaracter)
 *	@param xPos: coordinate in X
 *	@param yPos: coordinate in Y
 */
-
 void Character::newStack(int xPos, int yPos)
 {
 	if (startStack)
@@ -320,7 +321,7 @@ bool Character::placeMine()
 
 
 /**
-*	@brief sets the typ of character this is
+*	@brief sets the type of character this is
 *	@param type: the type of controller 0=local, 1=npc, 2=network
 *	@return true on succses
 */
@@ -332,7 +333,7 @@ bool Character::setCharacterType(int type)
 
 /**
 *	@brief Give the character an ID
-*	@param ID: the ID he character is geting
+*	@param ID: the ID the character is geting
 *	@return true on succses
 */
 bool Character::setID(int ID)
@@ -353,17 +354,27 @@ bool Character::getIsNpc(){
 	return false;
 }
 
+/**
+ * @todo Document function
+ */
 bool Character::setLastUpdate(int time)
 {
 	lastUpdate = time;
 	return true;
 }
+
+/**
+ * @todo Document function
+ */
 bool Character::setLastAiUpdate(int time)
 {
 	lastAiUpdate = time;
 	return true;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::getLastUpdate()
 {
 	return lastUpdate;
@@ -373,32 +384,51 @@ int Character::getLastAiUpdate()
 	return lastAiUpdate;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::updatePoints(int adjustment)
 {
 	pointsValue += adjustment;
 	return pointsValue;
 }
 
+/**
+ * @todo Document function
+ */
 bool Character::setAggressivenes(int newaggro)
 {
 	aggressivenes = newaggro;
 	return true;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::getAggressivenes()
 {
 	return aggressivenes;
 }
 
+/**
+ * @todo Document function
+ */
 int Character::getHealth()
 {
 	return characterHealth;
 }
+
+/**
+ * @todo Document function
+ */
 int Character::getPoints()
 {
 	return pointsValue;
 }
 
+/**
+ * @todo Document function
+ */
 bool Character::isStack()
 {
 	if (startStack)

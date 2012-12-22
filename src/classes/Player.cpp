@@ -1,7 +1,7 @@
 /*
  * Player.cpp
  *
- *
+ * Copyright 2012 Peer Andreas Stange <peerandreas@live.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 /// @param [in] thisCharacter pointer to character to move.
 void LocalPlayer::characterInput(Character* thisCharacter)
 {
-	sf::Event e;
+//	sf::Event e; // Not used.
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -80,4 +80,4 @@ void LocalPlayer::characterInput(Character* thisCharacter)
 		//}
 	}
 
-};
+}

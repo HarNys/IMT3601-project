@@ -1,4 +1,7 @@
 /*
+ * Menu.cpp
+ *
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -14,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  *
+ *
  */
 #include "../Includes.hpp"
 
@@ -27,7 +31,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	numOfPlayers = 0;
 	imageCount = 0;
 	int textHight = 200;
-	//imageCountY = 1;
+	//imageCountY = 1; // Not used.
 	gameRuning = false;
 
 	menuImage = new sf::Image;
@@ -98,7 +102,7 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 		music.setLoop(true);         // make it loop
 	}
 	music.play();
-};
+}
 
 /**
  * @brief change old menu text into new menu text
@@ -109,7 +113,7 @@ bool Menu::changeText(std::string text)
 {
 	Menu::textLineOne.setString(text);
 	return true;
-};
+}
 
 /**
  * Displays a menu screen where the layer can pick singelplayer, multiplayer or exit the game
@@ -124,7 +128,7 @@ void Menu::runMenu()
 	menuOpen = true;
 	int menuItem = 0;
 
-
+	
 	while(menuOpen)
 	{
 		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
@@ -133,6 +137,7 @@ void Menu::runMenu()
 		window->setKeyRepeatEnabled(false);
 		window->pollEvent(event);
 
+		//keypress events
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			if(event.KeyReleased && event.key.code == sf::Keyboard::W)
@@ -218,10 +223,10 @@ void Menu::runMenu()
 			}
 		}
 
-		aniamtion();
+		animation();
 	}
 
-};
+}
 
 /**
 * @brief Select number of players in the game
@@ -287,10 +292,10 @@ int  Menu::SelectNumberOfCharacters()
 			textLineTwo.setString("Multiplayer");
 			exit.setString("Exit");
 		}
-		aniamtion();
+		animation();
 	}
 	return numOfPlayers;
-};
+}
 
 /**
  * Displays a screen where the player can write in an ip address for netowrking
@@ -299,7 +304,7 @@ void Menu::networking()
 {
 	sf::Event event;
 	std::string ip;
-	int ipLength = 0;
+//	int ipLength = 0; // Not currently used.
 	bool running = true;
 
 	window->setKeyRepeatEnabled(false);
@@ -314,7 +319,7 @@ void Menu::networking()
 		networkDraw();
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{
-				ip.insert((ip.size()),"1");
+			ip.insert((ip.size()),"1");
 		}
 		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 		{
@@ -375,12 +380,12 @@ void Menu::networking()
 			ip.resize(15);
 		}
 		textLineTwo.setString(ip);
-		aniamtion();
+		animation();
 	};
 	textLineOne.setString("Singleplayer");
 	textLineTwo.setString("Multiplayer");
 	exit.setString("Exit");
-};
+}
 
 /**
  * Resets World and then sets up a new one and adds characters to it
@@ -407,6 +412,7 @@ bool Menu::initplayers()
 	CharacterFactory* characterFactory;
 	characterFactory = characterFactory->getCharacterFactory();
 
+	// This was comented out to just have npc's running around
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
@@ -428,13 +434,13 @@ bool Menu::initplayers()
 	gameRuning = true;
 	music.stop();
 	return true;
-};
+}
 
 /**
  * This fuction is used to select the next frame in the animation of the planet in the background.
  * every 0.5 sec the fram is changing and loops back to fram 0 after fram 12 is displayed
  */
-void Menu::aniamtion()
+void Menu::animation()
 {
 	int curentTime = timer.getElapsedTime().asMilliseconds();
 	printf("timer is: %d \r",curentTime);
@@ -443,7 +449,6 @@ void Menu::aniamtion()
 	if(curentTime > 50)
 	{
 		timer.restart();
-		curentTime = timer.getElapsedTime().asSeconds();
 		imageCount ++;
 
 		if(imageCount >12)
@@ -451,7 +456,6 @@ void Menu::aniamtion()
 			imageCount = 0;
 		}
 	}
-
 }
 
 
@@ -467,7 +471,7 @@ void Menu::mainDraw()
 	window->draw(textLineTwo);
 	window->draw(exit);
 	window->display();
-};
+}
 
 /**
 * @brief Draw singleplayer part of menu to screen.
@@ -478,7 +482,7 @@ void Menu::localDraw()
 	window->draw(title);
 	window->draw(textLineOne);
 	window->display();
-};
+}
 
 /**
 * @brief Draw netowk part of menu to screen.
@@ -491,4 +495,4 @@ void Menu::networkDraw()
 	window->draw(textLineOne);
 	window->draw(textLineTwo);
 	window->display();
-};
+}

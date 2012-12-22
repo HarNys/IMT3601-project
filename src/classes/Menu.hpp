@@ -42,7 +42,7 @@ private:
 	int numOfPlayers;
 	bool menuOpen;
 	int imageCount;
-	int imageCountY;
+//	int imageCountY; // Not used
 	bool gameRuning;
 	sf::Clock timer;
 
@@ -56,7 +56,7 @@ public:
 	int  SelectNumberOfCharacters();
 	bool initplayers();
 	void networking();
-	void aniamtion();
+	void animation();
 
 };
 

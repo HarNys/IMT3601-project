@@ -36,9 +36,12 @@ Tile::Tile()
 	hasMine = NULL;
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
-	printf("Tile::Tile(): done standard Tile constructor\n");
+	if (DEBUG > 1)
+	{
+		printf("Tile::Tile(): done standard Tile constructor\n");
+	}
 	isGoal = false;
-};
+}
 
 /**
  * Constructor for Tile, this is the one that should be used.
@@ -59,8 +62,11 @@ Tile::Tile(char quality)
 	hasMine = NULL;
 	hasCharacter = NULL;
 	mineFactory = mineFactory->getMineFactory();
-	printf("Tile::Tile(char): done overloaded Tile constructor\n");
-};
+	if (DEBUG > 1)
+	{
+		printf("Tile::Tile(char): done overloaded Tile constructor\n");
+	}
+}
 
 /**
  * @param[in] wall: the new state of this tile, whether it is a wall
@@ -90,27 +96,39 @@ void Tile::setVisited(bool wall, int xPos, int yPos)
 
 
 
-};
+}
 
+/**
+ * @todo Document function
+ */
 void Tile::setFrontier()
 {
 	partOfFrontier = true;
-};
+}
 
+/**
+ * @todo Document function
+ */
 void Tile::setPosition(int xPos, int yPos)
 {
 	positionX = xPos;
 	positionY = yPos;
-};
+}
 
+/**
+ * @todo Document function
+ */
 bool Tile::getFrontier()
 {
 	if(partOfFrontier)
 		return true;
 	else
 		return false;
-};
+}
 
+/**
+ * @todo Document function
+ */
 bool Tile::setWall(bool wall)
 {
 	if(wall)
@@ -122,7 +140,7 @@ bool Tile::setWall(bool wall)
 		isWall = false;
 	}
 	return true;
-};
+}
 
 
 
@@ -151,7 +169,7 @@ bool Tile::getVisited()
 bool Tile::getIsWall()
 {
 	return isWall;
-};
+}
 
 /**
  * returns a pointer to the Mine on this tile. This Mine pointer is NULL if
@@ -162,7 +180,7 @@ bool Tile::getIsWall()
 Mine *Tile::getHasMine()
 {
 	return hasMine;
-};
+}
 
 /**
  * returns a pointer to the Character on this tile. This Character pointer is
@@ -174,7 +192,7 @@ Mine *Tile::getHasMine()
 Character *Tile::getHasCharacter()
 {
 	return hasCharacter;
-};
+}
 
 /**
  * sets all of a Tile's variables to sent values.
@@ -198,7 +216,7 @@ bool Tile::initTile(char quality)
 	hasMine = NULL;
 	hasCharacter = NULL;
 	return true;
-};
+}
 
 /**
  * Sets hasMine if it is empty.
@@ -218,7 +236,7 @@ bool Tile::setMine(Mine *mine)
 		hasMine = mine;
 	}
 	return true;
-};
+}
 
 /**
  * @param [in] character: the new character, either a NULL pointer or a
@@ -230,8 +248,11 @@ bool Tile::setCharacter(Character *character)
 {
 	hasCharacter = character;
 	return true;
-};
+}
 
+/**
+ * @todo Document function
+ */
 bool Tile::setGoal(bool goal)
 {
 	isGoal= goal;
@@ -244,9 +265,12 @@ bool Tile::setGoal(bool goal)
 	return isGoal;
 }
 
+/**
+ * @todo Document function
+ */
 bool Tile::getIsGoal(){
 	return isGoal;
-};
+}
 
 /**
  * Initializes the sprites used in Tiles
@@ -272,7 +296,7 @@ bool Tile::initSprite(int xPos, int yPos)
 	tileSprite.setColor(sf::Color(255, 255, 255, 200));
 	tileSprite.setPosition(15*xPos, 15*yPos);
 	return true;
-};
+}
 
 
 /**
@@ -283,7 +307,7 @@ bool Tile::initSprite(int xPos, int yPos)
 sf::Sprite Tile::getSprite()
 {
 	return tileSprite;
-};
+}
 
 /**
  * loads the static images for floor and wall. should be done only once
@@ -300,7 +324,7 @@ void Tile::initImage()
 	{
 		printf("Tile::initImage(): loaded img/floor.gif\n");
 	}
-};
+}
 
 /**
  * sets visibility of the floor
@@ -326,7 +350,7 @@ void Tile::setFloor(int floorType)
 		tileSprite.setTextureRect(sf::IntRect(0, 17, 16, 16));
 	}
 
-};
+}
 
 /**
  * Releases and sets to NULL the hasMine and hasCharacter pointer in this Tile.
@@ -342,19 +366,28 @@ Tile::~Tile()
 	{
 			hasCharacter = NULL;
 	}
-};
+}
 
 
+/**
+ * @todo Document function
+ */
 int Tile::returnXpos()
 {
 	return positionX;
 }
 
+/**
+ * @todo Document function
+ */
 int Tile::returnYpos()
 {
 	return positionY;
 }
 
+/**
+ * @todo Document function
+ */
 bool Tile::reset()
 {
 	if (hasMine)
@@ -370,4 +403,4 @@ bool Tile::reset()
 	setGoal(false);
 	return true;
 
-};
+}
