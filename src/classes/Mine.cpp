@@ -36,7 +36,7 @@ Mine::Mine()
 
 /**
  * called when a mine is placed, initializes variables as needed.
- * @param [in] timeShown: the ticks the mine is shown after being planted.
+ * @param [in] timeShown the ticks the mine is shown after being planted.
  *
  * @return true on success
  *
@@ -49,9 +49,9 @@ bool Mine::initMine(int timeShown)
 }
 
 /**
- * this is run for every mine on the map.
+ * This is run for every mine on the map.
  *
- * @param [in] character: the character pointer on the same tile as the mine.
+ * @param [in] character the character pointer on the same tile as the mine.
  *
  * @return true on success
  */
@@ -70,16 +70,17 @@ bool Mine::update(Character *character)
 }
 
 /**
- * decrements the invisibility timer.
+ * Decrements the invisibility timer.
  *
- * @return false if visibilityTimer is 0. else true.
+ * @return visibilityTimer after decrement operation.
  */
-bool Mine::visibilityCountDown()
+int Mine::visibilityCountDown()
 {
 	visibilityTimer--;
-	if (visibilityTimer == 0)
+	if (DEBUG > 0)
 	{
-		return false;
+		printf("Mine::visibilityCountDown(): visibilityTimer: "
+			"%d\n", visibilityTimer);
 	}
-	return true;
+	return visibilityTimer;
 }

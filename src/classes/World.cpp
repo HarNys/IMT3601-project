@@ -625,7 +625,7 @@ bool World::update()
 		//	printf ("World::update: numTh: %d, thId: %d\r",
 		//		omp_get_num_threads(), th_id);
 		} // end yCount
-		if (!goalExists)		//if the is no goal then make one;
+		if (!goalExists) // If there is no goal then make one;
 		{
 			setGoal();
 		}
