@@ -45,6 +45,9 @@
     <ClCompile Include="src\classes\StackNode.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\classes\Scoreboard .cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Includes.hpp">
@@ -81,6 +84,9 @@
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="src\classes\World.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Scoreboard.hpp">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>

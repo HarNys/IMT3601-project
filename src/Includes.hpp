@@ -68,6 +68,7 @@
 #include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
 #include "classes/Menu.hpp"
+#include "classes/Scoreboard.hpp"
 
 
 //// Controllers ////

@@ -410,3 +410,8 @@ bool Character::isStack()
 	}
 	return false;
 }
+
+int Character::getID()
+{
+	return characterID; 
+}

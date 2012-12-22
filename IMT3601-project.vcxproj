@@ -19,6 +19,7 @@
     <ClCompile Include="src\classes\Node.cpp" />
     <ClCompile Include="src\classes\NonPlayerCharacter.cpp" />
     <ClCompile Include="src\classes\Player.cpp" />
+    <ClCompile Include="src\classes\Scoreboard .cpp" />
     <ClCompile Include="src\classes\StackNode.cpp" />
     <ClCompile Include="src\classes\Tile.cpp" />
     <ClCompile Include="src\classes\World.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="src\classes\Node.hpp" />
     <ClInclude Include="src\classes\NonPlayerCharacter.hpp" />
     <ClInclude Include="src\classes\Player.hpp" />
+    <ClInclude Include="src\classes\Scoreboard.hpp" />
     <ClInclude Include="src\classes\StackNode.hpp" />
     <ClInclude Include="src\classes\Tile.hpp" />
     <ClInclude Include="src\classes\World.hpp" />

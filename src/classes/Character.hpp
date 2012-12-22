@@ -86,6 +86,7 @@ public:
 	bool isStack();
 	int getLastAiUpdate();
 	bool setLastAiUpdate(int time);
+	int getID();
 
 
 };
