@@ -32,7 +32,7 @@ MineFactory::MineFactory()
 	/// @note 30+2 is chosen because 15x15 is the default map size
 	usedMines.reserve(32);
 	readyMines.assign(30, new Mine);
-};
+}
 
 MineFactory *MineFactory::getMineFactory()
 {
@@ -45,7 +45,7 @@ MineFactory *MineFactory::getMineFactory()
 	{
 		return mineFactory;
 	}
-};
+}
 
 /**
  * @brief Moves the last mine from 'readyMines' to 'usedMines' before it
@@ -98,7 +98,7 @@ void MineFactory::releaseMine(Mine *releasedMine)
 {
 	readyMines.push_back(releasedMine);
 	std::vector<Mine *>::iterator umIter;
-	for (umIter=usedMines.begin(); umIter < usedMines.end(); umIter++ )
+	for (umIter=usedMines.begin(); umIter < usedMines.end(); ++umIter )
 	{
 		if ((*umIter) == releasedMine)
 		{
@@ -148,7 +148,7 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
 			"\n\ttmpPossibleTotal: %d", possibleTotal,
 			tmpPossibleTotal);
 	return false;
-};
+}
 
 /**
  * @brief Deletes mines in both 'readyMines' and 'usedMines' before
@@ -159,7 +159,7 @@ bool MineFactory::resizeMineFactory(int possibleTotal)
 MineFactory::~MineFactory()
 {
 	std::vector<Mine *>::iterator rmIter;
-	for (rmIter = readyMines.end(); rmIter >= readyMines.begin(); rmIter--)
+	for (rmIter = readyMines.end(); rmIter >= readyMines.begin(); --rmIter)
 	{
 		if (*rmIter)
 		{
@@ -168,7 +168,7 @@ MineFactory::~MineFactory()
 	}
 
 	std::vector<Mine *>::iterator umIter;
-	for (umIter = usedMines.end(); umIter >= usedMines.begin(); umIter--)
+	for (umIter = usedMines.end(); umIter >= usedMines.begin(); --umIter)
 	{
 		if (*umIter)
 		{
@@ -177,4 +177,4 @@ MineFactory::~MineFactory()
 	}
 //	readyMines.clear();
 //	usedMines.clear();
-};
+}

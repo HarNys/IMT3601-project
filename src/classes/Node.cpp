@@ -23,6 +23,9 @@
 #include "../Includes.hpp"
 
 
+/**
+ * @todo Document function
+ */
 Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* par)
 {
 	xValue=posx;
@@ -39,42 +42,67 @@ Node::Node(int posx, int posy, int step, int goalXValue, int goalYValue, Node* p
 	upChild =NULL;
 	downChild =NULL;
 	visited = false;
-};
+}
 
+/**
+ * @todo Document function
+ */
 int Node::getXPos()
 {
 	return xValue;
-};
+}
 
+/**
+ * @todo Document function
+ */
 int Node::getYPos ()
 {
 	return yValue;
-};
+}
 
+/**
+ * @todo Document function
+ */
 float Node::getPriority()
 {
 	return priority;
-};
+}
 
+/**
+ * @todo Document function
+ */
 int Node::getLevel()
 {
 	return level;
-};
+}
 
+/**
+ * @todo Document function
+ */
 void Node::setVisit()
 {
 	visited = true;
-};
+}
+
+/**
+ * @todo Document function
+ */
 void Node::unVisit()
 {
 	visited = false;
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node* Node::getParent()
 {
 	return parent;
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node* Node::findCheapestUnusedRecursively()
 {
 	// returns the node with the lowest value on priority
@@ -164,13 +192,19 @@ Node* Node::findCheapestUnusedRecursively()
 			return NULL;
 	}
 	return this;
-};
+}
 
+/**
+ * @todo Document function
+ */
 bool Node::checkVisited()
 {
 	return visited;
-};
+}
 
+/**
+ * @todo Document function
+ */
 bool Node::checkTreeRecursivelyForNode(int xCoordinates, int yCoordinates){
 	// returns the node with the lowest value on priority
 	if (xValue == xCoordinates && yValue == yCoordinates){
@@ -201,8 +235,11 @@ bool Node::checkTreeRecursivelyForNode(int xCoordinates, int yCoordinates){
 		}
 	}
 	return false;
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node::~Node()
 {
 	if (upChild)
@@ -225,45 +262,72 @@ Node::~Node()
 		delete leftChild;
 	}
 
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node* Node::getUpChild()
 {
 	return upChild;
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node* Node::getRightChild()
 {
 	return rightChild;
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node* Node::getDownChild()
 {
 	return downChild;
-};
+}
 
+/**
+ * @todo Document function
+ */
 Node* Node::getLeftChild()
 {
 	return leftChild;
-};
+}
 
+/**
+ * @todo Document function
+ */
 bool Node::setUpChild(Node* newChild)
 {
 	upChild = newChild;
 	return true;
-};
+}
+
+/**
+ * @todo Document function
+ */
 bool Node::setRightChild(Node* newChild)
 {
 	rightChild = newChild;
 	return true;
-};
+}
+
+/**
+ * @todo Document function
+ */
 bool Node::setDownChild(Node* newChild)
 {
 	downChild = newChild;
 	return true;
-};
+}
+
+/**
+ * @todo Document function
+ */
 bool Node::setLeftChild(Node* newChild)
 {
 	leftChild = newChild;
 	return true;
-};
+}

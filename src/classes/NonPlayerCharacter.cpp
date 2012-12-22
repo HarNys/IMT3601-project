@@ -22,6 +22,12 @@
  */
 #include "../Includes.hpp"
 
+NonPlayerCharacter::NonPlayerCharacter()
+{
+	startNode = NULL;
+	goalNode = NULL;
+}
+
 /**
  * @brief finds shortest bath and gives node pointers to player to calculate velocity
  * @param map the map in question, not really needed.
@@ -169,4 +175,4 @@ Node *NonPlayerCharacter::addFrontier(int xCoord, int yCoord, int xDir, int yDir
 		}
 	}
 	return NULL;
-};
+}
