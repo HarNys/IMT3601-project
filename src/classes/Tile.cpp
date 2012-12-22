@@ -83,7 +83,10 @@ Tile::Tile(char quality)
 void Tile::setVisited(bool wall, int xPos, int yPos)
 {
 	visited = true;
-	printf("Setvisited Wall = %2d, xPos = %2d, yPos = %2d\n\n", wall, xPos, yPos);
+	if (DEBUG > 1)
+	{
+		printf("Setvisited Wall = %2d, xPos = %2d, yPos = %2d\n\n", wall, xPos, yPos);
+	}
 	if(wall)
 	{
 		this->isWall = true;

@@ -56,11 +56,17 @@ Character::Character()
 bool Character::updateCharacterHealth(int health)
 {
 	characterHealth += health;
-	printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \r",characterID, characterHealth);
+	if (DEBUG > 0)
+	{
+		printf("\nCharacter::updateCharacterHealth(int): player %d's health is %d \n",characterID, characterHealth);
+	}
 	if(characterHealth < 1)
 	{
 		updatePoints(-1);
-		printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
+		if (DEBUG > 0)
+		{
+			printf("\n\n---player %d is dead %d points---\n\n",characterID, pointsValue);
+		}
 		updateCharacterHealth(10);		///< resets characters health if dead
 		return false;
 	}

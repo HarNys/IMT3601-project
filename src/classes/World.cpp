@@ -512,7 +512,7 @@ bool World::placeMine(Character *character, Tile *characterPosition)
  */
 bool World::update()
 {
-	if (DEBUG > 0)
+	if (DEBUG > 1)
 	{
 		printf("World::update(): in World::update()\n");
 	}
@@ -554,7 +554,7 @@ bool World::update()
 				{
 					if ((thisMine = thisTile->getHasMine()))
 					{
-						if (!thisMine->visibilityCountDown())
+						if (thisMine->visibilityCountDown() > 0)
 						{
 							thisTile->setFloor(1);
 						}

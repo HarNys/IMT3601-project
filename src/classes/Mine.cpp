@@ -76,11 +76,14 @@ bool Mine::update(Character *character)
  */
 int Mine::visibilityCountDown()
 {
-	visibilityTimer--;
+	if (visibilityTimer >= 0)
+	{
+		visibilityTimer--;
+	}
 	if (DEBUG > 0)
 	{
 		printf("Mine::visibilityCountDown(): visibilityTimer: "
-			"%d\n", visibilityTimer);
+			"%d\r", visibilityTimer);
 	}
 	return visibilityTimer;
 }
