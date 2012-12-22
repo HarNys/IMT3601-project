@@ -103,7 +103,8 @@ bool CharacterFactory::releaseCharacter(Character *characterReleased)
 		if ((*umIter) == characterReleased)
 		{
 			usedCharacters.erase(umIter);
+			return true;
 		}
 	}
-	return true;
+	retrn false;
 }
