@@ -106,5 +106,5 @@ bool CharacterFactory::releaseCharacter(Character *characterReleased)
 			return true;
 		}
 	}
-	retrn false;
+	return false;
 }

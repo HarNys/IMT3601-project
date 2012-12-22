@@ -397,7 +397,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 							nextTile->getHasMine()->update(character);
 							if (!character->updateCharacterHealth(-5))
 							{
-								placeCharacter(character);
+								placeCharacter(*character);
 								death.play();
 							}
 						}
@@ -410,7 +410,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 							Character * tempcharacter;
 							tempcharacter = nextTile->getHasCharacter();
 							nextTile->setCharacter(NULL);
-							placeCharacter(character);
+							placeCharacter(*tempcharacter);
 							death.play();
 						}
 						whatIsThere = (char *) "there is a Character, stab!";
@@ -536,7 +536,6 @@ bool World::update()
 
 						if (thisTile->getHasCharacter())
 						{
-							///<@todo give character points
 							thisTile->getHasCharacter()->updatePoints(2);
 							thisTile->setGoal(false);
 							goalExists = false;
@@ -554,7 +553,7 @@ bool World::update()
 
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
-								//scoreboard->setNewElement(thisCharacter->getID(), thisCharacter->getPoints());
+							//	scoreboard->setNewElement(thisCharacter->getID(), thisCharacter->getPoints());
 								thisCharacter->useController(thisCharacter);
 								if (thisCharacter->getMinePlaced())
 								{
@@ -635,9 +634,11 @@ void World::draw(sf::RenderWindow *window)
 }
 
 /**
- * @todo Document function.
+ * @param the character to be placed
+ * @return true if it succeeds false if not
+ * @brief places the character on a square on one of the corners of a spiral of decreasing size, static to place in new spots
  */
-bool World::placeCharacter(Character *character)
+bool World::placeCharacter(Character &character)
 {
 	if (DEBUG > 1)
 	{
@@ -646,14 +647,7 @@ bool World::placeCharacter(Character *character)
 	static int small=1;
 	static int big=area-2;
 	static int rotator=0;
-//	int increment = 1; // Not used, remove it?
 	bool doneflag = false;
-
-	//if (!small && !big && !rotator){
-	//small = 1;
-	//big = area-2;
-	//rotator = 0;
-	//}
 
 	while (true)
 	{
@@ -663,8 +657,8 @@ bool World::placeCharacter(Character *character)
 			if ((map[small][small]->getIsWall() == false)
 			&& (map[small][small]->getHasCharacter() == NULL))
 			{
-				map[small][small]->setCharacter(character);
-				character->getSprite()->setPosition(15 * small, 15 * small);
+				map[small][small]->setCharacter(&character);
+				character.getSprite()->setPosition(15 * small, 15 * small);
 				if (DEBUG > 1)
 				{
 					printf("World::placeCharacter(Character *character): End \n");
@@ -679,8 +673,8 @@ bool World::placeCharacter(Character *character)
 			if ((map[big][small]->getIsWall() == false)
 			&& (map[big][small]->getHasCharacter() == NULL))
 			{
-				map[big][small]->setCharacter(character);
-				character->getSprite()->setPosition(15 * big, 15 * small);
+				map[big][small]->setCharacter(&character);
+				character.getSprite()->setPosition(15 * big, 15 * small);
 				if (DEBUG > 1)
 				{
 					printf("World::placeCharacter(Character *character): End \n");
@@ -695,8 +689,8 @@ bool World::placeCharacter(Character *character)
 			if ((map[big][big]->getIsWall() == false)
 			&& (map[big][big]->getHasCharacter() == NULL))
 			{
-				map[big][big]->setCharacter(character);
-				character->getSprite()->setPosition(15 * big, 15 * big);
+				map[big][big]->setCharacter(&character);
+				character.getSprite()->setPosition(15 * big, 15 * big);
 				if (DEBUG > 1)
 				{
 					printf("World::placeCharacter(Character *character): End \n");
@@ -713,8 +707,8 @@ bool World::placeCharacter(Character *character)
 			if ((map[small][big]->getIsWall() == false)
 			&& (map[small][big]->getHasCharacter() == NULL))
 			{
-				map[small][big]->setCharacter(character);
-				character->getSprite()->setPosition(15 * small, 15 * big);
+				map[small][big]->setCharacter(&character);
+				character.getSprite()->setPosition(15 * small, 15 * big);
 				if (DEBUG > 1)
 				{
 					printf("World::placeCharacter(Character *character): End \n");
@@ -733,8 +727,6 @@ bool World::placeCharacter(Character *character)
 		}
 
 	}
-
-
 	return false;
 }
 
@@ -766,7 +758,7 @@ void World::setGoal()
 }
 
 /**
- * @todo Document function.
+ * @return the map, which is a tile ***
  */
 Tile ***World::getMap()
 {
@@ -774,7 +766,7 @@ Tile ***World::getMap()
 }
 
 /**
- * @todo Document function.
+ * @return value of area
  */
 int World::getArea(){
 	return area;
@@ -811,7 +803,7 @@ bool World::reset()
 }
 
 /**
- * @todo Document function.
+ * @return returns the difficulty assigned to the world
  */
 int World::getDifficulty()
 {
@@ -820,7 +812,9 @@ int World::getDifficulty()
 
 
 /**
- * @todo Document function.
+ * @param modifier the value difficulty will be modified with
+ * @return true if it modifies successfully, false if something fails
+ * @brief modifies the difficulty if it is not higher than max or lower than minimum when modified
  */
 bool World::addDifficulty(int modifier)
 {
@@ -835,7 +829,8 @@ bool World::addDifficulty(int modifier)
 }
 
 /**
- * @todo Document function.
+ * @return the prime that is wanted
+ * @param number, what number of prime is wanted
  */
 int World::getPrime(int number)
 {
