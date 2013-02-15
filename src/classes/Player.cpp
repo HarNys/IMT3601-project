@@ -24,10 +24,15 @@
  */
 #include "../Includes.hpp"
 
-///movement-functions
-///checks if the key is pressed and then released
-///to reset characterDirectionX/Y
-/// @param [in] thisCharacter pointer to character to move.
+/**
+ * movement-functions
+ * checks if the key is pressed and then released
+ * to reset characterDirectionX/Y
+ * @param [in] thisCharacter pointer to character to move.
+ *
+ * @todo WTF?! Fix this from polling to event queing.
+ */
+
 void LocalPlayer::characterInput(Character* thisCharacter)
 {
 

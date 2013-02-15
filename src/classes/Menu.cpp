@@ -118,6 +118,10 @@ bool Menu::changeText(std::string text)
 
 /**
  * Displays a menu screen where the layer can pick singelplayer, multiplayer or exit the game
+ *
+ * @todo Rename imageCount.
+ * @todo Give '69' a variable.
+ * @todo Fix keyboard polling.
  */
 void Menu::runMenu()
 {
@@ -129,7 +133,7 @@ void Menu::runMenu()
 	menuOpen = true;
 	int menuItem = 0;
 
-	
+
 	while(menuOpen)
 	{
 		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
