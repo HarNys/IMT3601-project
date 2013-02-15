@@ -1,5 +1,5 @@
 /*
- * Character.hpp
+ * Scoreboard.hpp
  *
  * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
@@ -40,7 +40,7 @@ public:
 	bool printList();
 	bool quickSort(int *toSort);
 
-	
-	
+
+
 };
 #endif //__CHARACTER__HEADER__GUARD__

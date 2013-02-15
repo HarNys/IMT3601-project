@@ -1,5 +1,5 @@
 /*
- * Node.cpp
+ * Scoreboard.cpp
  *
  * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
@@ -47,7 +47,7 @@ bool Scoreboard::printList()
 
 bool Scoreboard::quickSort(int *toSort)
 {
-	
+
 	int * less;
 	int * equal;
 	int * greater;
@@ -55,7 +55,7 @@ bool Scoreboard::quickSort(int *toSort)
 
 	if ((pivot = sizeof(toSort) / sizeof(toSort[0] / 2)) >= 1)
 	{
-       
+
 		for (int i =0; !toSort[i]; i++)
 		{
 			if (i < toSort[pivot])
@@ -81,7 +81,7 @@ bool Scoreboard::quickSort(int *toSort)
 				}
 			}
 
-			if (i > toSort[pivot]) 
+			if (i > toSort[pivot])
 			{
 				for (int j=0; j>=0; j++)//brain derp, made ugly for, haha, copypaster
 				{
@@ -140,6 +140,6 @@ bool Scoreboard::quickSort(int *toSort)
 			}
 		}
 	}
-	
+
 	return true;
 }

@@ -174,7 +174,7 @@ void World::randomGenerate(bool start)
 	static int currentY;//current position of the y-axis we are on
 	static std::list<Tile*> *unVisited;	//holds the list of unvisited tiles on the map
 	static std::list<Tile*> *visited; //holds the list of visited tiles on the map
-	Tile *temp; 
+	Tile *temp;
 	std::list<Tile*>::iterator tileListIterator; //iterator used to iterate throught the unVisited list
 	int seed = time(NULL); //seed with time
 	srand(seed);
@@ -198,7 +198,7 @@ void World::randomGenerate(bool start)
 		if(StartY - 2 <= border)
 			StartY = StartY + 2;
 		if(StartY >= area - 1)
-			StartY = StartY - 2;		
+			StartY = StartY - 2;
 
 		currentX = StartX;
 		currentY = StartY;
@@ -226,7 +226,7 @@ void World::randomGenerate(bool start)
 			unVisited->push_front(map[currentX - 2][currentY]);
 		}
 	}
-	
+
 	while(!unVisited->empty())	//as long at there are tiles in the unVisited list
 	{
 		count++;
@@ -400,7 +400,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 								nextTile->setCharacter(NULL);
 								placeCharacter(*character);
 								death.play();
-								
+
 							}
 						}
 						return true;
