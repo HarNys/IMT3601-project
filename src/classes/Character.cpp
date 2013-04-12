@@ -147,6 +147,7 @@ int Character::getCharacterDirectionY()
  */
 bool Character::setCharacterDirectionY(int newYDirection)
 {
+	printf("Character::setCharacterDirectionY(int): newYDir: %d\n",newYDirection);
 	characterDirectionY = newYDirection;
 	return true;
 };
@@ -160,6 +161,7 @@ bool Character::setCharacterDirectionY(int newYDirection)
  */
 bool Character::setCharacterDirectionX(int newXDirection)
 {
+	printf("Character::setCharacterDirectionX(int): newXDir: %d\n",newXDirection);
 	characterDirectionX = newXDirection;
 	return true;
 };
@@ -230,13 +232,21 @@ bool Character::updateSprite()
 /**
 *	@param 	thischaracter Character pointer to the character worked on
 */
-void Character::useController(Character* thischaracter)
+void Character::useController(Character* thischaracter, sf::RenderWindow *window)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};
 
 	if (controllerType == PlayerControl)
 	{
-		localPlayerController.characterInput(thischaracter);
+		if (window == NULL)
+		{
+			printf("Character::useController(...): My sf::RenderWindow is NULL, I will therefore die horribly.");
+			exit(-1);
+		}
+		else
+		{
+			localPlayerController.characterInput(thischaracter, window);
+		}
 	}
 	else if(controllerType == AiControl)
 	{
@@ -259,7 +269,7 @@ void Character::useController(Character* thischaracter)
 			thischaracter->updateSprite();
 		}
 
-		// @todo the const should be changed to reflect dificulty
+		/// @todo the const should be changed to reflect dificulty
 		if (!(rand()%4))
 		{
 			 characterDirectionX =0;

@@ -28,6 +28,7 @@
  * @brief world X is across, world Y is downwards
  *
  * @todo fix clock for timing of ticks
+ * @todo fix the comments
  */
 class World
 {
@@ -36,29 +37,33 @@ private:
 	int StartY;
 	int border;
 	int xSpace;
-        // constructor
-        World();
+	// constructor
+	World();
 
-        // member variables
-        static World *world;
-        Tile ***map;
-        int area; //size from origin to one side of the map
-        MineFactory *mineFactory;
-		int updatetime;
+	// member variables
+	static World *world;
+	Tile ***map;
+	int area; //size from origin to one side of the map
+	MineFactory *mineFactory;
+	int updatetime;
+	sf::RenderWindow *window;
+	Menu *mainMenu;
 public:
-        static World *getWorld();
-        bool initMap(char *mapFile);
-        bool placeCharacter(Character *character);
-        bool moveCharacter(Character *character, int xPosition, int yPosition);
-        bool placeMine(Character *character, Tile *tile);
-        bool update();
+	static World *getWorld();
+	bool initMap(char *mapFile);
+	bool placeCharacter(Character *character);
+	bool moveCharacter(Character *character, int xPosition, int yPosition);
+	bool placeMine(Character *character, Tile *tile);
+	bool update();
 	void randomGenerate(bool start);
-        void draw(sf::RenderWindow *window);
+	void draw(sf::RenderWindow *window);
 	Tile ***getMap();
 	int getArea();
 	void setGoal();
 	bool reset();
 	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
+	bool setWindow(sf::RenderWindow *renderWindow);
+	bool runMenu();
 };
 
 #endif // __WORLD__HEADER__GUARD__

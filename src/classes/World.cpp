@@ -44,7 +44,8 @@ World::World()
 
 	xSpace = 1;
 	updatetime = 0;
-
+	window = NULL;
+	mainMenu = NULL;
 };
 
 /**
@@ -544,7 +545,7 @@ bool World::update()
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
 
-								thisCharacter->useController(thisCharacter);
+								thisCharacter->useController(thisCharacter, window);
 								if (thisCharacter->getMinePlaced())
 								{
 									placeMine(thisCharacter, thisTile);
@@ -769,10 +770,25 @@ bool World::reset()
 }
 
 /**
-*	@brif updates everything for a character.
-*	@parm Character* thisCharacter: pointer to the character this fuction is going to update for.
-*	@parm Tile *thisTile: the tile the character is standing on.
-*	@parm xCount: x position in the world.
-*	@parm yCount: y position in the world.
-*	@return true on success.
-*/
+ * sets the sf::RenderWindow for event polling.
+ */
+bool World::setWindow(sf::RenderWindow *renderWindow)
+{
+	window = renderWindow;
+	mainMenu = new Menu(window);
+	return true;
+}
+
+/**
+ *
+ */
+bool World::runMenu()
+{
+	if (window == NULL)
+	{
+		printf("World::runMenu(): My sf::RenderWindow is NULL, I will therefore die horribly.");
+		exit(-1);
+	}
+	mainMenu->runMenu();
+	return true;
+}

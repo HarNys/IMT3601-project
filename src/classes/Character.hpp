@@ -61,7 +61,7 @@ public:
 	bool setCharacterDirectionX(int newXDirection);
 	bool setCharacterDirectionY(int newYDirection);
 	void draw(sf::RenderWindow* window);
-	void useController(Character* thischaracter);
+	void useController(Character* thischaracter, sf::RenderWindow *window);
 	void resetDirection();
 	void characterInput(sf::Event e);
 	bool updateCharacterHealth(int health);
