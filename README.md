@@ -77,6 +77,13 @@ The menu controls are spread around the Menu.cpp file a bit. So if the
 behaviour you are trying to change is not in that method, you will have
 to search the rest of the file for it.
 
+Music and Sounds
+================
+
+Credits go to Circuit soldiers for the songs "Intellectual Property is a Dying 
+Whore" and "The Night Before Battle".
+Credits go to Mediapaja2009 for the sound "death".
+
 Licensing and Legalese
 =======================
 
@@ -99,5 +106,5 @@ Contributing To the Project
 
 If you want to contribute, send us a pull-request on github or mail us a patch
 at <thomas.sigurdsen@hig.no>. Doxygen documentation, design document and coding
-style(still in the design document for some reason) see the projects wiki
+style(still in the design document for some reason) see the wiki
 page <https://github.com/HarNys/IMT3601-project/wiki>.
