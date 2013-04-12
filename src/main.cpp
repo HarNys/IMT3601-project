@@ -2,7 +2,7 @@
  * main.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
- * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 rjan Rkkum Brandtzg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -233,14 +233,16 @@ int main(int argc, char **argv)
 	screen.setFramerateLimit(20);
 	//printf("main(int,char**): Before getting singletons {World, MineFactory, CharacterFactory}\n");
 
-	Menu* mainMenu = new Menu(&screen);
-	mainMenu->runMenu();
+/*	Menu* mainMenu = new Menu(&screen);
+	mainMenu->runMenu(); //*/
 
 	World *world;
 	world = world->getWorld();
+	world->setWindow(&screen);
+	world->runMenu();
 
 	// Open music from an audio file
-	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
+/*	if (!music.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
 	{
 		printf("main(int argc, char **argv): Can't load music");
 	}
@@ -250,26 +252,29 @@ int main(int argc, char **argv)
 		music.setLoop(true);         // make it loop
 		music.play();
 	}
-
+//*/
 	//printf("main(int,char**): Has got all singletons and player1\nmain(int,char**): Starting gameloop\n");
 	while (screen.isOpen())
 	{
 		world->update();
 		screen.clear();
 		world->draw(&screen);
-//		player1->draw(&screen);
+		//player1->draw(&screen);
 		screen.display();
 
+		/**
+		 * @todo Fix this ugly way of checking for escape++
+		 */
 		// Process events
-		sf::Event event;
+//		sf::Event event;
 
-		while (screen.pollEvent(event))
-		{
+//		while (screen.pollEvent(event))
+//		{
 
 			//player1->characterInput(event);
 
 			// Close window : exit
-			if (event.type == sf::Event::Closed)
+/*			if (event.type == sf::Event::Closed)
 			{
 				world->~World();
 
@@ -308,8 +313,8 @@ int main(int argc, char **argv)
 				{
 					world->addDifficulty(-1);
 				}
-			}
-		}
+			} //*/
+//		}
 	}
 	return EXIT_SUCCESS;
 }

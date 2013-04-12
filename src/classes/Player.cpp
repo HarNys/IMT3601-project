@@ -1,8 +1,9 @@
 /*
  * Player.cpp
  *
+ * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
  * Copyright 2012 Peer Andreas Stange <peerandreas@live.com>
- * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 rjan Rkkum Brandtzg <orokkum@gmail.com>
  * Copyright 2012 Harry Nystad <harry.ny@live.no>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -29,39 +30,93 @@
  * checks if the key is pressed and then released
  * to reset characterDirectionX/Y
  * @param [in] thisCharacter pointer to character to move.
- *
- * @todo WTF?! Fix this from polling to event queing.
  */
 
-void LocalPlayer::characterInput(Character* thisCharacter)
 {
+	sf::Event event;
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	while (window->pollEvent(event))
 	{
-		thisCharacter->setCharacterDirectionX(-1);
-		thisCharacter->updateSprite();
+//		printf("LocalPlayer::characterInput(...): I am polling events.\n");
+		if(event.type == sf::Event::KeyPressed)
+		{
+//			printf("LocalPlayer::characterInput(...): I am recognizing keypresses.\n");
+			if (event.key.code == sf::Keyboard::A)
+			{
+//				printf("LocalPlayer::characterInput(...): I am seeing A.\n");
+				thisCharacter->setCharacterDirectionX(-1);
+				thisCharacter->updateSprite();
+			}
+			else if (event.key.code == sf::Keyboard::D)
+			{
+//				printf("LocalPlayer::characterInput(...): I am seeing D.\n");
+				thisCharacter->setCharacterDirectionX(1);
+				thisCharacter->updateSprite();
+			}
+			else if(event.key.code == sf::Keyboard::W)
+			{
+//				printf("LocalPlayer::characterInput(...): I am seeing W.\n");
+				thisCharacter->setCharacterDirectionY(-1);
+				thisCharacter->updateSprite();
+			}
+			else if(event.key.code == sf::Keyboard::S)
+			{
+//				printf("LocalPlayer::characterInput(...): I am seeing S.\n");
+				thisCharacter->setCharacterDirectionY(1);
+				thisCharacter->updateSprite();
+			}
+			else if(event.key.code == sf::Keyboard::E)
+			{
+//				printf("LocalPlayer::characterInput(...): I am seeing E.\n");
+				//	thisCharacter->placeMine();
+			}
+			/** @todo Review this */
+			if(event.key.code == sf::Keyboard::P)
+			{
+				World *world = world->getWorld();
+				world->reset();
+			}
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				World *world = world->getWorld();
+				world->runMenu();
+			}
+		}
+		if(event.type == sf::Event::KeyReleased)
+		{
+//			printf("LocalPlayer::characterInput(...): I am recognizing keyreleases.\n");
+			if (event.key.code == sf::Keyboard::A)
+			{
+				thisCharacter->setCharacterDirectionX(0);
+				thisCharacter->updateSprite();
+			}
+			else if (event.key.code == sf::Keyboard::D)
+			{
+				thisCharacter->setCharacterDirectionX(0);
+				thisCharacter->updateSprite();
+			}
+			else if(event.key.code == sf::Keyboard::W)
+			{
+				thisCharacter->setCharacterDirectionY(0);
+				thisCharacter->updateSprite();
+			}
+			else if(event.key.code == sf::Keyboard::S)
+			{
+				thisCharacter->setCharacterDirectionY(0);
+				thisCharacter->updateSprite();
+			}
+		}
+		/** @todo this should be reviewed and probably replaced */
+		if (event.type == sf::Event::Closed)
+		{
+			World *world = world->getWorld();
+			world->~World();
+
+			/// @bug program segfaults in here, commented
+			///	out temporarily
+			//mineFactory->~MineFactory();
+
+			window->close();
+		}
 
 	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		thisCharacter->setCharacterDirectionX(1);
-		thisCharacter->updateSprite();
-
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		thisCharacter->setCharacterDirectionY(-1);
-		thisCharacter->updateSprite();
-
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		thisCharacter->setCharacterDirectionY(1);
-		thisCharacter->updateSprite();
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-	{
-		thisCharacter->placeMine();
-	}
-
-}

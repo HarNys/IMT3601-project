@@ -29,6 +29,8 @@
 /**
  * @brief world X is across, world Y is downwards
  *
+ * @todo fix clock for timing of ticks
+ * @todo fix the comments
  */
 class World
 {
@@ -37,7 +39,7 @@ private:
 	int StartY;
 	int border;
 	int xSpace;
-	int difficulty;
+    int difficulty;
 	int primes[15];
 	Scoreboard * scoreboard;
 
@@ -51,7 +53,8 @@ private:
         MineFactory *mineFactory;
 	int updatetime;
 	sf::Music death;
-
+    sf::RenderWindow *window;
+	Menu *mainMenu;
 public:
     static World *getWorld();
     bool initMap(char *mapFile);
@@ -61,14 +64,16 @@ public:
     bool update();
 	void randomGenerate(bool start);
     void draw(sf::RenderWindow *window);
-	Tile ***getMap();
+    Tile ***getMap();
 	int getArea();
 	void setGoal();
 	bool reset();
 	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
-	int getDifficulty();
+    int getDifficulty();
 	bool addDifficulty(int modifier);
 	int getPrime(int number);
+    bool setWindow(sf::RenderWindow *renderWindow);
+	bool runMenu();
 };
 
 #endif // __WORLD__HEADER__GUARD__

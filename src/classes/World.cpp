@@ -3,7 +3,7 @@
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
  * Copyright 2012 Harry Nystad <harry.ny@live.no>
- * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 rjan Rkkum Brandtzg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,8 +45,8 @@ World::World()
 
 	xSpace = 1;
 	updatetime = 0;
-
-
+	window = NULL;
+	mainMenu = NULL;
 			// Open it from an audio file
 	if (!death.openFromFile("music/death_by _Mediapaja2009_at_freesound.ogg"))
 	{
@@ -556,7 +556,7 @@ bool World::update()
 							if(thisCharacter->getLastUpdate() != updatetime)
 							{
 							//	scoreboard->setNewElement(thisCharacter->getID(), thisCharacter->getPoints());
-								thisCharacter->useController(thisCharacter);
+								thisCharacter->useController(thisCharacter, window);
 								if (thisCharacter->getMinePlaced())
 								{
 									placeMine(thisCharacter, thisTile);
@@ -807,15 +807,15 @@ bool World::reset()
 /**
  * @return returns the difficulty assigned to the world
  */
-int World::getDifficulty()
+bool World::setWindow(sf::RenderWindow *renderWindow)
 {
-	return difficulty;
+	window = renderWindow;
+	mainMenu = new Menu(window);
+	return true;
 }
 
-
 /**
- * @param modifier the value difficulty will be modified with
- * @return true if it modifies successfully, false if something fails
+ *
  * @brief modifies the difficulty if it is not higher than max or lower than minimum when modified
  */
 bool World::addDifficulty(int modifier)
@@ -846,5 +846,14 @@ int World::getPrime(int number)
 *	@param Tile *thisTile: the tile the character is standing on.
 *	@param xCount: x position in the world.
 *	@param yCount: y position in the world.
-*	@return true on success.
-*/
+ */
+bool World::runMenu()
+{
+	if (window == NULL)
+	{
+		printf("World::runMenu(): My sf::RenderWindow is NULL, I will therefore die horribly.");
+		exit(-1);
+	}
+	mainMenu->runMenu();
+	return true;
+}

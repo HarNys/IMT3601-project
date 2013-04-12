@@ -157,6 +157,7 @@ int Character::getCharacterDirectionY()
  */
 bool Character::setCharacterDirectionY(int newYDirection)
 {
+	printf("Character::setCharacterDirectionY(int): newYDir: %d\n",newYDirection);
 	characterDirectionY = newYDirection;
 	return true;
 }
@@ -170,6 +171,7 @@ bool Character::setCharacterDirectionY(int newYDirection)
  */
 bool Character::setCharacterDirectionX(int newXDirection)
 {
+	printf("Character::setCharacterDirectionX(int): newXDir: %d\n",newXDirection);
 	characterDirectionX = newXDirection;
 	return true;
 }
@@ -240,13 +242,21 @@ bool Character::updateSprite()
 /**
 *	@param 	thischaracter Character pointer to the character worked on
 */
-void Character::useController(Character* thischaracter)
+void Character::useController(Character* thischaracter, sf::RenderWindow *window)
 {
 	enum controller{PlayerControl, AiControl, NetworkControl};
 
 	if (controllerType == PlayerControl)
 	{
-		localPlayerController.characterInput(thischaracter);
+		if (window == NULL)
+		{
+			printf("Character::useController(...): My sf::RenderWindow is NULL, I will therefore die horribly.");
+			exit(-1);
+		}
+		else
+		{
+			localPlayerController.characterInput(thischaracter, window);
+		}
 	}
 	else if(controllerType == AiControl)
 	{
@@ -269,14 +279,14 @@ void Character::useController(Character* thischaracter)
 			thischaracter->updateSprite();
 		}
 
-		World *world;
+        World *world;
 		world = world->getWorld();
 
 		if ( !(rand()%world->getPrime(world->getDifficulty()-1))
 			|| !(rand()%world->getPrime(world->getDifficulty()))
 			|| !(rand()%world->getPrime(world->getDifficulty()+1))
 			)
-		{
+        {
 			 characterDirectionX =0;
 			 characterDirectionY =0;
 		}
@@ -476,5 +486,5 @@ bool Character::isStack()
 */
 int Character::getID()
 {
-	return characterID; 
+    return characterID;
 }

@@ -61,6 +61,7 @@ Thumbs.db
 *.suo
 *.sdf
 *.opensdf
+*.orig
 
 # emacs generated backup files #
 ################################

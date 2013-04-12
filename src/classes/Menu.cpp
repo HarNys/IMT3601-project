@@ -92,18 +92,27 @@ Menu::Menu(sf::RenderWindow* renderWindow)
 	exit.setPosition(250,textHight);
 
 
-	// Open it from an audio file
-	if (!music.openFromFile("music/Circuit_Soldiers-The_Night_before_Battle.ogg"))
+	// Open music from an audio file
+	if (!gameMusic.openFromFile("music/Circuit_Soldiers-Intellectual_Property_is_a_Dying_Whore.ogg"))
+	{
+		printf("main(int argc, char **argv): Can't load music");
+	}
+	else
+	{
+		gameMusic.setVolume(50);         // reduce the volume
+		gameMusic.setLoop(true);         // make it loop
+	}
+	if (!menuMusic.openFromFile("music/Circuit_Soldiers-The_Night_before_Battle.ogg"))
 	{
 		printf("Menu::Menu(sf::RenderWindow* renderWindow): can't load music");
 	}
 	else
 	{
-		music.setVolume(50);         // reduce the volume
-		music.setLoop(true);         // make it loop
+		menuMusic.setVolume(50);         // reduce the volume
+		menuMusic.setLoop(true);         // make it loop
 	}
-	music.play();
-}
+    menuMusic.play();
+};
 
 /**
  * @brief change old menu text into new menu text
@@ -125,7 +134,8 @@ bool Menu::changeText(std::string text)
  */
 void Menu::runMenu()
 {
-	music.play();
+	gameMusic.stop();
+	menuMusic.play();
 
 	textLineOne.setString("Singleplayer");
 	textLineTwo.setString("Multiplayer");
@@ -140,91 +150,92 @@ void Menu::runMenu()
 		mainDraw();
 		sf::Event event;
 		window->setKeyRepeatEnabled(false);
-		window->pollEvent(event);
 
-		//keypress events
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::W)
+        while(window->pollEvent(event))
+        {
+			if (event.type == sf::Event::KeyPressed)
 			{
-				menuItem --;
-				if (menuItem < 0)
+				if (event.key.code == sf::Keyboard::W)
 				{
-					menuItem = 0;
-				}
-			}
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::S)
-			{
-				menuItem ++;
-				if (menuItem > 2)
-				{
-					menuItem = 2;
-				}
-			}
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::Escape)
-			{
-				if(gameRuning)
-				{
-					menuOpen = false;
-				}
-			}
-
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::E)
-			{
-				switch(menuItem)
-				{
-				case 0:
+					menuItem --;
+					if (menuItem < 0)
 					{
-						SelectNumberOfCharacters();
-						break;
+						menuItem = 0;
 					}
-				case 1:
+				}
+			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if(event.key.code == sf::Keyboard::S)
+				{
+					menuItem ++;
+					if (menuItem > 2)
 					{
-						networking();
-						break;
+						menuItem = 2;
 					}
-				case 2:
+				}
+			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					if(gameRuning)
 					{
-						music.stop();
-						window->close();
 						menuOpen = false;
-						break;
+					}
+				}
+
+			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::E)
+				{
+					switch(menuItem)
+					{
+					case 0:
+						{
+							SelectNumberOfCharacters();
+							break;
+						}
+					case 1:
+						{
+							networking();
+							break;
+						}
+					case 2:
+						{
+							menuMusic.stop();
+							window->close();
+							menuOpen = false;
+							break;
+						}
 					}
 				}
 			}
-		}
 
-		switch(menuItem)
-		{
-		case 0:
+			switch(menuItem)
 			{
-				textLineOne.setColor(sf::Color::Yellow);
-				textLineTwo.setColor(sf::Color::Green);
-				exit.setColor(sf::Color::Green);
-				break;
-			}
-		case 1:
-			{
-				textLineOne.setColor(sf::Color::Green);
-				textLineTwo.setColor(sf::Color::Yellow);
-				exit.setColor(sf::Color::Green);
-				break;
-			}
-		case 2:
-			{
-				textLineOne.setColor(sf::Color::Green);
-				textLineTwo.setColor(sf::Color::Green);
-				exit.setColor(sf::Color::Yellow);
-				break;
+			case 0:
+				{
+					textLineOne.setColor(sf::Color::Yellow);
+					textLineTwo.setColor(sf::Color::Green);
+					exit.setColor(sf::Color::Green);
+					break;
+				}
+			case 1:
+				{
+					textLineOne.setColor(sf::Color::Green);
+					textLineTwo.setColor(sf::Color::Yellow);
+					exit.setColor(sf::Color::Green);
+					break;
+				}
+			case 2:
+				{
+					textLineOne.setColor(sf::Color::Green);
+					textLineTwo.setColor(sf::Color::Green);
+					exit.setColor(sf::Color::Yellow);
+					break;
+				}
 			}
 		}
 
@@ -303,7 +314,8 @@ int  Menu::SelectNumberOfCharacters()
 }
 
 /**
- * Displays a screen where the player can write in an ip address for netowrking
+ * Displays a screen where the player can write in an ip address for
+ * netowrking
  */
 void Menu::networking()
 {
@@ -313,7 +325,6 @@ void Menu::networking()
 	bool running = true;
 
 	window->setKeyRepeatEnabled(false);
-	window->pollEvent(event);
 	ip = "";
 	textLineOne.setString("ip address:");
 
@@ -322,71 +333,76 @@ void Menu::networking()
 	{
 		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
 		networkDraw();
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+		while(window->pollEvent(event))
 		{
-			ip.insert((ip.size()),"1");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-		{
-			ip.insert((ip.size()),"2");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-		{
-			ip.insert((ip.size()),"3");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
-		{
-			ip.insert((ip.size()),"4");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
-		{
-			ip.insert((ip.size()),"5");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
-		{
-			ip.insert((ip.size()),"6");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
-		{
-			ip.insert((ip.size()),"7");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
-		{
-				ip.insert((ip.size()),"8");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
-		{
-			ip.insert((ip.size()),"9");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
-		{
-				ip.insert((ip.size()),"0");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Period))
-		{
-			ip.insert((ip.size()),".");
-		}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Back))
-		{
-			if (ip.size() > 0)
+			if (event.type == sf::Event::KeyPressed)
 			{
-				ip.resize(ip.size()-1);
+				if (event.key.code == sf::Keyboard::Num1)
+				{
+					ip.insert((ip.size()),"1");
+				}
+				else if (event.key.code == sf::Keyboard::Num2)
+				{
+					ip.insert((ip.size()),"2");
+				}
+				else if (event.key.code == sf::Keyboard::Num3)
+				{
+					ip.insert((ip.size()),"3");
+				}
+				else if (event.key.code == sf::Keyboard::Num4)
+				{
+					ip.insert((ip.size()),"4");
+				}
+				else if (event.key.code == sf::Keyboard::Num5)
+				{
+					ip.insert((ip.size()),"5");
+				}
+				else if (event.key.code == sf::Keyboard::Num6)
+				{
+					ip.insert((ip.size()),"6");
+				}
+				else if (event.key.code == sf::Keyboard::Num7)
+				{
+					ip.insert((ip.size()),"7");
+				}
+				else if (event.key.code == sf::Keyboard::Num8)
+				{
+						ip.insert((ip.size()),"8");
+				}
+				else if (event.key.code == sf::Keyboard::Num9)
+				{
+					ip.insert((ip.size()),"9");
+				}
+				else if (event.key.code == sf::Keyboard::Num0)
+				{
+						ip.insert((ip.size()),"0");
+				}
+				else if (event.key.code == sf::Keyboard::Period)
+				{
+					ip.insert((ip.size()),".");
+				}
+				else if (event.key.code == sf::Keyboard::Back)
+				{
+					if (ip.size() > 0)
+					{
+						ip.resize(ip.size()-1);
+					}
+				}
+				else if (event.key.code == sf::Keyboard::Escape)
+				{
+					running = false;
+
+				}
 			}
+			//check the size of ip address
+			if(ip.size() > 15)
+			{
+				ip.resize(15);
+			}
+			textLineTwo.setString(ip);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			running = false;
-
-		}
-
-		//check the size of ip address (ipv 4)
-		if(ip.size() > 15)
-		{
-			ip.resize(15);
-		}
-		textLineTwo.setString(ip);
-		animation();
-	};
+	animation();
+	}
 	textLineOne.setString("Singleplayer");
 	textLineTwo.setString("Multiplayer");
 	exit.setString("Exit");
@@ -418,11 +434,12 @@ bool Menu::initplayers()
 	characterFactory = characterFactory->getCharacterFactory();
 
 	// This was comented out to just have npc's running around
+//*/
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
 	player->setCharacterType(0); // 0 for local-player character
 	player->setID(0);
-	world->placeCharacter(*player);
+	world->placeCharacter(player);//*/
 
 	Character *npc;
 
@@ -437,13 +454,14 @@ bool Menu::initplayers()
 	printf("Menu::initplayers(): Menu all done \n");
 	window->setKeyRepeatEnabled(true);
 	gameRuning = true;
-	music.stop();
+	menuMusic.stop();
 	return true;
 }
 
 /**
  * This fuction is used to select the next frame in the animation of the planet in the background.
  * every 0.5 sec the fram is changing and loops back to fram 0 after fram 12 is displayed
+ * @todo This does not draw the animation from multiplayer-menu.
  */
 void Menu::animation()
 {

@@ -1,6 +1,7 @@
 /*
  * Player.hpp
  *
+ * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
  *
  * Copyright 2012 Peer Andreas Stange <peerandreas@live.com>
  * Copyright 2012 Harry Nystad <harry.ny@live.no>
@@ -29,7 +30,7 @@
 class LocalPlayer
 {
 public:
-	void characterInput(Character* thisCharacter);
+	void characterInput(Character* thisCharacter, sf::RenderWindow *window);
 };
 
 #endif // __LOCALPLAYER__HEADER__GUARD__

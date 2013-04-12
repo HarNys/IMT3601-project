@@ -39,7 +39,8 @@ private:
 	sf::Text textLineTwo;
 	sf::Text exit;
 	sf::RenderWindow* window;
-	sf::Music music;
+	sf::Music menuMusic;
+	sf::Music gameMusic;
 	int numOfPlayers;
 	bool menuOpen;
 	int imageCount;
