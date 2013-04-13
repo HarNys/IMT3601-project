@@ -74,6 +74,7 @@ public:
 	int getPrime(int number);
     bool setWindow(sf::RenderWindow *renderWindow);
 	bool runMenu();
+	std::string World::staticMapString();
 };
 
 #endif // __WORLD__HEADER__GUARD__

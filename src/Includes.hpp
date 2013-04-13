@@ -52,7 +52,7 @@
 //////////// ISO LIBRARIES /////////////
 #include <stdio.h>
 #include <typeinfo>
-#include <string.h>
+#include <string>
 #include <vector>
 #include <list>
 #include <iostream>
