@@ -797,11 +797,14 @@ std::string World::staticMapString()
 {
 	std::string mapString;
 #ifdef _WIN32
-	mapString += std::to_string((long long)area);
+	if (area != 0)
+	mapString += std::to_string((long long)(area));
+	else
+	mapString += '4';
 #else
-	mapString += std::to_string(area);
+	mapString = std::to_string(area);
 #endif
-	mapString += ' ';
+	mapString += " 1010101010101010";
 	
 	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
@@ -824,8 +827,14 @@ bool World::buildFromString(std::string baseString)
 {	
 	std::string::size_type currentPosition;
 	area = std::stoi(baseString, &currentPosition);
-
-	currentPosition+=2;
+	if (area <= 9)
+	{
+		currentPosition+=1;
+	}
+	else
+	{
+		currentPosition+=2;
+	}
 
 	map = new Tile**[area];
 	Tile *tempTile = new Tile();
@@ -842,6 +851,7 @@ bool World::buildFromString(std::string baseString)
 			
 				map[yPosition][xPosition] = new Tile(*tempTile);
 				map[yPosition][xPosition]->setPosition(yPosition, xPosition);
+				printf ("%c\n", baseString.at(currentPosition));
 				if (baseString.at(currentPosition) == '1')
 				{
 					map[yPosition][xPosition]->initTile('x');

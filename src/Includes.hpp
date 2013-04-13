@@ -33,6 +33,7 @@
 #include <SFML/Network.hpp>
 #include <pthread.h>
 #include <SFML/Network.hpp>
+#include <string>
 
 #elif defined __linux__
 //we are on linux
@@ -42,6 +43,7 @@
 #include <SFML/Network.hpp>
 #include <SFML/Audio/Music.hpp>
 #include <pthread.h>
+#include <string.h>
 
 #elif defined __APPLE__&__MACH__
 // we are on mac
@@ -51,7 +53,6 @@
 //////////// ISO LIBRARIES /////////////
 #include <stdio.h>
 #include <typeinfo>
-#include <string.h>
 #include <vector>
 #include <list>
 #include <iostream>
