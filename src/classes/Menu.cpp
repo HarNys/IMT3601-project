@@ -260,7 +260,6 @@ int  Menu::SelectNumberOfCharacters()
 	while(running)
 	{
 		window->setKeyRepeatEnabled(false);
-		window->pollEvent(event);
 
 		numOfPlayersText=(char)(numOfPlayers+48);
 		menutext = "Number of AI: ";
@@ -269,45 +268,42 @@ int  Menu::SelectNumberOfCharacters()
 		changeText(menutext);
 		sprite.setTextureRect(sf::IntRect(69*imageCount, 0, 69, 70));
 		localDraw();
+		sf::Event event;
 
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		while (window->pollEvent(event))
 		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::E)
+			if(event.type == sf::Event::KeyPressed)
 			{
-				initplayers();
-				running = false;
-				menuOpen = false;
-			}
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::W)
-			{
-				numOfPlayers++;
-				if (10 == numOfPlayers)
+				if(event.key.code == sf::Keyboard::E)
 				{
-					numOfPlayers = 9;
+					initplayers();
+					running = false;
+					menuOpen = false;
+				}
+				else if(event.key.code == sf::Keyboard::W)
+				{
+					numOfPlayers++;
+					if (10 == numOfPlayers)
+					{
+						numOfPlayers = 9;
+					}
+				}
+				else if(event.key.code == sf::Keyboard::S)
+				{
+					numOfPlayers--;
+					if ((-1) == numOfPlayers)
+					{
+						numOfPlayers = 0;
+					}
+				}
+				else if (event.key.code == sf::Keyboard::Escape)
+				{
+					running = false;
+					textLineOne.setString("Singleplayer");
+					textLineTwo.setString("Multiplayer");
+					exit.setString("Exit");
 				}
 			}
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{
-			if(event.KeyReleased && event.key.code == sf::Keyboard::S)
-			{
-				numOfPlayers--;
-				if ((-1) == numOfPlayers)
-				{
-					numOfPlayers = 0;
-				}
-			}
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			running = false;
-			textLineOne.setString("Singleplayer");
-			textLineTwo.setString("Multiplayer");
-			exit.setString("Exit");
-		}
 		animation();
 	}
 	return numOfPlayers;
