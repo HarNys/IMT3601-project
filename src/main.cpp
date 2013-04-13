@@ -45,7 +45,7 @@ void *chatserver(void *unused) // rename to reciever
 		//	if (!(lastBuffer == buffer))
 			{
 				count++;
-				printf("%s said: %s, count: %lu\n", sender.toString().c_str(), buffer, count);
+				printf("%s said: %s, count: %lu\n", sender.toString().c_str(), buffer+1, count);
 	//			lastBuffer = buffer;
 			}
 		printf ("if finished \n");	
@@ -75,8 +75,7 @@ void *chatclient(void *params) //rename to sender
 
 	while (!quit)
 	{
-
-		std::string message = "Hi, I am " + sf::IpAddress::getLocalAddress().toString(); 
+		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString(); 
 		socket.send(message.c_str(), message.size() + 1, peerIp, 4444);			
 	//	printf ("hey %s \r", peerIp );
 	//	socket.receive(buffer, sizeof(buffer), received, sender, port);			
@@ -126,7 +125,7 @@ int main(int argc, char **argv)
 		fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
 		confSettings.isHost = false;
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
-		confSettings.peerIp = /*"128.39.142.226";*/sf::IpAddress::getLocalAddress(); // remove hardcoded IP
+		confSettings.peerIp = /*"128.39.140.52";*/sf::IpAddress::getLocalAddress(); // remove hardcoded IP
 		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 
 		// Close configuration file after writing and setting defaults

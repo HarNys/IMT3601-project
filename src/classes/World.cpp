@@ -792,3 +792,30 @@ bool World::runMenu()
 	mainMenu->runMenu();
 	return true;
 }
+
+std::string World::staticMapString()
+{
+	std::string mapString;
+#ifdef _WIN32
+	mapString += std::to_string((long long)area);
+#else
+	mapString += std::to_string(area);
+#endif
+	mapString += ' ';
+	
+	for (int yPosition = 0; yPosition < area; yPosition++)
+	{
+		for (int xPosition = 0; xPosition < area; xPosition++)
+		{
+			if(map[xPosition][yPosition]->getIsWall())
+			{
+				mapString += '1';
+			}
+			else
+			{
+				mapString += '0';
+			}
+		}
+	}
+	return mapString;
+}
