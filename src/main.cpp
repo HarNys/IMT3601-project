@@ -195,7 +195,7 @@ int main(int argc, char **argv)
 	{
 		std::string tempString = confSettings.peerIp.toString();
 		char * tempCharArray = new char [tempString.length()+1];
-		std::strcpy (tempCharArray, tempString.c_str());
+		strcpy (tempCharArray, tempString.c_str());
 			void *tempVoidPointer = (void*) tempCharArray;
 		// client code, spawn thread.
 		pthread_create(&networkClientThread, NULL, &chatclient, tempVoidPointer);
