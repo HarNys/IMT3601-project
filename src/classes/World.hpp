@@ -3,7 +3,7 @@
  *
  * Copyright 2012 Thomas Sigurdsen <thomas.sigurdsen@gmail.com>
  * Copyright 2012 Harry Nystad <harry.ny@live.no>
- * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 rjan Rkkum Brandtzg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ public:
 	int getPrime(int number);
     bool setWindow(sf::RenderWindow *renderWindow);
 	bool runMenu();
-	std::string World::staticMapString();
+	std::string staticMapString();
 	bool World::buildFromString(std::string baseString);
 };
 

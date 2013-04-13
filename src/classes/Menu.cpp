@@ -304,6 +304,7 @@ int  Menu::SelectNumberOfCharacters()
 					exit.setString("Exit");
 				}
 			}
+		}
 		animation();
 	}
 	return numOfPlayers;
