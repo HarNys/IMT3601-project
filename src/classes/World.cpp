@@ -872,7 +872,7 @@ std::string World::staticMapString()
 	{
 		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
-			if(map[xPosition][yPosition]->getIsWall())
+			if(map[yPosition][xPosition]->getIsWall())
 			{
 				mapString += '1';
 			}
@@ -883,4 +883,42 @@ std::string World::staticMapString()
 		}
 	}
 	return mapString;
+}
+
+bool World::buildFromString(std::string baseString)
+{	
+	std::string::size_type currentPosition;
+	area = std::stoi(baseString, &currentPosition);
+
+	currentPosition+=2;
+
+	map = new Tile**[area];
+	Tile *tempTile = new Tile();
+	tempTile->initImage();
+	for (int yPosition = 0; yPosition < area; yPosition++)
+	{
+		///@note creates tile pointer for each row
+		map[yPosition] = new Tile*[area];
+
+		///@note the x value of the map
+		for (int xPosition = 0; xPosition < area; xPosition++)
+		{
+			///@note makes sure the file is not overextended, this is meant to be redundant
+			
+				map[yPosition][xPosition] = new Tile(*tempTile);
+				map[yPosition][xPosition]->setPosition(yPosition, xPosition);
+				if (baseString.at(currentPosition) == '1')
+				{
+					map[yPosition][xPosition]->initTile('x');
+				}
+				else
+				{
+					map[yPosition][xPosition]->initTile(' ');
+				}
+				map[yPosition][xPosition]->initSprite(yPosition, xPosition);
+				currentPosition++;
+		}
+
+	}
+	return true;
 }
