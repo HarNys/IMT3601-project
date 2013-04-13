@@ -68,10 +68,10 @@
 #include "classes/Mine.hpp" // requires character
 #include "classes/MineFactory.hpp" // requires 'Mine.hpp'
 #include "classes/Tile.hpp"
-#include "classes/World.hpp"
+#include "classes/Menu.hpp"
+#include "classes/World.hpp" // requires Menu
 #include "classes/NonPlayerCharacter.hpp" // requires Node
 #include "classes/Player.hpp"
-#include "classes/Menu.hpp"
 #include "classes/Network.hpp"
 #include "classes/NetworkHost.hpp"
 #include "classes/NetworkClient.hpp"
