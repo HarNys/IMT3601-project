@@ -106,6 +106,7 @@ int main(int argc, char **argv)
 		int screenheight;
 		bool fullscreen; // fullscreen the application if true
 		bool isHost;
+		bool chatOn;
 		sf::IpAddress peerIp;
 	} confSettings;
 	// Reading configuration file, if there is one
@@ -126,6 +127,8 @@ int main(int argc, char **argv)
 		fprintf(configFile,"fullscreen %d\n", confSettings.fullscreen);
 		confSettings.isHost = false;
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
+		confSettings.chatOn = true;
+		fprintf(configFile,"isHost %d\n", confSettings.chatOn);
 		confSettings.peerIp = /*"128.39.140.52";*/sf::IpAddress::getLocalAddress(); // remove hardcoded IP
 		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 
@@ -166,6 +169,10 @@ int main(int argc, char **argv)
 			{
 				confSettings.isHost = valueBuffer;
 			}
+			else if (!strcmp(variableBuffer, "chatOn"))
+			{
+				confSettings.chatOn = valueBuffer;
+			}
 			else if (!strcmp(variableBuffer, "peerIp"))
 			{
 				unsigned int castUInt32Addr = valueBuffer;
@@ -181,6 +188,7 @@ int main(int argc, char **argv)
 		fprintf(stdout,"main(int,char**): screenheight %d\n", confSettings.screenheight);
 		fprintf(stdout,"main(int,char**): fullscreen %d\n", confSettings.fullscreen);
 		fprintf(stdout,"main(int,char**): isHost %d\n", confSettings.isHost);
+		fprintf(stdout,"main(int,char**): chatOn %d\n", confSettings.chatOn);
 		fprintf(stdout,"main(int,char**): peerIp %s\n", confSettings.peerIp.toString().c_str());
 	}
 
