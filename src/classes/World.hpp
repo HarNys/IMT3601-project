@@ -64,7 +64,7 @@ public:
 	bool characterUpdate(Character* thisCharacter, Tile *thisTile,  int xCount, int yCount);
 	bool setWindow(sf::RenderWindow *renderWindow);
 	bool runMenu();
-	std::string World::staticMapString();
+	std::string staticMapString();
 	bool World::buildFromString(std::string baseString);
 };
 
