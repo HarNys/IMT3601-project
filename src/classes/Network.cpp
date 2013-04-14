@@ -26,6 +26,7 @@ std::vector<char *> *Network::peerIp = NULL;
 
 Network::Network(void *params)
 {
+	peerIp = new std::vector<char *>();
 	peerIp->reserve(4);
 	peerIp->assign(1, (char *) params);
 
@@ -34,31 +35,31 @@ Network::Network(void *params)
 
 	pthread_create(&networkReceiverThread, NULL, &chatReceiver, reinterpret_cast<void *> (this));
 	pthread_create(&networkSenderThread, NULL, &chatSender, reinterpret_cast<void *> (this));
-	
+
 	pthread_join(networkReceiverThread, NULL);
 	pthread_join(networkSenderThread, NULL);
-	
+
 }
 
 void *Network::chatReceiver(void *sentSelf)
 {
 	Network *myself = reinterpret_cast<Network*>(sentSelf);
-	
+
 	std::size_t received;
 	sf::IpAddress sender;
 	unsigned short port;
 	sf::UdpSocket inSocket;
 	inSocket.bind(4444);
 	char inBuffer[1024];
-	unsigned long count =0; 
+	unsigned long count =0;
 	//World *world;
 	//world->getWorld();
-	
-	
+
+
 
 	while(true)
 	{
-		if (inSocket.Done == inSocket.receive(inBuffer, sizeof(inBuffer), received, sender, port)) 
+		if (inSocket.Done == inSocket.receive(inBuffer, sizeof(inBuffer), received, sender, port))
 		{
 			count++;
 			printf("%s said: %s, count: %lu\n", sender.toString().c_str(), inBuffer+1, count);

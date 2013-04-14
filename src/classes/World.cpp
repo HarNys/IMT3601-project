@@ -805,7 +805,7 @@ std::string World::staticMapString()
 	mapString = std::to_string(area);
 #endif
 	mapString += " 1010101010101010";
-	
+/* These are for when we are actually sending a map.
 	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
 		for (int xPosition = 0; xPosition < area; xPosition++)
@@ -819,12 +819,12 @@ std::string World::staticMapString()
 				mapString += '0';
 			}
 		}
-	}
+	} //*/
 	return mapString;
 }
 
 bool World::buildFromString(std::string baseString)
-{	
+{
 	std::string::size_type currentPosition;
 	area = std::stoi(baseString, &currentPosition);
 	if (area <= 9)
@@ -848,7 +848,7 @@ bool World::buildFromString(std::string baseString)
 		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
 			///@note makes sure the file is not overextended, this is meant to be redundant
-			
+
 				map[yPosition][xPosition] = new Tile(*tempTile);
 				map[yPosition][xPosition]->setPosition(yPosition, xPosition);
 				printf ("%c\n", baseString.at(currentPosition));
