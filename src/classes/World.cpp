@@ -802,7 +802,7 @@ std::string World::staticMapString()
 	else
 	mapString += '4';
 #else
-	mapString = std::to_string(area);
+	mapString += '4';//std::to_string(area);
 #endif
 	mapString += " 1010101010101010";
 /* These are for when we are actually sending a map.
