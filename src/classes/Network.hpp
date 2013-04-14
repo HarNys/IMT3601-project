@@ -25,7 +25,7 @@
 class Network
 {
 private:
-	static std::vector<char *> peerIp;
+	static std::vector<char *> *peerIp;
 
 public:
 	Network();

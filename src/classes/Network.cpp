@@ -22,12 +22,13 @@
  */
 #include "../Includes.hpp"
 
+std::vector<char *> *Network::peerIp = NULL;
 
 Network::Network(void *params)
 {
-	peerIp.reserve(4);
-	peerIp.assign(1, (char *) params);
-	
+	peerIp->reserve(4);
+	peerIp->assign(1, (char *) params);
+
 	pthread_t networkReceiverThread;
 	pthread_t networkSenderThread;
 
@@ -63,7 +64,7 @@ void *Network::chatReceiver(void *sentSelf)
 			printf("%s said: %s, count: %lu\n", sender.toString().c_str(), inBuffer+1, count);
 			if (!inList((char *)sender.toString().c_str()))
 			{
-				peerIp.assign(1, (char *)sender.toString().c_str());
+				peerIp->assign(1, (char *)sender.toString().c_str());
 			}
 		}
 	}
@@ -82,11 +83,11 @@ void *Network::chatSender(void *sentSelf) //rename to sender
 
 	while (true)
 	{
-		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString(); 
+		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 		std::vector<char *>::iterator peerIter;
-		for (peerIter=peerIp.begin(); peerIter < peerIp.end(); peerIter++ )
+		for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
 		{
-			outSocket.send(message.c_str(), message.size() + 1, *peerIter, 4444);	
+			outSocket.send(message.c_str(), message.size() + 1, *peerIter, 4444);
 		}
 	}
 	return NULL;
@@ -95,7 +96,7 @@ void *Network::chatSender(void *sentSelf) //rename to sender
 bool Network::inList(char *ip)
 {
 	std::vector<char *>::iterator peerIter;
-	for (peerIter=peerIp.begin(); peerIter < peerIp.end(); peerIter++ )
+	for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
 	{
 		if (ip == *peerIter)
 		{
