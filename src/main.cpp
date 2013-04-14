@@ -25,67 +25,75 @@
  */
 #include "Includes.hpp"
 
-void *chatserver(void *unused) // rename to reciever
-{
-	sf::UdpSocket socket;
-	socket.bind(4444);
-	bool quit = false;
-	char buffer[1024];
-	std::size_t received = 0;
-	sf::IpAddress sender;
-	unsigned short port;
-	unsigned long count = 0;
-	char *lastBuffer;
-//	lastBuffer = (char *) malloc (sizeof (char) * 1024);
-	while(!quit)
-	{
-//		printf ("ready to recieve");
-		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port)) 
-		{
-		//	if (!(lastBuffer == buffer))
-			{
-				count++;
-				printf("%s said: %s, count: %lu\n", sender.toString().c_str(), buffer+1, count);
-	//			lastBuffer = buffer;
-			}
-		printf ("if finished \n");	
-	
-		}
-	//	std::string message = "Welcome " + sender.toString();
-	//	socket.send(message.c_str(), message.size() + 1, sender, port);
-	}
-	return NULL;
-}
-
-void *chatclient(void *params) //rename to sender
-{
-	char * peerIp = (char*) params;
-	
-	sf::UdpSocket socket;
-	socket.bind(4445);
-	char *buffer;
-	//std::size_t received = 0;
-	//sf::IpAddress sender;
-	//sender = "128.39.141.108";
-	unsigned short port;
-	bool quit = 0;
-	unsigned long count = 0;
-	World *world;
-	world->getWorld();
-
-	while (!quit)
-	{
-		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString(); 
-		socket.send(message.c_str(), message.size() + 1, peerIp, 4444);			
-	//	printf ("hey %s \r", peerIp );
-	//	socket.receive(buffer, sizeof(buffer), received, sender, port);			
-	//	printf("%s said: %s, count: %lu\r",sender.toString().c_str() ,buffer, count++); 
-	}
-	return NULL;
-}
+//void *chatserver(void *unused) // rename to reciever
+//{
+//	sf::UdpSocket socket;
+//	socket.bind(4444);
+//	bool quit = false;
+//	char buffer[1024];
+//	std::size_t received = 0;
+//	sf::IpAddress sender;
+//	unsigned short port;
+//	unsigned long count = 0;
+//	char *lastBuffer;
+////	lastBuffer = (char *) malloc (sizeof (char) * 1024);
+//	while(!quit)
+//	{
+////		printf ("ready to recieve");
+//		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port)) 
+//		{
+//		//	if (!(lastBuffer == buffer))
+//			{
+//				count++;
+//				printf("%s said: %s, count: %lu\n", sender.toString().c_str(), buffer+1, count);
+//	//			lastBuffer = buffer;
+//			}
+//		printf ("if finished \n");	
+//	
+//		}
+//	//	std::string message = "Welcome " + sender.toString();
+//	//	socket.send(message.c_str(), message.size() + 1, sender, port);
+//	}
+//	return NULL;
+//}
+//
+//void *chatclient(void *params) //rename to sender
+//{
+//	std::vector<char *> peerIp;
+//	peerIp.reserve(4);
+//	peerIp.assign(1, (char *) params);
+//	sf::UdpSocket socket;
+//	socket.bind(4445);
+//	char *buffer;
+//	//std::size_t received = 0;
+//	//sf::IpAddress sender;
+//	//sender = "128.39.141.108";
+//	unsigned short port;
+//	bool quit = 0;
+//	unsigned long count = 0;
+//	World *world;
+//	world->getWorld();
+//
+//	while (!quit)
+//	{
+//		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString(); 
+//		std::vector<char *>::iterator peerIter;
+//		for (peerIter=peerIp.begin(); peerIter < peerIp.end(); peerIter++ )
+//	{
+//		
+//	
+//		socket.send(message.c_str(), message.size() + 1, *peerIter, 4444);	
+//	}
+//	//	printf ("hey %s \r", peerIp );
+//	//	socket.receive(buffer, sizeof(buffer), received, sender, port);			
+//	//	printf("%s said: %s, count: %lu\r",sender.toString().c_str() ,buffer, count++); 
+//	}
+//	return NULL;
+//}
 
 int main(int argc, char **argv)
 {
+	printf("%d\n",troll::kod);
 	/**
 	 * All options possible for configuration should
 	 * be in this struct.
@@ -191,24 +199,34 @@ int main(int argc, char **argv)
 		fprintf(stdout,"main(int,char**): peerIp %s\n", confSettings.peerIp.toString().c_str());
 	}
 
-	pthread_t networkHostThread;
-	pthread_t networkClientThread;
-//	if (confSettings.isHost)	//comment out if
-	{
-		// host code, spawn thread.
-		pthread_create(&networkHostThread, NULL, &chatserver, NULL);
-	}
-//	else				//comment out else
-	{
-		std::string tempString = confSettings.peerIp.toString();
-		char * tempCharArray = new char [tempString.length()+1];
-		strcpy (tempCharArray, tempString.c_str());
-			void *tempVoidPointer = (void*) tempCharArray;
-		// client code, spawn thread.
-		pthread_create(&networkClientThread, NULL, &chatclient, tempVoidPointer);
-	}
-	pthread_join(networkHostThread, NULL);
-	pthread_join(networkClientThread, NULL);
+//	pthread_t networkHostThread;
+//	pthread_t networkClientThread;
+////	if (confSettings.isHost)	//comment out if
+//	{
+//		// host code, spawn thread.
+//		pthread_create(&networkHostThread, NULL, &chatserver, NULL);
+//	}
+////	else				//comment out else
+//	{
+//		std::string tempString = confSettings.peerIp.toString();
+//		char * tempCharArray = new char [tempString.length()+1];
+//		strcpy (tempCharArray, tempString.c_str());
+//			void *tempVoidPointer = (void*) tempCharArray;
+//		// client code, spawn thread.
+//		pthread_create(&networkClientThread, NULL, &chatclient, tempVoidPointer);
+//	}
+//	pthread_join(networkHostThread, NULL);
+//	pthread_join(networkClientThread, NULL);
+
+	std::string tempString = confSettings.peerIp.toString();
+	char * tempCharArray = new char [tempString.length()+1];
+	strcpy (tempCharArray, tempString.c_str());
+	void *tempVoidPointer = (void*) tempCharArray;
+
+	Network *network = new Network(tempVoidPointer);
+
+	
+
 	/*
 	 * We exit the program here for testing purposes during this
 	 * early testing of networking.

@@ -65,7 +65,7 @@ public:
 	bool setWindow(sf::RenderWindow *renderWindow);
 	bool runMenu();
 	std::string staticMapString();
-	bool World::buildFromString(std::string baseString);
+	bool buildFromString(std::string baseString);
 };
 
 #endif // __WORLD__HEADER__GUARD__

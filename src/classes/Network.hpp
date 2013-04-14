@@ -24,12 +24,13 @@
 
 class Network
 {
-protected:
-	int hostSocket;
-	char hostAddress[256];
-	int hostPort;
+private:
+	static std::vector<char *> peerIp;
+
 public:
-	//int sendAll(int socket, const char *buffer, int *length);
-	// ^^ Not implemented see networking code from Jayson:
-	// 'GucNetworkBase.cpp'
+	Network();
+	Network(void *params);
+	static void *chatReceiver(void *sentSelf);
+	static void *chatSender(void *sentSelf);
+	static bool inList(char *ip);
 };

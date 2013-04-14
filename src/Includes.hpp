@@ -60,6 +60,9 @@
 #include <math.h>
 #include <omp.h>
 
+namespace troll{
+	int kod=8765435678654;
+}
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/Node.hpp"
