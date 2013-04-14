@@ -103,7 +103,6 @@ void *Network::chatReceiver(Network *sentSelf)
 
 void *Network::chatSender(Network *sentSelf) //rename to sender
 {
-//	Network *myself = reinterpret_cast<Network*>(sentSelf);
 	World *world;
 	world->getWorld();
 	sf::UdpSocket outSocket;
@@ -111,17 +110,22 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 	//unsigned short outPort;
 	outSocket.bind(4445);
 	//pthread_cond_wait(&networkCV, &mutexSendLock);
+	/* critical region, lock the mutex here while we wait for input from user. */
+	pthread_mutex_lock(&mutexSendLock);
 	while (true)
 	{
-		std::string message;
+		std::string message("lol");
 		std::cin >> message;//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
+		/* Wait here while message is input */
+//		pthread_cond_wait(&networkCV, &mutexSendLock); // wait a minute, this doesn't make sense when chatting.
 		std::vector<char *>::iterator peerIter;
 		for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
 		{
 			outSocket.send(message.c_str(), message.size() + 1, *peerIter, 4444);
 		}
-		//pthread_mutex_lock(&mutexSendLock);
 	}
+	/* Unlock */
+	pthread_mutex_unlock(&mutexSendLock);
 	return NULL;
 }
 
