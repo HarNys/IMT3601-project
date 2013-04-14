@@ -2,7 +2,7 @@
  * main.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thoams.sigurdsen@gmail.com>
- * Copyright 2012 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
+ * Copyright 2012 rjan Rkkum Brandtzg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
 		confSettings.chatOn = true;
 		fprintf(configFile,"isHost %d\n", confSettings.chatOn);
-
+		confSettings.peerIp = /*"128.39.83.80";//*/sf::IpAddress::getLocalAddress(); // remove hardcoded IP
 		confSettings.peerIp = /*"128.39.168.223";*/ sf::IpAddress::getLocalAddress(); // remove hardcoded IP
 
 		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());

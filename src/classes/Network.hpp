@@ -26,11 +26,16 @@ class Network
 {
 private:
 	static std::vector<char *> *peerIp;
+	pthread_t networkReceiverThread;
+	pthread_t networkSenderThread;
+	pthread_mutex_t mutexSendLock;
+	pthread_cond_t networkCV;
 
 public:
 	Network();
 	Network(void *params);
-	static void *chatReceiver(void *sentSelf);
-	static void *chatSender(void *sentSelf);
+	static void *threadInitialize(void *sentSelf);
+	void *chatReceiver(Network *sentSelf);
+	void *chatSender(Network *sentSelf);
 	static bool inList(char *ip);
 };
