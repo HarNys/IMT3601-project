@@ -84,7 +84,8 @@ void *Network::chatSender(void *sentSelf) //rename to sender
 
 	while (true)
 	{
-		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
+		std::string message;
+		scanf ("%s", message);//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 		std::vector<char *>::iterator peerIter;
 		for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
 		{
