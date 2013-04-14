@@ -40,7 +40,7 @@
 //	while(!quit)
 //	{
 ////		printf ("ready to recieve");
-//		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port)) 
+//		if (socket.Done == socket.receive(buffer, sizeof(buffer), received, sender, port))
 //		{
 //		//	if (!(lastBuffer == buffer))
 //			{
@@ -48,8 +48,8 @@
 //				printf("%s said: %s, count: %lu\n", sender.toString().c_str(), buffer+1, count);
 //	//			lastBuffer = buffer;
 //			}
-//		printf ("if finished \n");	
-//	
+//		printf ("if finished \n");
+//
 //		}
 //	//	std::string message = "Welcome " + sender.toString();
 //	//	socket.send(message.c_str(), message.size() + 1, sender, port);
@@ -76,17 +76,17 @@
 //
 //	while (!quit)
 //	{
-//		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString(); 
+//		std::string message = world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 //		std::vector<char *>::iterator peerIter;
 //		for (peerIter=peerIp.begin(); peerIter < peerIp.end(); peerIter++ )
 //	{
-//		
-//	
-//		socket.send(message.c_str(), message.size() + 1, *peerIter, 4444);	
+//
+//
+//		socket.send(message.c_str(), message.size() + 1, *peerIter, 4444);
 //	}
 //	//	printf ("hey %s \r", peerIp );
-//	//	socket.receive(buffer, sizeof(buffer), received, sender, port);			
-//	//	printf("%s said: %s, count: %lu\r",sender.toString().c_str() ,buffer, count++); 
+//	//	socket.receive(buffer, sizeof(buffer), received, sender, port);
+//	//	printf("%s said: %s, count: %lu\r",sender.toString().c_str() ,buffer, count++);
 //	}
 //	return NULL;
 //}
@@ -135,7 +135,9 @@ int main(int argc, char **argv)
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
 		confSettings.chatOn = true;
 		fprintf(configFile,"isHost %d\n", confSettings.chatOn);
+
 		confSettings.peerIp = /*"128.39.168.223";*/ sf::IpAddress::getLocalAddress(); // remove hardcoded IP
+
 		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 
 		// Close configuration file after writing and setting defaults
@@ -224,7 +226,7 @@ int main(int argc, char **argv)
 
 	Network *network = new Network(tempVoidPointer);
 
-	
+
 
 	/*
 	 * We exit the program here for testing purposes during this
