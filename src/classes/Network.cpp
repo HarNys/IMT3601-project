@@ -90,8 +90,8 @@ void *Network::chatReceiver(Network *sentSelf)
 		if (inSocket.Done == inSocket.receive(inBuffer, sizeof(inBuffer), received, sender, port))
 		{
 			count++;
-			printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer+1, count);
-			pthread_mutex_unlock(&mutexSendLock);
+			printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
+			//pthread_mutex_unlock(&mutexSendLock);
 			if (!inList((char *)sender.toString().c_str()))
 			{
 				peerIp->assign(1, (char *)sender.toString().c_str());
@@ -107,21 +107,20 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 	World *world;
 	world->getWorld();
 	sf::UdpSocket outSocket;
-	//char *outBuffer;
+	char *outBuffer;
 	//unsigned short outPort;
 	outSocket.bind(4445);
-
-	pthread_cond_wait(&networkCV, &mutexSendLock);
+	//pthread_cond_wait(&networkCV, &mutexSendLock);
 	while (true)
 	{
 		std::string message;
-		scanf ("%s", message);//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
+		std::cin >> message;//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 		std::vector<char *>::iterator peerIter;
 		for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
 		{
 			outSocket.send(message.c_str(), message.size() + 1, *peerIter, 4444);
 		}
-		pthread_mutex_lock(&mutexSendLock);
+		//pthread_mutex_lock(&mutexSendLock);
 	}
 	return NULL;
 }
