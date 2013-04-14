@@ -135,8 +135,7 @@ int main(int argc, char **argv)
 		fprintf(configFile,"isHost %d\n", confSettings.isHost);
 		confSettings.chatOn = true;
 		fprintf(configFile,"isHost %d\n", confSettings.chatOn);
-		confSettings.peerIp = /*"128.39.83.80";//*/sf::IpAddress::getLocalAddress(); // remove hardcoded IP
-		confSettings.peerIp = /*"128.39.168.223";*/ sf::IpAddress::getLocalAddress(); // remove hardcoded IP
+		confSettings.peerIp = "128.39.168.223"; //sf::IpAddress::getLocalAddress(); // remove hardcoded IP
 
 		fprintf(configFile,"peerIp %u\n", confSettings.peerIp.toInteger());
 

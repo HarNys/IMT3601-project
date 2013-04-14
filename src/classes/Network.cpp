@@ -94,7 +94,7 @@ void *Network::chatReceiver(Network *sentSelf)
 			//pthread_mutex_unlock(&mutexSendLock);
 			if (!inList((char *)sender.toString().c_str()))
 			{
-				peerIp->assign(1, (char *)sender.toString().c_str());
+				peerIp->push_back((char *)sender.toString().c_str());
 			}
 		}
 	}
