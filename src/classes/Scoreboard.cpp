@@ -42,7 +42,18 @@ bool Scoreboard::printList()
 {
 	quickSort(allNeededInfo);
 	//write out all the info remains, as well as starting the function in World::Update
+	consolePrint();
 	return true;
+}
+
+/**
+ * Prints score to console
+ *
+ * @return True on success.
+ */
+bool Scoreboard::consolePrint()
+{
+	printf("Score:\nRank | Player\t| Score\n");
 }
 
 bool Scoreboard::quickSort(int *toSort)

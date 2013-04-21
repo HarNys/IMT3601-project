@@ -38,9 +38,7 @@ private:
 public:
 	bool setNewElement(int charNumber, int charScore);
 	bool printList();
+	bool consolePrint();
 	bool quickSort(int *toSort);
-
-
-
 };
 #endif //__CHARACTER__HEADER__GUARD__
