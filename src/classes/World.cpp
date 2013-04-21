@@ -80,7 +80,7 @@ World::World()
 	primes[14] = 47;
 	////////////
 
-
+	scoreboard = new Scoreboard();
 }
 
 /**

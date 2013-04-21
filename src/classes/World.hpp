@@ -41,7 +41,7 @@ private:
 	int xSpace;
     int difficulty;
 	int primes[15];
-	Scoreboard * scoreboard;
+	Scoreboard* scoreboard;
 
         // constructor
         World();

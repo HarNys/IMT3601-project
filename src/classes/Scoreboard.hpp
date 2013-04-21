@@ -36,6 +36,7 @@ private:
 				//the smaller numbers represent the score
 				//mod and divide to make sense of it
 public:
+	Scoreboard();
 	bool setNewElement(int charNumber, int charScore);
 	bool printList();
 	bool consolePrint();
