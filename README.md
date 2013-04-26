@@ -12,17 +12,17 @@ throughout the project.
 Dependencies
 ============
 
-The game is built using SFML 2.0 <http://www.sfml-dev.org/> and either visual
-studio or GNU Autotools.
+The game is built using SFML 2.0-rc <http://www.sfml-dev.org/> and either 
+visual studio or GNU Autotools.
 
 Installing and Running
 ======================
 
 Linux
 -----
-In IMT3601-project/ directory run: './configure && make'. This should 
-configure and build the neuton executable. You can install it by running 
-'[sudo] make install', in most cases this requires root privileges.
+In IMT3601-project/ directory run: 'autoreconf -i && ./configure && make'. 
+This should configure and build the neuton executable. You can install it by 
+running '[sudo] make install', in most cases this requires root privileges.
 
 Windows
 -------
