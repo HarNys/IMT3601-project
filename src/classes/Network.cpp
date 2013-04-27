@@ -23,16 +23,15 @@
  */
 #include "../Includes.hpp"
 
-std::vector<char *> *Network::peerIp = NULL;
+std::vector<Client*> *clients = NULL;
 //pthread_mutex_t Network::mutexSendLock = PTHREAD_MUTEX_INITIALIZER;
 
 Network::Network(void *params, bool isHost)// : mutexSendLock(PTHREAD_MUTEX_INITIALIZER)
 {
 	if (isHost)
 	{
-		peerIp = new std::vector<char *>();
-		peerIp->reserve(4);
-		peerIp->assign(1, (char *) params);
+		clients = new std::vector<Client*>();
+		clients->reserve(4);
 		hostIp = NULL;
 	}
 	else if (!isHost)
@@ -141,7 +140,7 @@ void *Network::chatReceiver(Network *sentSelf)
 						  world->buildFromString(mapString);
 						break;
 
-					case '4': //this is where the game receives prompt to leave the chat
+					case '4': //this is where the game receives prompt to leave the chat and start the game
 						break;
 
 					case '5': //this is where the game receives the number of players in game

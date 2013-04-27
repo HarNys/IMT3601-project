@@ -25,7 +25,11 @@
 class Network
 {
 private:
-	static std::vector<char *> *peerIp;
+	struct Client{
+		char *peerIp;
+		enum peerState;
+	};
+	static std::vector<Client*> *clients;
 	char *hostIp;
 	pthread_t networkReceiverThread;
 	pthread_t networkSenderThread;
