@@ -105,7 +105,7 @@ void *Network::chatReceiver(Network *sentSelf)
 				{
 					switch (inBuffer[1])
 					{
-					case '1': 
+					case '1':
 						if (!inList((char *)sender.toString().c_str()))
 						{
 							peerIp->push_back((char *)sender.toString().c_str());
@@ -121,16 +121,16 @@ void *Network::chatReceiver(Network *sentSelf)
 					}
 					if (inBuffer[1] == '1')
 					{
-						
-					}
-					
 
-					
+					}
+
+
+
 
 				}
-				else 
+				else
 				{
-					printf ("WHAT THE FUCK");
+					printf ("WHAT THE FUCK: %s", inBuffer);
 				}
 			}
 		}
