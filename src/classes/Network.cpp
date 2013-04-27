@@ -172,7 +172,7 @@ void *Network::chatReceiver(Network *sentSelf)
 					case 17: // this is where the game receives the mines and which mine number it is
 						break;
 
-					default: printf ("WHAT THE FUCK, I'M PEER: %s", inBuffer); break;
+					default: printf ("WHAT THE FUCK, I'M A CLIENT: %s", inBuffer); break;
 					}
 
 				}
