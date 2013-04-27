@@ -429,7 +429,7 @@ bool Menu::initplayers()
 //*/
 	printf("Menu::initplayers(): has got CharacterFactory, getting player \n");
 	Character *player = characterFactory->getCharacter();
-	player->setCharacterType(0); // 0 for local-player character
+	player->setCharacterType(0, world->getIsClient()); // 0 for local-player character
 	player->setID(0);
 	world->placeCharacter(player);//*/
 
@@ -521,4 +521,14 @@ void Menu::lobby(std::string *hostIp)
 {
 	Network network((void*) hostIp, true);
 	printf("Menu::lobby: Shutting down.\n");
+	World *world;
+	world->getWorld();
+	if (hostIp != NULL)
+	{
+		world->setIsClient(false);
+	}
+	else
+	{
+		world->setIsClient(true);
+	}
 }

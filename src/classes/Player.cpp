@@ -28,7 +28,7 @@
  * to reset characterDirectionX/Y
  * @param [in] thisCharacter pointer to character to move.
  */
-void LocalPlayer::characterInput(Character* thisCharacter, sf::RenderWindow *window)
+void LocalPlayer::characterInput(Character* thisCharacter, sf::RenderWindow *window, bool client)
 {
 //	printf("LocalPlayer::characterInput(...): I am in function.\n");
 	sf::Event event;

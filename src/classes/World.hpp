@@ -55,6 +55,7 @@ private:
 	strstack *receiveEvents;
 	pthread_mutex_t sendEventMutex;
 	pthread_mutex_t receiveEventMutex;
+	bool isClient;
 public:
 	static World *getWorld();
 	bool initMap(char *mapFile);
@@ -78,6 +79,8 @@ public:
 	strstack getReceiveEvents();
 	void setSendEvent(std::string event);
 	void setReceiveEvent(std::string event);
+	void setIsClient(bool client);
+	bool getIsClient();
 };
 
 #endif // __WORLD__HEADER__GUARD__

@@ -245,7 +245,7 @@ void Character::useController(Character* thischaracter, sf::RenderWindow *window
 		}
 		else
 		{
-			localPlayerController.characterInput(thischaracter, window);
+			localPlayerController.characterInput(thischaracter, window, isClient);
 		}
 	}
 	else if(controllerType == AiControl)
@@ -348,9 +348,10 @@ bool Character::placeMine()
 *	@param type: the type of controller 0=local, 1=npc, 2=network
 *	@return true on succses
 */
-bool Character::setCharacterType(int type)
+bool Character::setCharacterType(int type, bool client)
 {
 	controllerType = type;
+	isClient = client;
 	return true;
 }
 

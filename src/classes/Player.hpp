@@ -27,7 +27,7 @@
 class LocalPlayer
 {
 public:
-	void characterInput(Character* thisCharacter, sf::RenderWindow *window);
+	void characterInput(Character* thisCharacter, sf::RenderWindow *window, bool client);
 };
 
 #endif // __LOCALPLAYER__HEADER__GUARD__

@@ -49,6 +49,7 @@ private:
 	StackNode *startStack;
 	StackNode *endStack;
 	int aggressivenes;
+	bool isClient;
 
 public:
 	Character();
@@ -71,7 +72,7 @@ public:
 	void setNextNode(Node *newNextNode);
 	bool updateSprite();
 	bool placeMine();
-	bool setCharacterType(int type);
+	bool setCharacterType(int type, bool client);
 	bool setID(int ID);
 	void newStack(int xPos, int yPos);
 	void addStack(int xPos, int yPos);

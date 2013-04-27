@@ -386,6 +386,16 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 	{
 		return false;
 	}
+	else if (isClient)
+	{
+		std::string movementString;
+		movementString += (char *)(characterDirectionX+1);
+		movementString += ' ';
+		movementString += (char *)(characterDirectionY+1);
+		movementString += ' ';
+		movementString += (char *)(character->getMinePlaced()+1)
+		setSendEvent(movementString);
+	}
 	else
 	{
 		if (((xPosition + characterDirectionX) >= 0)
@@ -927,4 +937,14 @@ void World::setReceiveEvent(std::string event)
 	pthread_mutex_lock(&receiveEventMutex);
 	receiveEvents->push(&event);
 	pthread_mutex_unlock(&receiveEventMutex);
+}
+
+void World::setIsClient(bool client)
+{
+	isClient = client;
+}
+
+bool World::getIsClient()
+{
+	return isClient;
 }
