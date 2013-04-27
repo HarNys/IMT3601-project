@@ -89,8 +89,9 @@ void *Network::chatReceiver(Network *sentSelf)
 	inSocket.bind(4444);
 	char inBuffer[1024];
 	unsigned long count =0;
-	//World *world;
-	//world->getWorld();
+	std::string mapString;
+	World *world;
+	world->getWorld();
 
 
 
@@ -110,7 +111,7 @@ void *Network::chatReceiver(Network *sentSelf)
 						{
 							peerIp->push_back((char *)sender.toString().c_str());
 						}
-						 break;
+							break;
 					case '2':
 						printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
 						//pthread_mutex_unlock(&mutexSendLock);
@@ -119,19 +120,43 @@ void *Network::chatReceiver(Network *sentSelf)
 						//make function to assign orders to a network player.
 						break;
 					}
-					if (inBuffer[1] == '1')
-					{
-
-					}
-
-
-
-
 				}
 				else
 				{
 					printf ("WHAT THE FUCK: %s", inBuffer);
 				}
+			}
+
+			else 
+			{
+				if (inBuffer[0] == '2')
+				{
+					switch (inBuffer[1])
+					{
+					case '1': break;
+					case '2': printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
+						break;
+
+					case '3': mapString = inBuffer;
+						  world->buildFromString(mapString);
+						break;
+
+					case '4': //this is where the game receives prompt to leave the chat
+						break;
+
+					case '5': //this is where the game receives the number of players in game
+						break;
+
+					case '6': // this is where the game receives the player and which player number it is
+						break;
+
+					case '7': // this is where the game receives the mines and which mine number it is
+						break;
+
+					}
+
+				}
+
 			}
 		}
 	}
