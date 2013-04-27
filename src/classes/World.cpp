@@ -825,19 +825,11 @@ std::string World::staticMapString()
 	return mapString;
 }
 
-bool World::buildFromString(std::string baseString)
+bool World::buildFromString(std::string sizeString, std::string baseString)
 {
 	std::string::size_type currentPosition;
-	area = std::stoi(baseString, &currentPosition);
-	if (area <= 9)
-	{
-		currentPosition+=1;
-	}
-	else
-	{
-		currentPosition+=2;
-	}
-
+	area = std::stoi(sizeString, &currentPosition);
+	
 	map = new Tile**[area];
 	Tile *tempTile = new Tile();
 	tempTile->initImage();

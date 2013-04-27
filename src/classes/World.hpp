@@ -72,7 +72,7 @@ public:
 	bool setWindow(sf::RenderWindow *renderWindow);
 	bool runMenu();
 	std::string staticMapString();
-	bool buildFromString(std::string baseString);
+	bool buildFromString(std::string sizeString, std::string baseString);
 	bool initNetwork();
 	strstack getSendEvents();
 	strstack getReceiveEvents();

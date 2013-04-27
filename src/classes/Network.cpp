@@ -91,9 +91,10 @@ void *Network::chatReceiver(Network *sentSelf)
 	char inBuffer[1024];
 	unsigned long count =0;
 	std::string mapString;
-	World *world;
+	std::string mapSize;
 	world->getWorld();
-
+	std::vector<Client *>::iterator peerIter;
+						
 
 
 	while(true)
@@ -103,65 +104,79 @@ void *Network::chatReceiver(Network *sentSelf)
 			count++;
 			if (hostIp != NULL)
 			{
-				if (inBuffer[0] == '2')
+				int num = atoi(strtok(inBuffer, " "));
+				
+				switch (num)
 				{
-					switch (inBuffer[1])
+				case 21:
+					if (!inList((char *)sender.toString().c_str()))
 					{
-					case '1':
-						if (!inList((char *)sender.toString().c_str()))
-						{
-							//clients->push_back((Client *)sender.toString().c_str());
-							clients->back()->peerState = Network::ClientState::CONNECTING;
-						}
-							break;
-					case '2':
-						printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
-						//pthread_mutex_unlock(&mutexSendLock);
-						break;
-					case '3':
-						//make function to assign orders to a network player.
-						break;
+							
+						Client *tempclient;
+						//tempclient->peerIp = (char*) malloc(sizeof(char)*256);
+						//printf("peerip: %s\n",(char *) sender.toString().c_str());
+						//tempclient->peerState=Network::ClientState::CONNECTING;
+						clients->push_back(tempclient);
+						clients->back()->peerIp = (char *) sender.toString().c_str();
+						clients->back()->peerState = Network::ClientState::CONNECTING;
 					}
-				}
-				else
-				{
-					printf ("WHAT THE FUCK: %s", inBuffer);
+					break;
+				case 22:
+					printf("%s said: %s, count: %lu\n", sender.toString().c_str(), inBuffer, count);
+					for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
+					{
+						if ((*peerIter)->peerIp == (char*) sender.toString().c_str())
+						{
+							(*peerIter)->peerState = Network::ClientState::READY;
+						}
+
+					}
+					break;
+
+				case 23:
+					//make function to assign orders to a network player.
+					break;
+				default:
+					printf ("WHAT THE FUCK I'M HOST: %s \n", inBuffer);
+					break;
 				}
 			}
 
 			else
 			{
-				if (inBuffer[0] == '2')
-				{
-					switch (inBuffer[1])
+				int num = atoi(strtok(inBuffer, " "));
+				
+					switch (num)
 					{
-					case '1': break;
-					case '2': printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
+					case 11: break;
+					
+					case 12: printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
 						break;
 
-					case '3': mapString = inBuffer;
-						  world->buildFromString(mapString);
+					case 13:mapSize = strtok (NULL," ");
+						mapString = strtok(NULL, " ");
+						world->buildFromString(mapSize, mapString);
 						break;
 
-					case '4': //this is where the game receives prompt to leave the chat and start the game
+					case 14: //this is where the game receives prompt to leave the chat and start the game
 						break;
 
-					case '5': //this is where the game receives the number of players in game
+					case 15: //this is where the game receives the number of players in game
 						break;
 
-					case '6': // this is where the game receives the player and which player number it is
+					case 16: // this is where the game receives the player and which player number it is
 						break;
 
-					case '7': // this is where the game receives the mines and which mine number it is
+					case 17: // this is where the game receives the mines and which mine number it is
 						break;
-
+					
+					default: printf ("WHAT THE FUCK, I'M PEER: %s", inBuffer); break;
 					}
 
 				}
 
 			}
 		}
-	}
 	return NULL;
 }
 
@@ -178,14 +193,32 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 	pthread_mutex_lock(&mutexSendLock);
 	while (true)
 	{
-		std::string message("lol");
-		std::cin >> message;//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
+		std::string message;
+		//std::cin >> message;//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
+		std::getline(std::cin, message);
 		/* Wait here while message is input */
 //		pthread_cond_wait(&networkCV, &mutexSendLock); // wait a minute, this doesn't make sense when chatting.
-		std::vector<Client *>::iterator peerIter;
-		for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
+		
+		if (!hostIp)
 		{
-			outSocket.send(message.c_str(), message.size() + 1, (*peerIter)->peerIp, 4444);
+			if (clients != NULL)
+			{
+				std::vector<Client *>::iterator peerIter;
+				for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
+				{
+					if ((*peerIter)->peerState == Network::ClientState::CONNECTING)
+					{
+						message += "13 ";
+						message += world->staticMapString();
+						outSocket.send(message.c_str(), message.size() + 1, (*peerIter)->peerIp, 4444);
+					}
+					outSocket.send(message.c_str(), message.size() + 1, (*peerIter)->peerIp, 4444);
+				}
+			}
+		}
+		else 
+		{
+			outSocket.send(message.c_str(), message.size() + 1, hostIp, 4444);
 		}
 	}
 	/* Unlock */
@@ -195,12 +228,15 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 
 bool Network::inList(char *ip)
 {
-	std::vector<Client*>::iterator peerIter;
-	for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
+	if (clients != NULL)
 	{
-		if (ip == (*peerIter)->peerIp)
+		std::vector<Client*>::iterator peerIter;
+		for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
 		{
-			return true;
+			if (ip == (*peerIter)->peerIp)
+			{
+				return true;
+			}
 		}
 	}
 	return false;
