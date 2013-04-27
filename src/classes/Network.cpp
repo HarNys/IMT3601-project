@@ -107,7 +107,7 @@ void *Network::chatReceiver(Network *sentSelf)
 				printf("num: %d",num);
 				switch (num)
 				{
-				case 21:
+				case Network::ClientState::CLIENT_CONNECTING:
 					if (!inList((char *)sender.toString().c_str()))
 					{
 
@@ -115,12 +115,12 @@ void *Network::chatReceiver(Network *sentSelf)
 						tempclient->peerIp = (char*) malloc(sizeof(char)*256);
 						printf("\npeerip: %s\n",(char *) sender.toString().c_str());
 						memcpy(tempclient->peerIp, (sender.toString().c_str()), sender.toString().size());
-						tempclient->peerState = Network::ClientState::CONNECTING;
+						tempclient->peerState = Network::ClientState::CLIENT_CONNECTING;
 						printf("\n\t\tTMPCLIENT:\n\tip: %s\n\tstate: %d",tempclient->peerIp, tempclient->peerState);
 						clients->push_back(tempclient);
 					}
 					break;
-				case 22:
+				case Network::ClientState::CLIENT_READY:
 					printf("%s said: %s, count: %lu\n", sender.toString().c_str(), inBuffer, count);
 					if (clients != NULL)
 					{
@@ -128,14 +128,14 @@ void *Network::chatReceiver(Network *sentSelf)
 						{
 							if ((*peerIter)->peerIp == (char*) sender.toString().c_str())
 							{
-								(*peerIter)->peerState = Network::ClientState::READY;
+								(*peerIter)->peerState = Network::ClientState::CLIENT_READY;
 							}
 
 						}
 					}
 					break;
 
-				case 23:
+				case Network::ClientState::CLIENT_ORDER:
 					//make function to assign orders to a network player.
 					break;
 				default:
@@ -150,29 +150,34 @@ void *Network::chatReceiver(Network *sentSelf)
 
 					switch (num)
 					{
-					case 11: break;
-
-					case 12: printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
+					case Network::PacketTypes::HOST_READY:
 						break;
 
-					case 13:mapSize = strtok (NULL," ");
+					case Network::PacketTypes::HOST_READY:
+						printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
+						break;
+
+					case Network::PacketTypes::HOST_MAP:
+						mapSize = strtok (NULL," ");
 						mapString = strtok(NULL, " ");
 						world->buildFromString(mapSize, mapString);
 						break;
 
-					case 14: //this is where the game receives prompt to leave the chat and start the game
+					case Network::PacketTypes::HOST_PLAYING: //this is where the game receives prompt to leave the chat and start the game
 						break;
 
-					case 15: //this is where the game receives the number of players in game
+					case Network::PacketTypes::HOST_NUMBER_OF_PLAYERS: //this is where the game receives the number of players in game
 						break;
 
-					case 16: // this is where the game receives the player and which player number it is
+					case Network::PacketTypes::HOST_PLAYER_POSITION: // this is where the game receives the player and which player number it is
 						break;
 
-					case 17: // this is where the game receives the mines and which mine number it is
+					case Network::PacketTypes::HOST_MINE_POSITION: // this is where the game receives the mines and which mine number it is
 						break;
 
-					default: printf ("WHAT THE FUCK, I'M A CLIENT: %s", inBuffer); break;
+					default:
+						printf ("WHAT THE FUCK, I'M A CLIENT: %s", inBuffer);
+						break;
 					}
 
 				}
@@ -190,16 +195,11 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 	char *outBuffer;
 	//unsigned short outPort;
 	outSocket.bind(4445);
-	//pthread_cond_wait(&networkCV, &mutexSendLock);
-	/* critical region, lock the mutex here while we wait for input from user. */
 	pthread_mutex_lock(&mutexSendLock);
 	while (true)
 	{
 		std::string message;
-		//std::cin >> message;//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 		std::getline(std::cin, message);
-		/* Wait here while message is input */
-//		pthread_cond_wait(&networkCV, &mutexSendLock); // wait a minute, this doesn't make sense when chatting.
 		if (message.size() > 0)
 		{
 			if (!hostIp)
@@ -209,9 +209,9 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 					std::vector<Client *>::iterator peerIter;
 					for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
 					{
-						if ((*peerIter)->peerState == Network::ClientState::CONNECTING)
+						if ((*peerIter)->peerState == Network::ClientState::CLIENT_CONNECTING)
 						{
-							message += "13 ";
+							message += Network::PacketTypes::HOST_MAP + " ";
 							message += world->staticMapString();
 							outSocket.send(message.c_str(), message.size() + 1, (*peerIter)->peerIp, 4444);
 						}

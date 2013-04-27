@@ -27,11 +27,20 @@ class Network
 {
 
 public:
+	enum PacketTypes {
+		HOST_READY,
+		HOST_MAP,
+		HOST_PLAYING,
+		HOST_NUMBER_OF_PLAYERS,
+		HOST_PLAYER_POSITION,
+		HOST_MINE_POSITION,
+		CHAT_MESSAGE
+	};
 	enum ClientState
 	{
-		CONNECTING,
-		READY,
-		PLAYING
+		CLIENT_CONNECTING,
+		CLIENT_READY,
+		CLIENT_ORDER
 	};
 	struct Client{
 		char *peerIp;
