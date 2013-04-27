@@ -798,16 +798,7 @@ bool World::runMenu()
 std::string World::staticMapString()
 {
 	std::string mapString;
-#ifdef _WIN32
-	if (area != 0)
-	mapString += std::to_string((long long)(area));
-	else
-	mapString += '4';
-#else
-	mapString += '4';//std::to_string(area);
-#endif
-	mapString += " 1010101010101010";
-/* These are for when we are actually sending a map.
+	mapString += std::to_string((long long)(area)) + " ";
 	for (int yPosition = 0; yPosition < area; yPosition++)
 	{
 		for (int xPosition = 0; xPosition < area; xPosition++)
@@ -821,7 +812,7 @@ std::string World::staticMapString()
 				mapString += '0';
 			}
 		}
-	} //*/
+	}
 	return mapString;
 }
 
@@ -829,7 +820,7 @@ bool World::buildFromString(std::string sizeString, std::string baseString)
 {
 	std::string::size_type currentPosition;
 	area = std::stoi(sizeString, &currentPosition);
-	
+
 	map = new Tile**[area];
 	Tile *tempTile = new Tile();
 	tempTile->initImage();
@@ -842,22 +833,20 @@ bool World::buildFromString(std::string sizeString, std::string baseString)
 		for (int xPosition = 0; xPosition < area; xPosition++)
 		{
 			///@note makes sure the file is not overextended, this is meant to be redundant
-
-				map[yPosition][xPosition] = new Tile(*tempTile);
-				map[yPosition][xPosition]->setPosition(yPosition, xPosition);
-				printf ("%c\n", baseString.at(currentPosition));
-				if (baseString.at(currentPosition) == '1')
-				{
-					map[yPosition][xPosition]->initTile('x');
-				}
-				else
-				{
-					map[yPosition][xPosition]->initTile(' ');
-				}
-				map[yPosition][xPosition]->initSprite(yPosition, xPosition);
-				currentPosition++;
+			map[yPosition][xPosition] = new Tile(*tempTile);
+			map[yPosition][xPosition]->setPosition(yPosition, xPosition);
+			printf ("%c\n", baseString.at(currentPosition));
+			if (baseString.at(currentPosition) == '1')
+			{
+				map[yPosition][xPosition]->initTile('x');
+			}
+			else
+			{
+				map[yPosition][xPosition]->initTile(' ');
+			}
+			map[yPosition][xPosition]->initSprite(yPosition, xPosition);
+			currentPosition++;
 		}
-
 	}
 	return true;
 }
