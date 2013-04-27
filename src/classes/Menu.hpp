@@ -58,7 +58,7 @@ public:
 	bool initplayers();
 	void networking();
 	void animation();
-
+	void lobby(std::string *hostIp);
 };
 
 

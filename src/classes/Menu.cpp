@@ -246,7 +246,6 @@ int  Menu::SelectNumberOfCharacters()
 	numOfPlayers = 0;
 	std::string numOfPlayersText;
 	std::string menutext;
-	sf::Event event;
 	bool running = true;
 
 	//while this part of the menu is running
@@ -310,12 +309,12 @@ void Menu::networking()
 {
 	sf::Event event;
 	std::string ip;
-	int ipLength = 0;
 	bool running = true;
 
 	window->setKeyRepeatEnabled(false);
 	ip = "";
-	textLineOne.setString("ip address:");
+	textLineOne.setString("ipv4 address: ");
+	printf("press return with an empty IP string to host match.\n");
 
 	//while this part of the menu is running
 	while(running)
@@ -355,7 +354,7 @@ void Menu::networking()
 				}
 				else if (event.key.code == sf::Keyboard::Num8)
 				{
-						ip.insert((ip.size()),"8");
+					ip.insert((ip.size()),"8");
 				}
 				else if (event.key.code == sf::Keyboard::Num9)
 				{
@@ -363,7 +362,7 @@ void Menu::networking()
 				}
 				else if (event.key.code == sf::Keyboard::Num0)
 				{
-						ip.insert((ip.size()),"0");
+					ip.insert((ip.size()),"0");
 				}
 				else if (event.key.code == sf::Keyboard::Period)
 				{
@@ -381,8 +380,11 @@ void Menu::networking()
 					running = false;
 
 				}
+				else if (event.key.code == sf::Keyboard::Return)
+				{
+					lobby(&ip);
+				}
 			}
-
 			//check the size of ip address
 			if(ip.size() > 15)
 			{
@@ -390,7 +392,7 @@ void Menu::networking()
 			}
 			textLineTwo.setString(ip);
 		}
-	animation();
+		animation();
 	}
 	textLineOne.setString("Singleplayer");
 	textLineTwo.setString("Multiplayer");
@@ -510,3 +512,17 @@ void Menu::networkDraw()
 	window->draw(textLineTwo);
 	window->display();
 };
+
+/**
+ * Network lobby, add events to a network queue.
+ * @param hostIp The string containing the hosts ip, NULL if host.
+ */
+void Menu::lobby(std::string *hostIp)
+{
+	bool isHost = false;
+	if (hostIp->size() == 0)
+	{
+		isHost = true;
+	}
+	//Network
+}
