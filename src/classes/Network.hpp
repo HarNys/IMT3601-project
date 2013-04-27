@@ -27,7 +27,10 @@ class Network
 private:
 	struct Client{
 		char *peerIp;
-		enum peerState;
+		enum peerState
+		{
+			connecting, ready, playing
+		};
 	};
 	static std::vector<Client*> *clients;
 	char *hostIp;
