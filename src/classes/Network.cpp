@@ -28,16 +28,15 @@ std::vector<Network::Client*> *Network::clients = NULL;
 
 Network::Network(void *params, bool isHost)// : mutexSendLock(PTHREAD_MUTEX_INITIALIZER)
 {
-	if (params == NULL)
-	{
-		clients = new std::vector<Network::Client*>;
-		clients->reserve(4);
-		hostIp = NULL;
-	}
-	else
+	
+	clients = new std::vector<Network::Client*>;
+	clients->reserve(4);
+	hostIp = NULL;
+	if (params)
 	{
 		hostIp = (char *) params;
 	}
+
 	world = world->getWorld();
 	world->initNetwork();
 
@@ -123,13 +122,16 @@ void *Network::chatReceiver(Network *sentSelf)
 					break;
 				case 22:
 					printf("%s said: %s, count: %lu\n", sender.toString().c_str(), inBuffer, count);
-					for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
+					if (clients != NULL)
 					{
-						if ((*peerIter)->peerIp == (char*) sender.toString().c_str())
+						for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
 						{
-							(*peerIter)->peerState = Network::ClientState::READY;
-						}
+							if ((*peerIter)->peerIp == (char*) sender.toString().c_str())
+							{
+								(*peerIter)->peerState = Network::ClientState::READY;
+							}
 
+						}
 					}
 					break;
 
