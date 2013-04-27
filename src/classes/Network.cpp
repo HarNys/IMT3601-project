@@ -23,21 +23,23 @@
  */
 #include "../Includes.hpp"
 
-std::vector<Network::Client*> *clients = NULL;
+std::vector<Network::Client*> *Network::clients = NULL;
 //pthread_mutex_t Network::mutexSendLock = PTHREAD_MUTEX_INITIALIZER;
 
 Network::Network(void *params, bool isHost)// : mutexSendLock(PTHREAD_MUTEX_INITIALIZER)
 {
-	if (isHost)
+	if (params == NULL)
 	{
-		clients = new std::vector<Client*>();
+		clients = new std::vector<Network::Client*>;
 		clients->reserve(4);
 		hostIp = NULL;
 	}
-	else if (!isHost)
+	else
 	{
 		hostIp = (char *) params;
 	}
+	world = world->getWorld();
+	world->initNetwork();
 
 	pthread_mutex_init(&mutexSendLock, NULL);
 //	pthread_cond_init(networkCV, NULL);
@@ -109,7 +111,7 @@ void *Network::chatReceiver(Network *sentSelf)
 						if (!inList((char *)sender.toString().c_str()))
 						{
 							//clients->push_back((Client *)sender.toString().c_str());
-							clients->back()->CONNECTING;
+							clients->back()->peerState = Network::ClientState::CONNECTING;
 						}
 							break;
 					case '2':

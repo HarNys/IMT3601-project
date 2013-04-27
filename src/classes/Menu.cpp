@@ -519,6 +519,6 @@ void Menu::networkDraw()
  */
 void Menu::lobby(std::string *hostIp)
 {
-	Network network((void*) hostIp, isHost);
+	Network network((void*) hostIp, true);
 	printf("Menu::lobby: Shutting down.\n");
 }

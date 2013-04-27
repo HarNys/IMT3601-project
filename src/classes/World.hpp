@@ -48,6 +48,8 @@ private:
 	int updatetime;
 	sf::RenderWindow *window;
 	Menu *mainMenu;
+	std::stack<std::string*> *sendEvents;
+	std::stack<std::string*> *receiveEvents;
 public:
 	static World *getWorld();
 	bool initMap(char *mapFile);
@@ -66,6 +68,7 @@ public:
 	bool runMenu();
 	std::string staticMapString();
 	bool buildFromString(std::string baseString);
+	bool initNetwork();
 };
 
 #endif // __WORLD__HEADER__GUARD__

@@ -26,14 +26,15 @@ class Network
 {
 
 public:
+	enum ClientState
+	{
+		CONNECTING,
+		READY,
+		PLAYING
+	};
 	struct Client{
 		char *peerIp;
-		enum peerState
-		{
-			CONNECTING,
-			READY,
-			PLAYING
-		};
+		ClientState peerState;
 	};
 	Network();
 	Network(void *params, bool isHost);
@@ -41,11 +42,12 @@ public:
 	void *chatReceiver(Network *sentSelf);
 	void *chatSender(Network *sentSelf);
 	static bool inList(char *ip);
-private:
 	static std::vector<Client*> *clients;
+private:
 	char *hostIp;
 	pthread_t networkReceiverThread;
 	pthread_t networkSenderThread;
 	pthread_mutex_t mutexSendLock;
 	pthread_cond_t networkCV;
+	World *world;
 };

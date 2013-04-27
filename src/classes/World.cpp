@@ -46,6 +46,8 @@ World::World()
 	updatetime = 0;
 	window = NULL;
 	mainMenu = NULL;
+	sendEvents = NULL;
+	receiveEvents = NULL;
 };
 
 /**
@@ -865,5 +867,16 @@ bool World::buildFromString(std::string baseString)
 		}
 
 	}
+	return true;
+}
+
+/**
+ * Initialises the two stacks used for network communication.
+ * @return true on success.
+ */
+bool World::initNetwork()
+{
+	sendEvents = new std::stack<std::string*>;
+	receiveEvents = new std::stack<std::string*>;
 	return true;
 }
