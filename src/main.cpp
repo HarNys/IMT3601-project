@@ -217,21 +217,21 @@ int main(int argc, char **argv)
 //	}
 //	pthread_join(networkHostThread, NULL);
 //	pthread_join(networkClientThread, NULL);
-
+/*
 	std::string tempString = confSettings.peerIp.toString();
 	char * tempCharArray = new char [tempString.length()+1];
 	strcpy (tempCharArray, tempString.c_str());
 	void *tempVoidPointer = (void*) tempCharArray;
 
 	Network *network = new Network(tempVoidPointer, confSettings.isHost);
-
+//*/
 
 
 	/*
 	 * We exit the program here for testing purposes during this
 	 * early testing of networking.
 	 */
-	return 0;
+//	return 0;
 
 	/**
 	 * @todo make mapsizes parsed from arguments.
