@@ -876,7 +876,63 @@ bool World::buildFromString(std::string baseString)
  */
 bool World::initNetwork()
 {
-	sendEvents = new std::stack<std::string*>;
-	receiveEvents = new std::stack<std::string*>;
+	sendEvents = new strstack;
+	receiveEvents = new strstack;
+	pthread_mutex_init(&sendEventMutex, NULL);
+	pthread_mutex_init(&receiveEventMutex, NULL);
 	return true;
+}
+
+/**
+ * Getter for sendEvents.
+ * @return a copy of std::stack<std::string*> sendEvents
+ */
+strstack World::getSendEvents()
+{
+	pthread_mutex_lock(&sendEventMutex);
+	strstack sendEventsCopy;
+	while (!sendEvents->empty())
+	{
+		sendEventsCopy.push(sendEvents->top());
+		sendEvents->pop();
+	}
+	pthread_mutex_unlock(&sendEventMutex);
+	return sendEventsCopy;
+}
+
+/**
+ * Getter for receiveEvents.
+ * @return a copy of std::stack<std::string*> receiveEvents
+ */
+strstack World::getReceiveEvents()
+{
+	pthread_mutex_lock(&receiveEventMutex);
+	strstack receiveEventsCopy;
+	while (!receiveEvents->empty())
+	{
+		receiveEventsCopy.push(receiveEvents->top());
+		receiveEvents->pop();
+	}
+	pthread_mutex_unlock(&receiveEventMutex);
+	return receiveEventsCopy;
+}
+
+/**
+ * Setter for sendEvents, does a push operation on the stack.
+ */
+void World::setSendEvent(std::string event)
+{
+	pthread_mutex_lock(&sendEventMutex);
+	sendEvents->push(&event);
+	pthread_mutex_unlock(&sendEventMutex);
+}
+
+/**
+ * Setter for receiveEvents, does a push operation on the stack.
+ */
+void World::setReceiveEvent(std::string event)
+{
+	pthread_mutex_lock(&receiveEventMutex);
+	receiveEvents->push(&event);
+	pthread_mutex_unlock(&receiveEventMutex);
 }

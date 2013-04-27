@@ -24,6 +24,8 @@
 #define __WORLD__HEADER__GUARD__
 #include "../Includes.hpp"
 
+typedef std::stack<std::string*> strstack;
+
 /**
  * @brief world X is across, world Y is downwards
  *
@@ -48,8 +50,11 @@ private:
 	int updatetime;
 	sf::RenderWindow *window;
 	Menu *mainMenu;
-	std::stack<std::string*> *sendEvents;
-	std::stack<std::string*> *receiveEvents;
+	/** Never access these directly, use the setters and getters */
+	strstack *sendEvents;
+	strstack *receiveEvents;
+	pthread_mutex_t sendEventMutex;
+	pthread_mutex_t receiveEventMutex;
 public:
 	static World *getWorld();
 	bool initMap(char *mapFile);
@@ -69,6 +74,10 @@ public:
 	std::string staticMapString();
 	bool buildFromString(std::string baseString);
 	bool initNetwork();
+	strstack getSendEvents();
+	strstack getReceiveEvents();
+	void setSendEvent(std::string event);
+	void setReceiveEvent(std::string event);
 };
 
 #endif // __WORLD__HEADER__GUARD__
