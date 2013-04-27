@@ -108,7 +108,8 @@ void *Network::chatReceiver(Network *sentSelf)
 					case '1':
 						if (!inList((char *)sender.toString().c_str()))
 						{
-							peerIp->push_back((char *)sender.toString().c_str());
+							//clients->push_back((Client *)sender.toString().c_str());
+							clients->back()->CONNECTING;
 						}
 							break;
 					case '2':
@@ -179,10 +180,10 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 		std::cin >> message;//world->staticMapString(); //"Hi, I am " + sf::IpAddress::getLocalAddress().toString();
 		/* Wait here while message is input */
 //		pthread_cond_wait(&networkCV, &mutexSendLock); // wait a minute, this doesn't make sense when chatting.
-		std::vector<char *>::iterator peerIter;
-		for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
+		std::vector<Client *>::iterator peerIter;
+		for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
 		{
-			outSocket.send(message.c_str(), message.size() + 1, *peerIter, 4444);
+			outSocket.send(message.c_str(), message.size() + 1, (*peerIter)->peerIp, 4444);
 		}
 	}
 	/* Unlock */
@@ -192,10 +193,10 @@ void *Network::chatSender(Network *sentSelf) //rename to sender
 
 bool Network::inList(char *ip)
 {
-	std::vector<char *>::iterator peerIter;
-	for (peerIter=peerIp->begin(); peerIter < peerIp->end(); peerIter++ )
+	std::vector<Client*>::iterator peerIter;
+	for (peerIter=clients->begin(); peerIter < clients->end(); peerIter++ )
 	{
-		if (ip == *peerIter)
+		if (ip == (*peerIter)->peerIp)
 		{
 			return true;
 		}
