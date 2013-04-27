@@ -2,6 +2,7 @@
  * Network.cpp
  *
  * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2013 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,11 +26,19 @@
 std::vector<char *> *Network::peerIp = NULL;
 //pthread_mutex_t Network::mutexSendLock = PTHREAD_MUTEX_INITIALIZER;
 
-Network::Network(void *params)// : mutexSendLock(PTHREAD_MUTEX_INITIALIZER)
+Network::Network(void *params, bool isHost)// : mutexSendLock(PTHREAD_MUTEX_INITIALIZER)
 {
-	peerIp = new std::vector<char *>();
-	peerIp->reserve(4);
-	peerIp->assign(1, (char *) params);
+	if (isHost)
+	{
+		peerIp = new std::vector<char *>();
+		peerIp->reserve(4);
+		peerIp->assign(1, (char *) params);
+		hostIp = NULL;
+	}
+	else if (!isHost)
+	{
+		hostIp = (char *) params;
+	}
 
 	pthread_mutex_init(&mutexSendLock, NULL);
 //	pthread_cond_init(networkCV, NULL);
@@ -90,11 +99,39 @@ void *Network::chatReceiver(Network *sentSelf)
 		if (inSocket.Done == inSocket.receive(inBuffer, sizeof(inBuffer), received, sender, port))
 		{
 			count++;
-			printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
-			//pthread_mutex_unlock(&mutexSendLock);
-			if (!inList((char *)sender.toString().c_str()))
+			if (hostIp != NULL)
 			{
-				peerIp->push_back((char *)sender.toString().c_str());
+				if (inBuffer[0] == '2')
+				{
+					switch (inBuffer[1])
+					{
+					case '1': 
+						if (!inList((char *)sender.toString().c_str()))
+						{
+							peerIp->push_back((char *)sender.toString().c_str());
+						}
+						 break;
+					case '2':
+						printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
+						//pthread_mutex_unlock(&mutexSendLock);
+						break;
+					case '3':
+						//make function to assign orders to a network player.
+						break;
+					}
+					if (inBuffer[1] == '1')
+					{
+						
+					}
+					
+
+					
+
+				}
+				else 
+				{
+					printf ("WHAT THE FUCK");
+				}
 			}
 		}
 	}

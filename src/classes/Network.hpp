@@ -26,6 +26,7 @@ class Network
 {
 private:
 	static std::vector<char *> *peerIp;
+	char *hostIp;
 	pthread_t networkReceiverThread;
 	pthread_t networkSenderThread;
 	pthread_mutex_t mutexSendLock;
@@ -33,7 +34,7 @@ private:
 
 public:
 	Network();
-	Network(void *params);
+	Network(void *params, bool isHost);
 	static void *threadInitialize(void *sentSelf);
 	void *chatReceiver(Network *sentSelf);
 	void *chatSender(Network *sentSelf);

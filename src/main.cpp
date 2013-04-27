@@ -223,7 +223,7 @@ int main(int argc, char **argv)
 	strcpy (tempCharArray, tempString.c_str());
 	void *tempVoidPointer = (void*) tempCharArray;
 
-	Network *network = new Network(tempVoidPointer);
+	Network *network = new Network(tempVoidPointer, confSettings.isHost);
 
 
 
