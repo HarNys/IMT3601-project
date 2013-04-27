@@ -393,7 +393,7 @@ bool World::moveCharacter(Character *character, int xPosition, int yPosition)
 		movementString += ' ';
 		movementString += (char *)(characterDirectionY+1);
 		movementString += ' ';
-		movementString += (char *)(character->getMinePlaced()+1)
+		movementString += (char *)(character->getMinePlaced()+1);
 		setSendEvent(movementString);
 	}
 	else

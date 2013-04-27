@@ -439,7 +439,7 @@ bool Menu::initplayers()
 	{
 		printf("main(int,char**): has got CharacterFactory, getting NPC %d\n",i);
 		npc = characterFactory->getCharacter();
-		npc->setCharacterType(1);
+		npc->setCharacterType(1, world->getIsClient());
 		npc ->setID(i+1);
 		world->placeCharacter(npc);
 	}
