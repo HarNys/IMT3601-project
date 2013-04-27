@@ -1,7 +1,7 @@
 /*
  * Network.cpp
  *
- * Copyright 2012 Thomas Sigurdsen <thomas@gmail.com>
+ * Copyright 2012, 2013 Thomas Sigurdsen <thomas@gmail.com>
  * Copyright 2013 Ørjan Røkkum Brandtzæg <orokkum@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
