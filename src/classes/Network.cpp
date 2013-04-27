@@ -107,6 +107,8 @@ void *Network::chatReceiver(Network *sentSelf)
 				printf("num: %d",num);
 				switch (num)
 				{
+				case Network::ClientState::CLIENT_READY:
+					break;
 				case Network::ClientState::CLIENT_CONNECTING:
 					if (!inList((char *)sender.toString().c_str()))
 					{
@@ -120,7 +122,7 @@ void *Network::chatReceiver(Network *sentSelf)
 						clients->push_back(tempclient);
 					}
 					break;
-				case Network::ClientState::CLIENT_READY:
+				case Network::PacketTypes::CHAT_MESSAGE:
 					printf("%s said: %s, count: %lu\n", sender.toString().c_str(), inBuffer, count);
 					if (clients != NULL)
 					{
@@ -153,7 +155,7 @@ void *Network::chatReceiver(Network *sentSelf)
 					case Network::PacketTypes::HOST_READY:
 						break;
 
-					case Network::PacketTypes::HOST_READY:
+					case Network::PacketTypes::CHAT_MESSAGE:
 						printf("%s said: %s, count: %lu\r", sender.toString().c_str(), inBuffer, count);
 						break;
 
