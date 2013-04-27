@@ -104,17 +104,19 @@ void *Network::chatReceiver(Network *sentSelf)
 			if (hostIp != NULL)
 			{
 				int num = atoi(strtok(inBuffer, " "));
-				
+				printf("num: %d",num);
 				switch (num)
 				{
 				case 21:
 					if (!inList((char *)sender.toString().c_str()))
 					{
-							
-						Client *tempclient;
-						//tempclient->peerIp = (char*) malloc(sizeof(char)*256);
-						//printf("peerip: %s\n",(char *) sender.toString().c_str());
-						//tempclient->peerState=Network::ClientState::CONNECTING;
+
+						Client *tempclient = new Client;
+						tempclient->peerIp = (char*) malloc(sizeof(char)*256);
+						printf("\npeerip: %s\n",(char *) sender.toString().c_str());
+						memcpy(tempclient->peerIp, (sender.toString().c_str()), sender.toString().size());
+						tempclient->peerState = Network::ClientState::CONNECTING;
+						printf("\n\t\tTMPCLIENT:\n\tip: %s\n\tstate: %d",tempclient->peerIp, tempclient->peerState);
 						clients->push_back(tempclient);
 						clients->back()->peerIp = (char *) sender.toString().c_str();
 						clients->back()->peerState = Network::ClientState::CONNECTING;
