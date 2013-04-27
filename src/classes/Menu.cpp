@@ -519,10 +519,6 @@ void Menu::networkDraw()
  */
 void Menu::lobby(std::string *hostIp)
 {
-	bool isHost = false;
-	if (hostIp->size() == 0)
-	{
-		isHost = true;
-	}
-	//Network
+	Network network((void*) hostIp, isHost);
+	printf("Menu::lobby: Shutting down.\n");
 }
