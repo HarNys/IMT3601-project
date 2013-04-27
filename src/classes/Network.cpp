@@ -23,7 +23,7 @@
  */
 #include "../Includes.hpp"
 
-std::vector<Client*> *clients = NULL;
+std::vector<Network::Client*> *clients = NULL;
 //pthread_mutex_t Network::mutexSendLock = PTHREAD_MUTEX_INITIALIZER;
 
 Network::Network(void *params, bool isHost)// : mutexSendLock(PTHREAD_MUTEX_INITIALIZER)
@@ -126,7 +126,7 @@ void *Network::chatReceiver(Network *sentSelf)
 				}
 			}
 
-			else 
+			else
 			{
 				if (inBuffer[0] == '2')
 				{
