@@ -59,6 +59,7 @@
 #include <fstream>
 #include <math.h>
 #include <omp.h>
+#include <stack>
 
 ///////// LOCAL PROJECT FILES //////////
 #include "classes/Node.hpp"
